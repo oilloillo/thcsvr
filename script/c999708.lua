@@ -117,7 +117,7 @@ end
 function M.filter(c, tp, mg, turner, e)
 	local lv = c:GetLevel()-turner:GetRank()
 	if lv < 1 then return false end
-	return c:IsRace(RACE_ZOMBIE) and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_SYNCHRO,tp,true,false) and 
+	return c:IsRace(RACE_ZOMBIE) and c:IsType(TYPE_SYNCHRO) and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_SYNCHRO,tp,true,false) and 
 		mg:CheckWithSumEqual(M.synLvfilter, lv, 1, 99, c)
 end
 

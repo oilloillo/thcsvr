@@ -73,25 +73,16 @@ function c999403.costfilter(c)
 	return c:IsCode(999403) and c:IsAbleToRemoveAsCost()
 end
 
-function c999403.cffilter(c)
-	local code=c:GetOriginalCode()
-	local mt=_G["c" .. code]
-	return mt and mt.DescSetName == 0xa3 and c:IsType(TYPE_MONSTER) and not c:IsPublic()
-end
-
 function c999403.lvcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local g=Duel.GetMatchingGroup(c999403.costfilter, tp, LOCATION_GRAVE, 0, nil)
 	local rep = Duel.GetFlagEffect(tp, 999410)
 	local num = 2 - rep
 	if num < 1 then num = 1 end
-	if chk==0 then return g:GetCount()>=num and Duel.IsExistingMatchingCard(c999403.cffilter,tp,LOCATION_HAND,0,1,nil) end
+	if chk==0 then return g:GetCount()>=num end
 	local rg=g:RandomSelect(tp,num)
 	Duel.Remove(rg,POS_FACEUP,REASON_COST)
 	Duel.ResetFlagEffect(tp, 999410)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_CONFIRM)
-	local g=Duel.SelectMatchingCard(tp,c999403.cffilter,tp,LOCATION_HAND,0,1,1,nil)
-	Duel.ConfirmCards(1-tp,g)
-	Duel.ShuffleHand(tp)
 end
 
 function c999403.lvop(e,tp,eg,ep,ev,re,r,rp)
