@@ -1,0 +1,30 @@
+--审判『净颇梨审判 -射命丸文-』
+function c25075.initial_effect(c)
+	--ban
+	local e1=Effect.CreateEffect(c)
+	e1:SetType(EFFECT_TYPE_ACTIVATE)
+	e1:SetCode(EVENT_FREE_CHAIN)
+	e1:SetOperation(c25075.activate)
+	c:RegisterEffect(e1)
+end
+function c25075.activate(e,tp,eg,ep,ev,re,r,rp)
+	local e1=Effect.CreateEffect(e:GetHandler())
+	e1:SetType(EFFECT_TYPE_FIELD)
+	e1:SetProperty(EFFECT_FLAG_SET_AVAILABLE+EFFECT_FLAG_IGNORE_RANGE)
+	e1:SetCode(EFFECT_FORBIDDEN)
+	e1:SetTarget(c25075.bantg)
+	e1:SetLabelObject(tc)
+	e1:SetReset(RESET_PHASE+PHASE_END+RESET_OPPO_TURN,3)
+	Duel.RegisterEffect(e1,tp)
+	local e2=Effect.CreateEffect(e:GetHandler())
+	e2:SetType(EFFECT_TYPE_FIELD)
+	e2:SetCode(EFFECT_DISABLE)
+	e2:SetTargetRange(LOCATION_ONFIELD,LOCATION_ONFIELD)
+	e2:SetTarget(c25075.bantg)
+	e2:SetLabelObject(tc)
+	e2:SetReset(RESET_PHASE+PHASE_END+RESET_OPPO_TURN,3)
+	Duel.RegisterEffect(e2,tp)
+end
+function c25075.bantg(e,c)
+	return c:IsSetCard(0x125)
+end
