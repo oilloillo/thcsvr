@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --灭罪「正直者之死」
 function c21124.initial_effect(c)
 	--Activate

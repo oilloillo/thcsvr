@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --幻弹「幻想视差」
 function c21052.initial_effect(c)
 	--Activate

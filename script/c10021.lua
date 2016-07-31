@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --本居小铃
 function c10021.initial_effect(c)
 	--xyz summon

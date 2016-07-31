@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --红魔 七曜的魔女
 function c22049.initial_effect(c)
 	--synchro summon

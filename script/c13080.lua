@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --阳离子地球毁灭四次元爆弹
 function c13080.initial_effect(c)
 	--Activate

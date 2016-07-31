@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --妖精大战争
 function c25029.initial_effect(c)
 	--Activate

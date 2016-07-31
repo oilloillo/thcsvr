@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --妖精之湖
 function c22090.initial_effect(c)
 	--activate

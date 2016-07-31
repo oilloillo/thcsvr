@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --小鬼联盟
 function c22084.initial_effect(c)
 	--Activate

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --诵经的山彦 幽谷响子
 function c27001.initial_effect(c)
 	--spsummon

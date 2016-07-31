@@ -1,5 +1,4 @@
-require "expansions/script/nef/dss"
---しろかみ 黑焰的魔术师
+ --しろかみ 黑焰的魔术师
 function c60064.initial_effect(c)
 	--xyz summon
 	c:EnableReviveLimit()
@@ -58,26 +57,26 @@ function c60064.atkup(e,tp,eg,ep,ev,re,r,rp,chk)
 	if d and d:IsSetCard(0x191) and d:IsControler(tp) then
 	local e1=Effect.CreateEffect(e:GetHandler())
 	e1:SetType(EFFECT_TYPE_SINGLE)
-	e1:SetCode(EFFECT_SET_ATTACK)
+	e1:SetCode(EFFECT_SET_ATTACK_FINAL)
 	e1:SetReset(RESET_PHASE+PHASE_DAMAGE_CAL)
 	e1:SetValue(c60064.atkval)
 	a:RegisterEffect(e1)
 	local e2=Effect.CreateEffect(e:GetHandler())
 	e2:SetType(EFFECT_TYPE_SINGLE)
-	e2:SetCode(EFFECT_SET_DEFENCE)
+	e2:SetCode(EFFECT_SET_DEFENCE_FINAL)
 	e2:SetReset(RESET_PHASE+PHASE_DAMAGE_CAL)
 	e2:SetValue(c60064.defval)
 	a:RegisterEffect(e2)
 	elseif d and a:IsSetCard(0x191) and a:IsControler(tp) then
 	local e3=Effect.CreateEffect(e:GetHandler())
 	e3:SetType(EFFECT_TYPE_SINGLE)
-	e3:SetCode(EFFECT_SET_ATTACK)
+	e3:SetCode(EFFECT_SET_ATTACK_FINAL)
 	e3:SetReset(RESET_PHASE+PHASE_DAMAGE_CAL)
 	e3:SetValue(c60064.atkval)
 	d:RegisterEffect(e3)
 	local e4=Effect.CreateEffect(e:GetHandler())
 	e4:SetType(EFFECT_TYPE_SINGLE)
-	e4:SetCode(EFFECT_SET_DEFENCE)
+	e4:SetCode(EFFECT_SET_DEFENCE_FINAL)
 	e4:SetReset(RESET_PHASE+PHASE_DAMAGE_CAL)
 	e4:SetValue(c60064.defval)
 	d:RegisterEffect(e4)

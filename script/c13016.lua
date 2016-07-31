@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --超越时空的梦幻居民 北白河千百合
 function c13016.initial_effect(c)
 	c:SetUniqueOnField(1,0,13016)

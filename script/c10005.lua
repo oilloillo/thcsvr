@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --普通的魔法使
 function c10005.initial_effect(c)
 	--xyz summon

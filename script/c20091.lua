@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --亡舞「生者必灭之理」
 function c20091.initial_effect(c)
 	local e1=Effect.CreateEffect(c)

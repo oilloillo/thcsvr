@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --绯想✿灵乌路空
 function c200019.initial_effect(c)	
 	--code

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --JK东风谷早苗
 function c23030.initial_effect(c)
 	--xyz summon

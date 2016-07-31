@@ -1,5 +1,5 @@
 --三种神器之　镜
-require "expansions/script/nef/nef"
+--require "expansions/nef/nef"
 function c999203.initial_effect(c)
 	--pendulum summon
 	local argTable = {1}

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --命莲-光符「正义的威光」
 function c26052.initial_effect(c)
 	--Activate

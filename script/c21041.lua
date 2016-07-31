@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --生命游戏-Life Game-
 function c21041.initial_effect(c)
 	--Activate

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --天启气象之剑
 function c200301.initial_effect(c)
 	--field

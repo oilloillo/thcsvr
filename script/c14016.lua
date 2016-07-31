@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --梦幻馆的女仆 梦月
 function c14016.initial_effect(c)
 	--synchro summon

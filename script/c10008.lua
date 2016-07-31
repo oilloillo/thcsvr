@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --茨华仙 茨木华扇
 function c10008.initial_effect(c)
 	--xyz summon

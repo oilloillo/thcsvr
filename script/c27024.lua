@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --仙符「豪族乱舞」
 function c27024.initial_effect(c)
 	--Activate

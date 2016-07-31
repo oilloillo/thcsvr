@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --新幻想史-Next History-
 function c21040.initial_effect(c)
 	--Activate

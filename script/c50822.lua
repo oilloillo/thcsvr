@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --舰上战斗机-烈风
 function c50822.initial_effect(c)
 	--Activate

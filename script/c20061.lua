@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --七色的人形使
 function c20061.initial_effect(c)
 	--synchro summon

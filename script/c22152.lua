@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --七曜-水符「湖葬」
 function c22152.initial_effect(c)
 	local e1=Effect.CreateEffect(c)

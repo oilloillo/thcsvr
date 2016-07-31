@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --川内型轻巡洋舰-那珂
 function c50133.initial_effect(c)
 	local temp = 0

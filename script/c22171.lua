@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --七曜-木火符「森林大火」
 function c22171.initial_effect(c)
 	local e1=Effect.CreateEffect(c)

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --蓬莱人形
 function c20049.initial_effect(c)
 	--draw

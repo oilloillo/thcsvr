@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --冰之妖精
 function c22009.initial_effect(c)
 	--search

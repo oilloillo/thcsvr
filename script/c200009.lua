@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --绯想✿八云紫
 function c200009.initial_effect(c)
 	c:EnableReviveLimit()

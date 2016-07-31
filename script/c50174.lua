@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --飞鹰型轻型航空母舰-飞鹰
 function c50174.initial_effect(c)
 	local temp = 0

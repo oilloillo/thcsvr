@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --百鬼王 伊吹萃香
 function c10006.initial_effect(c)
 	--xyz summon

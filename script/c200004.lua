@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --绯想✿魂魄妖梦
 function c200004.initial_effect(c)
 	--code

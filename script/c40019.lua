@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --暗精灵-蕾斯提亚
 function c40019.initial_effect(c)
 	c:SetUniqueOnField(1,0,40019)

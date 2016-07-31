@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --人界剑「悟入幻想」
 function c20068.initial_effect(c)
 	--Activate

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --「死灰复燃」
 function c24033.initial_effect(c)
     --search

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --吸血鬼之宠✿卓柏卡布拉
 function c21470011.initial_effect(c)
 	--Activate

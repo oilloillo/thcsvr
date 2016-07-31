@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --符器-天狗团扇
 function c200211.initial_effect(c)
 	--Activate

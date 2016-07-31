@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --ÓÀÒ¹·µ
 function c21042.initial_effect(c)
 	--Activate

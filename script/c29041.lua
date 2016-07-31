@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --妖剑「辉针剑」
 function c29041.initial_effect(c)
 	--Activate

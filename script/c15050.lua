@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --Grimoire of Alice
 function c15050.initial_effect(c)
 	local e1=Effect.CreateEffect(c)

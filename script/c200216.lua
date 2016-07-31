@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --符器-病气平癒守
 function c200216.initial_effect(c)
 	--Activate

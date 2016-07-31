@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --高雄型重巡洋舰-摩耶
 function c50165.initial_effect(c)
 	local temp = 0

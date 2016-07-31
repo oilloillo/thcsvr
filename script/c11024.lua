@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --恶魔之眼 幽玄魔眼
 function c11024.initial_effect(c)
 	--xyz summon

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --七曜-日水符「氢化日珥」
 function c888185.initial_effect(c)
 	--d&d

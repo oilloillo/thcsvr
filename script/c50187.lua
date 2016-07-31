@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --晓型驱逐舰-晓
 function c50187.initial_effect(c)
 	local temp = 0

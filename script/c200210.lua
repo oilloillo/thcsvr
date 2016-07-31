@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --符器-伊吹瓢
 function c200210.initial_effect(c)
 	--Activate

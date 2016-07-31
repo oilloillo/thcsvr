@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --绯想✿铃仙·优昙华院·稻叶
 function c200012.initial_effect(c)
 	--[[code

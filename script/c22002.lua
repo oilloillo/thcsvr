@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --露米娅
 function c22002.initial_effect(c)
 	--atk/lv up

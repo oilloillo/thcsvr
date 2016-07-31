@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --光魔「星之漩涡」
 function c26054.initial_effect(c)
 	--Activate

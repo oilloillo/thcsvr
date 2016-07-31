@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --幻想乡
 function c10000.initial_effect(c)
 	--Activate

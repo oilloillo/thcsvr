@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --月面波纹
 function c21057.initial_effect(c)
 	--Activate

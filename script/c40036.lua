@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --精灵魔装-炎之鞭
 function c40036.initial_effect(c)
 	--Activate

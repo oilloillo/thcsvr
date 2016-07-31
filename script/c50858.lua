@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --61cm五连装酸素鱼雷
 function c50858.initial_effect(c)
 	--Activate

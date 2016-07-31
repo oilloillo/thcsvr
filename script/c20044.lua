@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --Lost·魂魄妖忌
 function c20044.initial_effect(c)
 	c:EnableReviveLimit()

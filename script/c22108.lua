@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --冥符「红色的冥界」
 function c22108.initial_effect(c)
 	--Activate

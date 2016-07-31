@@ -1,6 +1,6 @@
-require "expansions/script/nef/dss"
+ 
 --七曜-水符「水精公主」
-require "expansions/script/nef/msc"
+--require "expansions/nef/msc"
 function c22132.initial_effect(c)
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --七曜-土符「巨石震怒」
 function c888155.initial_effect(c)
 	local e1=Effect.CreateEffect(c)

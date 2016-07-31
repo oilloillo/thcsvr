@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --风符「风神一扇」
 function c23038.initial_effect(c)
 	--Activate

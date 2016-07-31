@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --月兔兵团
 function c21028.initial_effect(c)
     --direct attack

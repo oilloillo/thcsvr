@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --绯想✿小野冢小町
 function c200013.initial_effect(c)
 	--summon with no tribute

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --逆弓「天壤梦弓」
 function c29040.initial_effect(c)
 	--change effect

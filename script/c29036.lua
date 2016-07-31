@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --一寸之壁
 function c29036.initial_effect(c)
 	--Activate

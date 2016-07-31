@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --报警系✿古明地恋
 function c24062.initial_effect(c)
 	--battle target

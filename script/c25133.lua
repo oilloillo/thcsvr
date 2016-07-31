@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --假面丧心舞 暗黑能乐
 function c25133.initial_effect(c)
 	--Activate

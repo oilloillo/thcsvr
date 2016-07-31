@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --神明末裔的亡灵 苏我屠自古
 function c27010.initial_effect(c)
 	c:EnableReviveLimit()

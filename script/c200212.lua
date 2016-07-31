@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --符器-腐蚀药
 function c200212.initial_effect(c)
 	--Activate

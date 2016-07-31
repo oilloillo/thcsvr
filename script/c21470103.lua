@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --妖魔书-遁入幻想
 function c21470103.initial_effect(c)
 	--Activate

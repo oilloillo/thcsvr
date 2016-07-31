@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --星莲-小不点贤将 娜兹玲
 function c26001.initial_effect(c)
 	--to hand

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --吉兆「极乐之紫色云路」
 function c26049.initial_effect(c)
 	--Activate

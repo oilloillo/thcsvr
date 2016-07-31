@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --命莲-光晕「唐伞惊闪」
 function c26051.initial_effect(c)
 	--Activate

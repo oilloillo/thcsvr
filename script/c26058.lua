@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --沉没的幽灵
 function c26058.initial_effect(c)
 	--spsummon

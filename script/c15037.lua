@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --绯红的少女～绯红之死!!
 function c15037.initial_effect(c)
 	--Activate

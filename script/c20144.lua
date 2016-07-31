@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --上海人形✿守备型
 function c20144.initial_effect(c)
 	--defup

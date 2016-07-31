@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --しろかみ 绝对零度的死神
 function c60075.initial_effect(c)
 	--synchro summon

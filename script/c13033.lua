@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --ICBM 咪咪酱
 function c13033.initial_effect(c)
 	--Set

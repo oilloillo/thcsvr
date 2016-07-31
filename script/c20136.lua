@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --泰坦妮娅人形✿
 function c20136.initial_effect(c)
 	--special summon

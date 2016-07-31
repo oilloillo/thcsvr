@@ -1,6 +1,6 @@
-require "expansions/script/nef/dss"
+ 
 --精灵剑舞契约
-require "expansions/script/nef/elf"
+--require "expansions/nef/elf"
 function c40030.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)

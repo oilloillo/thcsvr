@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --✿骚灵三姐妹✿
 function c20112.initial_effect(c)
 	--fusion material

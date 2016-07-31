@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --东·方·千·秋·乐
 function c10013.initial_effect(c)
 	--Activate

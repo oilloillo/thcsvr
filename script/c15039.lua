@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --最后的审判
 function c15039.initial_effect(c)
 	--Activate

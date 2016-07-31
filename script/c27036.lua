@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --毒爪「剧毒夷灭」
 function c27036.initial_effect(c)
 	--Activate

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --东方妖怪 橘子
 function c14001.initial_effect(c)
 	--special summon

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --しろかみ 莉亚娜·芬布鲁
 function c60029.initial_effect(c)
 	--search

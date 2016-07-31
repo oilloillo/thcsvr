@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --咒装刻印
 function c40033.initial_effect(c)
 	--effect

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --冬天的遗忘物
 function c20001.initial_effect(c)
 	--special summon

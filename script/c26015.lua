@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --星莲-封印的魔法使 圣白莲
 function c26015.initial_effect(c)
 	--synchro summon
@@ -71,7 +71,7 @@ function c26015.spop(e,tp,eg,ep,ev,re,r,rp)
 end
 function c26015.ctop(e,tp,eg,ep,ev,re,r,rp)
 	if eg:IsExists(aux.TRUE,1,nil) then
-		e:GetHandler():AddCounter(0x208d,1)
+		e:GetHandler():AddCounter(0x28d,1)
 	end
 end
 function c26015.regop(e,tp,eg,ep,ev,re,r,rp)

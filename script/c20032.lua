@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --华胥的亡灵
 function c20032.initial_effect(c)
 	c:EnableReviveLimit()

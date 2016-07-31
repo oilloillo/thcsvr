@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --甲标的 甲
 function c50841.initial_effect(c)
 	--Activate

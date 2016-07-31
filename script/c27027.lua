@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --道符「道家萌芽」
 function c27027.initial_effect(c)
 	--Activate

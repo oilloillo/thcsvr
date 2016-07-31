@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --梦与传统的巫女 博丽灵梦
 function c11001.initial_effect(c)
 	--indes

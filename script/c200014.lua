@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --绯想✿永江衣玖
 function c200014.initial_effect(c)
 	--reflect

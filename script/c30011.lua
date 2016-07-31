@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --GM诹访子
 function c30011.initial_effect(c)
 	--dark synchro summon

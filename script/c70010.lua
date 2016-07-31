@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --BlackHeart
 function c70010.initial_effect(c)
 	--xyz summon

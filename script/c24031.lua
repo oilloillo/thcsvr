@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --地底之都 -废狱-
 function c24031.initial_effect(c)
 	--Activate

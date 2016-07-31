@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --七曜-土金符「翡翠巨石」
 function c888173.initial_effect(c)
 	--destroy

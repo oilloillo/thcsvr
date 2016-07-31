@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --焰星「十凶星」
 function c24036.initial_effect(c)
 	--Activate

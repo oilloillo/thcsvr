@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --七曜-金符「银龙」
 function c888154.initial_effect(c)
 	local e1=Effect.CreateEffect(c)

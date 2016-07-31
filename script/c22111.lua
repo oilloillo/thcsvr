@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --莱瓦汀
 function c22111.initial_effect(c)
 	--Activate

@@ -25,11 +25,11 @@ c999406.DescSetName = 0xa3
 function c999406.tgfilter(c)
 	local code=c:GetOriginalCode()
 	local mt=_G["c" .. code]
-	return mt and mt.DescSetName == 0xa3 and (c:IsType(TYPE_SPELL) or c:IsType(TYPE_TRAP))
+	return mt and mt.DescSetName == 0xa3 and (c:IsType(TYPE_SPELL) or c:IsType(TYPE_TRAP)) and c:IsAbleToGrave()
 end
 
 function c999406.thfilter(c)
-	return c:IsSetCard(0x815)
+	return c:IsSetCard(0x815) and c:IsAbleToHand()
 end
 
 function c999406.activate(e,tp,eg,ep,ev,re,r,rp)

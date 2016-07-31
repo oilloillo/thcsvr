@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --虹符「穿越彩虹」
 function c26056.initial_effect(c)
 	--confirm

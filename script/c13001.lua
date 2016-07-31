@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --梦想恋爱的魔女 爱莲
 function c13001.initial_effect(c)
 	--atk up

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --光符「救世观音的光背光」
 function c27042.initial_effect(c)
 	--Activate

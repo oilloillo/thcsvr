@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --巴瓦鲁魔法图书馆
 function c22130.initial_effect(c)
 	--Activate

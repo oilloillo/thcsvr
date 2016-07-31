@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --pururut
 function c70023.initial_effect(c)
 	--sol

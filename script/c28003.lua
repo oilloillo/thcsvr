@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --秘封思想家 莲子
 function c28003.initial_effect(c)
 	--search

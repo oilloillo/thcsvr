@@ -1,6 +1,6 @@
-require "expansions/script/nef/dss"
+ 
 --七曜-金符「金属疲劳」
-require "expansions/script/nef/msc"
+--require "expansions/nef/msc"
 function c22134.initial_effect(c)
 	--activate
 	local e1=Effect.CreateEffect(c)

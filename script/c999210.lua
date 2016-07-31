@@ -1,5 +1,5 @@
 --未来「高天原」　
-require "expansions/script/nef/nef"
+--require "expansions/nef/nef"
 function c999210.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)

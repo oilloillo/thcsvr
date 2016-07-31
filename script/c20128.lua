@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --✿纯白的人形使✿
 function c20128.initial_effect(c)
 	--spsummon

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --不死鸟重生
 function c21127.initial_effect(c)
 	--Activate

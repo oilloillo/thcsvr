@@ -44,7 +44,7 @@ end
 
 function c999306.op(e,tp,eg,ep,ev,re,r,rp)
 	if Duel.GetLocationCount(tp,LOCATION_MZONE)>1 
-		and Duel.IsPlayerCanSpecialSummonMonster(tp,999300,0,0x4011,0,0,2,RACE_PLANT,ATTRIBUTE_EARTH) then
+		and Duel.IsPlayerCanSpecialSummonMonster(tp,999300,0x208,0x4011,0,0,2,RACE_PLANT,ATTRIBUTE_EARTH) then
 		for i=1,2 do
 			local token=Duel.CreateToken(tp,999300)
 			Duel.SpecialSummonStep(token,0,tp,tp,false,false,POS_FACEUP)

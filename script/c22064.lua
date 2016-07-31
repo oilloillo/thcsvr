@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --妖精女仆B
 function c22064.initial_effect(c)
 	--special summon

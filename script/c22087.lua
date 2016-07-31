@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --月之暗面-lv1.4
 function c22087.initial_effect(c)
 	--Activate

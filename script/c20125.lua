@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --✿雹之人形使✿
 function c20125.initial_effect(c)
 	--xyz summon

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --神灵庙
 function c27021.initial_effect(c)
 	--Activate

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 ---废狱-地心的主人·古明地觉
 function c24114.initial_effect(c)
 	--synchro summon

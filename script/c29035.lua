@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --进击的小人
 function c29035.initial_effect(c)
 	--spsummon

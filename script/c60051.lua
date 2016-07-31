@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --しろかみ 孤高的飞翔公主
 function c60051.initial_effect(c)
 	--xyz summon

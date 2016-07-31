@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --四季映姬·亚玛萨那度
 function c25010.initial_effect(c)
 	--synchro summon

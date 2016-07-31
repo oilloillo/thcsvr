@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --朱鹭子
 function c10010.initial_effect(c)
 	--unsynchroable

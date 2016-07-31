@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --开海「海水分开之日」
 function c23015.initial_effect(c)
 	--Activate

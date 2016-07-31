@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --蓬莱人的外形✿藤原妹红
 function c21025.initial_effect(c)
 	--synchro summon

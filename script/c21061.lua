@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --因幡 狂气的月之兔
 function c21061.initial_effect(c)
 	--synchro summon

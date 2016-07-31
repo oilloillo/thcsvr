@@ -1,5 +1,5 @@
 --守符『灵摆防御』
-require "expansions/script/nef/nef"
+--require "expansions/nef/nef"
 function c999605.initial_effect(c)
 	--summon
 	local e1=Effect.CreateEffect(c)

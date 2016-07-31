@@ -24,7 +24,7 @@ function c23203.mfilter1(c,e)
 	return c:IsSetCard(0x497) and c:IsCanBeFusionMaterial() and not c:IsImmuneToEffect(e) and c:IsAbleToDeck()
 end
 function c23203.mfilter2(c,e)
-	return c:GetCounter(0x208a)>0 and c:IsCanBeFusionMaterial() and not c:IsImmuneToEffect(e) and c:IsAbleToDeck()
+	return c:GetCounter(0x28a)>0 and c:IsCanBeFusionMaterial() and not c:IsImmuneToEffect(e) and c:IsAbleToDeck()
 end
 function c23203.filter2(c,e,tp,m,chkf)
 	return c:IsType(TYPE_FUSION) and aux.IsMaterialListSetCard(c,0x497) and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_FUSION,tp,false,false)
@@ -97,18 +97,18 @@ function c23203.ctcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.Remove(e:GetHandler(),POS_FACEUP,REASON_COST)
 end
 function c23203.ctfilter(c)
-	return c:IsFaceup() and c:IsCanAddCounter(0x208a,2)
+	return c:IsFaceup() and c:IsCanAddCounter(0x28a,2)
 end
 function c23203.cttg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsOnField() and chkc:IsControler(tp) and c23203.ctfilter(chkc) end
 	if chk==0 then return Duel.IsExistingTarget(c23203.ctfilter,tp,LOCATION_ONFIELD,0,1,nil) end
 	Duel.Hint(HINT_SELECTMSG,tp,aux.Stringid(23203,1))
 	Duel.SelectTarget(tp,c23203.ctfilter,tp,LOCATION_ONFIELD,0,1,1,nil)
-	Duel.SetOperationInfo(0,CATEGORY_COUNTER,nil,2,0,0x208a)
+	Duel.SetOperationInfo(0,CATEGORY_COUNTER,nil,2,0,0x28a)
 end
 function c23203.ctop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
 	if tc:IsFaceup() and tc:IsRelateToEffect(e) then
-		tc:AddCounter(0x208a,2)
+		tc:AddCounter(0x28a,2)
 	end
 end

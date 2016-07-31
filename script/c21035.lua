@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --幻胧月睨「LunaticRedEyes」
 function c21035.initial_effect(c)
 	--Activate

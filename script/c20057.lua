@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --春之倒影
 function c20057.initial_effect(c)
 	--Activate

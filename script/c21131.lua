@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --生药「国士无双之药」
 function c21131.initial_effect(c)
 	--lv change

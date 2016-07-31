@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --美丽的绯之衣 永江衣玖
 function c25006.initial_effect(c)
 	--xyz summon

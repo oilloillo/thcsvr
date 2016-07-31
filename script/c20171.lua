@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --人形「回收小分队」
 function c20171.initial_effect(c)
 	--Activate

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --明罗
 function c12006.initial_effect(c)
 	--atkup

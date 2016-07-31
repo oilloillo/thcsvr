@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --符器-替身人形
 function c200205.initial_effect(c)
 	--Activate

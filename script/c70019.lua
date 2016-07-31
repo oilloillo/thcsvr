@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --Vert
 function c70019.initial_effect(c)
 	--return hand

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --神光「无忤为宗」
 function c27041.initial_effect(c)
 	--Activate

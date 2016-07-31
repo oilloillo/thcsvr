@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --死之天使 萨丽爱尔
 function c11031.initial_effect(c)
 	--synchro summon

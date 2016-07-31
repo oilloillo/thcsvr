@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --秘封「天空的格林尼治」
 function c28039.initial_effect(c)
 	--destroy

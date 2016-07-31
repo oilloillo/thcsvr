@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --大合葬「灵车大协奏曲改」
 function c20119.initial_effect(c)
 	--Activate

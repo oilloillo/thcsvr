@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --铃奈庵
 function c21470001.initial_effect(c)
 	--Activate

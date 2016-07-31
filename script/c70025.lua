@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --IrisHeart
 function c70025.initial_effect(c)
 	--xyz summon

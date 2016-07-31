@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --星莲-见越入道 云山
 function c26007.initial_effect(c)
 	--equip

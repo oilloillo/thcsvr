@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --✿昙花的人形使✿
 function c20132.initial_effect(c)
 	--synchro summon

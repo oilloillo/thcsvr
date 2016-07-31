@@ -1,4 +1,4 @@
-require "expansions/script/nef/nef"
+--require "expansions/nef/nef"
 --幻想清行『雾之湖·夏』
 function c22400.initial_effect(c)
 

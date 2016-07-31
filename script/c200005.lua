@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --绯想✿爱丽丝·玛格特罗伊德
 function c200005.initial_effect(c)
 	--summon with no tribute

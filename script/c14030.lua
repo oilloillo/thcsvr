@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --Alice Maestra
 function c14030.initial_effect(c)
 	--Activate

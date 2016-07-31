@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --炎精灵-斯卡雷特
 function c40022.initial_effect(c)
 	c:SetUniqueOnField(1,0,40022)

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --上海人形
 function c20048.initial_effect(c)
 	--special summon

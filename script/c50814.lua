@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --61cm四连装鱼雷
 function c50814.initial_effect(c)
 	--Activate

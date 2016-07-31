@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --符器-西洋魔法书
 function c200206.initial_effect(c)
 	c:SetUniqueOnField(1,0,200206)

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --通灵「铜铃芳香」
 function c27028.initial_effect(c)
 	--Activate

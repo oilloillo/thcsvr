@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --八坂神奈子
 function c23022.initial_effect(c)
 	--synchro summon

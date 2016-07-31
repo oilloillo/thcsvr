@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --神社战车
 function c12001.initial_effect(c)
 	--search

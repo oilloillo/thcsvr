@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --妖魔书变化 幼邪龙
 function c21470012.initial_effect(c)
 	--Activate

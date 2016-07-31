@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --魔界女仆 梦子
 function c15016.initial_effect(c)
 	--immune effect

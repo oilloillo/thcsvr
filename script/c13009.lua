@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --少女骚灵 卡娜·安娜贝拉尔
 function c13009.initial_effect(c)
 	--spsummon

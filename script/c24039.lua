@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --废狱「被厌恶者的Philosophy」
 function c24039.initial_effect(c)
 	--Activate

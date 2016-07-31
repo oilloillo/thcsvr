@@ -1,5 +1,5 @@
 --三种神器之　玉
-require "expansions/script/nef/nef"
+--require "expansions/nef/nef"
 function c999202.initial_effect(c)
 	--pendulum summon
 	local argTable = {1}

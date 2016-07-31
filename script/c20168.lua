@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --柊去椿来
 function c20168.initial_effect(c)
 	--Activate

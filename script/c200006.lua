@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --绯想✿帕秋莉·诺雷姬
 function c200006.initial_effect(c)
 	--code

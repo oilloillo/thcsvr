@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --人类代表的魔法使
 function c10004.initial_effect(c)
 	--synchro summon

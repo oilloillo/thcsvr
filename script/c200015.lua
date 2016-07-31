@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --绯想✿比那名居天子
 function c200015.initial_effect(c)
 	c:EnableReviveLimit()

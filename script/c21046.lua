@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --月之都 -真实之月-
 function c21046.initial_effect(c)
 	--Activate

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --妖魔书整理
 function c21470017.initial_effect(c)
 	--Activate

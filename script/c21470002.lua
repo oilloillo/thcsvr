@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --妖魔书收藏家✿本居小铃
 function c21470002.initial_effect(c)
 	--special summon

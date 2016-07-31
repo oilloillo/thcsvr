@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --夜雀之怪 米斯蒂娅·萝蕾拉
 function c21066.initial_effect(c)
 	--synchro summon

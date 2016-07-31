@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --溺符「陷落漩涡」
 function c26055.initial_effect(c)
 	--Activate

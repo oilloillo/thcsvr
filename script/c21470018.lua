@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --满月夜的百鬼夜行
 function c21470018.initial_effect(c)
 	--Activate

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --蓬莱人形③✿
 function c20149.initial_effect(c)
 	--spsummon

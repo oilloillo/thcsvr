@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --精灵矿石
 function c40032.initial_effect(c)
 	--Activate

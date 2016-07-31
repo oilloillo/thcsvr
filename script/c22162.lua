@@ -1,6 +1,6 @@
-require "expansions/script/nef/dss"
+ 
 --七曜-月符「寂静的月神」
-require "expansions/script/nef/msc"
+--require "expansions/nef/msc"
 function c22162.initial_effect(c)
 	--activate
 	local e1=Effect.CreateEffect(c)

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --奇异谈话～神秘方形
 function c15030.initial_effect(c)
 	--Activate

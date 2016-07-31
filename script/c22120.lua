@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --斯卡雷特编年史
 function c22120.initial_effect(c)
 	--Activate

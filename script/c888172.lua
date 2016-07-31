@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --七曜-土水符「诺亚的大洪水」
 function c888172.initial_effect(c)
 	--damage

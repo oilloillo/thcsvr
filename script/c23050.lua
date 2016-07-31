@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --河童重工
 function c23050.initial_effect(c)
 	--Activate

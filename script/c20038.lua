@@ -1,5 +1,4 @@
-require "expansions/script/nef/dss"
---幻想的境界
+ --幻想的境界
 function c20038.initial_effect(c)
 	--synchro summon
 	aux.AddSynchroProcedure(c,aux.FilterBoolFunction(Card.IsType,TYPE_SYNCHRO),aux.NonTuner(Card.IsCode,20035),1)

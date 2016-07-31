@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --花式战车
 function c12002.initial_effect(c)
 	--unaffectable

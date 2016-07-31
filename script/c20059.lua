@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --八云一家
 function c20059.initial_effect(c)
 	--Activate

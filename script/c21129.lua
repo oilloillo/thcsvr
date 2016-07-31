@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --药符「壶中的大银河」
 function c21129.initial_effect(c)
 	--Activate

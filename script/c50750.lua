@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --晓型驱逐舰-Верный
 function c50750.initial_effect(c)
 	c:EnableReviveLimit()

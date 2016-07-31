@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --红魔-帕秋莉·诺雷姬
 function c22018.initial_effect(c)
 	--special summon

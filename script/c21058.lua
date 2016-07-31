@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --旧秘境史-Old History-
 function c21058.initial_effect(c)
 	--spsummon

@@ -1,5 +1,5 @@
 --真夜的合唱指挥 米斯蒂娅✿萝蕾拉
-require "expansions/script/nef/nef"
+--require "expansions/nef/nef"
 function c21142.initial_effect(c)
 	Nef.AddXyzProcedureWithDesc(c,aux.FilterBoolFunction(Card.IsSetCard,0x208),2,2,aux.Stringid(21142,0))
 	--sp2

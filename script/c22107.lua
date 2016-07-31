@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --二人之从者
 function c22107.initial_effect(c)
 	--destroy

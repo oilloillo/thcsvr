@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --最上型航空巡洋舰-熊野改
 function c50655.initial_effect(c)
 	c:EnableReviveLimit()

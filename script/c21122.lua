@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --藤原「灭罪寺院伤」
 function c21122.initial_effect(c)
 	--Activate

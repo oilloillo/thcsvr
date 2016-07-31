@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --红魔馆
 function c22100.initial_effect(c)
 	--Activate

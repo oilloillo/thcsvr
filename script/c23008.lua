@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --现人神 东风谷早苗
 function c23008.initial_effect(c)
 	--special summon

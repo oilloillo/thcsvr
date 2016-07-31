@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --红魔馆·里
 function c22117.initial_effect(c)
 	--Activate

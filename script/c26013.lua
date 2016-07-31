@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --星莲-升格的妖兽 寅丸星
 function c26013.initial_effect(c)
 	--spsummon

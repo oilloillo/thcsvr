@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --灾祸「诅咒的雏人偶」
 function c23057.initial_effect(c)
 	--Activate

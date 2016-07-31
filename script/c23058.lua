@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --豊作「谷物神之约定」
 function c23058.initial_effect(c)
 	--Activate

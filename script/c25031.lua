@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --寂静气旋
 function c25031.initial_effect(c)
 	--Activate

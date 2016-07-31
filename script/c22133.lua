@@ -1,6 +1,6 @@
-require "expansions/script/nef/dss"
+ 
 --七曜-木符「风灵角笛」
-require "expansions/script/nef/msc"
+--require "expansions/nef/msc"
 function c22133.initial_effect(c)
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)

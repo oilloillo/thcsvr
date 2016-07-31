@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --因幡的欺诈师 帝
 function c21071.initial_effect(c)
 	--draw

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --符器-龙鱼之羽衣
 function c200214.initial_effect(c)
 	--Activate

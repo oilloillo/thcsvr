@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --日光妖精 桑尼·米尔可
 function c25020.initial_effect(c)
 	--destroy

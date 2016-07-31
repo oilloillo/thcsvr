@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --46cm三连装炮
 function c50809.initial_effect(c)
 	--Activate

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --歌莉娅 启动!!
 function c20155.initial_effect(c)
 	--Activate

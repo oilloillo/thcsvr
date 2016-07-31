@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --丰收之神 秋瓤子
 function c23004.initial_effect(c)
 	--spsummon

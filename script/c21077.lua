@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --蓬莱-不死之烟 藤原妹红
 function c21077.initial_effect(c)
 	--tribute check

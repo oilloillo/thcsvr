@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --绯想✿红美铃
 function c200018.initial_effect(c)
 	--code

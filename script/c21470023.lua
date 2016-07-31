@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --御阿礼之子✿稗田阿求
 function c21470023.initial_effect(c)
     --search

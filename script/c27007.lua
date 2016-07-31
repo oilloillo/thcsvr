@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --邪仙 霍青娥
 function c27007.initial_effect(c)
 	--special summon

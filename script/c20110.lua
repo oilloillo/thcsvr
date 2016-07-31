@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --夜棱镜✿虹川三姐妹
 function c20110.initial_effect(c)
 	--tribute check

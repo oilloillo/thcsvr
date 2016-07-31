@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --枪符「萌萌大千枪」
 function c20160.initial_effect(c)
 	--draw

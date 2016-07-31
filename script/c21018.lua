@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --八意永琳
 function c21018.initial_effect(c)
 	--synchro summon

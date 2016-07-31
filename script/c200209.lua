@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --符器-左扇
 function c200209.initial_effect(c)
 	--Activate

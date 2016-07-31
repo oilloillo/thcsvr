@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --九式舰上爆击机-九九式舰爆
 function c50823.initial_effect(c)
 	--Activate

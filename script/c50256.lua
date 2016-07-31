@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --翔鹤型正规航空母舰-瑞鹤
 function c50256.initial_effect(c)
 	--xyz summon

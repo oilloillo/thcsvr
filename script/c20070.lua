@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --空观剑「六根清净斩」
 function c20070.initial_effect(c)
 	--Activate

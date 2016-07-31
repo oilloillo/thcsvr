@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --教团的紧急召唤令
 function c60084.initial_effect(c)
 	--activate

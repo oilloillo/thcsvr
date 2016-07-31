@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --凶兆的黑猫
 function c20004.initial_effect(c)
 	--spsummon

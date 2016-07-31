@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --符器-制御棒
 function c200219.initial_effect(c)
 	--Activate

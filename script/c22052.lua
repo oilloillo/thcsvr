@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --红魔 完全潇洒的女仆.
 function c22052.initial_effect(c)
 	--synchro summon

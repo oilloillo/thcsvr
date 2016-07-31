@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --星莲-遗忘之伞 多多良小伞
 function c26002.initial_effect(c)
 	--flip

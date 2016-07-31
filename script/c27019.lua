@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --狸猫怪 二岩猯藏
 function c27019.initial_effect(c)
 	--xyz summon

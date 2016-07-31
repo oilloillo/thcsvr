@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --七曜-金土符「淡黄色的阵风」
 function c22176.initial_effect(c)
 	local e1=Effect.CreateEffect(c)

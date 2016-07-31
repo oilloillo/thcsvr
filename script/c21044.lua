@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --梦靥的蝴蝶梦丸
 function c21044.initial_effect(c)
 	--Activate

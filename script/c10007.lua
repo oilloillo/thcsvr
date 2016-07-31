@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --愤怒的小鸟
 function c10007.initial_effect(c)
 	--Activate

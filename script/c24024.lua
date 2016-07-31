@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --旧地狱街道 -废狱-
 function c24024.initial_effect(c)
 	--Activate

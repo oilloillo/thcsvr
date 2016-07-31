@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --七曜-金水符「水银之毒」
 function c22174.initial_effect(c)
 	local e1=Effect.CreateEffect(c)

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --Maniacal Princess
 function c13040.initial_effect(c)
 	--Activate

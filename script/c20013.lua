@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --莉莉霍瓦特
 function c20013.initial_effect(c)
 	--synchro summon

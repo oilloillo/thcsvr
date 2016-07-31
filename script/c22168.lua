@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --七曜-火土符「环状熔岩带」
 function c22168.initial_effect(c)
 	local e1=Effect.CreateEffect(c)

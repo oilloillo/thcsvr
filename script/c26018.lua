@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --圣命莲
 function c26018.initial_effect(c)
 	--xyz summon
@@ -31,7 +31,7 @@ function c26018.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 function c26018.ovfilter(c)
-	local ct=c:GetCounter(0x208d)
+	local ct=c:GetCounter(0x28d)
 	return c:IsFaceup() and ct>=4
 end
 function c26018.discon(e,tp,eg,ep,ev,re,r,rp)

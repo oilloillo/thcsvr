@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --符器-鲶鱼的大地震
 function c200221.initial_effect(c)
 	--Activate

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --しろかみ 白焰的大剑士
 function c60054.initial_effect(c)
 	--synchro summon

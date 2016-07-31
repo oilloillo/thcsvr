@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --红符「红色不夜城」
 function c22123.initial_effect(c)
 	--Activate

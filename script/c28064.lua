@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --秘封「到达幻想的病」
 function c28064.initial_effect(c)
 	--Activate

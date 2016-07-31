@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --舞
 function c15013.initial_effect(c)
 	--immune effect

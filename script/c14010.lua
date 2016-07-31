@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --幽香
 function c14010.initial_effect(c)
 	--to hand

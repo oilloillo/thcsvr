@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --七曜-土符「慵懒巨石上级」
 function c22140.initial_effect(c)
 	local e1=Effect.CreateEffect(c)

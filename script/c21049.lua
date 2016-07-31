@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --黄泉国的通信
 function c21049.initial_effect(c)
 	--Activate

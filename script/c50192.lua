@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --晓型驱逐舰-响
 function c50192.initial_effect(c)
 	local temp = 0

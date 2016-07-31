@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --剑舞姬-艾莉丝‧法兰格尔托
 function c40009.initial_effect(c)
 	--summon success

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --蓬莱「凯风快晴」
 function c21126.initial_effect(c)
 	--extra summon

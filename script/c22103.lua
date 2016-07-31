@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --空虚「膨胀空间」
 function c22103.initial_effect(c)
 	--Activate

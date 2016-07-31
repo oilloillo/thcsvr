@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --废狱「对谦虚的富者之记恨」
 function c24041.initial_effect(c)
 	--Activate

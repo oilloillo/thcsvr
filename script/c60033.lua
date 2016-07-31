@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --しろかみ 芙萝·谢库丽特
 function c60033.initial_effect(c)
 	--special summon

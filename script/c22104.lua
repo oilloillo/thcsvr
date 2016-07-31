@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --幻葬「夜雾的杀人鬼」
 function c22104.initial_effect(c)
 	--Activate

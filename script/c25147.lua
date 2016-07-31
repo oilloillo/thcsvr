@@ -111,12 +111,12 @@ function c25147.spop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c25147.rtg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.GetTurnPlayer()==tp and e:GetHandler():GetCounter(0x2025)>0 end
+	if chk==0 then return Duel.GetTurnPlayer()==tp and e:GetHandler():GetCounter(0x208)>0 end
 	Duel.SetOperationInfo(0,CATEGORY_RECOVER,nil,0,tp,500)
 end
 function c25147.rop(e,tp,eg,ep,ev,re,r,rp)
 	if not e:GetHandler():IsRelateToEffect(e) then return end
-	local ct=e:GetHandler():GetCounter(0x2025)
+	local ct=e:GetHandler():GetCounter(0x208)
 	Duel.Recover(tp,ct*500,REASON_EFFECT)
 end
 function c25147.filter(c)
@@ -133,6 +133,6 @@ function c25147.desop(e,tp,eg,ep,ev,re,r,rp)
 	if not e:GetHandler():IsRelateToEffect(e) then return end
 	local tc=Duel.GetFirstTarget()
 	if tc:IsRelateToEffect(e) and Duel.Destroy(tc,REASON_EFFECT)>0 then
-		e:GetHandler():AddCounter(0x2025,1)
+		e:GetHandler():AddCounter(0x208,1)
 	end
 end

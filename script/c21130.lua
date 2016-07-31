@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --狂符「幻视调律」
 function c21130.initial_effect(c)
 	--Activate

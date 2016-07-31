@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --红魔✿永远鲜红的幼月
 function c22057.initial_effect(c)
 	--Race

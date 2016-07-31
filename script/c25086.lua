@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --亡失的情感✿秦心
 function c25086.initial_effect(c)
 	--synchro summon

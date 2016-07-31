@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --しろかみ 公主专属的管家
 function c60073.initial_effect(c)
 	--xyz summon

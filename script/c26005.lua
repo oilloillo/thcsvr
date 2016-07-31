@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --星莲-水难念缚灵 村纱水蜜
 function c26005.initial_effect(c)
 	--summon with no tribute

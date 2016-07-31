@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --紧急回避结界
 function c200304.initial_effect(c)
 	--Activate

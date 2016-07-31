@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --小野冢小町
 function c25003.initial_effect(c)
 	--synchro summon

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --风雨之鸦-射命丸 文
 function c23016.initial_effect(c)
     --atk

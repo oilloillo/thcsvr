@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --祸 灵梦
 function c30001.initial_effect(c)
 	c:EnableReviveLimit()

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --河童「光束剑武装」
 function c23047.initial_effect(c)
 	--Activate

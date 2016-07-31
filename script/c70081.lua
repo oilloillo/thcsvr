@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --ブラネテュ―ヌ
 function c70081.initial_effect(c)
 	local e1=Effect.CreateEffect(c)

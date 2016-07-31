@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --符器-绯想之剑
 function c200215.initial_effect(c)
 	--des1

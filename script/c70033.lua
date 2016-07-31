@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --PurpleSister
 function c70033.initial_effect(c)
 	--xyz summon

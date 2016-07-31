@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --先代的仪式
 function c10016.initial_effect(c)
 	local e1=Effect.CreateEffect(c)

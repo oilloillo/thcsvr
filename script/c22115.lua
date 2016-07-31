@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --时符·穿隧效应
 function c22115.initial_effect(c)
 	--Activate

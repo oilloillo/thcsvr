@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --逆符「天地有用」
 function c29039.initial_effect(c)
 	--Activate

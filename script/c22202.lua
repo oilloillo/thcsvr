@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --红魔 图书馆的女仆 小恶魔
 function c22202.initial_effect(c)
 	--atk up

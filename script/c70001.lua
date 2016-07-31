@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --Neptune
 function c70001.initial_effect(c)
 	--negate

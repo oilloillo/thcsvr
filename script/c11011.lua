@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --魅魔
 function c11011.initial_effect(c)
 	--special summon

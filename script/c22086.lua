@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --妖精旋转
 function c22086.initial_effect(c)
 	--Activate

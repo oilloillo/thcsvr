@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --星幽剑士 矜羯罗
 function c11018.initial_effect(c)
 	--xyz summon

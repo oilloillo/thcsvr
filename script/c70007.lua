@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --Noire
 function c70007.initial_effect(c)
 	--to deck and draw

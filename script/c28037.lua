@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --秘封「最清澈的空与海」
 function c28037.initial_effect(c)
 	--Activate

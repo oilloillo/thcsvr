@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --虚人「无」
 function c21125.initial_effect(c)
 	--Activate

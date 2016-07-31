@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --Bad Apple!!
 function c14028.initial_effect(c)
 	--Activate

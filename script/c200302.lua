@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --全人类的绯想天
 function c200302.initial_effect(c)
 	--Activate

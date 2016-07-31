@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --告春精✿莉莉布莱克
 function c20166.initial_effect(c)
 	--special summon

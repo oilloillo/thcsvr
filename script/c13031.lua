@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --女仆机器人 留琴
 function c13031.initial_effect(c)
 	--Set

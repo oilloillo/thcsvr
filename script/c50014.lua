@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --正规航空母舰-赤城
 function c50014.initial_effect(c)
 	--xyz summon

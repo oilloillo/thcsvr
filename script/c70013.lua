@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --Blanc
 function c70013.initial_effect(c)
 	--special summon

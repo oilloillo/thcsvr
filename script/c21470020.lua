@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --百器徒然袋
 function c21470020.initial_effect(c)
 	--Activate

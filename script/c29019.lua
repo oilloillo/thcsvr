@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --小人的末裔✿少名针妙丸
 function c29019.initial_effect(c)
 	--search

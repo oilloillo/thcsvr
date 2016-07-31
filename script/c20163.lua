@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --告春精✿莉莉霍瓦特
 function c20163.initial_effect(c)
 	--recover

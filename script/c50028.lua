@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --岛风型驱逐舰-岛风
 function c50028.initial_effect(c)
 	c:SetUniqueOnField(1,1,50028)

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --冥界
 function c20088.initial_effect(c)
 	--gay
@@ -105,6 +105,6 @@ end
 function c20088.addc(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
 	if tc:IsFaceup() and tc:IsRelateToEffect(e) then
-		tc:AddCounter(0x208b,1)
+		tc:AddCounter(0x28b,1)
 	end
 end

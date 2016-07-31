@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --最上型重巡洋舰-熊野
 function c50295.initial_effect(c)
 	local temp = 0

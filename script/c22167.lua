@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --七曜-火水符「燃素之柱」
 function c22167.initial_effect(c)
 	local e1=Effect.CreateEffect(c)

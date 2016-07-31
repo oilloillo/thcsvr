@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --七曜-水符「水母公主」
 function c888137.initial_effect(c)
 	local e1=Effect.CreateEffect(c)

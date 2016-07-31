@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 ---废狱-逼近的恐怖之气·黑谷山女
 function c24004.initial_effect(c)
 	--extra summon

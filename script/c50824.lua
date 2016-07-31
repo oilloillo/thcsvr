@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --舰上爆击机-彗星
 function c50824.initial_effect(c)
 	--Activate

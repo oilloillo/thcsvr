@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --红叶之神 秋静叶
 function c23001.initial_effect(c)
 	--spsummon

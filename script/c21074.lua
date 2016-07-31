@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --蓬莱-千年幻想乡✿八意永琳
 function c21074.initial_effect(c)
 	c:EnableReviveLimit()

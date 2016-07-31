@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --超妖怪头目 河城荷取
 function c23010.initial_effect(c)
 	--atk down

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --梅蒂欣·梅兰可莉
 function c25001.initial_effect(c)
 	--synchro summon

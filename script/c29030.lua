@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --辉针之城
 function c29030.initial_effect(c)
 	--Activate

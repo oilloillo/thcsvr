@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --辉光之针的小人族✿少名针妙丸
 function c29027.initial_effect(c)
 	--synchro summon

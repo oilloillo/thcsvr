@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --妖魔书-一时的七大奇迹
 function c21470010.initial_effect(c)
 	--Activate

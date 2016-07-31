@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --Lost Dream
 function c13041.initial_effect(c)
 	--Activate

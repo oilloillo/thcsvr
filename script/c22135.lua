@@ -1,6 +1,6 @@
-require "expansions/script/nef/dss"
+ 
 --七曜-土符「慵懒巨石」
-require "expansions/script/nef/msc"
+--require "expansions/nef/msc"
 function c22135.initial_effect(c)
 	--activate
 	local e1=Effect.CreateEffect(c)

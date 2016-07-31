@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --秋之姐妹
 function c23031.initial_effect(c)
 	--synchro summon

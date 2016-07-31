@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --怒面「愤怒的忌狼之面」
 function c25128.initial_effect(c)
 	--Activate

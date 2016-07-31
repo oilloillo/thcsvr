@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --邪眼西格玛
 function c12012.initial_effect(c)
 	--equip

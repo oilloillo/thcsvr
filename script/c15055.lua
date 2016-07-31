@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --魔界~Devil's World
 function c15055.initial_effect(c)
 	--Activate

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --图书馆大危机！！
 function c22207.initial_effect(c)
 	--Activate

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --入魔「走火入魔」
 function c27026.initial_effect(c)
 	--Activate

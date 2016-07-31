@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 ---废狱-紧闭的恋之瞳·古明地恋
 function c24022.initial_effect(c)
 	--synchro summon

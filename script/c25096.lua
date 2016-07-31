@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --灵面-火男
 function c25096.initial_effect(c)
 	--Activate

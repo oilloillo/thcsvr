@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --浪漫洋溢的选择
 function c200305.initial_effect(c)
 	--Activate

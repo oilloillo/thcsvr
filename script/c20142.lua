@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --上海人形✿攻击型
 function c20142.initial_effect(c)
 	--multiattack

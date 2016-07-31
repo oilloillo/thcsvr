@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --凭依「喜怒哀乐附体」
 function c25129.initial_effect(c)
 	c:SetUniqueOnField(1,1,25129)

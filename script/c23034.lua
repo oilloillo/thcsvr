@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --诹访大战
 function c23034.initial_effect(c)
 	--Activate

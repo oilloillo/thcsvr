@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --雾雨魔里沙
 function c10002.initial_effect(c)
 	--handes

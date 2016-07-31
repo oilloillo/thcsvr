@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --PurpleHeart
 function c70004.initial_effect(c)
 	--xyz summon

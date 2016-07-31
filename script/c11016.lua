@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --地狱之月 菊理
 function c11016.initial_effect(c)
 	--synchro summon

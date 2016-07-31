@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --符器-冻青蛙
 function c200217.initial_effect(c)
 	--Activate

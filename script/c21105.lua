@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --永夜返 -子之刻-
 function c21105.initial_effect(c)
 	local e1=Effect.CreateEffect(c)

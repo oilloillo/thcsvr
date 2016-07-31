@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --符器-宵越之铜钱
 function c200213.initial_effect(c)
 	c:SetUniqueOnField(1,0,200213)

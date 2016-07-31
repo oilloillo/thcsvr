@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+--require "expansions/nef/dss"
 --しろかみ 忘却的重生
 function c60077.initial_effect(c)
 	--synchro summon

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --现世的入口
 function c20053.initial_effect(c)
 	--remove

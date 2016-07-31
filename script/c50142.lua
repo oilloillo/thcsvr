@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --古鹰型重巡洋舰-古鹰
 function c50142.initial_effect(c)
 	local temp = 0

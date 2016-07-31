@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --红蝙蝠「吸血鬼之夜」
 function c22124.initial_effect(c)
 	--Activate

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --符器-灵击札
 function c200201.initial_effect(c)
 	--act

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --秘封「鸟船遗迹」
 function c28025.initial_effect(c)
 	--activate

@@ -1,5 +1,5 @@
 --魔法使之徒 濑笈叶
-require "expansions/script/nef/afi"
+--require "expansions/nef/afi"
 local M = c999002
 local Mid = 999002
 function M.initial_effect(c)

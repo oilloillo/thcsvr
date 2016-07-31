@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --人形「美妙的盛装游行」
 function c20058.initial_effect(c)
 	--Activate

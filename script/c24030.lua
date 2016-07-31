@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --河城美取
 function c24030.initial_effect(c)
 	--xyz summon

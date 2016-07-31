@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --风·休
 function c60082.initial_effect(c)
 	--Activate

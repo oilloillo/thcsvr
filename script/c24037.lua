@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --复燃「恋的埋火」
 function c24037.initial_effect(c)
 	--Activate

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --Plastic Mind
 function c15046.initial_effect(c)
 	--Activate

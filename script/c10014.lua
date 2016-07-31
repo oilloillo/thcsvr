@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --魔符「星屑幻想」
 function c10014.initial_effect(c)
 	--lv change

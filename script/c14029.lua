@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --灵战～毁灭危机
 function c14029.initial_effect(c)
 	--Activate

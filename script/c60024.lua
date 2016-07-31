@@ -1,5 +1,4 @@
-require "expansions/script/nef/dss"
---しろかみ 谢莉卡·库里姆佐
+ --しろかみ 谢莉卡·库里姆佐
 function c60024.initial_effect(c)
 	--target
 	local e1=Effect.CreateEffect(c)
@@ -66,7 +65,7 @@ function c60024.atkop(e,tp,eg,ep,ev,re,r,rp)
 	if tc and tc:IsFaceup() and tc:IsRelateToEffect(e) then
 		local e1=Effect.CreateEffect(e:GetHandler())
 		e1:SetType(EFFECT_TYPE_SINGLE)
-		e1:SetCode(EFFECT_SET_ATTACK)
+		e1:SetCode(EFFECT_SET_ATTACK_FINAL)
 		e1:SetReset(RESET_EVENT+0x1fe0000)
 		e1:SetValue(0)
 		tc:RegisterEffect(e1)

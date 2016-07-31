@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --EX-露米娅
 function c22094.initial_effect(c)
 	--synchro summon

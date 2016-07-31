@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --狐狸逡巡的借书屋
 function c21470101.initial_effect(c)
 	c:SetUniqueOnField(1,0,21470101)

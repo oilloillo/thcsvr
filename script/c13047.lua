@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --Sailor of Time
 function c13047.initial_effect(c)
 	--sol

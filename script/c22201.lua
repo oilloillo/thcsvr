@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --逆向使魔契约
 function c22201.initial_effect(c)
 	--Activate

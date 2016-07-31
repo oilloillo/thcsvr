@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --弹幕公主 小兔姬
 function c13006.initial_effect(c)
 	--confirm

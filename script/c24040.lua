@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --鬼符「怪力乱神」
 function c24040.initial_effect(c)
 	--Activate

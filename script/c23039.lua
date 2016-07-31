@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --风神之神德
 function c23039.initial_effect(c)
 	--Activate

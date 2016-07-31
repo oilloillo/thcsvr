@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --WhiteHeart
 function c70016.initial_effect(c)
 	--xyz summon

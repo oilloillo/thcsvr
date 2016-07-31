@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --绯想✿东风谷早苗
 function c200016.initial_effect(c)
 	--code

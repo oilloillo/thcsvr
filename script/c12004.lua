@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --咒子
 function c12004.initial_effect(c)
 	--cannot special summon

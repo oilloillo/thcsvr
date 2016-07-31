@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --最后的圣骑士✿歌莉娅人形
 function c20138.initial_effect(c)
 	--synchro summon

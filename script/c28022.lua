@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --秘封「梦违科学世纪」
 function c28022.initial_effect(c)
 	--Activate

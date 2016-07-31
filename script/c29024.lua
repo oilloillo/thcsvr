@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --梦幻的打击乐手✿堀川雷鼓
 function c29024.initial_effect(c)
 	--synchro summon

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --打破安息之日
 function c14026.initial_effect(c)
 	--Activate

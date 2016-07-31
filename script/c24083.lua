@@ -1,5 +1,5 @@
 --废狱之心 地灵殿
--- require "expansions/script/nef/nef"
+-- --require "expansions/nef/nef"
 function c24083.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)

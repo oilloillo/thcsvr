@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --人符「现世斩」
 function c20170.initial_effect(c)
 	--Activate

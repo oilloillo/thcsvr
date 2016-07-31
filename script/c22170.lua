@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --七曜-水木符「水精灵」
 function c22170.initial_effect(c)
 	local e1=Effect.CreateEffect(c)

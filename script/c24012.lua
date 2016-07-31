@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --废狱「Subterranean Rose」
 function c24012.initial_effect(c)
 	--Activate

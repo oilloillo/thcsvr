@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --蓬莱山辉夜
 function c21021.initial_effect(c)
 	--synchro summon

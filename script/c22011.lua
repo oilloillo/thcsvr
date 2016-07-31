@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --红魔-红美铃
 function c22011.initial_effect(c)
 	--to hand

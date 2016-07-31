@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --しろかみ 夏尔·谢库丽特
 function c60015.initial_effect(c)
 	--spsm

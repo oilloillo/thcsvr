@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --淡水的人鱼✿若鹭姬
 function c29003.initial_effect(c)
 	--search

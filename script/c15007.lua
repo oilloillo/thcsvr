@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --魔界公主 爱丽丝
 function c15007.initial_effect(c)
 	--immune effect

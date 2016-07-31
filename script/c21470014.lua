@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --妖魔书变化 烟烟罗
 function c21470014.initial_effect(c)
 	--xyz summon

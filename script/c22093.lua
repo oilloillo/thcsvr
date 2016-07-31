@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --月符「月光放射」
 function c22093.initial_effect(c)
 	--Activate

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --秘神流雏 健山雏
 function c23003.initial_effect(c)
     --draw

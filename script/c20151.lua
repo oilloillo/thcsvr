@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --西藏人形✿
 function c20151.initial_effect(c)
 	--to deck

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --魔界人 露易兹
 function c15004.initial_effect(c)
 	--immune effect

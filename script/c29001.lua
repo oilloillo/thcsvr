@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --湖的冰妖精☆琪露诺✿
 function c29001.initial_effect(c)
 	--search

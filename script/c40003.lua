@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --剑舞姬-克蕾儿‧露裘
 function c40003.initial_effect(c)
 	--search

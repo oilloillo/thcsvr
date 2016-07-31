@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --七曜-金符「金属疲劳上级」
 function c22139.initial_effect(c)
 	local e1=Effect.CreateEffect(c)

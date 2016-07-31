@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --符器-白楼剑
 function c200204.initial_effect(c)
 	--act

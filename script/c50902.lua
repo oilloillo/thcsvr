@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --装备开发
 function c50902.initial_effect(c)
 	--search

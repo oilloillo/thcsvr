@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --夜雀老板娘的烧烤店
 function c21047.initial_effect(c)
 	--Activate

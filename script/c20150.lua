@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --上海人形②✿
 function c20150.initial_effect(c)
 	--search

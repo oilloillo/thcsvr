@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --妖魔书-天狗的道歉信文
 function c21470007.initial_effect(c)
 	--activate

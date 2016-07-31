@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --永夜返 -世间开明-
 function c21120.initial_effect(c)
 	c:SetUniqueOnField(1,0,21120)

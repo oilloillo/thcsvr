@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --妖魔书-私家版百鬼夜行绘卷
 function c21470005.initial_effect(c)
 	c:SetUniqueOnField(1,0,21470005)

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --神玉
 function c11007.initial_effect(c)
 	--effect

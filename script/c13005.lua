@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --爱莲的宠物 苏格拉底
 function c13005.initial_effect(c)
 	c:SetUniqueOnField(1,0,13005)

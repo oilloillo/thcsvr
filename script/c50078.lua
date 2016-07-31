@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --天龙型轻巡洋舰-天龙
 function c50078.initial_effect(c)
 	local temp = 0

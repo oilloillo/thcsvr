@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --艾哲红石
 function c21055.initial_effect(c)
 	--Activate

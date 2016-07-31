@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --梦幻传说 冈崎梦美
 function c13021.initial_effect(c)
 	c:SetUniqueOnField(1,0,13021)

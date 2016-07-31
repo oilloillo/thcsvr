@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 ---废狱-地狱的轮祸·火焰猫磷
 function c24017.initial_effect(c)
 	--synchro summon

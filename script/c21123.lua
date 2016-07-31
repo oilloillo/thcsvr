@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --不死「徐福时空」
 function c21123.initial_effect(c)
 	--Activate

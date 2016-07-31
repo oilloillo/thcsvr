@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --妖魔书-大魔导书
 function c21470009.initial_effect(c)
 	--damage

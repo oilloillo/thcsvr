@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --完全潇洒的决斗者
 function c22038.initial_effect(c)
 	--xyz summon

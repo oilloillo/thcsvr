@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --妖魔书-死灵之书
 function c21470008.initial_effect(c)
 	--Activate

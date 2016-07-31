@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --灵面-小面
 function c25091.initial_effect(c)
 	--Activate

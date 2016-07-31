@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --球磨型重雷装巡洋舰-北上改二
 function c50695.initial_effect(c)
 	c:EnableReviveLimit()

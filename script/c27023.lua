@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --仙符「日出之处的天子」
 function c27023.initial_effect(c)
 	aux.AddRitualProcEqual(c,c27023.ritual_filter)

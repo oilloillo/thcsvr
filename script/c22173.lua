@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --七曜-土金符「翡翠巨石」
 function c22173.initial_effect(c)
 	local e1=Effect.CreateEffect(c)

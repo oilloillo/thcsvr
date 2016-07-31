@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --幽梦～Inanimate Dream
 function c14036.initial_effect(c)
 	--Activate

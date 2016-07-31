@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --辘轳首的怪奇✿赤蛮奇
 function c29006.initial_effect(c)
 	--destroy

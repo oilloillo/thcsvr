@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --绯想✿十六夜咲夜
 function c200003.initial_effect(c)
 	--[[code

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --EX-克劳⑨
 function c22099.initial_effect(c)
 	--synchro summon

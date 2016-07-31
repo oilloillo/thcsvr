@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --舰上侦察机-彩云
 function c50854.initial_effect(c)
 	--Activate

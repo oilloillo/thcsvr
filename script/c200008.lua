@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --绯想✿西行寺幽幽子
 function c200008.initial_effect(c)
 	--code

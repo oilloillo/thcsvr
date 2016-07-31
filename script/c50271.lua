@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --翔凤型轻型航空母舰-瑞凤
 function c50271.initial_effect(c)
 	local temp = 0

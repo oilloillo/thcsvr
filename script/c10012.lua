@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --乐园的美妙巫女
 function c10012.initial_effect(c)
 	--synchro summon

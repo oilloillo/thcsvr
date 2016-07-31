@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --知识与历史的半兽 上白泽慧音
 function c21059.initial_effect(c)
 	--xyz summon

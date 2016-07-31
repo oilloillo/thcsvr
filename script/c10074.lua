@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --八意对魔法多重结界✿
 function c10074.initial_effect(c)
 	--Activate

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --精灵魔装-贯穿真实之剑
 function c40035.initial_effect(c)
 	--Activate

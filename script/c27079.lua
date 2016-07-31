@@ -1,5 +1,5 @@
 --星辰降落的神灵✿丰聪耳神子
-require "expansions/script/nef/nef"
+--require "expansions/nef/nef"
 function c27079.initial_effect(c)
 	c:EnableReviveLimit()
 	--pendulum summon

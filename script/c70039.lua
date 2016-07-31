@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --BlackSister
 function c70039.initial_effect(c)
 	--xyz summon

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --魔法与红梦的化成 雾雨魔里沙
 function c11004.initial_effect(c)
 	local e1=Effect.CreateEffect(c)

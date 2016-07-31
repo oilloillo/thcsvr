@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --反魂蝶
 function c20093.initial_effect(c)
 	--Activate

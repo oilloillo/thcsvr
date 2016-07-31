@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --骚葬「冥河边缘」
 function c20117.initial_effect(c)
 	--Activate

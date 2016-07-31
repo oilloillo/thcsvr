@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --七曜-木符「翠绿风暴」
 function c888153.initial_effect(c)
 	local e1=Effect.CreateEffect(c)

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --沉睡的恐怖～Sleeping Terror
 function c14034.initial_effect(c)
 	--Activate

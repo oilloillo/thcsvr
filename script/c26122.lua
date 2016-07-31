@@ -52,7 +52,7 @@ function c26122.ctcon(e,tp,eg,ep,ev,re,r,rp)
 	return not e:GetHandler():IsStatus(STATUS_BATTLE_DESTROYED) and re:IsHasType(EFFECT_TYPE_ACTIVATE)
 end
 function c26122.ctop(e,tp,eg,ep,ev,re,r,rp)
-	e:GetHandler():AddCounter(0x208d,1)
+	e:GetHandler():AddCounter(0x28d,1)
 end
 function c26122.spcon(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()

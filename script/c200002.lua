@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --绯想✿雾雨魔理沙
 function c200002.initial_effect(c)
 	--code

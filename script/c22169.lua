@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --七曜-火金符「圣爱尔摩火柱」
 function c22169.initial_effect(c)
 	local e1=Effect.CreateEffect(c)

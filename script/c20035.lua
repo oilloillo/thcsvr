@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --策士之九尾
 function c20035.initial_effect(c)
 	--synchro summon

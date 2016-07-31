@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --灵面-妖狐
 function c25099.initial_effect(c)
 	--Activate

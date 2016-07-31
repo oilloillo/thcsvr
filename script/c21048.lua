@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --转世「一条复生桥」
 function c21048.initial_effect(c)
 	--Activate

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --神宝「蓬莱的玉枝 -梦色之乡-」
 function c21043.initial_effect(c)
 	--Activate

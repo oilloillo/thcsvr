@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --稚气的恶魔 伊莉丝
 function c11027.initial_effect(c)
 	--xyz summon

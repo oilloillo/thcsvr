@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --永夜返 -上弦月-
 function c21103.initial_effect(c)
 	--Activate

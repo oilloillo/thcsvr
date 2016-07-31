@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --精灵魔装-冰之魔弓
 function c40037.initial_effect(c)
 	--Activate

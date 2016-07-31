@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --ÑıÄ§Êé±ä»¯ í³¼Õ
 function c21470013.initial_effect(c)
 	--Activate

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --妖云「平安时代的黑云」
 function c26036.initial_effect(c)
 	--Activate

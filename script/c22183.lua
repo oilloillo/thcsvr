@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --七曜-月木符「卫星向日葵」
 function c22183.initial_effect(c)
 	local e1=Effect.CreateEffect(c)

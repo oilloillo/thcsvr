@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --古代的尸解仙 物部布都
 function c27013.initial_effect(c)
 	c:EnableReviveLimit()

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --魂魄妖梦
 function c20027.initial_effect(c)
 	--special summon

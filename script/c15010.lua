@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --雪
 function c15010.initial_effect(c)
 	--immune effect

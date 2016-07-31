@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --当代的念写记者 姬海棠极
 function c23028.initial_effect(c)
 	--spsummon

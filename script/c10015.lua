@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --先代巫女
 function c10015.initial_effect(c)
 	c:EnableReviveLimit()

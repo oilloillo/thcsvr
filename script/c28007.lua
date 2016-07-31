@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --秘封梦想家 梅莉
 function c28007.initial_effect(c)
 	--search

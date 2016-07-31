@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --天空的花之都
 function c20161.initial_effect(c)
 	--Activate

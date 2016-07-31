@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --绯想✿博丽灵梦
 function c200001.initial_effect(c)	
 	--code

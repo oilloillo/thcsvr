@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --秘封「广重36号」
 function c28035.initial_effect(c)
 	--activate

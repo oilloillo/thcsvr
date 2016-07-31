@@ -44,9 +44,10 @@ function c23178.lvtg(e,c)
 	return c:IsRace(RACE_PLANT)
 end
 function c23178.target(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return eg:IsExists(c23178.cfilter,1,nil,tp) end
+	if chk==0 then return e:GetHandler():GetFlagEffect(23178)==0 and eg:IsExists(c23178.cfilter,1,nil,tp) end
 	Duel.SetTargetCard(eg)
 	Duel.SetOperationInfo(0,CATEGORY_DICE,nil,0,tp,1)
+	e:GetHandler():RegisterFlagEffect(23178,RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END,0,1)
 end
 function c23178.cfilter(c,sp)
 	return c:IsRace(RACE_PLANT) and c:IsFaceup() and c:GetControler()==sp
@@ -54,7 +55,7 @@ end
 function c23178.operation(e,tp,eg,ep,ev,re,r,rp)
 	if not e:GetHandler():IsRelateToEffect(e) then return end
 	local dc=Duel.TossDice(tp,1)
-	if dc<4 then
+	if dc<5 then
 		Duel.Draw(tp,1,REASON_EFFECT)
 	else
 		Duel.Recover(tp,dc*200,REASON_EFFECT)

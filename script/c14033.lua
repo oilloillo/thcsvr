@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --Lotus Love
 function c14033.initial_effect(c)
 	--Activate

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --秘封 宇佐见莲子
 function c28012.initial_effect(c)
 	c:EnableReviveLimit()

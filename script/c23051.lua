@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --水符「河童幻想大瀑布」
 function c23051.initial_effect(c)
 	--Activate

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --风见幽香
 function c25002.initial_effect(c)
 	--synchro summon

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --七曜-火水符「燃素之柱」
 function c888167.initial_effect(c)
 	--damage

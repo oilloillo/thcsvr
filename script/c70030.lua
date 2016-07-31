@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --NepGear
 function c70030.initial_effect(c)
 	--search

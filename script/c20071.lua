@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --伦敦人形
 function c20071.initial_effect(c)
 	--c:SetUniqueOnField(1,1,20071)

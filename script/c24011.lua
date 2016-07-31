@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 ---废狱-力鬼王·星熊勇仪
 function c24011.initial_effect(c)
     --sum limit

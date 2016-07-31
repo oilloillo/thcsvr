@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --魔女们的舞踏会
 function c10018.initial_effect(c)
 	--Activate

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --梦想天生
 function c10020.initial_effect(c)
 	--activate proc

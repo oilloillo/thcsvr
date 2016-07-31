@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --秘弹「接下来谁都不剩了喔?」
 function c22112.initial_effect(c)
 	--Activate

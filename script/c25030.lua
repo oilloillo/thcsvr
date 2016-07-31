@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --虹光折射
 function c25030.initial_effect(c)
 	--Activate

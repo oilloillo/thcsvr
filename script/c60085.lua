@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --白焰的呼唤
 function c60085.initial_effect(c)
 	--Activate

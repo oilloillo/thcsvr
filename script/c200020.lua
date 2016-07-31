@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --绯想✿洩矢诹访子
 function c200020.initial_effect(c)
 	--c:EnableReviveLimit()

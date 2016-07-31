@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --妖魔书变化 别有隐情的情书
 function c21470102.initial_effect(c)
 	--negate attack

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --奥尔良人形✿
 function c20153.initial_effect(c)
 	--pierce

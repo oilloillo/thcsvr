@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --翔鹤型正规航空母舰-瑞鹤改
 function c50616.initial_effect(c)
 	c:EnableReviveLimit()

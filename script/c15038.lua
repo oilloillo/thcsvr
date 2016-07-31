@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --背叛的少女～犹大之吻
 function c15038.initial_effect(c)
 	--draw

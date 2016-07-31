@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --法兰西人形
 function c20076.initial_effect(c)
 	--Activate

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --兔符「开运大纹」
 function c21045.initial_effect(c)
 	--Activate

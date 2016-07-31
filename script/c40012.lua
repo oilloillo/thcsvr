@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --剑舞姬-琳丝蕾‧劳伦弗洛斯特
 function c40012.initial_effect(c)
 	--atk change

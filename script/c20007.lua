@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --爱丽丝·玛格特罗依德
 function c20007.initial_effect(c)
 	--summon with no tribute

@@ -1,5 +1,5 @@
 --吞噬历史的半兽　上白泽慧音
-require "expansions/script/nef/nef"
+--require "expansions/nef/nef"
 function c999204.initial_effect(c)
 	--Dual
 	Nef.EnableDualAttributeSP(c)

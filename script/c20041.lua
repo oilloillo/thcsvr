@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --半分幻的庭师
 function c20041.initial_effect(c)
 	--synchro summon

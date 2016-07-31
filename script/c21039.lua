@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --绵月依姬
 function c21039.initial_effect(c)
 	c:EnableReviveLimit()

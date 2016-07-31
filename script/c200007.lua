@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --绯想✿蕾米莉亚·斯卡雷特
 function c200007.initial_effect(c)
 	--synchro summon

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --竹林的狼人✿今泉影狼
 function c29009.initial_effect(c)
 	--destroy

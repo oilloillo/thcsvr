@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --光符「救世之光」
 function c27025.initial_effect(c)
 	--Activate

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --红魔 恶魔之妹
 function c22060.initial_effect(c)
 	--Race

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --幽雅「死亡的诱蛾灯」
 function c20094.initial_effect(c)
 	--Activate

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --星光之雨
 function c25032.initial_effect(c)
 	--spsummon

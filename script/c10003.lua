@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --八百万的代弁者✿博丽灵梦
 function c10003.initial_effect(c)
 	--xyz summon

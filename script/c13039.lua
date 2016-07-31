@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --Tabula rasa
 function c13039.initial_effect(c)
 	--Activate

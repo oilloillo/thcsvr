@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --铃仙·优昙华院·稻叶
 function c21012.initial_effect(c)
 	--summon with no tribute

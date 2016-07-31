@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --暗中蠢动的光虫 莉格露
 function c21064.initial_effect(c)
 	--xyz summon

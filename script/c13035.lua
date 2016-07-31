@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --梦想超越时空
 function c13035.initial_effect(c)
 	--Activate

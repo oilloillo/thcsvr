@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --绯想✿琪露诺
 function c200017.initial_effect(c)
 	--code

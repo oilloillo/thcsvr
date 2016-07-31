@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --妖魔书-今昔百鬼拾遗
 function c21470006.initial_effect(c)
 	--Activate

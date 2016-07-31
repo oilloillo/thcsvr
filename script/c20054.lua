@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --演出的准备
 function c20054.initial_effect(c)
 	--draw

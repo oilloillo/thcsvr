@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --弑神炮
 function c10027.initial_effect(c)
 	--Activate

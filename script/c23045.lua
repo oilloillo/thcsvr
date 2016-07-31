@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --漂溺「光辉水底的心伤」
 function c23045.initial_effect(c)
 	--immune

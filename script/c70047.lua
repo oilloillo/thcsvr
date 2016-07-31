@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --Ram
 function c70047.initial_effect(c)
 	--sm

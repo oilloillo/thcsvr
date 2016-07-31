@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --森近霖之助
 function c10009.initial_effect(c)
 	--xyz summon

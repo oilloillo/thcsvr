@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --哨戒天狗-犬走 椛
 function c23013.initial_effect(c)
 	--def atk

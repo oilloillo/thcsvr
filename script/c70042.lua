@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --Rom
 function c70042.initial_effect(c)
 	--sm

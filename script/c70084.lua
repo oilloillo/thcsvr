@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --リーンボックス
 function c70084.initial_effect(c)
 	--Activate

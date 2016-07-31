@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --侦符「探索人形」
 function c20157.initial_effect(c)
 	--Activate

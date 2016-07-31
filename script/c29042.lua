@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --小槌「你给我变大吧」
 function c29042.initial_effect(c)
 	--Activate

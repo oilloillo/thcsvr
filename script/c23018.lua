@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --祟符「诹访明神」
 function c23018.initial_effect(c)
 	--Activate
@@ -30,6 +30,6 @@ end
 function c23018.activate(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
 	if tc:IsFaceup() and tc:IsRelateToEffect(e) then
-		tc:AddCounter(0x208a,8)
+		tc:AddCounter(0x28a,8)
 	end
 end

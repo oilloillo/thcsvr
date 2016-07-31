@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --禁忌「恋的迷路」
 function c22121.initial_effect(c)
 	--draw

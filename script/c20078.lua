@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --荷兰人形
 function c20078.initial_effect(c)
 	--nagate

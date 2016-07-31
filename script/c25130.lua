@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --忧面「杞人忧地」
 function c25130.initial_effect(c)
 	--destroy&remove

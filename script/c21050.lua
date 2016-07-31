@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --燕之子安贝 -永命线-
 function c21050.initial_effect(c)
 	--Activate

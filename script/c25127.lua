@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --心的轮盘
 function c25127.initial_effect(c)
 	--Activate

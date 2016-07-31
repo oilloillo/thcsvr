@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --星光妖精 斯塔·莎菲雅
 function c25022.initial_effect(c)
 	--draw

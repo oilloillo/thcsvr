@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --梦幻馆的恶魔 幻月
 function c14019.initial_effect(c)
 	--xyz summon

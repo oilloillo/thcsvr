@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --抑制「Super-ego」
 function c24038.initial_effect(c)
 	--Activate

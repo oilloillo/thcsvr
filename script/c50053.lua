@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --球磨型轻巡洋舰-北上
 function c50053.initial_effect(c)
 	local temp = 0

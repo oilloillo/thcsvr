@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --超⑨武神霸斩
 function c22088.initial_effect(c)
 	--Activate

@@ -1,5 +1,5 @@
 --三种神器　电视机
-require "expansions/script/nef/nef"
+--require "expansions/nef/nef"
 function c999207.initial_effect(c)
 	--pendulum summon
 	local argTable = {1}

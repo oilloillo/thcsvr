@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --魔界创世神 神绮
 function c15019.initial_effect(c)
 	c:EnableReviveLimit()

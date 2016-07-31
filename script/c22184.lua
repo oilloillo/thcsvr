@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --七曜-日木符「光合作用」
 function c22184.initial_effect(c)
 	local e1=Effect.CreateEffect(c)

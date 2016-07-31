@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --WhiteSisterRam
 function c70050.initial_effect(c)
 	--xyz summon

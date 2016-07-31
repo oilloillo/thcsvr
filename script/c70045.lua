@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --WhiteSisterRom
 function c70045.initial_effect(c)
 	--xyz summon

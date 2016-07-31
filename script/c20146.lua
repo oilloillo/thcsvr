@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --京都人形✿
 function c20146.initial_effect(c)
 	--pierce

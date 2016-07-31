@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --幻想乡的记忆 稗田阿求
 function c10019.initial_effect(c)
 	--xyz summon

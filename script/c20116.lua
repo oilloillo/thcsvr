@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --合葬「棱镜协奏曲」
 function c20116.initial_effect(c)
 	--Activate

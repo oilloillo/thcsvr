@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --零式水上侦察机
 function c50825.initial_effect(c)
 	--Activate

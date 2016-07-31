@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --战符「小小军势」
 function c20075.initial_effect(c)
 	--Activate

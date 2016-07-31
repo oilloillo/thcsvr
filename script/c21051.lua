@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --幻爆「近眼花火」
 function c21051.initial_effect(c)
 	--Activate

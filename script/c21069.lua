@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --知识✿历史的半兽
 function c21069.initial_effect(c)
 	aux.EnableDualAttribute(c)

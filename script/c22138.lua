@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --七曜-木符「风灵角笛上级」
 function c22138.initial_effect(c)
 	local e1=Effect.CreateEffect(c)

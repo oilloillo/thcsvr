@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --冰精灵-芬里尔
 function c40025.initial_effect(c)
 	c:SetUniqueOnField(1,0,40025)

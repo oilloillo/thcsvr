@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --人鬼「未来永劫斩」
 function c20069.initial_effect(c)
 	--Activate

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --舰上攻击机-天山
 function c50817.initial_effect(c)
 	--Activate

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --Dream War
 function c13044.initial_effect(c)
 	--act

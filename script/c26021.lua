@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --星莲-未知飞行少女 封兽鵺
 function c26021.initial_effect(c)
 	--xyz summon

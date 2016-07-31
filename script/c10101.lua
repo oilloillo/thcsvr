@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --魔女之宴
 function c10101.initial_effect(c)
 	--Activate

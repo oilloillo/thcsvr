@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --梦想之乡 -梦幻馆-
 function c14035.initial_effect(c)
 	local e1=Effect.CreateEffect(c)

@@ -1,5 +1,5 @@
 --勇往直前的僧侣✿圣白莲
-require "expansions/script/nef/nef"
+--require "expansions/nef/nef"
 function c26116.initial_effect(c)
 	--pendulum summon
 	local argTable = {1}

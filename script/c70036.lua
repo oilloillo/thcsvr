@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --Uni
 function c70036.initial_effect(c)
 	--to deck and draw

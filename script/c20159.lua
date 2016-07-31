@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --咒符「稻草人形神风」
 function c20159.initial_effect(c)
 	--Activate

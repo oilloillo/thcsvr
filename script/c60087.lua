@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --忘却的重生
 function c60087.initial_effect(c)
 	--Activate

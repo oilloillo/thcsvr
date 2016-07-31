@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --金刚型高速战舰-金刚
 function c50057.initial_effect(c)
 	--synchro summon

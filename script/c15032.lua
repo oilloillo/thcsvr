@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --魔法阵～魔法方形
 function c15032.initial_effect(c)
 	--Activate

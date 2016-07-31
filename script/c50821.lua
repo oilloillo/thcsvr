@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --零式舰上战斗机52型
 function c50821.initial_effect(c)
 	--Activate

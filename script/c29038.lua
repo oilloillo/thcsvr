@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --逆符「天下翻覆」
 function c29038.initial_effect(c)
 	--Activate

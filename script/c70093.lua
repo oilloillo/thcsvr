@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --Gust的奇怪药水
 function c70093.initial_effect(c)
 	local e1=Effect.CreateEffect(c)

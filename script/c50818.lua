@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --舰上攻击机-流星
 function c50818.initial_effect(c)
 	--Activate

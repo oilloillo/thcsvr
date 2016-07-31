@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --圣精灵-格奥基乌斯
 function c40028.initial_effect(c)
 	c:SetUniqueOnField(1,0,40028)

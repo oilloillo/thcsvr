@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --大妖精
 function c22005.initial_effect(c)
 	--special summon

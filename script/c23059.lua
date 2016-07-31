@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --旋符「红叶扇风」
 function c23059.initial_effect(c)
 	--Activate

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --红魔 图书馆的恶魔
 function c22046.initial_effect(c)
 	--synchro summon

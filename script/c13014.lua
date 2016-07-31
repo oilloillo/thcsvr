@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --科学信者 朝仓理香子
 function c13014.initial_effect(c)
 	--damage

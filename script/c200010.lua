@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --绯想✿伊吹萃香
 function c200010.initial_effect(c)
 	--atk

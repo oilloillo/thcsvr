@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --废狱-地底的太阳·灵乌路空
 function c24019.initial_effect(c)
 	c:SetUniqueOnField(1,1,24019)

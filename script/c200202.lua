@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --符器-魔法药水
 function c200202.initial_effect(c)
 	--Activate

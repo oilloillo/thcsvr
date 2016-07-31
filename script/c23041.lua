@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --河童「奇怪的鱼雷导弹」
 function c23041.initial_effect(c)
 	--Activate

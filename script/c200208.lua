@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --符器-人魂灯
 function c200208.initial_effect(c)
 	--Activate

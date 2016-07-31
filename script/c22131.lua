@@ -1,6 +1,6 @@
-require "expansions/script/nef/dss"
+ 
 --七曜-火符「火神之光」
-require "expansions/script/nef/msc"
+--require "expansions/nef/msc"
 function c22131.initial_effect(c)
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)

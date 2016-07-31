@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --剑式制冰器
 function c22085.initial_effect(c)
 	--Activate

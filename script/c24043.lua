@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --四天王奥义「三步必杀」
 function c24043.initial_effect(c)
 	--Activate

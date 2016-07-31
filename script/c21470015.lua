@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --妖魔书变化 百鬼夜行
 function c21470015.initial_effect(c)
 	--synchro summon

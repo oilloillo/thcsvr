@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 ---废狱-可怕的水井妖怪·琪斯美
 function c24101.initial_effect(c)
     --search

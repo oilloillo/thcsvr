@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --露西亚人形✿
 function c20140.initial_effect(c)
 	--pierce

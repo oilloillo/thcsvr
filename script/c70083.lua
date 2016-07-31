@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --ルウィー
 function c70083.initial_effect(c)
 	local e1=Effect.CreateEffect(c)

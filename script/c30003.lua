@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --黑魅灵
 function c30003.initial_effect(c)
 	--dark synchro summon

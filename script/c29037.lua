@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --飞头「倍增之头」
 function c29037.initial_effect(c)
 	--Activate

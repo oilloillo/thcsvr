@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --永夜返 -破晓明星-
 function c21119.initial_effect(c)
 	--Activate

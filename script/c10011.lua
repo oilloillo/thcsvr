@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --香霖堂
 function c10011.initial_effect(c)
 	--Activate

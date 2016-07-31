@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --幻兔「并行交差」
 function c21053.initial_effect(c)
 	--Activate

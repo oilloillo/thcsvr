@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --红魔 艳丽的门番
 function c22043.initial_effect(c)
 	--synchro summon

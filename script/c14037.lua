@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --无法避免的禁忌游戏
 function c14037.initial_effect(c)
 	local e1=Effect.CreateEffect(c)

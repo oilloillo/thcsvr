@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --米斯蒂娅·萝蕾拉
 function c21002.initial_effect(c)
 	--recover

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --Strawberry Crisis!!
 function c13049.initial_effect(c)
 	--destroy

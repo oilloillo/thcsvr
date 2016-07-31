@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --灵面-般若
 function c25093.initial_effect(c)
 	--Activate

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --水符「河童泡沫波纹疾走」
 function c23056.initial_effect(c)
 	--Activate

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --古旧之琴的付丧神✿九十九弁々
 function c29012.initial_effect(c)
 	--pendulum summon

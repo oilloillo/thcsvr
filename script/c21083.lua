@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --因幡兔 月上的白兔
 function c21083.initial_effect(c)
 	--tuner

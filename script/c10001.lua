@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --博丽灵梦
 function c10001.initial_effect(c)
 	--special summon

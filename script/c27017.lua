@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --圣德道士 丰聪耳神子
 function c27017.initial_effect(c)
 	c:EnableReviveLimit()

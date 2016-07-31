@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --符器-三粒之天滴
 function c200220.initial_effect(c)
 	--Activate

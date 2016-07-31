@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --妖魔书变化 邪龙
 function c21470016.initial_effect(c)
 	--synchro summon

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --红魔-芙兰朵露·斯卡雷特
 function c22029.initial_effect(c)
 	--synchro summon

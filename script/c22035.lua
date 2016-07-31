@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --Lost·露米娅
 function c22035.initial_effect(c)
 	c:EnableReviveLimit()

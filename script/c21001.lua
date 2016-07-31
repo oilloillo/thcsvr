@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --莉格露·奈特巴格
 function c21001.initial_effect(c)
 	--summon success

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --绯想娘 比那名居天子
 function c25016.initial_effect(c)
 	--xyz summon

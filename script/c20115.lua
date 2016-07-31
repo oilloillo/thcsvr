@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --骚符「活着的骚灵」
 function c20115.initial_effect(c)
 	--Activate

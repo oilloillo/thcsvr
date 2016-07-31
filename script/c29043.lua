@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --响符「平安的残响」
 function c29043.initial_effect(c)
 	--Activate

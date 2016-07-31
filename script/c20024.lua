@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --莱拉·普莉兹姆利巴
 function c20024.initial_effect(c)
 	--xyz summon

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --月光妖精 露娜·查尔德
 function c25021.initial_effect(c)
 	--handes

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --夜棱镜-梅露兰✿普莉兹姆利巴
 function c20104.initial_effect(c)
 	--search

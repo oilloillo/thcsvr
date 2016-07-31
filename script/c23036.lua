@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --开海「摩西之奇迹」
 function c23036.initial_effect(c)
 	--Activate

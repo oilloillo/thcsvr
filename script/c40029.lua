@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --最强的剑舞姬-莲‧阿修贝尔
 function c40029.initial_effect(c)
 	--xyz summon

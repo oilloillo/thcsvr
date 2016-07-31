@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --秘封 玛艾里贝莉·哈恩
 function c28017.initial_effect(c)
 	c:EnableReviveLimit()

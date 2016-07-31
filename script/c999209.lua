@@ -1,5 +1,5 @@
 --三种神器　洗衣机
-require "expansions/script/nef/nef"
+--require "expansions/nef/nef"
 function c999209.initial_effect(c)
 	--pend
 	aux.EnablePendulumAttribute(c)

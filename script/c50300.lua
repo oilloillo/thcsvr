@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --潜水舰-伊168
 function c50300.initial_effect(c)
 	local temp = 0

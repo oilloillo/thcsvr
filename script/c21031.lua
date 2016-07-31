@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --迷途竹林
 function c21031.initial_effect(c)
 	--Activate

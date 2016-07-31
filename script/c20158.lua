@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --魔操「回归虚无」
 function c20158.initial_effect(c)
 	--Activate

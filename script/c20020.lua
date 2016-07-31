@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --梅露兰·普莉兹姆利巴
 function c20020.initial_effect(c)
 	--special summon

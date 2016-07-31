@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --式弹「片面义务契约」
 function c20052.initial_effect(c)
 	--Activate

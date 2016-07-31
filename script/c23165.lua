@@ -29,7 +29,7 @@ function c23165.initial_effect(c)
 	c:RegisterEffect(e3)
 end
 function c23165.ovfilter(c)
-	return c:IsFaceup() and c:GetCounter(0x208a)>0
+	return c:IsFaceup() and c:GetCounter(0x28a)>0
 end
 function c23165.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():CheckRemoveOverlayCard(tp,1,REASON_COST) end
@@ -57,7 +57,7 @@ function c23165.operation(e,tp,eg,ep,ev,re,r,rp)
 			local ct=e:GetHandler():GetOverlayCount()+5
 			local tc=sg:GetFirst()
 			while tc do
-				tc:AddCounter(0x208a,ct)
+				tc:AddCounter(0x28a,ct)
 				local cp=tc:GetControler()
 				if Duel.GetFlagEffect(cp,23200)==0 then
 					Duel.RegisterFlagEffect(cp,23200,0,0,0)
@@ -68,5 +68,5 @@ function c23165.operation(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c23165.atkval(e,c)
-	return Duel.GetCounter(c:GetControler(),1,1,0x208a)*300
+	return Duel.GetCounter(c:GetControler(),1,1,0x28a)*300
 end

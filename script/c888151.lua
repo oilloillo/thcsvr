@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --七曜-火符「火神的光辉」
 function c888151.initial_effect(c)
 	local e1=Effect.CreateEffect(c)

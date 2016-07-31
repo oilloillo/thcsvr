@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --凑符「魅影船港」
 function c26057.initial_effect(c)
 	c:SetUniqueOnField(1,1,26057)

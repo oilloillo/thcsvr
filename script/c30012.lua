@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --欠损少女✿
 function c30012.initial_effect(c)
 	c:SetUniqueOnField(1,0,30012)
@@ -139,12 +139,8 @@ end
 function c30012.lpop(e,tp,eg,ep,ev,re,r,rp)
 	local phase=Duel.GetCurrentPhase()
 	if (phase==PHASE_DAMAGE and not Duel.IsDamageCalculated()) or phase==PHASE_DAMAGE_CAL then return end
-	-- local lp=e:GetHandler():GetAttack()
-	-- Duel.SetLP(e:GetHandler():GetOwner(),lp)
-	local sb = e:GetHandler():GetOwner()
-	local newlp = e:GetHandler():GetAttack()
-	if newlp == Duel.GetLP(sb) then return end
-	Duel.SetLP(sb, newlp)
+	local lp=e:GetHandler():GetAttack()
+	Duel.SetLP(e:GetHandler():GetOwner(),lp)
 end
 function c30012.condition(e,tp,eg,ep,ev,re,r,rp)
 	local ec=eg:GetFirst()

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --しろかみ 缇艾娜·安洁尔
 function c60001.initial_effect(c)
 	--spsummon

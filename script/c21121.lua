@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --不死「火鸟 -凤翼天翔-」
 function c21121.initial_effect(c)
 	--Activate

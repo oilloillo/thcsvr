@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --符器-静止时计
 function c200203.initial_effect(c)
 	--

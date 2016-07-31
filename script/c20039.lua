@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --幻想的境界
 function c20039.initial_effect(c)
 	--synchro summon

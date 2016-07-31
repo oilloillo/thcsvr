@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --命莲寺
 function c26010.initial_effect(c)
 	local e1=Effect.CreateEffect(c)

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --大钟婆之火
 function c23060.initial_effect(c)
 	--handes

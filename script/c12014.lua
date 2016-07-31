@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --战车娘里香
 function c12014.initial_effect(c)
 	--equip

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --泰坦尼克之约✿
 function c10073.initial_effect(c)
 	--Activate

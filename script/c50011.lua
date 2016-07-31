@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --阳炎型驱逐舰-雪风
 function c50011.initial_effect(c)
 	local temp = 0

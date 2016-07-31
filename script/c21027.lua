@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --地上的白兔
 function c21027.initial_effect(c)
 	--tuner

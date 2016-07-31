@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --土著神的顶点 洩矢诹访子
 function c23025.initial_effect(c)
 	--synchro summon
@@ -58,7 +58,7 @@ function c23025.operation(e,tp,eg,ep,ev,re,r,rp)
 	Duel.SendtoDeck(sg,nil,2,REASON_EFFECT)
 end
 function c23025.atkval(e,c)
-	return Duel.GetCounter(c:GetControler(),1,0,0x208a)*300
+	return Duel.GetCounter(c:GetControler(),1,0,0x28a)*300
 end
 function c23025.negcon(e,tp,eg,ep,ev,re,r,rp)
 	if e:GetHandler():IsStatus(STATUS_BATTLE_DESTROYED) then return false end

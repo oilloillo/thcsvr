@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --正直者之死
 function c21033.initial_effect(c)
 	--Activate

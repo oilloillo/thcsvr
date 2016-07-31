@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --逆袭的天邪鬼✿鬼人正邪
 function c29016.initial_effect(c)
 	--special summon

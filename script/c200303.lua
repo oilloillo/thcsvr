@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --超重型机械人偶✿非想天则
 function c200303.initial_effect(c)
 	--xyz summon

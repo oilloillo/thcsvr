@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --幻想乡缘起
 function c21470004.initial_effect(c)
 	--Activate

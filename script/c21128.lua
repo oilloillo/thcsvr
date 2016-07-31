@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --天丸「壶中的天地」
 function c21128.initial_effect(c)
 	--Activate

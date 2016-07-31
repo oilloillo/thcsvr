@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --春之到来
 function c20056.initial_effect(c)
 	--Activate

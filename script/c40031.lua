@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --精灵剑舞祭
 function c40031.initial_effect(c)
 	--Activate

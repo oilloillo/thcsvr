@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --符器-特制的阳伞
 function c200207.initial_effect(c)
 	--Activate

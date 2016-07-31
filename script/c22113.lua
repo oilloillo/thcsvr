@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --Q.E.D.「495年的波纹」
 function c22113.initial_effect(c)
 	--spsummon

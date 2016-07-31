@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --偷腥猫
 function c20055.initial_effect(c)
 	--Activate(summon)

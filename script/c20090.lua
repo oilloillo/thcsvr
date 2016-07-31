@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --亡乡「亡我乡」
 function c20090.initial_effect(c)
 	local e1=Effect.CreateEffect(c)
@@ -66,6 +66,6 @@ function c20090.addc(e,tp,eg,ep,ev,re,r,rp)
 	if not e:GetHandler():IsRelateToEffect(e) then return end
 	local tc=Duel.GetFirstTarget()
 	if tc:IsFaceup() and tc:IsRelateToEffect(e) then
-		tc:AddCounter(0x208b,2)
+		tc:AddCounter(0x28b,2)
 	end
 end

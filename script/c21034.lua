@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --地上与月面的通路
 function c21034.initial_effect(c)
 	--Activate

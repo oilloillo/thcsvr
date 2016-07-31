@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 ---废狱-地底的怨灵
 function c24025.initial_effect(c)
 	--damage

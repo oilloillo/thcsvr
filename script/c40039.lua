@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --精灵魔装-无穷的女王之城
 function c40039.initial_effect(c)
 	--Activate

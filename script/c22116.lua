@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --幻世「The·World」
 function c22116.initial_effect(c)
 	--Activate

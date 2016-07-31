@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --剑精灵-护界神‧爱思特
 function c40016.initial_effect(c)
 	c:SetUniqueOnField(1,0,40016)

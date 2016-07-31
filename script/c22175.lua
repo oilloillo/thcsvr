@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --七曜-金土符「元素收割者」
 function c22175.initial_effect(c)
 	local e1=Effect.CreateEffect(c)

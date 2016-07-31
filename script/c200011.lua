@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --绯想✿射命丸文
 function c200011.initial_effect(c)
 	--synchro summon

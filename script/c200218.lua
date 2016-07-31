@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --符器-龙星
 function c200218.initial_effect(c)
 	--Activate

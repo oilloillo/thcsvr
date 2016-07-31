@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --剑舞姬-菲雅娜‧雷‧奥地西亚
 function c40006.initial_effect(c)
 	--search

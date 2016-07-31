@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --因幡·帝
 function c21009.initial_effect(c)
     --direct attack

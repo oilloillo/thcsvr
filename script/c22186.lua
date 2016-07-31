@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --七曜-日月符「皇家钻戒」
 function c22186.initial_effect(c)
 	local e1=Effect.CreateEffect(c)

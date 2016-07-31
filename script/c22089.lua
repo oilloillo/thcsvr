@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --冰华⑨咲
 function c22089.initial_effect(c)
 	--Activate

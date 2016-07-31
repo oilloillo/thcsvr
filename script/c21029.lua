@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --铃仙
 function c21029.initial_effect(c)
 	--spsummon proc

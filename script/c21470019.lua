@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --稻荷大人的听耳头巾
 function c21470019.initial_effect(c)
 	--Activate

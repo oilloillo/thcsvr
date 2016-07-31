@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --伊势型战舰-日向
 function c50009.initial_effect(c)
 	--synchro summon

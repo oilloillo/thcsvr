@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --C帕秋莉
 function c30004.initial_effect(c)
 	--dark synchro summon

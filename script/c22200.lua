@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --七曜-火水木金土符「贤者之石」
 --你这萝莉控。看什么看说的就是你
 function c22200.initial_effect(c)

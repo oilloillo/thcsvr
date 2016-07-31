@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --精灵魔装-歼魔圣剑
 function c40034.initial_effect(c)
 	--Activate

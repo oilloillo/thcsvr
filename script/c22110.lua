@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --红魔器-冈格尼尔
 function c22110.initial_effect(c)
 	--Activate

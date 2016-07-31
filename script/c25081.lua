@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --面灵气✿秦心
 function c25081.initial_effect(c)
 	--indestructable

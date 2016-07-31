@@ -37,10 +37,10 @@ function c23162.initial_effect(c)
 end
 c23162.material_setcode=0x497
 function c23162.fusfilter(c)
-	return c:GetCounter(0x208a)>0
+	return c:GetCounter(0x28a)>0
 end
 function c23162.val(e,c)
-	return Duel.GetCounter(0,LOCATION_ONFIELD,LOCATION_ONFIELD,0x208a)*300
+	return Duel.GetCounter(0,LOCATION_ONFIELD,LOCATION_ONFIELD,0x28a)*300
 end
 function c23162.atkfilter(c)
 	return c:IsFaceup() and c:IsAttribute(ATTRIBUTE_EARTH)

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --舰船建造
 function c50901.initial_effect(c)
 	--search

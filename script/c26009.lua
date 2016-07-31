@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --星莲-妖怪行者 云居一轮
 function c26009.initial_effect(c)
 	--equip

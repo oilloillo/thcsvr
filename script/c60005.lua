@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --しろかみ 安谢丽丝·谢库丽特
 function c60005.initial_effect(c)
 	--target

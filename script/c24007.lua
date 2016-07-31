@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 ---废狱-地壳下的嫉妒心·水桥帕露西
 function c24007.initial_effect(c)
     --special summon

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --天罚「六芒星」
 function c22127.initial_effect(c)
 	local e1=Effect.CreateEffect(c)

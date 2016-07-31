@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --歌莉娅人形✿试验模式
 function c20073.initial_effect(c)
 	--atklimit

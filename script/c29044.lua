@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --响符「回音之庭」
 function c29044.initial_effect(c)
 	--Activate

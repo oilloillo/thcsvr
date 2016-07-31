@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --心花「羞于留影的蔷薇」
 function c24035.initial_effect(c)
 	--spsummon

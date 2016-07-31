@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --梦幻馆之主 幽香
 function c14013.initial_effect(c)
 	--summon with 3 tribute

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --水上爆击机-瑞云
 function c50826.initial_effect(c)
 	--Activate

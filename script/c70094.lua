@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --最终一战！？
 function c70094.initial_effect(c)
 	--Activate

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --河童「基因改造小黄瓜」
 function c23046.initial_effect(c)
 	--Activate

@@ -1,4 +1,4 @@
-require "expansions/script/nef/dss"
+ 
 --长门型战舰-长门
 function c50001.initial_effect(c)
 	--synchro summon
