@@ -1,5 +1,4 @@
- 
---妖怪之山
+ --妖怪之山
 function c23035.initial_effect(c)
 	c:EnableCounterPermit(0x28a)
 	--Activate
@@ -52,6 +51,7 @@ function c23035.val(e)
 end
 function c23035.spfilter(c,e,tp)
 	local lv=c:GetLevel()
+	if lv<2 then lv=2 end
 	return lv>0 and Duel.IsCanRemoveCounter(tp,1,0,0x28a,lv,REASON_COST) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 		and c:IsSetCard(0x208) and c:IsAttribute(ATTRIBUTE_WIND)
 end
@@ -64,7 +64,9 @@ function c23035.spop(e,tp,eg,ep,ev,re,r,rp)
 	if not e:GetHandler():IsRelateToEffect(e) then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
 	local g=Duel.SelectMatchingCard(tp,c23035.spfilter,tp,LOCATION_DECK,0,1,1,nil,e,tp)
-	Duel.RemoveCounter(tp,1,0,0x28a,g:GetFirst():GetLevel(),REASON_COST)
+	local lv=g:GetFirst():GetLevel()
+	if lv<2 then lv=2 end
+	Duel.RemoveCounter(tp,1,0,0x28a,lv,REASON_COST)
 	if g:GetCount()>0 then
 		Duel.SpecialSummon(g,0,tp,tp,false,false,POS_FACEUP)
 	end
