@@ -1491,7 +1491,6 @@ end
 require "expansions/script/nef/uds"
 require "expansions/script/nef/cardList"
 require "expansions/script/nef/afi"
-require "expansions/script/nef/dss"
 require "expansions/script/nef/elf"
 require "expansions/script/nef/ets"
 require "expansions/script/nef/msc"
