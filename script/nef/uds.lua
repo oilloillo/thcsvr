@@ -1,5 +1,5 @@
 --
---require "nef/nef"
+require "expansions/script/nef/nef"
 Uds={}
 local Udsflag = true
 Uds.dataList = {}
@@ -17,16 +17,16 @@ end
 
 function Uds.regCardData()
 	-- Uds.dataList = {
-	--  [1] = {desc=aux.Stringid(37001,1), code=37001, cost=6},
-	--  [2] = {desc=aux.Stringid(37001,2), code=37002, cost=6},
-	--  [3] = {desc=aux.Stringid(37001,3), code=37003, cost=3},
-	--  [4] = {desc=aux.Stringid(37001,4), code=37004, cost=3},
-	--  [5] = {desc=aux.Stringid(37001,5), code=37005, cost=2},
-	--  [6] = {desc=aux.Stringid(37001,6), code=37006, cost=5},
-	--  [7] = {desc=aux.Stringid(37001,7), code=37007, cost=5},
-	--  [8] = {desc=aux.Stringid(37001,8), code=37008, cost=4},
-	--  [9] = {desc=aux.Stringid(37001,9), code=37009, cost=9},
-	--  [10] = {desc=aux.Stringid(37001,10), code=37010, cost=4},
+	-- 	[1] = {desc=aux.Stringid(37001,1), code=37001, cost=6},
+	-- 	[2] = {desc=aux.Stringid(37001,2), code=37002, cost=6},
+	-- 	[3] = {desc=aux.Stringid(37001,3), code=37003, cost=3},
+	-- 	[4] = {desc=aux.Stringid(37001,4), code=37004, cost=3},
+	-- 	[5] = {desc=aux.Stringid(37001,5), code=37005, cost=2},
+	-- 	[6] = {desc=aux.Stringid(37001,6), code=37006, cost=5},
+	-- 	[7] = {desc=aux.Stringid(37001,7), code=37007, cost=5},
+	-- 	[8] = {desc=aux.Stringid(37001,8), code=37008, cost=4},
+	-- 	[9] = {desc=aux.Stringid(37001,9), code=37009, cost=9},
+	-- 	[10] = {desc=aux.Stringid(37001,10), code=37010, cost=4},
 	-- }
 	Uds.dataList = {
 		[37001] = 6,
@@ -46,10 +46,10 @@ end
 
 function Uds.regSelectCard()
 	local e1=Effect.GlobalEffect()
-	e1:SetType(EFFECT_TYPE_CONTINUOUS+EFFECT_TYPE_FIELD)
-	e1:SetCode(EVENT_ADJUST)
-	-- e1:SetCode(EVENT_PHASE+PHASE_DRAW)
-	e1:SetOperation(Uds.rscop)
+    e1:SetType(EFFECT_TYPE_CONTINUOUS+EFFECT_TYPE_FIELD)
+    e1:SetCode(EVENT_ADJUST)
+    -- e1:SetCode(EVENT_PHASE+PHASE_DRAW)
+    e1:SetOperation(Uds.rscop)
 	Duel.RegisterEffect(e1,0)
 end
 
@@ -91,31 +91,31 @@ function Uds.rscop(e,tp,eg,ep,ev,re,r,rp)
 		-- local availableCost=10
 		-- local t={}
 		-- for k,v in pairs(Uds.dataList) do
-		--  t[k]=v
+		-- 	t[k]=v
 		-- end
 		
 		-- while availableCost>0 and #t>0 do
-		--  Duel.Hint(HINT_MESSAGE,player,aux.Stringid(37000,0))
-		--  local sel=Duel.SelectOption(player,Nef.unpackOneMember(t, "desc"))+1
-		--  local code=t[sel].code
-		--  Uds.initCard(code,player)
-		--  -- 维护table
-		--  availableCost=availableCost-t[sel].cost
-		--  for k=#t,1,-1 do
-		--	  v=t[k]
-		--	  if v.cost > availableCost then
-		--		  table.remove(t, k)
-		--	  end
-		--  end
+		-- 	Duel.Hint(HINT_MESSAGE,player,aux.Stringid(37000,0))
+		-- 	local sel=Duel.SelectOption(player,Nef.unpackOneMember(t, "desc"))+1
+		-- 	local code=t[sel].code
+		-- 	Uds.initCard(code,player)
+		-- 	-- 维护table
+		-- 	availableCost=availableCost-t[sel].cost
+		-- 	for k=#t,1,-1 do
+		-- 		v=t[k]
+		-- 		if v.cost > availableCost then
+		-- 			table.remove(t, k)
+		-- 		end
+		-- 	end
 		-- end
 		-- local token=Duel.CreateToken(player,37000)
 		-- Duel.Remove(token,POS_FACEUP,REASON_RULE)
 		-- Duel.RaiseSingleEvent(e:GetHandler(),EVENT_REMOVE,e,REASON_RULE,player,player,0)
 		-- for i=1,2 do
-		--  if Duel.SelectYesNo(player,aux.Stringid(37000,1)) then
-		--	  local token=Duel.CreateToken(player,37000)
-		--	  Duel.Remove(token,POS_FACEDOWN,REASON_RULE)
-		--  end
+		-- 	if Duel.SelectYesNo(player,aux.Stringid(37000,1)) then
+		-- 		local token=Duel.CreateToken(player,37000)
+		-- 		Duel.Remove(token,POS_FACEDOWN,REASON_RULE)
+		-- 	end
 		-- end
 	end
 	--销毁本效果
