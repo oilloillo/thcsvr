@@ -1,10 +1,10 @@
- 
---Bad Apple!!
+ --Bad Apple!!
 function c14028.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
+	e1:SetCountLimit(1,14028)
 	e1:SetCost(c14028.cost)
 	e1:SetTarget(c14028.destg)
 	e1:SetOperation(c14028.desop)
@@ -44,7 +44,7 @@ function c14028.desop(e,tp,eg,ep,ev,re,r,rp)
 	local sg=Duel.SelectMatchingCard(tp,c14028.filter1,tp,LOCATION_DECK,0,1,1,nil)
 		if sg:GetCount()>0 then
 			Duel.SendtoGrave(sg,REASON_EFFECT)
-			Duel.Damage(tp,500,REASON_EFFECT)
+			Duel.Damage(tp,1000,REASON_EFFECT)
 		end
 	else Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 	local sg=Duel.SelectMatchingCard(tp,c14028.filter2,tp,LOCATION_DECK,0,1,1,nil)

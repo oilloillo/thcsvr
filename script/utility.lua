@@ -6,7 +6,7 @@ function Auxiliary.Stringid(code,id)
 end
 function Auxiliary.Next(g)
 	local first=true
-	return  function()
+	return	function()
 				if first then first=false return g:GetFirst()
 				else return g:GetNext() end
 			end
@@ -20,17 +20,17 @@ function Auxiliary.FALSE()
 	return false
 end
 function Auxiliary.AND(f1,f2)
-	return  function(a,b,c)
+	return	function(a,b,c)
 				return f1(a,b,c) and f2(a,b,c)
 			end
 end
 function Auxiliary.OR(f1,f2)
-	return  function(a,b,c)
+	return	function(a,b,c)
 				return f1(a,b,c) or f2(a,b,c)
 			end
 end
 function Auxiliary.NOT(f)
-	return  function(a,b,c)
+	return	function(a,b,c)
 				return not f(a,b,c)
 			end
 end
@@ -88,27 +88,27 @@ function Auxiliary.EnableDualAttribute(c)
 	c:RegisterEffect(e3)
 end
 function Auxiliary.TargetEqualFunction(f,value,a,b,c)
-	return  function(effect,target)
+	return	function(effect,target)
 				return f(target,a,b,c)==value
 			end
 end
 function Auxiliary.TargetBoolFunction(f,a,b,c)
-	return  function(effect,target)
+	return	function(effect,target)
 				return f(target,a,b,c)
 			end
 end
 function Auxiliary.FilterEqualFunction(f,value,a,b,c)
-	return  function(target)
+	return	function(target)
 				return f(target,a,b,c)==value
 			end
 end
 function Auxiliary.FilterBoolFunction(f,a,b,c)
-	return  function(target)
+	return	function(target)
 				return f(target,a,b,c)
 			end
 end
 function Auxiliary.NonTuner(f,a,b,c)
-	return  function(target)
+	return	function(target)
 				return target:IsNotTuner() and (not f or f(target,a,b,c))
 			end
 end
@@ -126,7 +126,7 @@ function Auxiliary.AddSynchroProcedure(c,f1,f2,ct)
 	c:RegisterEffect(e1)
 end
 function Auxiliary.SynCondition(f1,f2,minct,maxc)
-	return  function(e,c,smat,mg)
+	return	function(e,c,smat,mg)
 				if c==nil then return true end
 				if c:IsType(TYPE_PENDULUM) and c:IsFaceup() then return false end
 				local ft=Duel.GetLocationCount(c:GetControler(),LOCATION_MZONE)
@@ -140,7 +140,7 @@ function Auxiliary.SynCondition(f1,f2,minct,maxc)
 			end
 end
 function Auxiliary.SynTarget(f1,f2,minct,maxc)
-	return  function(e,tp,eg,ep,ev,re,r,rp,chk,c,smat,mg)
+	return	function(e,tp,eg,ep,ev,re,r,rp,chk,c,smat,mg)
 				local g=nil
 				local ft=Duel.GetLocationCount(c:GetControler(),LOCATION_MZONE)
 				local ct=-ft
@@ -159,7 +159,7 @@ function Auxiliary.SynTarget(f1,f2,minct,maxc)
 			end
 end
 function Auxiliary.SynOperation(f1,f2,minct,maxc)
-	return  function(e,tp,eg,ep,ev,re,r,rp,c,smat,mg)
+	return	function(e,tp,eg,ep,ev,re,r,rp,c,smat,mg)
 				local g=e:GetLabelObject()
 				c:SetMaterial(g)
 				Duel.SendtoGrave(g,REASON_MATERIAL+REASON_SYNCHRO)
@@ -216,7 +216,7 @@ end
 --Xyz Summon(normnal)
 function Auxiliary.XyzCondition(f,lv,minc,maxc)
 	--og: use special material
-	return  function(e,c,og)
+	return	function(e,c,og)
 				if c==nil then return true end
 				if c:IsType(TYPE_PENDULUM) and c:IsFaceup() then return false end
 				local ft=Duel.GetLocationCount(c:GetControler(),LOCATION_MZONE)
@@ -226,7 +226,7 @@ function Auxiliary.XyzCondition(f,lv,minc,maxc)
 			end
 end
 function Auxiliary.XyzTarget(f,lv,minc,maxc)
-	return  function(e,tp,eg,ep,ev,re,r,rp,chk,c,og)
+	return	function(e,tp,eg,ep,ev,re,r,rp,chk,c,og)
 				if og then
 					return true
 				else
@@ -240,7 +240,7 @@ function Auxiliary.XyzTarget(f,lv,minc,maxc)
 			end
 end
 function Auxiliary.XyzOperation(f,lv,minc,maxc)
-	return  function(e,tp,eg,ep,ev,re,r,rp,c,og)
+	return	function(e,tp,eg,ep,ev,re,r,rp,c,og)
 				if og then
 					local sg=Group.CreateGroup()
 					local tc=og:GetFirst()
@@ -270,7 +270,7 @@ function Auxiliary.XyzOperation(f,lv,minc,maxc)
 end
 --Xyz summon(alterf)
 function Auxiliary.XyzCondition2(f,lv,minc,maxc,alterf,desc,op)
-	return  function(e,c,og)
+	return	function(e,c,og)
 				if c==nil then return true end
 				if c:IsType(TYPE_PENDULUM) and c:IsFaceup() then return false end
 				local tp=c:GetControler()
@@ -285,7 +285,7 @@ function Auxiliary.XyzCondition2(f,lv,minc,maxc,alterf,desc,op)
 			end
 end
 function Auxiliary.XyzTarget2(f,lv,minc,maxc,alterf,desc,op)
-	return  function(e,tp,eg,ep,ev,re,r,rp,chk,c,og)
+	return	function(e,tp,eg,ep,ev,re,r,rp,chk,c,og)
 				if og then
 					return true
 				else
@@ -310,7 +310,7 @@ function Auxiliary.XyzTarget2(f,lv,minc,maxc,alterf,desc,op)
 			end
 end
 function Auxiliary.XyzOperation2(f,lv,minc,maxc,alterf,desc,op)
-	return  function(e,tp,eg,ep,ev,re,r,rp,c,og)
+	return	function(e,tp,eg,ep,ev,re,r,rp,c,og)
 				if og then
 					local sg=Group.CreateGroup()
 					local tc=og:GetFirst()
@@ -383,7 +383,7 @@ function Auxiliary.FConditionCode2(code1,code2,sub,insf)
 	--g:Material group(nil for Instant Fusion)
 	--gc:Material already used
 	--chkf: check field, default:PLAYER_NONE
-	return  function(e,g,gc,chkf)
+	return	function(e,g,gc,chkf)
 				if g==nil then return insf end
 				local mg=g:Filter(Card.IsCanBeFusionMaterial,nil,e:GetHandler())
 				if gc then
@@ -413,7 +413,7 @@ function Auxiliary.FConditionCode2(code1,code2,sub,insf)
 			end
 end
 function Auxiliary.FOperationCode2(code1,code2,sub,insf)
-	return  function(e,tp,eg,ep,ev,re,r,rp,gc,chkf)
+	return	function(e,tp,eg,ep,ev,re,r,rp,gc,chkf)
 				local g=eg:Filter(Card.IsCanBeFusionMaterial,nil,e:GetHandler())
 				if gc then
 					if not gc:IsCanBeFusionMaterial(e:GetHandler()) then return end
@@ -468,7 +468,7 @@ function Auxiliary.FConditionFilter32(c,code1,code2,code3,sub)
 	return code==code1 or code==code2 or code==code3 or (sub and c:IsHasEffect(EFFECT_FUSION_SUBSTITUTE))
 end
 function Auxiliary.FConditionCode3(code1,code2,code3,sub,insf)
-	return  function(e,g,gc,chkf)
+	return	function(e,g,gc,chkf)
 				if g==nil then return insf end
 				local mg=g:Filter(Card.IsCanBeFusionMaterial,nil,e:GetHandler())
 				if gc then
@@ -511,7 +511,7 @@ function Auxiliary.FConditionCode3(code1,code2,code3,sub,insf)
 			end
 end
 function Auxiliary.FOperationCode3(code1,code2,code3,sub,insf)
-	return  function(e,tp,eg,ep,ev,re,r,rp,gc,chkf)
+	return	function(e,tp,eg,ep,ev,re,r,rp,gc,chkf)
 				local g=eg:Filter(Card.IsCanBeFusionMaterial,nil,e:GetHandler())
 				if gc then
 					if not gc:IsCanBeFusionMaterial(e:GetHandler()) then return end
@@ -573,7 +573,7 @@ function Auxiliary.FConditionFilter42(c,code1,code2,code3,code4,sub)
 	return code==code1 or code==code2 or code==code3 or code==code4 or (sub and c:IsHasEffect(EFFECT_FUSION_SUBSTITUTE))
 end
 function Auxiliary.FConditionCode4(code1,code2,code3,code4,sub,insf)
-	return  function(e,g,gc,chkf)
+	return	function(e,g,gc,chkf)
 				if g==nil then return insf end
 				local mg=g:Filter(Card.IsCanBeFusionMaterial,nil,e:GetHandler())
 				if gc then
@@ -619,7 +619,7 @@ function Auxiliary.FConditionCode4(code1,code2,code3,code4,sub,insf)
 			end
 end
 function Auxiliary.FOperationCode4(code1,code2,code3,code4,sub,insf)
-	return  function(e,tp,eg,ep,ev,re,r,rp,gc,chkf)
+	return	function(e,tp,eg,ep,ev,re,r,rp,gc,chkf)
 				local g=eg:Filter(Card.IsCanBeFusionMaterial,nil,e:GetHandler())
 				if gc then
 					if not gc:IsCanBeFusionMaterial(e:GetHandler()) then return end
@@ -686,7 +686,7 @@ function Auxiliary.FConditionFilterCF(c,g2,cc)
 	return g2:IsExists(aux.TRUE,cc,c)
 end
 function Auxiliary.FConditionCodeFun(code,f,cc,sub,insf)
-	return  function(e,g,gc,chkf)
+	return	function(e,g,gc,chkf)
 				if g==nil then return insf end
 				local mg=g:Filter(Card.IsCanBeFusionMaterial,nil,e:GetHandler())
 				if gc then
@@ -731,7 +731,7 @@ function Auxiliary.FConditionCodeFun(code,f,cc,sub,insf)
 			end
 end
 function Auxiliary.FOperationCodeFun(code,f,cc,sub,insf)
-	return  function(e,tp,eg,ep,ev,re,r,rp,gc,chkf)
+	return	function(e,tp,eg,ep,ev,re,r,rp,gc,chkf)
 				local g=eg:Filter(Card.IsCanBeFusionMaterial,nil,e:GetHandler())
 				if gc then
 					if not gc:IsCanBeFusionMaterial(e:GetHandler()) then return end
@@ -831,7 +831,7 @@ function Auxiliary.FConditionFilterF2r(c,f1,f2)
 	return f1(c) and not f2(c)
 end
 function Auxiliary.FConditionFun2(f1,f2,insf)
-	return  function(e,g,gc,chkf)
+	return	function(e,g,gc,chkf)
 				if g==nil then return insf end
 				local mg=g:Filter(Card.IsCanBeFusionMaterial,nil,e:GetHandler())
 				if gc then
@@ -851,7 +851,7 @@ function Auxiliary.FConditionFun2(f1,f2,insf)
 			end
 end
 function Auxiliary.FOperationFun2(f1,f2,insf)
-	return  function(e,tp,eg,ep,ev,re,r,rp,gc,chkf)
+	return	function(e,tp,eg,ep,ev,re,r,rp,gc,chkf)
 				local g=eg:Filter(Card.IsCanBeFusionMaterial,nil,e:GetHandler())
 				if gc then
 					if not gc:IsCanBeFusionMaterial(e:GetHandler()) then return end
@@ -901,7 +901,7 @@ function Auxiliary.FConditionFilterCR(c,code,sub)
 	return c:IsCode(code) or (sub and c:IsHasEffect(EFFECT_FUSION_SUBSTITUTE))
 end
 function Auxiliary.FConditionCodeRep(code,cc,sub,insf)
-	return  function(e,g,gc,chkf)
+	return	function(e,g,gc,chkf)
 				if g==nil then return insf end
 				local mg=g:Filter(Card.IsCanBeFusionMaterial,nil,e:GetHandler())
 				if gc then
@@ -920,7 +920,7 @@ function Auxiliary.FConditionCodeRep(code,cc,sub,insf)
 			end
 end
 function Auxiliary.FOperationCodeRep(code,cc,sub,insf)
-	return  function(e,tp,eg,ep,ev,re,r,rp,gc,chkf)
+	return	function(e,tp,eg,ep,ev,re,r,rp,gc,chkf)
 				local g=eg:Filter(Card.IsCanBeFusionMaterial,nil,e:GetHandler())
 				if gc then
 					if not gc:IsCanBeFusionMaterial(e:GetHandler()) then return end
@@ -957,7 +957,7 @@ function Auxiliary.AddFusionProcFunRep(c,f,cc,insf)
 	c:RegisterEffect(e1)
 end
 function Auxiliary.FConditionFunRep(f,cc,insf)
-	return  function(e,g,gc,chkf)
+	return	function(e,g,gc,chkf)
 				if g==nil then return insf end
 				local mg=g:Filter(Card.IsCanBeFusionMaterial,nil,e:GetHandler())
 				if gc then
@@ -970,7 +970,7 @@ function Auxiliary.FConditionFunRep(f,cc,insf)
 			end
 end
 function Auxiliary.FOperationFunRep(f,cc,insf)
-	return  function(e,tp,eg,ep,ev,re,r,rp,gc,chkf)
+	return	function(e,tp,eg,ep,ev,re,r,rp,gc,chkf)
 				local g=eg:Filter(Card.IsCanBeFusionMaterial,nil,e:GetHandler())
 				if gc then
 					if not gc:IsCanBeFusionMaterial(e:GetHandler()) then return end
@@ -1016,7 +1016,7 @@ function Auxiliary.FConditionFilterFFR(c,f1,f2,mg,minc,chkf)
 	end
 end
 function Auxiliary.FConditionFunFunRep(f1,f2,minc,maxc,insf)
-	return  function(e,g,gc,chkf)
+	return	function(e,g,gc,chkf)
 			if g==nil then return insf end
 			local mg=g:Filter(Card.IsCanBeFusionMaterial,nil,e:GetHandler())
 			if gc then
@@ -1033,7 +1033,7 @@ function Auxiliary.FConditionFunFunRep(f1,f2,minc,maxc,insf)
 		end
 end
 function Auxiliary.FOperationFunFunRep(f1,f2,minc,maxc,insf)
-	return  function(e,tp,eg,ep,ev,re,r,rp,gc,chkf)
+	return 	function(e,tp,eg,ep,ev,re,r,rp,gc,chkf)
 			local g=eg:Filter(Card.IsCanBeFusionMaterial,nil,e:GetHandler())
 			local minct=minc
 			local maxct=maxc
@@ -1135,7 +1135,7 @@ function Auxiliary.FOperationFunFunRep(f1,f2,minc,maxc,insf)
 		end
 end
 function Auxiliary.FilterBoolFunctionCFR(code,sub)
-	return  function(target)
+	return	function(target)
 				return target:IsCode(code) or (sub and target:IsHasEffect(EFFECT_FUSION_SUBSTITUTE))
 			end
 end
@@ -1171,7 +1171,7 @@ function Auxiliary.RPGFilter(c,filter,e,tp,m)
 	return mg:CheckWithSumGreater(Card.GetRitualLevel,c:GetOriginalLevel(),c)
 end
 function Auxiliary.RPGTarget(filter)
-	return  function(e,tp,eg,ep,ev,re,r,rp,chk)
+	return	function(e,tp,eg,ep,ev,re,r,rp,chk)
 				if chk==0 then
 					local mg=Duel.GetRitualMaterial(tp)
 					return Duel.IsExistingMatchingCard(Auxiliary.RPGFilter,tp,LOCATION_HAND,0,1,nil,filter,e,tp,mg)
@@ -1180,7 +1180,7 @@ function Auxiliary.RPGTarget(filter)
 			end
 end
 function Auxiliary.RPGOperation(filter)
-	return  function(e,tp,eg,ep,ev,re,r,rp)
+	return	function(e,tp,eg,ep,ev,re,r,rp)
 				local mg=Duel.GetRitualMaterial(tp)
 				Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
 				local tg=Duel.SelectMatchingCard(tp,Auxiliary.RPGFilter,tp,LOCATION_HAND,0,1,1,nil,filter,e,tp,mg)
@@ -1213,7 +1213,7 @@ function Auxiliary.RPEFilter(c,filter,e,tp,m)
 	return mg:CheckWithSumEqual(Card.GetRitualLevel,c:GetOriginalLevel(),1,99,c)
 end
 function Auxiliary.RPETarget(filter)
-	return  function(e,tp,eg,ep,ev,re,r,rp,chk)
+	return	function(e,tp,eg,ep,ev,re,r,rp,chk)
 				if chk==0 then
 					local mg=Duel.GetRitualMaterial(tp)
 					return Duel.IsExistingMatchingCard(Auxiliary.RPEFilter,tp,LOCATION_HAND,0,1,nil,filter,e,tp,mg)
@@ -1222,7 +1222,7 @@ function Auxiliary.RPETarget(filter)
 			end
 end
 function Auxiliary.RPEOperation(filter)
-	return  function(e,tp,eg,ep,ev,re,r,rp)
+	return	function(e,tp,eg,ep,ev,re,r,rp)
 				local mg=Duel.GetRitualMaterial(tp)
 				Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
 				local tg=Duel.SelectMatchingCard(tp,Auxiliary.RPEFilter,tp,LOCATION_HAND,0,1,1,nil,filter,e,tp,mg)
@@ -1255,7 +1255,7 @@ function Auxiliary.RPEFilter2(c,filter,e,tp,m)
 	return mg:CheckWithSumEqual(Card.GetRitualLevel,c:GetLevel(),1,99,c)
 end
 function Auxiliary.RPETarget2(filter)
-	return  function(e,tp,eg,ep,ev,re,r,rp,chk)
+	return	function(e,tp,eg,ep,ev,re,r,rp,chk)
 				if chk==0 then
 					local mg=Duel.GetRitualMaterial(tp)
 					return Duel.IsExistingMatchingCard(Auxiliary.RPEFilter2,tp,LOCATION_HAND,0,1,nil,filter,e,tp,mg)
@@ -1264,7 +1264,7 @@ function Auxiliary.RPETarget2(filter)
 			end
 end
 function Auxiliary.RPEOperation2(filter)
-	return  function(e,tp,eg,ep,ev,re,r,rp)
+	return	function(e,tp,eg,ep,ev,re,r,rp)
 				local mg=Duel.GetRitualMaterial(tp)
 				Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
 				local tg=Duel.SelectMatchingCard(tp,Auxiliary.RPEFilter2,tp,LOCATION_HAND,0,1,1,nil,filter,e,tp,mg)
@@ -1317,7 +1317,7 @@ function Auxiliary.PConditionFilter(c,e,tp,lscale,rscale)
 		and not c:IsForbidden()
 end
 function Auxiliary.PendCondition()
-	return  function(e,c,og)
+	return	function(e,c,og)
 				if c==nil then return true end
 				local tp=c:GetControler()
 				if c:GetSequence()~=6 then return false end
@@ -1336,7 +1336,7 @@ function Auxiliary.PendCondition()
 			end
 end
 function Auxiliary.PendOperation()
-	return  function(e,tp,eg,ep,ev,re,r,rp,c,sg,og)
+	return	function(e,tp,eg,ep,ev,re,r,rp,c,sg,og)
 				local rpz=Duel.GetFieldCard(tp,LOCATION_SZONE,7)
 				local lscale=c:GetLeftScale()
 				local rscale=rpz:GetRightScale()
@@ -1495,4 +1495,3 @@ require "expansions/script/nef/cardList"
 require "expansions/script/nef/afi"
 require "expansions/script/nef/elf"
 require "expansions/script/nef/ets"
-require "expansions/script/nef/dss"

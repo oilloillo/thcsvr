@@ -1,4 +1,3 @@
-require "expansions/script/nef/dss"
 --星莲-封印的魔法使 圣白莲
 function c26112.initial_effect(c)
 	--synchro summon
