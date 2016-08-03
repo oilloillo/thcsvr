@@ -24,7 +24,8 @@ function c22052.initial_effect(c)
 	local e4=Effect.CreateEffect(c)
 	e4:SetDescription(aux.Stringid(22052,1))
 	e4:SetCategory(CATEGORY_DISABLE)
-	e4:SetProperty(EFFECT_FLAG_DAMAGE_STEP+EFFECT_FLAG_DAMAGE_CAL)
+	--发动无效才能在伤判发动
+	--e4:SetProperty(EFFECT_FLAG_DAMAGE_STEP+EFFECT_FLAG_DAMAGE_CAL)
 	e4:SetType(EFFECT_TYPE_QUICK_O)
 	e4:SetRange(LOCATION_MZONE)
 	e4:SetCode(EVENT_CHAINING)
@@ -73,7 +74,7 @@ function c22052.condition(e,tp,eg,ep,ev,re,r,rp)
 end
 function c22052.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():IsAbleToRemoveAsCost() end
-	Duel.Remove(e:GetHandler(),POS_FACEUP,REASON_EFFECT)
+	Duel.Remove(e:GetHandler(),POS_FACEUP,COST)
 end
 function c22052.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end

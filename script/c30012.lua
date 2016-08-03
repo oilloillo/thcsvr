@@ -18,6 +18,8 @@ function c30012.initial_effect(c)
 	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
 	e2:SetCode(EVENT_ADJUST)
 	e2:SetRange(LOCATION_MZONE)
+	--整个游戏一卡一卡的
+	e2:SetCondition(function(e)return Duel.GetLP(e:GetHandlerPlayer())~=e:GetHandler():GetAttack()end)
 	e2:SetOperation(c30012.lpop)
 	c:RegisterEffect(e2)
 	--negate attack

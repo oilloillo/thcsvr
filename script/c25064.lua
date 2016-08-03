@@ -47,21 +47,14 @@ function c25064.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(c25064.rfilter3,tp,LOCATION_GRAVE,0,3,nil)
 		or Duel.IsExistingMatchingCard(c25064.rfilter2,tp,LOCATION_GRAVE,0,1,nil) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
-	local g=Duel.SelectMatchingCard(tp,c25064.rfilter1,tp,LOCATION_GRAVE,0,1,1,nil)
-	if g:GetFirst():IsSetCard(0x740) then
-		if g:GetFirst():IsAttribute(ATTRIBUTE_LIGHT)
-			and Duel.IsExistingMatchingCard(c25064.rfilter3,tp,LOCATION_GRAVE,0,2,g:GetFirst()) and Duel.SelectYesNo(tp,aux.Stringid(25064,2)) then
-			local g1=Duel.SelectMatchingCard(tp,c25064.rfilter3,tp,LOCATION_GRAVE,0,2,2,g:GetFirst())
-			g:Merge(g1)
-			Duel.Remove(g,POS_FACEUP,REASON_COST)
-		else
-			Duel.Remove(g,POS_FACEUP,REASON_COST)
-		end
-	else
-		g1=Duel.SelectMatchingCard(tp,c25064.rfilter1,tp,LOCATION_GRAVE,0,2,2,g:GetFirst())
-		g:Merge(g1)
-		Duel.Remove(g,POS_FACEUP,REASON_COST)
+	--突然意识到不需要重写的>_>，懒得再改回去了
+	local a=Duel.GetMatchingGroup(c25064.rfilter3,tp,LOCATION_GRAVE,0,nil)
+	local b=Duel.GetMatchingGroup(c25064.rfilter2,tp,LOCATION_GRAVE,0,nil)
+	if a:GetCount()>2 and(b:GetCount()<1 or Duel.SelectYesNo(tp,aux.Stringid(25064,2)))
+	then a=a:Select(tp,3,3,nil)
+	else a=b:Select(tp,1,1,nil)
 	end
+	Duel.Remove(a,POS_FACEUP,REASON_COST)
 end
 function c25064.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0

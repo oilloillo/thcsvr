@@ -13,7 +13,7 @@ function c70019.initial_effect(c)
 	c:RegisterEffect(e1)
 end
 function c70019.cfilter(c)
-	return c:IsSetCard(0x149) and c:IsAbleToHand()
+	return c:IsSetCard(0x149) and c:IsAbleToHand() and c:IsFaceup()
 end
 function c70019.thtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_MZONE) and chkc:IsControler(tp) and c70019.cfilter(chkc) end

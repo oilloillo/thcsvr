@@ -116,7 +116,8 @@ function M.thfilter(c)
 end
 
 function M.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsExistingMatchingCard(M.thfilter,tp,LOCATION_DECK,0,1,nil) end
+	--必发不检查是否存在
+	if chk==0 then return true end--Duel.IsExistingMatchingCard(M.thfilter,tp,LOCATION_DECK,0,1,nil) end
 	Duel.SetOperationInfo(0,CATEGORY_TOHAND,nil,1,tp,LOCATION_DECK)
 end
 

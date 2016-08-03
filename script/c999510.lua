@@ -85,7 +85,7 @@ function c999510.selfdes(e,tp,eg,ep,ev,re,r,rp)
 end
 --
 function c999510.desfilter(c)
-	return c:IsDestructable() and c:GetLevel()<=Duel.GetTurnCount()
+	return c:IsDestructable() and c:IsFaceup() and c:GetLevel()>0 and c:GetLevel()<=Duel.GetTurnCount()
 end
 
 function c999510.destg(e,tp,eg,ep,ev,re,r,rp,chk)
