@@ -22,7 +22,7 @@ function c4031201.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function c4031201.filter2(c,e,tp)
 	return c:IsLevelBelow(10) and c:IsType(TYPE_SYNCHRO)
-		and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_SYNCHRO,tp,false,false)
+		and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
 function c4031201.sctg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
@@ -35,7 +35,7 @@ function c4031201.scop(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.SelectMatchingCard(tp,c4031201.filter2,tp,LOCATION_EXTRA,0,1,1,nil,e,tp)
 	local tc=g:GetFirst()
 	if tc then
-		Duel.SpecialSummon(tc,SUMMON_TYPE_SYNCHRO,tp,tp,false,false,POS_FACEUP)
+		Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)
 		tc:CompleteProcedure()
 	end
 end

@@ -61,7 +61,7 @@ function c7001001.spop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.SpecialSummon(sg,0,tp,tp,false,false,POS_FACEUP_DEFENCE)
 end
 function c7001001.thfilter(c,e,tp)
-	return c:IsPreviousLocation(LOCATION_ONFIELD)  and c:IsAbleToHand()
+	return c:IsPreviousLocation(LOCATION_ONFIELD)  and c:IsAbleToHand() and c:IsType(TYPE_MONSTER) 
 end
 function c7001001.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then

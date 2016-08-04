@@ -1,4 +1,3 @@
-require "nef/dss"
 --No Name 春日部耀
 function c71103.initial_effect(c)
       c:SetUniqueOnField(1,0,71103)
