@@ -74,7 +74,7 @@ function c22052.condition(e,tp,eg,ep,ev,re,r,rp)
 end
 function c22052.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():IsAbleToRemoveAsCost() end
-	Duel.Remove(e:GetHandler(),POS_FACEUP,COST)
+	Duel.Remove(e:GetHandler(),POS_FACEUP,REASON_COST)
 end
 function c22052.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end

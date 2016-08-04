@@ -38,6 +38,7 @@ function c24049.activate(e,tp,eg,ep,ev,re,r,rp)
 		e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
 		e2:SetCountLimit(1)
 		e2:SetCode(EVENT_PHASE+PHASE_STANDBY)
+		e2:SetLabel(300)
 		e2:SetCondition(c24049.damcon)
 		e2:SetOperation(c24049.damop)
 		Duel.RegisterEffect(e2,tp)
@@ -47,19 +48,12 @@ function c24049.damcon(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.GetTurnPlayer()~=tp
 end
 function c24049.damop(e,tp,eg,ep,ev,re,r,rp)
-	local c=e:GetHandler()
-	local dam=c:GetFlagEffectLabel(24049)
-	if dam==nil then
-		c:RegisterFlagEffect(24049,0,0,0,300)
-		dam=300
-	else
-		dam=dam*2
-	end
+	local dam=e:GetLabel()
 	Duel.Hint(HINT_CARD,0,24049)
 	local danm=Duel.Damage(1-tp,dam,REASON_EFFECT)
 	if danm<dam then danm=dam/2 end
 	if danm<300 then danm=300 end
-	c:SetFlagEffectLabel(24049,danm)
+	e:SetLabel(danm)
 end
 function c24049.gfilter(c,tp)
 	return c:IsControler(tp) and c:IsPreviousLocation(LOCATION_DECK)

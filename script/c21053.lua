@@ -33,7 +33,7 @@ function c21053.initial_effect(c)
 	end
 end
 function c21053.checkop(e,tp,eg,ep,ev,re,r,rp)
-	if re:IsActiveType(TYPE_SPELL+TYPE_TRAP) then
+	if re:IsHasType(EFFECT_TYPE_ACTIVATE)then
 		c21053[rp]=false
 	end
 end
@@ -74,7 +74,7 @@ function c21053.sumlimit(e,c,sump,sumtype,sumpos,targetp,se)
 	return e:GetLabelObject()~=se
 end
 function c21053.aclimit(e,re,tp)
-	return re:GetHandler():IsType(TYPE_SPELL+TYPE_TRAP)
+	return re:IsHasType(EFFECT_TYPE_ACTIVATE)
 end
 function c21053.spfilter(c,e,tp)
 	return c:IsSetCard(0x255) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
