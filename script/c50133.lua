@@ -1,5 +1,4 @@
- 
---川内型轻巡洋舰-那珂
+ --川内型轻巡洋舰-那珂
 function c50133.initial_effect(c)
 	local temp = 0
 	while temp<6 do

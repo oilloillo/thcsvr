@@ -1,5 +1,4 @@
- 
---冴月麟
+ --冴月麟
 function c22040.initial_effect(c)
 	--fusion material
 	c:EnableReviveLimit()

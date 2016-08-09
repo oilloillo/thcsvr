@@ -44,11 +44,12 @@ function c7001102.attg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	e:SetLabelObject(g1:GetFirst()) 
 end
 function c7001102.atop(e,tp,eg,ep,ev,re,r,rp)
+	local c=e:GetHandler()
 	local hc=Duel.GetFirstTarget()
 	Duel.Hint(HINT_SELECTMSG,tp,aux.Stringid(7001102,2))
 	local g2=Duel.SelectMatchingCard(tp,Card.IsFaceup,tp,LOCATION_MZONE,0,1,1,nil)
 	local tc=g2:GetFirst()
-	if hc:IsFaceup() and hc:IsRelateToEffect(e) and tc:IsFaceup() then
+	if hc:IsFaceup() and hc:IsRelateToEffect(e) and tc:IsFaceup() and c:IsOnField() then
 		local atk=hc:GetBaseDefence()
 		local e1=Effect.CreateEffect(tc)
 		e1:SetType(EFFECT_TYPE_SINGLE)
@@ -79,8 +80,9 @@ function c7001102.datg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	Duel.SetOperationInfo(0,CATEGORY_DAMAGE,nil,0,1-tp,(batk>atk) and (batk-atk) or (atk-batk))
 end
 function c7001102.daop(e,tp,eg,ep,ev,re,r,rp)
+	local c=e:GetHandler()
 	local tc=Duel.GetFirstTarget()
-	if tc:IsRelateToEffect(e) and tc:IsFaceup() then
+	if tc:IsRelateToEffect(e) and tc:IsFaceup() and c:IsOnField() then
 		local atk=tc:GetAttack()
 		local batk=tc:GetBaseAttack()
 		if batk~=atk then

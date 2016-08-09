@@ -1,7 +1,7 @@
 --冬季的开端✿蕾蒂
 function c999508.initial_effect(c)
 	--synchro summon
-	aux.AddSynchroProcedure(c,aux.FilterBoolFunction(Card.IsLevelAbove,12),aux.NonTuner(nil),1)
+	aux.AddSynchroProcedure(c,aux.FilterBoolFunction(Card.IsLevelAbove,12),aux.NonTuner(Card.IsSetCard,0x208),1)
 	c:EnableReviveLimit()
 	--fimbulvinter
 	local e1=Effect.CreateEffect(c)

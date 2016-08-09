@@ -1,5 +1,4 @@
- 
---Plastic Mind
+ --Plastic Mind
 function c15046.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
@@ -15,7 +14,6 @@ function c15046.condition(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.IsExistingMatchingCard(Card.IsCode,tp,LOCATION_MZONE+LOCATION_GRAVE,0,1,nil,15007)
 end
 function c15046.filter(c,e,tp)
-	--当作仪式召唤 => 无视苏生限制
 	return c:IsCode(15024) and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_RITUAL,tp,true,true)
 end
 function c15046.target(e,tp,eg,ep,ev,re,r,rp,chk)

@@ -1,5 +1,4 @@
- 
---星莲-小不点贤将 娜兹玲
+ --星莲-小不点贤将 娜兹玲
 function c26001.initial_effect(c)
 	--to hand
 	local e1=Effect.CreateEffect(c)

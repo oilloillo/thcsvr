@@ -61,7 +61,7 @@ end
 
 
 function c26125.condition(e,tp,eg,ep,ev,re,r,rp)
-	return rp~=tp
+	return rp~=tp and e:GetHandler():GetLocation()==LOCATION_MZONE
 end
 
 
