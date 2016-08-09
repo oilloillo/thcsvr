@@ -3,6 +3,7 @@
 function c27079.initial_effect(c)
 	c:EnableReviveLimit()
 	--pendulum summon
+	--TODO: CDB: 灵摆1: 这个效果不会被无效化
 	local argTable = {TYPE_RITUAL,0x208}
 	Nef.EnablePendulumAttributeSP(c,5,c27079.pendFilter,argTable,false,"GodSprite")
 	--Activate

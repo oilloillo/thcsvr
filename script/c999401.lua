@@ -70,6 +70,8 @@ end
 
 function c999401.defop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
+	--两只互相自爆不科学>_>
+	if not c:IsLocation(LOCATION_MZONE)then return end
 	if not re:GetHandler() then return end
 	local hintflag = true
 	if re:GetHandler():GetControler()~=e:GetHandler():GetControler() then return end

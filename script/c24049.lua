@@ -53,7 +53,7 @@ function c24049.damop(e,tp,eg,ep,ev,re,r,rp)
 	local danm=Duel.Damage(1-tp,dam,REASON_EFFECT)
 	if danm<dam then danm=dam/2 end
 	if danm<300 then danm=300 end
-	e:SetLabel(danm)
+	e:SetLabel(danm*2)
 end
 function c24049.gfilter(c,tp)
 	return c:IsControler(tp) and c:IsPreviousLocation(LOCATION_DECK)

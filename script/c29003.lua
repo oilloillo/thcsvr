@@ -26,6 +26,9 @@ function c29003.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetFlagEffect(tp,29003)==0 and e:GetHandler():GetAttack()>0 end
 	local e1=Effect.CreateEffect(e:GetHandler())
 	e1:SetType(EFFECT_TYPE_SINGLE)
+	--TODO: 所有变成都应该是ESAFINAL的>_>
+	--thc到处都有这个问题<_<
+	--干脆当成thc神调整算了>_>
 	e1:SetCode(EFFECT_SET_ATTACK)
 	e1:SetReset(RESET_EVENT+0x1ff0000)
 	e1:SetValue(0)

@@ -30,6 +30,7 @@ function c999408.initial_effect(c)
 	e3:SetRange(LOCATION_HAND+LOCATION_MZONE+LOCATION_GRAVE)
 	e3:SetValue(22028)
 	c:RegisterEffect(e3)
+	--TODO: 特招限制: 才能从墓地特殊召唤: 让油大自己去修，好麻烦啊>_>
 end
 c999408.DescSetName = 0xa3
 

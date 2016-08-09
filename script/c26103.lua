@@ -57,7 +57,9 @@ function c26103.initial_effect(c)
 	e6:SetType(EFFECT_TYPE_IGNITION)
 	e6:SetRange(LOCATION_MZONE)
 	e6:SetCountLimit(1,261030)
-	e6:SetCondition(c26103.scon)
+	--supposed to be cost
+	--e6:SetCondition(c26103.scon)
+	e6:SetCost(c26103.sco)
 	e6:SetTarget(c26103.stg)
 	e6:SetOperation(c26103.sop)
 	c:RegisterEffect(e6)
@@ -124,8 +126,9 @@ function c26103.operation(e,tp,eg,ep,ev,re,r,rp)
 		Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)
 	end
 end
-function c26103.scon(e,tp,eg,ep,ev,re,r,rp)
-	return e:GetHandler():IsPosition(POS_FACEUP_ATTACK)
+function c26103.sco(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return e:GetHandler():IsPosition(POS_FACEUP_ATTACK)end
+	Duel.ChangePosition(e:GetHandler(),POS_FACEUP_DEFENCE)
 end
 function c26103.fffilter(c)
 	return c:IsSetCard(0x252) or c:IsSetCard(0x251e)
@@ -135,15 +138,12 @@ function c26103.stg(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function c26103.sop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	if c:IsRelateToEffect(e) and c:IsPosition(POS_FACEUP_ATTACK) and c:IsControler(tp) then
-		Duel.Hint(HINT_SELECTMSG,tp,aux.Stringid(26103,4))
-		local g=Duel.SelectMatchingCard(tp,c26103.fffilter,tp,LOCATION_DECK,0,1,1,nil)
-		local tc=g:GetFirst()
-		if tc then
-			Duel.ChangePosition(c,POS_FACEUP_DEFENCE)
-			Duel.ShuffleDeck(tp)
-			Duel.MoveSequence(tc,0)
-			Duel.ConfirmDecktop(tp,1)
-		end
-    end
+	Duel.Hint(HINT_SELECTMSG,tp,aux.Stringid(26103,4))
+	local g=Duel.SelectMatchingCard(tp,c26103.fffilter,tp,LOCATION_DECK,0,1,1,nil)
+	local tc=g:GetFirst()
+	if tc then
+		Duel.ShuffleDeck(tp)
+		Duel.MoveSequence(tc,0)
+		Duel.ConfirmDecktop(tp,1)
+	end
 end

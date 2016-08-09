@@ -19,8 +19,9 @@ function c26001.initial_effect(c)
 	e2:SetProperty(EFFECT_FLAG_CARD_TARGET)
 	e2:SetType(EFFECT_TYPE_IGNITION)
 	e2:SetRange(LOCATION_MZONE)
-	e2:SetCondition(c26001.scon)
-	e2:SetCost(c26001.cost)
+	--e2:SetCondition(c26001.con)
+	--supposed to be cost
+	e2:SetCost(c26001.sco)
 	e2:SetTarget(c26001.stg)
 	e2:SetOperation(c26001.sop)
 	c:RegisterEffect(e2)
@@ -49,8 +50,9 @@ function c26001.operation(e,tp,eg,ep,ev,re,r,rp)
 		Duel.ConfirmCards(1-tp,tc)
 	end
 end
-function c26001.scon(e,tp,eg,ep,ev,re,r,rp)
-	return e:GetHandler():IsPosition(POS_FACEUP_ATTACK)
+function c26001.sco(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return e:GetHandler():IsPosition(POS_FACEUP_ATTACK)end
+	Duel.ChangePosition(e:GetHandler(),POS_FACEUP_DEFENCE)
 end
 function c26001.filter(c,e,tp)
 	return c:IsSetCard(0x252) and c:IsType(TYPE_SPELL) and c:IsSSetable()
@@ -64,10 +66,8 @@ function c26001.stg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	Duel.SetOperationInfo(0,nil,g,1,0,0)
 end
 function c26001.sop(e,tp,eg,ep,ev,re,r,rp)
-	local c=e:GetHandler()
 	local tc=Duel.GetFirstTarget()
-	if c:IsRelateToEffect(e) and c:IsPosition(POS_FACEUP_ATTACK) and c:IsControler(tp) and tc:IsRelateToEffect(e) then
-		Duel.ChangePosition(c,POS_FACEUP_DEFENCE)
+	if tc and tc:IsRelateToEffect(e) then
 		Duel.SSet(tp,tc)
 		Duel.ConfirmCards(1-tp,tc)
     end

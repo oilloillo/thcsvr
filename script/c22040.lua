@@ -112,5 +112,7 @@ function c22040.thop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c22040.splimit(e,se,sp,st)
+	--这个效果说的不一样啊>_>
+	--当作神调整吧<_<
 	return se:GetHandler()==e:GetHandler()
 end
