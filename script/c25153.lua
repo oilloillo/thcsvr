@@ -70,10 +70,10 @@ function c25153.operation(e,tp,eg,ep,ev,re,r,rp)
 			local g=Duel.SelectMatchingCard(tp,Card.IsAbleToDeck,tp,LOCATION_GRAVE,LOCATION_GRAVE,1,ct2*2,nil)
 			Duel.HintSelection(g)
 			Duel.SendtoDeck(g,nil,2,REASON_EFFECT)
-			if g:IsExists(Card.IsControler(),1,nil,tp) then
+			if g:IsExists(Card.IsControler,1,nil,tp) then
 				Duel.ShuffleDeck(tp)
 			end
-			if g:IsExists(Card.IsControler(),1,nil,1-tp) then
+			if g:IsExists(Card.IsControler,1,nil,1-tp) then
 				Duel.ShuffleDeck(1-tp)
 			end
 		end
