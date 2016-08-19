@@ -48,14 +48,14 @@ function c501107.incon(e)
 	return e:GetHandler():GetOverlayCount()>0
 end
 function c501107.ovfilter(c)
-	return c:IsFaceup() and not c:IsCode(501107) and c:IsSetCard(0x811) and c:IsType(TYPE_XYZ)
+	return c:IsFaceup() and not c:IsCode(501107) and c:IsSetCard(0x8a1) and c:IsType(TYPE_XYZ)
 end
 function c501107.xyzop(e,tp,chk)
 	if chk==0 then return Duel.GetFlagEffect(tp,501107)==0 end
 	Duel.RegisterFlagEffect(tp,501107,RESET_PHASE+PHASE_END,0,1)
 end
 function c501107.filter(c)
-	return c:IsSetCard(0x811) and c:IsAbleToHand() and c:IsType(TYPE_TRAP+TYPE_SPELL)
+	return c:IsSetCard(0x8a1) and c:IsAbleToHand() and c:IsType(TYPE_TRAP+TYPE_SPELL)
 end
 function c501107.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(c501107.filter,tp,LOCATION_DECK,0,1,nil) end

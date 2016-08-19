@@ -2,6 +2,7 @@
 --require "expansions/nef/nef"
 function c21142.initial_effect(c)
 	Nef.AddXyzProcedureWithDesc(c,aux.FilterBoolFunction(Card.IsSetCard,0x208),2,2,aux.Stringid(21142,0))
+	c:EnableReviveLimit()
 	--sp2
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_FIELD)

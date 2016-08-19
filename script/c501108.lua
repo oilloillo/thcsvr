@@ -31,7 +31,7 @@ function c501108.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	e:GetHandler():RemoveOverlayCard(tp,1,1,REASON_COST)
 end
 function c501108.cpfilter(c)
-	return c:IsFaceup() and c:IsSetCard(0x811) and not c:IsCode(501108) and c:IsType(TYPE_MONSTER)
+	return c:IsFaceup() and c:IsSetCard(0x8a1) and not c:IsCode(501108) and c:IsType(TYPE_MONSTER)
 end
 function c501108.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:GetLocation()==LOCATION_GRAVE and c501108.cpfilter(chkc) end
@@ -63,7 +63,7 @@ function c501108.spcon(e,tp,eg,ep,ev,re,r,rp)
 		or (rp~=tp and c:IsReason(REASON_DESTROY) and c:GetPreviousControler()==tp)
 end
 function c501108.spfilter(c,e,tp)
-	return not c:IsCode(501108) and c:IsSetCard(0x811) and c:IsCanBeSpecialSummoned(e,0,tp,false,false) 
+	return not c:IsCode(501108) and c:IsSetCard(0x8a1) and c:IsCanBeSpecialSummoned(e,0,tp,false,false) 
 end
 function c501108.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0

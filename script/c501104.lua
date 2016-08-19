@@ -26,17 +26,17 @@ function c501104.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 function c501104.ovfilter2(c)
-	return c:IsSetCard(0x811) and c:IsFaceup() 
+	return c:IsSetCard(0x8a1) and c:IsFaceup() 
 end
 function c501104.ovfilter(c)
-	return c:IsFaceup() and  c:IsRankBelow(7) and c:IsSetCard(0x811) and Duel.IsExistingMatchingCard(c501104.ovfilter2,c:GetControler(),LOCATION_GRAVE,0,7,nil)
+	return c:IsFaceup() and  c:IsRankBelow(7) and c:IsSetCard(0x8a1) and Duel.IsExistingMatchingCard(c501104.ovfilter2,c:GetControler(),LOCATION_GRAVE,0,7,nil)
 end
 function c501104.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():CheckRemoveOverlayCard(tp,2,REASON_COST) end
 	e:GetHandler():RemoveOverlayCard(tp,2,2,REASON_COST)
 end
 function c501104.filter(c)
-	return c:IsSetCard(0x811) and c:IsAbleToDeck()
+	return c:IsSetCard(0x8a1) and c:IsAbleToDeck()
 end
 function c501104.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_GRAVE) and c501104.filter(chkc) end

@@ -21,7 +21,7 @@ function c501101.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	e:GetHandler():RemoveOverlayCard(tp,1,1,REASON_COST)
 end
 function c501101.filter(c)
-	return  c:IsDestructable() and not (c:IsSetCard(0x811) and c:IsFaceup())
+	return  c:IsDestructable() and not (c:IsSetCard(0x8a1) and c:IsFaceup())
 end
 function c501101.destg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(c501101.filter,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil)
@@ -36,6 +36,6 @@ function c501101.desop(e,tp,eg,ep,ev,re,r,rp)
 	elseif r1+r2+r3==2 then
 		Duel.DiscardHand(1-tp,nil,1,1,REASON_EFFECT+REASON_DISCARD)
 	else
-	    Duel.Damage(tp,900,REASON_EFFECT)
+		Duel.Damage(tp,900,REASON_EFFECT)
 	end
 end

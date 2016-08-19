@@ -19,7 +19,7 @@ function c501105.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	e:GetHandler():RemoveOverlayCard(tp,2,2,REASON_COST)
 end
 function c501105.filter(c,e,tp)
-	return c:IsType(TYPE_XYZ) and c:IsSetCard(0x811) and c:IsRankBelow(7) and not c:IsCode(501105) and c:IsCanBeSpecialSummoned(e,0,tp,false,false) 
+	return c:IsType(TYPE_XYZ) and c:IsSetCard(0x8a1) and c:IsRankBelow(7) and not c:IsCode(501105) and c:IsCanBeSpecialSummoned(e,0,tp,false,false) 
 end
 function c501105.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_EXTRA) and chkc:IsControler(tp) and c501105.filter(chkc,e,tp) end
@@ -37,7 +37,7 @@ function c501105.activate(e,tp,eg,ep,ev,re,r,rp)
 		tc:SetMaterial(Group.FromCards(c))
 		Duel.Overlay(tc,Group.FromCards(c))
 		Duel.SpecialSummon(tc,SUMMON_TYPE_XYZ,tp,tp,false,false,POS_FACEUP)
-	    tc:CompleteProcedure()
+		tc:CompleteProcedure()
 	end
 end
 
