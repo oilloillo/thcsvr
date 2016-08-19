@@ -1,5 +1,4 @@
- 
---红魔-小恶魔
+ --红魔-小恶魔
 function c22014.initial_effect(c)
 	--draw
 	local e1=Effect.CreateEffect(c)
@@ -26,7 +25,7 @@ function c22014.drcon(e,tp,eg,ep,ev,re,r,rp)
 end
 function c22014.drop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_CARD,0,22014)
-	Duel.BreakEffect()
+	--Duel.BreakEffect()
 	Duel.Draw(tp,1,REASON_EFFECT)
 end
 function c22014.filter(c)
