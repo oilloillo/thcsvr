@@ -51,11 +51,12 @@ function c23035.val(e)
 end
 function c23035.spfilter(c,e,tp)
 	local lv=c:GetLevel()
+	if lv==1 then lv=2 end
 	return lv>0 and Duel.IsCanRemoveCounter(tp,1,0,0x28a,lv,REASON_COST) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 		and c:IsSetCard(0x208) and c:IsAttribute(ATTRIBUTE_WIND)
 end
 function c23035.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>1
+	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
 		and Duel.IsExistingMatchingCard(c23035.spfilter,tp,LOCATION_DECK,0,1,nil,e,tp) end
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,deck)
 end
