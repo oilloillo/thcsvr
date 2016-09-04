@@ -71,6 +71,7 @@ function c999408.desop(e,tp,eg,ep,ev,re,r,rp,chk)
 			Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 			local sg=Duel.SelectMatchingCard(tp,c999408.thfilter,tp,LOCATION_DECK,0,1,1,nil)
 			Duel.SendtoHand(sg:GetFirst(), tp, REASON_EFFECT)
+			Duel.ConfirmCards(1-tp, sg)
 		end
 	end
 end
