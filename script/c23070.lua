@@ -56,9 +56,9 @@ end
 function c23070.operation(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.GetMatchingGroup(Card.IsFaceup,tp,LOCATION_MZONE,LOCATION_MZONE,nil)
 	if g:GetCount()>0 then
-		Duel.ChangePosition(g,POS_FACEDOWN_DEFENCE)
+		Duel.ChangePosition(g,POS_FACEDOWN_DEFENSE)
 		local og=Duel.GetOperatedGroup()
-		local gc=og:FilterCount(Card.IsPosition,nil,POS_FACEDOWN_DEFENCE)
+		local gc=og:FilterCount(Card.IsPosition,nil,POS_FACEDOWN_DEFENSE)
 		if gc>0 then
 			Duel.DiscardDeck(tp,gc,REASON_EFFECT)
 			Duel.DiscardDeck(1-tp,gc,REASON_EFFECT)

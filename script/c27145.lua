@@ -26,7 +26,7 @@ function c27145.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	end
 end
 function c27145.filter(c,def)
-	return c:IsFaceup() and c:IsAbleToHand() and c:GetDefence()<=def
+	return c:IsFaceup() and c:IsAbleToHand() and c:GetDefense()<=def
 end
 function c27145.spop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
@@ -45,7 +45,7 @@ function c27145.spop(e,tp,eg,ep,ev,re,r,rp)
 		e3:SetCode(EFFECT_DISABLE_EFFECT)
 		e3:SetReset(RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END)
 		tc:RegisterEffect(e3)
-		local def=tc:GetDefence()
+		local def=tc:GetDefense()
 		local sg=Duel.GetMatchingGroup(c27145.filter,tp,0,LOCATION_MZONE,nil,def)
 		if e:GetLabel()>0 and sg:GetCount()>0 then
 			Duel.SendtoHand(sg,nil,REASON_EFFECT)

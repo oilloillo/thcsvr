@@ -52,13 +52,13 @@ function c25144.atkop(e,tp,eg,ep,ev,re,r,rp)
 	e1:SetValue(1000)
 	c:RegisterEffect(e1)
 	local e2=e1:Clone()
-	e2:SetCode(EFFECT_UPDATE_DEFENCE)
+	e2:SetCode(EFFECT_UPDATE_DEFENSE)
 	c:RegisterEffect(e2)
 end
 function c25144.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	local c=e:GetHandler()
 	if chkc then return chkc:IsControler(1-tp) and chkc:IsLocation(LOCATION_ONFIELD) and chkc:IsDestructable() end
-	if chk==0 then return not c:IsHasEffect(EFFECT_REVERSE_UPDATE) and c:GetAttack()>=1500 and c:GetDefence()>=1500
+	if chk==0 then return not c:IsHasEffect(EFFECT_REVERSE_UPDATE) and c:GetAttack()>=1500 and c:GetDefense()>=1500
 		and Duel.IsExistingTarget(Card.IsDestructable,tp,0,LOCATION_ONFIELD,1,nil) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
 	local g=Duel.SelectTarget(tp,Card.IsDestructable,tp,0,LOCATION_ONFIELD,1,1,nil)
@@ -67,7 +67,7 @@ end
 function c25144.operation(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local tc=Duel.GetFirstTarget()
-	if c:IsRelateToEffect(e) and c:IsFaceup() and c:GetAttack()>=1500 and c:GetDefence()>=1500 then
+	if c:IsRelateToEffect(e) and c:IsFaceup() and c:GetAttack()>=1500 and c:GetDefense()>=1500 then
 		if tc and tc:IsRelateToEffect(e) then
 			Duel.Destroy(tc,REASON_EFFECT)
 		end
@@ -79,7 +79,7 @@ function c25144.operation(e,tp,eg,ep,ev,re,r,rp)
 		e1:SetValue(-1500)
 		c:RegisterEffect(e1)
 		local e2=e1:Clone()
-		e2:SetCode(EFFECT_UPDATE_DEFENCE)
+		e2:SetCode(EFFECT_UPDATE_DEFENSE)
 		c:RegisterEffect(e2)
 	end
 end

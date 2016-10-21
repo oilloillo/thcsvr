@@ -52,7 +52,7 @@ function c200006.op1(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.SelectMatchingCard(tp,Card.IsFaceup,tp,LOCATION_ONFIELD,0,1,1,nil)
 	if g:GetCount()>0 then
 		local cc=g:GetFirst()
-		cc:AddCounter(0x700,3)
+		cc:AddCounter(0x1700,3)
 	end
 end
 function c200006.filter(c)

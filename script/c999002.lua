@@ -1,23 +1,13 @@
 --魔法使之徒 濑笈叶
---require "expansions/nef/afi"
+--require "expansions/script/nef/afi"
 local M = c999002
 local Mid = 999002
 function M.initial_effect(c)
-	--fusion material
+	-- fusion material
 	c:EnableReviveLimit()
-	aux.AddFusionProcCodeFun(c, 999001, M.ffilter, 1, true, false)
+	aux.AddFusionProcFun2(c, aux.FilterBoolFunction(Card.IsSetCard, 0xaa6), aux.FilterBoolFunction(Card.IsSetCard, 0x200), true)
 	--
 	Afi.AdjustFieldInfoStore(c)
-	--
-	if not M.codeList then
-		M.codeList = {
-			[10002] = true,
-			[10054] = true,
-			[11004] = true,
-			[31043] = true,
-			[200002] = true,
-		}
-	end
 	-- atk up
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_SINGLE)
@@ -60,7 +50,7 @@ function M.initial_effect(c)
 end
 
 function M.ffilter(c)
-	return M.codeList[c:GetCode()] 
+	return c:IsSetCard(0x200)
 end
 
 function M.condtion(e)
@@ -69,14 +59,14 @@ function M.condtion(e)
 		and (Duel.GetAttacker()==e:GetHandler() or Duel.GetAttackTarget()==e:GetHandler())
 end
 
-
 function M.value(e,c)
 	local tp = e:GetHandler():GetControler()
 	return Duel.GetMatchingGroupCount(M.ffilter, tp, LOCATION_GRAVE, 0, nil)*800
 end
 
 function M.damtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
-	return ev and ev < e:GetHandler():GetAttack()
+	if chk == 0 then return ev and ev < e:GetHandler():GetAttack() end
+	Duel.SetOperationInfo(0, CATEGORY_DAMAGE, nil, 0, 1-tp, e:GetHandler():GetAttack() - ev)
 end
 
 function M.damop(e,tp,eg,ep,ev,re,r,rp)
@@ -90,15 +80,13 @@ function M.tdcon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():IsPreviousPosition(POS_FACEUP) and e:GetHandler():IsPreviousLocation(LOCATION_ONFIELD)
 end
 
-
 function M.tdtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chk==0 then return Duel.IsExistingMatchingCard(M.thfilter, tp, LOCATION_GRAVE+LOCATION_DECK, 0, 1, nil) end
 	Duel.SetOperationInfo(0, CATEGORY_TOHAND, nil, 1, 0, 0)
 end
 
 function M.thfilter(c)
-	local code = c:GetCode()
-	return c:IsAbleToHand() and (M.codeList[code] or code == 24094653)
+	return c:IsAbleToHand() and (c:IsSetCard(0x200) or c:GetCode() == 24094653 or c:GetCode() == 24235)
 end
 
 function M.thop(e,tp,eg,ep,ev,re,r,rp)

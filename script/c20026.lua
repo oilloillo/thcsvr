@@ -1,5 +1,4 @@
- 
---魂魄妖梦
+ --魂魄妖梦
 function c20026.initial_effect(c)
 	--special summon
 	local e1=Effect.CreateEffect(c)

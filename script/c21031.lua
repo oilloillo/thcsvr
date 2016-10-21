@@ -51,24 +51,24 @@ function c21031.spop(e,tp,eg,ep,ev,re,r,rp)
 			-- local e1=Effect.CreateEffect(e:GetHandler())
 			-- e1:SetType(EFFECT_TYPE_SINGLE)
 			-- e1:SetCode(EFFECT_SET_POSITION)
-			-- e1:SetValue(POS_FACEUP_DEFENCE)
+			-- e1:SetValue(POS_FACEUP_DEFENSE)
 			-- e1:SetReset(RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END)
 			-- tc:RegisterEffect(e1)
 		-- end
 		if tc:IsAttackPos() then                      --
-			Duel.ChangePosition(tc,POS_FACEUP_DEFENCE)--
+			Duel.ChangePosition(tc,POS_FACEUP_DEFENSE)--
 		end                                           --
 		tc=g:GetNext()
 	end
 	if s0 and Duel.GetLocationCount(1-tp,LOCATION_MZONE)>0
 		and Duel.IsPlayerCanSpecialSummonMonster(tp,21035,0,0x4011,600,600,2,RACE_BEASTWARRIOR,ATTRIBUTE_EARTH,POS_FACEUP_ATTACK,1-tp) then
 		local token=Duel.CreateToken(tp,21035)
-		Duel.SpecialSummonStep(token,0x20,tp,1-tp,false,false,POS_FACEUP_DEFENCE)
+		Duel.SpecialSummonStep(token,0x20,tp,1-tp,false,false,POS_FACEUP_DEFENSE)
 	end
 	if s1 and Duel.GetLocationCount(tp,LOCATION_MZONE)>0
 		and Duel.IsPlayerCanSpecialSummonMonster(tp,21035,0,0x4011,600,600,2,RACE_BEASTWARRIOR,ATTRIBUTE_EARTH) then
 		local token=Duel.CreateToken(1-tp,21035)
-		Duel.SpecialSummonStep(token,0x20,tp,tp,false,false,POS_FACEUP_DEFENCE)
+		Duel.SpecialSummonStep(token,0x20,tp,tp,false,false,POS_FACEUP_DEFENSE)
 	end
 	Duel.SpecialSummonComplete()
 end

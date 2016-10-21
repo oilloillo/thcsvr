@@ -22,7 +22,7 @@ function c24049.initial_effect(c)
 	--c:RegisterEffect(e2)
 end
 function c24049.filter(c)
-	return math.abs(c:GetAttack()-c:GetDefence())==200 or math.abs(c:GetAttack()-c:GetDefence())==2000
+	return math.abs(c:GetAttack()-c:GetDefense())==200 or math.abs(c:GetAttack()-c:GetDefense())==2000
 end
 function c24049.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.CheckReleaseGroup(tp,c24049.filter,1,nil) end

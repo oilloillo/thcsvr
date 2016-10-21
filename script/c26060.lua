@@ -40,7 +40,7 @@ function c26060.desop(e,tp,eg,ep,ev,re,r,rp)
 	local tg=g:Filter(Card.IsRelateToEffect,nil,e)
 	if tg:GetCount()>0 then
 		tg:AddCard(e:GetHandler())
-		Duel.ChangePosition(tg,POS_FACEDOWN_DEFENCE)
+		Duel.ChangePosition(tg,POS_FACEDOWN_DEFENSE)
 	end
 end
 function c26060.filter(c)
@@ -63,9 +63,9 @@ function c26060.operation(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
 	if not tc or not tc:IsRelateToEffect(e) then return end
 	if Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 then
-		if e:GetLabel()==1 and tc:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEDOWN_DEFENCE) and Duel.GetLocationCount(tp,LOCATION_MZONE)>0
+		if e:GetLabel()==1 and tc:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEDOWN_DEFENSE) and Duel.GetLocationCount(tp,LOCATION_MZONE)>0
 			and Duel.SelectYesNo(tp,aux.Stringid(26060,1)) then
-			Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEDOWN_DEFENCE)
+			Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEDOWN_DEFENSE)
 		else
 			Duel.ConfirmCards(1-tp,tc)
 		end

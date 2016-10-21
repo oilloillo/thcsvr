@@ -11,13 +11,13 @@ function c23205.initial_effect(c)
 	c:RegisterEffect(e1)
 end
 function c23205.cfilter(c)
-	return c:GetCounter(0x28a)>8 and c:IsAbleToDeckAsCost()
+	return c:GetCounter(0x128a)>8 and c:IsAbleToDeckAsCost()
 end
 function c23205.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(c23205.cfilter,tp,LOCATION_MZONE,LOCATION_MZONE,1,nil) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
 	local g=Duel.SelectMatchingCard(tp,c23205.cfilter,tp,LOCATION_MZONE,LOCATION_MZONE,1,1,nil)
-	e:SetLabel(g:GetFirst():GetCounter(0x28a))
+	e:SetLabel(g:GetFirst():GetCounter(0x128a))
 	Duel.SendtoDeck(g,nil,1,REASON_COST)
 end
 function c23205.filter(c,e,tp)
@@ -41,6 +41,6 @@ function c23205.activate(e,tp,eg,ep,ev,re,r,rp)
 		else
 			Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)
 		end
-		tc:AddCounter(0x28a,e:GetLabel())
+		tc:AddCounter(0x128a,e:GetLabel())
 	end
 end

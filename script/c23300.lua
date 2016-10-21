@@ -1,4 +1,4 @@
---require "expansions/nef/nef"
+require "expansions/script/nef/nef"
 --幻想舒风『妖怪之山·秋』
 function c23300.initial_effect(c)
 	--Activate

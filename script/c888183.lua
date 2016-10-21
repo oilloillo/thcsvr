@@ -12,7 +12,7 @@ function c888183.initial_effect(c)
 	c:RegisterEffect(e4)
 end
 function c888183.pofilter(c)
-	return c:IsPosition(POS_DEFENCE)
+	return c:IsPosition(POS_DEFENSE)
 end
 function c888183.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(c888183.pofilter,tp,LOCATION_MZONE,LOCATION_MZONE,1,nil) end

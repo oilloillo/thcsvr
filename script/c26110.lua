@@ -110,7 +110,7 @@ end
 function c26110.operation1(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	if c:IsFaceup() and c:IsRelateToEffect(e) then
-		Duel.PSendtoExtra(c,nil,REASON_EFFECT)
+		Duel.SendtoExtraP(c,nil,REASON_EFFECT)
 	end
 end
 function c26110.cfilter(c)

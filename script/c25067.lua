@@ -12,7 +12,7 @@ function c25067.initial_effect(c)
 	--def
 	local e2=Effect.CreateEffect(c)
 	e2:SetType(EFFECT_TYPE_EQUIP)
-	e2:SetCode(EFFECT_UPDATE_DEFENCE)
+	e2:SetCode(EFFECT_UPDATE_DEFENSE)
 	e2:SetValue(800)
 	c:RegisterEffect(e2)
 	--destroy
@@ -59,7 +59,7 @@ function c25067.operation(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c25067.descon(e,tp,eg,ep,ev,re,r,rp)
-	return Duel.GetTurnPlayer()~=tp and e:GetHandler():GetEquipTarget():IsDefencePos()
+	return Duel.GetTurnPlayer()~=tp and e:GetHandler():GetEquipTarget():IsDefensePos()
 end
 function c25067.destg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	local tg=Duel.GetAttacker()

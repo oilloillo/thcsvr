@@ -48,7 +48,7 @@ function c26108.initial_effect(c)
 	c:RegisterEffect(e5)
 	--Def up
 	local e6=e5:Clone()
-	e6:SetCode(EFFECT_UPDATE_DEFENCE)
+	e6:SetCode(EFFECT_UPDATE_DEFENSE)
 	c:RegisterEffect(e6)
 	--destroy
 	local e7=Effect.CreateEffect(c)

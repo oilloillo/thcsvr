@@ -21,8 +21,8 @@ function c23204.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 function c23204.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsCanRemoveCounter(tp,1,1,0x28a,6,REASON_COST) end
-	Duel.RemoveCounter(tp,1,1,0x28a,6,REASON_COST)
+	if chk==0 then return Duel.IsCanRemoveCounter(tp,1,1,0x128a,6,REASON_COST) end
+	Duel.RemoveCounter(tp,1,1,0x128a,6,REASON_COST)
 end
 function c23204.filter(c,e,tp)
 	return c:IsSetCard(0x497) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
@@ -41,7 +41,7 @@ function c23204.spop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c23204.cfilter(c)
-	return c:IsSetCard(0x497) and c:IsAbleToDeckAsCost() and c:GetCounter(0x28a)>0
+	return c:IsSetCard(0x497) and c:IsAbleToDeckAsCost() and c:GetCounter(0x128a)>0
 end
 function c23204.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then
@@ -49,7 +49,7 @@ function c23204.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
 		local g=Duel.SelectMatchingCard(tp,c23204.cfilter,tp,LOCATION_MZONE,0,1,1,nil)
-			e:SetLabel(g:GetFirst():GetCounter(0x28a))
+			e:SetLabel(g:GetFirst():GetCounter(0x128a))
 		Duel.SendtoDeck(g,nil,1,REASON_COST)
 end
 function c23204.spfilter(c,e,tp)
@@ -75,7 +75,7 @@ function c23204.activate(e,tp,eg,ep,ev,re,r,rp)
 			tc:CompleteProcedure()
 		end
 		if e:GetLabel()>0 then
-			tc:AddCounter(0x28a,e:GetLabel())
+			tc:AddCounter(0x128a,e:GetLabel())
 		end
 	end
 end

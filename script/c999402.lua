@@ -1,5 +1,5 @@
 --禁弹『折反射』
---require "expansions/nef/nef"
+--require "expansions/script/nef/nef"
 function c999402.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
@@ -56,9 +56,9 @@ function c999402.activate(e,tp,eg,ep,ev,re,r,rp)
 			e1:SetReset(RESET_EVENT+0x1fe0000)
 			tc:RegisterEffect(e1)
 			local e2=e1:Clone()
-			e2:SetCode(EFFECT_UPDATE_DEFENCE)
+			e2:SetCode(EFFECT_UPDATE_DEFENSE)
 			tc:RegisterEffect(e2)
-			if tc:GetDefence()<=0 or tc:GetAttack()<=0 then
+			if tc:GetDefense()<=0 or tc:GetAttack()<=0 then
 				Duel.Destroy(tc, REASON_EFFECT)
 			end
 		else
@@ -75,6 +75,7 @@ end
 function c999402.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
 	Duel.SetOperationInfo(0,CATEGORY_REMOVE,e:GetHandler(),1,0,0)
+	Duel.SetOperationInfo(0, CATEGORY_DAMAGE, nil, 0, 1-tp, 1000)
 end
 
 function c999402.operation(e,tp,eg,ep,ev,re,r,rp)

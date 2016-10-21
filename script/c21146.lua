@@ -12,7 +12,7 @@ function c21146.initial_effect(c)
 	c:RegisterEffect(e1)
 end
 function c21146.filter(c)
-	return math.abs(c:GetAttack()-c:GetDefence())==200 or math.abs(c:GetAttack()-c:GetDefence())==2000
+	return math.abs(c:GetAttack()-c:GetDefense())==200 or math.abs(c:GetAttack()-c:GetDefense())==2000
 end
 function c21146.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.CheckReleaseGroup(tp,c21146.filter,1,e:GetHandler()) end

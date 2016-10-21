@@ -89,11 +89,11 @@ function c999401.defop(e,tp,eg,ep,ev,re,r,rp)
 			while tc do
 				local e1=Effect.CreateEffect(c)
 				e1:SetType(EFFECT_TYPE_SINGLE)
-				e1:SetCode(EFFECT_UPDATE_DEFENCE)
+				e1:SetCode(EFFECT_UPDATE_DEFENSE)
 				e1:SetValue(-500)
 				e1:SetReset(RESET_EVENT+0x1fe0000)
 				tc:RegisterEffect(e1)
-				-- if tc:GetDefence()==0 then
+				-- if tc:GetDefense()==0 then
 				-- 	Duel.Destroy(tc, REASON_EFFECT)
 				-- end
 				tc=mg:GetNext()
@@ -111,5 +111,5 @@ function c999401.defop(e,tp,eg,ep,ev,re,r,rp)
 end
 
 function c999401.desfilter(c)
-	return c:GetDefence()<=0 and c:IsFaceup()
+	return c:GetDefense()<=0 and c:IsFaceup()
 end

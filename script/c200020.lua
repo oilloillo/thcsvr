@@ -34,7 +34,7 @@ function c200020.initial_effect(c)
 	e2:SetValue(c200020.value)
 	c:RegisterEffect(e2)
 	local e3=e2:Clone()
-	e3:SetCode(EFFECT_SET_DEFENCE)
+	e3:SetCode(EFFECT_SET_DEFENSE)
 	c:RegisterEffect(e3)
 	--effect gain
 	local e2=Effect.CreateEffect(c)

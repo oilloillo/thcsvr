@@ -48,27 +48,27 @@ function c200206.initial_effect(c)
 	c:RegisterEffect(e4)
 end
 function c200206.con(e,tp,eg,ep,ev,re,r,rp)
-	local ct=e:GetHandler():GetCounter(0x700)
-	return Duel.GetCounter(tp,1,0,0x700)>ct
+	local ct=e:GetHandler():GetCounter(0x1700)
+	return Duel.GetCounter(tp,1,0,0x1700)>ct
 end
 function c200206.damfilter(c)
-	return c:GetCounter(0x700)>0
+	return c:GetCounter(0x1700)>0
 end
 function c200206.op(e,tp,eg,ep,ev,re,r,rp)
 	if not e:GetHandler():IsOnField() then return end
-	local ct=e:GetHandler():GetCounter(0x700)
-	if e:GetHandler():IsFaceup() and Duel.GetCounter(tp,1,0,0x700)>ct then
+	local ct=e:GetHandler():GetCounter(0x1700)
+	if e:GetHandler():IsFaceup() and Duel.GetCounter(tp,1,0,0x1700)>ct then
 		local g=Duel.GetMatchingGroup(c200206.damfilter,tp,LOCATION_ONFIELD,0,e:GetHandler())
 		local tc=g:GetFirst()
 		local sum=0
 		while tc do
-			local sct=tc:GetCounter(0x700)
-			tc:RemoveCounter(tp,0x700,sct,0)
+			local sct=tc:GetCounter(0x1700)
+			tc:RemoveCounter(tp,0x1700,sct,0)
 			sum=sum+sct
 			tc=g:GetNext()
 		end
 		if ct+sum>10 then sum=10-ct end
-		e:GetHandler():AddCounter(0x700,sum)
+		e:GetHandler():AddCounter(0x1700,sum)
 	end
 end
 function c200206.ctcon(e,tp,eg,ep,ev,re,r,rp)
@@ -76,17 +76,17 @@ function c200206.ctcon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler()~=re:GetHandler() and re:IsHasType(EFFECT_TYPE_ACTIVATE) and re:IsActiveType(TYPE_SPELL) and re:GetHandlerPlayer()==tp
 end
 function c200206.ctop(e,tp,eg,ep,ev,re,r,rp)
-	e:GetHandler():AddCounter(0x700,1)
+	e:GetHandler():AddCounter(0x1700,1)
 end
 function c200206.atktg(e,c)
 	return c:IsRace(RACE_SPELLCASTER)
 end
 function c200206.atkval(e,c)
-	return e:GetHandler():GetCounter(0x700)*100
+	return e:GetHandler():GetCounter(0x1700)*100
 end
 function c200206.thcon(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	local ct=c:GetCounter(0x700)
+	local ct=c:GetCounter(0x1700)
 	e:SetLabel(ct)
 	return ct>=5 and c:IsLocation(LOCATION_GRAVE) and c:IsReason(REASON_DESTROY)
 end

@@ -14,8 +14,6 @@ function c200220.initial_effect(c)
 	e1:SetCategory(CATEGORY_TOHAND)
 	e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e1:SetCode(EVENT_PREDRAW)
-	--1 turn draw 1 time
-	e1:SetCountLimit(1,200220)
 	e1:SetRange(LOCATION_GRAVE)
 	e1:SetCondition(c200220.condition1)
 	e1:SetTarget(c200220.target1)

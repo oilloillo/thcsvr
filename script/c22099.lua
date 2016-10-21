@@ -41,7 +41,7 @@ function c22099.initial_effect(c)
 	e3:SetValue(-900)
 	c:RegisterEffect(e3)
 	local e4=e3:Clone()
-	e4:SetCode(EFFECT_UPDATE_DEFENCE)
+	e4:SetCode(EFFECT_UPDATE_DEFENSE)
 	c:RegisterEffect(e4)
 end
 function c22099.con(e,tp,eg,ep,ev,re,r,rp)

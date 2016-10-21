@@ -49,7 +49,7 @@ function c21131.operation(e,tp,eg,ep,ev,re,r,rp)
 		else
 			local e1=Effect.CreateEffect(c)
 			e1:SetType(EFFECT_TYPE_SINGLE)
-			e1:SetCode(EFFECT_UPDATE_DEFENCE)
+			e1:SetCode(EFFECT_UPDATE_DEFENSE)
 			e1:SetReset(RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END,2)
 			e1:SetValue(500)
 			tc:RegisterEffect(e1)

@@ -1,5 +1,5 @@
 --冬符『花之凋零』
---require "expansions/nef/nef"
+--require "expansions/script/nef/nef"
 function c999511.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)

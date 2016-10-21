@@ -67,7 +67,7 @@ function c22183.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SendtoGrave(e:GetHandler(),REASON_EFFECT)
 end
 function c22183.pofilter(c)
-	return c:IsPosition(POS_DEFENCE)
+	return c:IsPosition(POS_DEFENSE)
 end
 function c22183.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(c22183.pofilter,tp,LOCATION_MZONE,LOCATION_MZONE,1,nil) end

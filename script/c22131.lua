@@ -1,6 +1,5 @@
- 
---七曜-火符「火神之光」
---require "expansions/nef/msc"
+ --七曜-火符「火神之光」
+require "expansions/script/nef/msc"
 function c22131.initial_effect(c)
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)

@@ -20,7 +20,7 @@ function c10101.filter3(c)
 	return c:IsSetCard(0x811) and c:IsFaceup()
 end
 function c10101.cfilter(c)
-	return (c:GetAttack()>0 or c:GetDefence()>0) and c:IsFaceup()
+	return (c:GetAttack()>0 or c:GetDefense()>0) and c:IsFaceup()
 end
 function c10101.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	local ct=0
@@ -59,7 +59,7 @@ function c10101.activate(e,tp,eg,ep,ev,re,r,rp)
 			e1:SetValue(-1000)
 			tc:RegisterEffect(e1)
 			local e2=e1:Clone()
-			e2:SetCode(EFFECT_UPDATE_DEFENCE)
+			e2:SetCode(EFFECT_UPDATE_DEFENSE)
 			tc:RegisterEffect(e2)
 			tc=g:GetNext()
 		end

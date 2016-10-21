@@ -30,7 +30,7 @@ function c20070.operation(e,tp,eg,ep,ev,re,r,rp)
 		Duel.ConfirmCards(p,g)
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
 		local sg=g:Select(p,1,1,nil)
-		local def=sg:GetFirst():GetDefence()
+		local def=sg:GetFirst():GetDefense()
 		if def<0 then def=0 end
 		if Duel.Remove(sg,POS_FACEUP,REASON_EFFECT)~=0 then
 			Duel.Damage(1-tp,def,REASON_EFFECT)

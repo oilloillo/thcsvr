@@ -1,6 +1,6 @@
 --决战符『恶作剧』
---require "expansions/nef/uds"
---require "expansions/nef/nef"
+--require "expansions/script/nef/uds"
+--require "expansions/script/nef/nef"
 function c37000.initial_effect(c)
 	if c37000.counter == nil then
 		c37000.counter = true

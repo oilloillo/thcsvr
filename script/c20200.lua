@@ -1,4 +1,4 @@
---require "expansions/nef/nef"
+require "expansions/script/nef/nef"
 --幻想朱桜『白玉楼·春』
 function c20200.initial_effect(c)
 	--Activate

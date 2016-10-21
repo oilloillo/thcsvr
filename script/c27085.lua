@@ -1,5 +1,5 @@
 --死欲的半灵✿魂魄妖梦
--- --require "expansions/nef/nef"
+-- --require "expansions/script/nef/nef"
 function c27085.initial_effect(c)
 	--xyz summon
 	c:EnableReviveLimit()

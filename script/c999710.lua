@@ -39,6 +39,7 @@ end
 function M.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():IsRelateToEffect(e) end
 	Duel.SetOperationInfo(0,CATEGORY_DESTROY,e:GetHandler(),1,0,0)
+	Duel.SetOperationInfo(0, CATEGORY_DAMAGE, nil, 0, tp, 800)
 end
 
 function M.operation(e,tp,eg,ep,ev,re,r,rp)

@@ -77,9 +77,9 @@ function Afi.AdjustFieldInfoCheckMI(g,preg,e)
 				if ms[pp][pn][1]<tempc:GetAttack() then tempg1[1]:AddCard(tempc)
 				else                                    tempg2[1]:AddCard(tempc) end
 			end
-			if ms[pp][pn][2]~=tempc:GetDefence() then
+			if ms[pp][pn][2]~=tempc:GetDefense() then
 				Duel.RaiseSingleEvent(tempc,EVENT_ADJ_DEF,e,0,0,0,ms[pp][pn][2]) 
-				if ms[pp][pn][2]<tempc:GetDefence() then tempg1[2]:AddCard(tempc)
+				if ms[pp][pn][2]<tempc:GetDefense() then tempg1[2]:AddCard(tempc)
 				else                                    tempg2[2]:AddCard(tempc) end
 			end
 			if ms[pp][pn][3]~=tempc:GetLevel() then
@@ -128,7 +128,7 @@ function Afi.AdjustFieldInfoRenewMI(g)
 		p = tempc:GetControler()
 		ms[p][n][0] = tempc
 		ms[p][n][1] = tempc:GetAttack()
-		ms[p][n][2] = tempc:GetDefence()
+		ms[p][n][2] = tempc:GetDefense()
 		ms[p][n][3] = tempc:GetLevel()
 		ms[p][n][4] = tempc:GetRank()
 		ms[p][n][5] = tempc:GetRace()

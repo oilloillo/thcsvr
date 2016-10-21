@@ -21,7 +21,7 @@ function c26051.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.Remove(g,POS_FACEUP,REASON_COST)
 end
 function c26051.filter(c)
-	return c:IsPosition(POS_DEFENCE) or c:IsPosition(POS_FACEDOWN)
+	return c:IsPosition(POS_DEFENSE) or c:IsPosition(POS_FACEDOWN)
 end
 function c26051.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetFieldGroupCount(1-tp,LOCATION_MZONE,LOCATION_MZONE) end

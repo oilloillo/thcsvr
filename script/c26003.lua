@@ -29,7 +29,7 @@ function c26003.initial_effect(c)
 	c:RegisterEffect(e3)
 	--Def up
 	local e7=e3:Clone()
-	e7:SetCode(EFFECT_UPDATE_DEFENCE)
+	e7:SetCode(EFFECT_UPDATE_DEFENSE)
 	c:RegisterEffect(e7)
 	--destroy
 	local e4=Effect.CreateEffect(c)

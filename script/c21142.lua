@@ -1,5 +1,5 @@
 --真夜的合唱指挥 米斯蒂娅✿萝蕾拉
---require "expansions/nef/nef"
+require "expansions/script/nef/nef"
 function c21142.initial_effect(c)
 	Nef.AddXyzProcedureWithDesc(c,aux.FilterBoolFunction(Card.IsSetCard,0x208),2,2,aux.Stringid(21142,0))
 	c:EnableReviveLimit()
@@ -79,7 +79,7 @@ function c21142.posop(e,tp,eg,ep,ev,re,r,rp)
 	local mtg=tg:Filter(Card.IsLocation,nil,LOCATION_MZONE)
 	local stg=tg:Filter(Card.IsLocation,nil,LOCATION_SZONE)
 	if mtg:GetCount()>0 then 
-		Duel.ChangePosition(mtg,POS_FACEDOWN_DEFENCE)
+		Duel.ChangePosition(mtg,POS_FACEDOWN_DEFENSE)
 	end
 	if stg:GetCount()>0 then 
 		Duel.ChangePosition(stg,POS_FACEDOWN)

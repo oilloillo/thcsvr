@@ -1,6 +1,6 @@
  --妖怪之山
 function c23035.initial_effect(c)
-	c:EnableCounterPermit(0x28a)
+	c:EnableCounterPermit(0x128a)
 	--Activate
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
@@ -41,18 +41,18 @@ function c23035.ctcon(e,tp,eg,ep,ev,re,r,rp)
 	return eg:IsExists(c23035.ctfilter,1,nil)
 end
 function c23035.ctop(e,tp,eg,ep,ev,re,r,rp)
-	e:GetHandler():AddCounter(0x28a,1)
+	e:GetHandler():AddCounter(0x128a,1)
 	if Duel.GetFlagEffect(tp,23200)==0 then
 		Duel.RegisterFlagEffect(tp,23200,0,0,0)
 	end
 end
 function c23035.val(e)
-	return e:GetHandler():GetCounter(0x28a)*-100
+	return e:GetHandler():GetCounter(0x128a)*-100
 end
 function c23035.spfilter(c,e,tp)
 	local lv=c:GetLevel()
 	if lv==1 then lv=2 end
-	return lv>0 and Duel.IsCanRemoveCounter(tp,1,0,0x28a,lv,REASON_COST) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
+	return lv>0 and Duel.IsCanRemoveCounter(tp,1,0,0x128a,lv,REASON_COST) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 		and c:IsSetCard(0x208) and c:IsAttribute(ATTRIBUTE_WIND)
 end
 function c23035.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
@@ -66,7 +66,7 @@ function c23035.spop(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.SelectMatchingCard(tp,c23035.spfilter,tp,LOCATION_DECK,0,1,1,nil,e,tp)
 	local lv=g:GetFirst():GetLevel()
 	if lv<2 then lv=2 end
-	Duel.RemoveCounter(tp,1,0,0x28a,lv,REASON_COST)
+	Duel.RemoveCounter(tp,1,0,0x128a,lv,REASON_COST)
 	if g:GetCount()>0 then
 		Duel.SpecialSummon(g,0,tp,tp,false,false,POS_FACEUP)
 	end

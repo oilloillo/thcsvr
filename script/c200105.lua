@@ -34,14 +34,14 @@ function c200105.activate(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.GetMatchingGroup(Card.IsFaceup,tp,LOCATION_ONFIELD,0,nil)
 	local tc=g:GetFirst()
 	while tc do
-		tc:AddCounter(0x700,1)
+		tc:AddCounter(0x1700,1)
 		tc=g:GetNext()
 	end
 	end
 end
 function c200105.cost1(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsCanRemoveCounter(tp,1,0,0x700,5,REASON_COST) end
-	Duel.RemoveCounter(tp,1,0,0x700,5,REASON_COST)
+	if chk==0 then return Duel.IsCanRemoveCounter(tp,1,0,0x1700,5,REASON_COST) end
+	Duel.RemoveCounter(tp,1,0,0x1700,5,REASON_COST)
 end
 function c200105.tg1(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingTarget(Card.IsDestructable,tp,0,LOCATION_ONFIELD,1,e:GetHandler()) end

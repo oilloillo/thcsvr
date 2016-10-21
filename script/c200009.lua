@@ -139,7 +139,7 @@ function c200009.op3(e,tp,eg,ep,ev,re,r,rp)
 		and Duel.SelectYesNo(tp,aux.Stringid(200009,2)) then
 			Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)
 			local sg=Duel.SelectMatchingCard(tp,c200009.filter3,tp,0,LOCATION_MZONE,1,1,nil)
-			Duel.ChangePosition(sg,POS_FACEDOWN_DEFENCE) 
+			Duel.ChangePosition(sg,POS_FACEDOWN_DEFENSE) 
 		end
 	end
 end

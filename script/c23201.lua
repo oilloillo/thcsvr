@@ -35,14 +35,14 @@ function c23201.mfilter1(c,e)
 	return c:IsSetCard(0x497) and c:IsCanBeFusionMaterial() and not c:IsImmuneToEffect(e)
 end
 function c23201.mfilter2(c,e)
-	return c:GetCounter(0x28a)>0 and c:IsCanBeFusionMaterial() and not c:IsImmuneToEffect(e)
+	return c:GetCounter(0x128a)>0 and c:IsCanBeFusionMaterial() and not c:IsImmuneToEffect(e)
 end
 function c23201.filter2(c,e,tp,m,chkf)
 	return c:IsType(TYPE_FUSION) and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_FUSION,tp,false,false) and aux.IsMaterialListSetCard(c,0x497)
 		--and c:CheckFusionMaterial(m,nil,chkf)
 end
 function c23201.mfilter3(c)
-	return c:GetCounter(0x28a)>8 and c:IsReleasable()
+	return c:GetCounter(0x128a)>8 and c:IsReleasable()
 end
 function c23201.filter3(c,e,tp)
 	return c:IsAttribute(ATTRIBUTE_EARTH) and bit.band(c:GetType(),0x81)==0x81 and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_RITUAL,tp,true,false)

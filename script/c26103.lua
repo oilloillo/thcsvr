@@ -85,7 +85,7 @@ end
 function c26103.teop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
 	if tc:IsRelateToEffect(e) then
-		Duel.PSendtoExtra(tc,nil,REASON_EFFECT)
+		Duel.SendtoExtraP(tc,nil,REASON_EFFECT)
     end
 end
 function c26103.sucon(e,tp,eg,ep,ev,re,r,rp)
@@ -128,7 +128,7 @@ function c26103.operation(e,tp,eg,ep,ev,re,r,rp)
 end
 function c26103.sco(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():IsPosition(POS_FACEUP_ATTACK)end
-	Duel.ChangePosition(e:GetHandler(),POS_FACEUP_DEFENCE)
+	Duel.ChangePosition(e:GetHandler(),POS_FACEUP_DEFENSE)
 end
 function c26103.fffilter(c)
 	return c:IsSetCard(0x252) or c:IsSetCard(0x251e)

@@ -26,7 +26,7 @@ function c29039.filter1(c)
 	return c:IsFaceup() and not c:IsDisabled()
 end
 function c29039.filter2(c)
-	return c:IsFaceup() and (c:GetAttack()~=c:GetBaseAttack() or c:GetDefence()~=c:GetBaseDefence())
+	return c:IsFaceup() and (c:GetAttack()~=c:GetBaseAttack() or c:GetDefense()~=c:GetBaseDefense())
 end
 function c29039.filter3(c)
 	return c:IsFaceup() and c:IsSetCard(0x260)
@@ -64,11 +64,11 @@ function c29039.operation(e,tp,eg,ep,ev,re,r,rp)
 			e3:SetReset(RESET_EVENT+0x1fe0000)
 			tc:RegisterEffect(e3)
 		end
-		if tc:GetDefence()~=tc:GetBaseDefence() then
+		if tc:GetDefense()~=tc:GetBaseDefense() then
 			local e4=Effect.CreateEffect(c)
 			e4:SetType(EFFECT_TYPE_SINGLE)
-			e4:SetCode(EFFECT_SET_DEFENCE_FINAL)
-			e4:SetValue(tc:GetBaseDefence())
+			e4:SetCode(EFFECT_SET_DEFENSE_FINAL)
+			e4:SetValue(tc:GetBaseDefense())
 			e4:SetReset(RESET_EVENT+0x1fe0000)
 			tc:RegisterEffect(e4)
 		end

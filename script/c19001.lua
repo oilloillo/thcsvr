@@ -1,5 +1,5 @@
 --融合贤者
---require "expansions/nef/nef"
+require "expansions/script/nef/nef"
 function c19001.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)

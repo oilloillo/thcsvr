@@ -23,11 +23,11 @@ function c23202.mfilter3(c,tp)
 	if c:GetControler()==tp then
 		return c:IsReleasable()
 	else
-		return c:GetCounter(0x28a)>0 and c:IsReleasable()
+		return c:GetCounter(0x128a)>0 and c:IsReleasable()
 	end
 end
 function c23202.rfilter(c)
-	return c:GetCounter(0x28a)+c:GetLevel()+c:GetRank()
+	return c:GetCounter(0x128a)+c:GetLevel()+c:GetRank()
 end
 function c23202.filter3(c,e,tp,mg)
 	if not c:IsAttribute(ATTRIBUTE_EARTH) or bit.band(c:GetType(),0x81)~=0x81 or not c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_RITUAL,tp,true,true) then return false end
@@ -72,18 +72,18 @@ function c23202.ctcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.Remove(e:GetHandler(),POS_FACEUP,REASON_COST)
 end
 function c23202.ctfilter(c)
-	return c:IsFaceup() and c:IsCanAddCounter(0x28a,2)
+	return c:IsFaceup() and c:IsCanAddCounter(0x128a,2)
 end
 function c23202.cttg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsOnField() and chkc:IsControler(tp) and c23202.ctfilter(chkc) end
 	if chk==0 then return Duel.IsExistingTarget(c23202.ctfilter,tp,0,LOCATION_MZONE,1,nil) end
 	Duel.Hint(HINT_SELECTMSG,tp,aux.Stringid(23202,1))
 	Duel.SelectTarget(tp,c23202.ctfilter,tp,0,LOCATION_MZONE,1,1,nil)
-	Duel.SetOperationInfo(0,CATEGORY_COUNTER,nil,2,0,0x28a)
+	Duel.SetOperationInfo(0,CATEGORY_COUNTER,nil,2,0,0x128a)
 end
 function c23202.ctop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
 	if tc:IsFaceup() and tc:IsRelateToEffect(e) then
-		tc:AddCounter(0x28a,2)
+		tc:AddCounter(0x128a,2)
 	end
 end

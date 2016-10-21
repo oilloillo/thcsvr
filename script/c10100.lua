@@ -1,4 +1,4 @@
---require "expansions/nef/nef"
+require "expansions/script/nef/nef"
 --幻想年祭『博丽神社·冬』
 function c10100.initial_effect(c)
 	--Activate

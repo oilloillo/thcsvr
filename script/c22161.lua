@@ -1,6 +1,5 @@
- 
---七曜-日符「皇家烈焰」
---require "expansions/nef/msc"
+ --七曜-日符「皇家烈焰」
+require "expansions/script/nef/msc"
 function c22161.initial_effect(c)
 	--activate
 	local e1=Effect.CreateEffect(c)

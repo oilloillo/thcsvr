@@ -62,6 +62,7 @@ end
 function M.tg2(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(Card.IsAbleToHandAsCost, tp, LOCATION_ONFIELD, 0, 1, e:GetHandler()) 
 		and Duel.IsExistingMatchingCard(M.filter, tp, LOCATION_ONFIELD, 0, 1, e:GetHandler()) end
+	Duel.SetOperationInfo(0, CATEGORY_DAMAGE, nil, 0, 1-tp, 1000)
 end
 
 function M.op2(e,tp,eg,ep,ev,re,r,rp)

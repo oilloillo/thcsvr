@@ -42,7 +42,7 @@ function c23191.op(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	if c:IsRelateToEffect(e) then
 		Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)
-		c:AddCounter(0x28a,1)
+		c:AddCounter(0x128a,1)
 		if Duel.GetFlagEffect(tp,23200)==0 then
 			Duel.RegisterFlagEffect(tp,23200,0,0,0)
 		end

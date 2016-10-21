@@ -46,11 +46,11 @@ function c23185.addct(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 end
 function c23185.addc(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
-	local n=e:GetHandler():GetCounter(0x28a)
+	local n=e:GetHandler():GetCounter(0x128a)
 	local ct=n+2
 	if tc:IsFaceup() and tc:IsRelateToEffect(e) then
-		e:GetHandler():RemoveCounter(tp,0x28a,n,REASON_EFFECT)
-		tc:AddCounter(0x28a,ct)
+		e:GetHandler():RemoveCounter(tp,0x128a,n,REASON_EFFECT)
+		tc:AddCounter(0x128a,ct)
 		local cp=tc:GetControler()
 		if Duel.GetFlagEffect(cp,23200)==0 then
 			Duel.RegisterFlagEffect(cp,23200,0,0,0)
@@ -58,7 +58,7 @@ function c23185.addc(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c23185.costfilter(c,lv,tp)
-	local lv=c:GetLevel()+c:GetRank()+c:GetCounter(0x28a)
+	local lv=c:GetLevel()+c:GetRank()+c:GetCounter(0x128a)
 	return lv>=9 and c:IsReleasable() and (c:IsFaceup() or c:IsControler(tp))
 end
 function c23185.cost(e,tp,eg,ep,ev,re,r,rp,chk)

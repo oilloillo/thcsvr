@@ -1,6 +1,7 @@
 --星莲-被封印的大法师✿圣白莲
 function c26122.initial_effect(c)
 	c:EnableReviveLimit()
+	c:EnableCounterPermit(0x28d)
 	--cannot act
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(26122,0))
@@ -78,7 +79,7 @@ function c26122.spop(e,tp,eg,ep,ev,re,r,rp)
 		e1:SetReset(RESET_EVENT+0x1fe0000)
 		tc:RegisterEffect(e1)
 		local e2=e1:Clone()
-		e2:SetCode(EFFECT_SET_DEFENCE)
+		e2:SetCode(EFFECT_SET_DEFENSE)
 		tc:RegisterEffect(e2)
 	end
 end

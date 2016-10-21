@@ -43,7 +43,7 @@ function c50821.initial_effect(c)
 	e5:SetType(EFFECT_TYPE_FIELD)
 	e5:SetRange(LOCATION_SZONE)
 	e5:SetTargetRange(LOCATION_MZONE,0)
-	e5:SetCode(EFFECT_UPDATE_DEFENCE)
+	e5:SetCode(EFFECT_UPDATE_DEFENSE)
 	e5:SetValue(c50821.val)
 	c:RegisterEffect(e5)
 end

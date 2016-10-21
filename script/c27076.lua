@@ -1,5 +1,5 @@
 --龙脉剥换的神灵✿物部布都
---require "expansions/nef/nef"
+--require "expansions/script/nef/nef"
 function c27076.initial_effect(c)
 	c:EnableReviveLimit()
 	--pendulum summon

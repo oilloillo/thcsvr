@@ -12,7 +12,13 @@ function c22115.initial_effect(c)
 	e1:SetOperation(c22115.activate)
 	c:RegisterEffect(e1)
 end
-c22115.list={[22001]=22035,[20026]=20044}
+c22115.list={
+	[22001] = 22035,
+	[20026] = 20044,
+	[20032] = 999101,
+	[20080] = 999101,
+	[200008] = 999101,
+}
 function c22115.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	e:SetLabel(1)
 	return true

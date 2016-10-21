@@ -1,9 +1,10 @@
- 
+--3
 --星莲-封印的魔法使 圣白莲
 function c26015.initial_effect(c)
 	--synchro summon
 	aux.AddSynchroProcedure(c,nil,aux.NonTuner(Card.IsSetCard,0x251),1)
 	c:EnableReviveLimit()
+	c:EnableCounterPermit(0x28d)
 	--spsummon
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(26015,0))

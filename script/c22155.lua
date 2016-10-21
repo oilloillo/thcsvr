@@ -23,7 +23,7 @@ function c22155.initial_effect(c)
 	e4:SetType(EFFECT_TYPE_FIELD)
 	e4:SetRange(LOCATION_SZONE)
 	e4:SetTargetRange(LOCATION_MZONE,0)
-	e4:SetCode(EFFECT_UPDATE_DEFENCE)
+	e4:SetCode(EFFECT_UPDATE_DEFENSE)
 	e4:SetValue(500)
 	c:RegisterEffect(e4)
 	--pae
@@ -73,7 +73,7 @@ function c22155.actcon(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.IsExistingMatchingCard(c22155.dactfilter,tp,LOCATION_MZONE,0,1,nil)
 end
 function c22155.filter(c)
-	return c:IsPosition(POS_DEFENCE)
+	return c:IsPosition(POS_DEFENSE)
 end
 function c22155.dfilter(c)
 	return c:IsFaceup()
@@ -82,14 +82,14 @@ function c22155.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_MZONE) and c22155.filter(chkc) end
 	if chk==0 then return Duel.IsExistingTarget(c22155.filter,tp,LOCATION_MZONE,0,1,nil) and 
 		Duel.IsExistingMatchingCard(c22155.dfilter,tp,0,LOCATION_MZONE,1,nil) end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DEFENCE)
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DEFENSE)
 	local g=Duel.SelectTarget(tp,c22155.filter,tp,LOCATION_MZONE,0,1,1,nil)
 	Duel.SetOperationInfo(0,CATEGORY_POSITION,g,1,0,0)
 end
 function c22155.operation(e,tp,eg,ep,ev,re,r,rp)
 	if not e:GetHandler():IsRelateToEffect(e) then return end
 	local tc=Duel.GetFirstTarget()
-	if not tc:IsRelateToEffect(e) or not tc:IsPosition(POS_DEFENCE) then return end
+	if not tc:IsRelateToEffect(e) or not tc:IsPosition(POS_DEFENSE) then return end
 	if Duel.ChangePosition(tc,POS_FACEUP_ATTACK,POS_FACEUP_ATTACK,POS_FACEUP_ATTACK,POS_FACEUP_ATTACK)~=0 then
 		local g=Duel.GetMatchingGroup(c22155.dfilter,tp,0,LOCATION_MZONE,nil)
 		local tg=g:GetFirst()

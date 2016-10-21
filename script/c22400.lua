@@ -1,4 +1,4 @@
---require "expansions/nef/nef"
+require "expansions/script/nef/nef"
 --幻想清行『雾之湖·夏』
 function c22400.initial_effect(c)
 
@@ -20,7 +20,7 @@ end
 
 
 function c22400.filter(c)
-	return bit.band(c:GetSummonType(),SUMMON_TYPE_SPECIAL)==SUMMON_TYPE_SPECIAL and c:GetDefence()==900 and c:GetLevel()>0
+	return bit.band(c:GetSummonType(),SUMMON_TYPE_SPECIAL)==SUMMON_TYPE_SPECIAL and c:GetDefense()==900 and c:GetLevel()>0
 end
 
 

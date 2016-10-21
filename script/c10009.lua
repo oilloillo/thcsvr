@@ -1,5 +1,4 @@
- 
---森近霖之助
+ --森近霖之助
 function c10009.initial_effect(c)
 	--xyz summon
 	c:EnableReviveLimit()
@@ -43,7 +42,7 @@ function c10009.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	e:GetHandler():RemoveOverlayCard(tp,1,1,REASON_COST)
 end
 function c10009.filter(c)
-	return c:IsSetCard(0x208) and c:IsRace(RACE_SPELLCASTER) and c:IsDefenceBelow(1000) and c:IsType(TYPE_MONSTER) and c:IsAbleToHand()
+	return c:IsSetCard(0x208) and c:IsRace(RACE_SPELLCASTER) and c:IsDefenseBelow(1000) and c:IsType(TYPE_MONSTER) and c:IsAbleToHand()
 end
 function c10009.sctg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(c10009.filter,tp,LOCATION_DECK,0,1,nil)

@@ -101,7 +101,7 @@ function c24043.op2(e,tp,eg,ep,ev,re,r,rp)
 	local def=0
 	local tc=g:GetFirst()
 	while tc do
-		def=def+tc:GetBaseDefence()
+		def=def+tc:GetBaseDefense()
 		tc=g:GetNext()
 	end
 	Duel.Damage(1-tp,def,REASON_EFFECT)

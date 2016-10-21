@@ -29,7 +29,7 @@ function c23150.initial_effect(c)
 end
 c23150.material_setcode=0x497
 function c23150.fusfilter(c)
-	return c:GetCounter(0x28a)>0
+	return c:GetCounter(0x128a)>0
 end
 function c23150.filter(c)
 	return c:IsType(TYPE_FIELD) and c:IsSSetable()

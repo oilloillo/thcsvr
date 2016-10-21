@@ -99,7 +99,7 @@ function c27139.scop(e,tp,eg,ep,ev,re,r,rp)
 end
 function c27139.filter(c,tc)
 	if not c:IsFaceup() then return false end
-	return tc:GetBaseAttack()~=c:GetAttack() or tc:GetBaseAttack()~=c:GetDefence()
+	return tc:GetBaseAttack()~=c:GetAttack() or tc:GetBaseAttack()~=c:GetDefense()
 end
 function c27139.atkcon(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()

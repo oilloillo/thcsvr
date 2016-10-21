@@ -43,7 +43,7 @@ function c999508.op(e,tp,eg,ep,ev,re,r,rp)
 	e1:SetValue(c999508.val)
 	Duel.RegisterEffect(e1,tp)
 	local e0=e1:Clone()
-	e0:SetCode(EFFECT_UPDATE_DEFENCE)
+	e0:SetCode(EFFECT_UPDATE_DEFENSE)
 	Duel.RegisterEffect(e0,tp)
 	--damage
 	local e2=Effect.CreateEffect(c)

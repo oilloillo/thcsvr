@@ -15,7 +15,7 @@ function c888173.filter1(c)
 	return c:IsPosition(POS_ATTACK)
 end
 function c888173.filter2(c)
-	return c:IsPosition(POS_DEFENCE)
+	return c:IsPosition(POS_DEFENSE)
 end
 function c888173.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(aux.TRUE,tp,0,LOCATION_MZONE,1,nil) end
@@ -28,5 +28,5 @@ function c888173.operation(e,tp,eg,ep,ev,re,r,rp)
 	local g1=Duel.GetMatchingGroup(c888173.filter2,tp,0,LOCATION_MZONE,nil)
 	Duel.Destroy(g1,REASON_EFFECT)
 	local g2=Duel.GetMatchingGroup(c888173.filter1,tp,0,LOCATION_MZONE,nil)
-	Duel.ChangePosition(g2,POS_FACEUP_DEFENCE)
+	Duel.ChangePosition(g2,POS_FACEUP_DEFENSE)
 end

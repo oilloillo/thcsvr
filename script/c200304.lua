@@ -18,7 +18,7 @@ function c200304.condition(e,tp,eg,ep,ev,re,r,rp)
 	if not re:IsHasProperty(EFFECT_FLAG_CARD_TARGET) then return end
 	local tg=Duel.GetChainInfo(ev,CHAININFO_TARGET_CARDS)
 	return tg and tg:IsExists(c200304.filter,1,nil,tp) and Duel.IsChainNegatable(ev) 
-	and Duel.GetCounter(tp,LOCATION_ONFIELD,0,0x700)>0
+	and Duel.GetCounter(tp,LOCATION_ONFIELD,0,0x1700)>0
 end
 function c200304.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
@@ -28,15 +28,15 @@ function c200304.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	end
 end
 function c200304.cfilter(c,tp)
-	return c:GetCounter(0x700)>0
+	return c:GetCounter(0x1700)>0
 end
 function c200304.activate(e,tp,eg,ep,ev,re,r,rp)
-	if Duel.GetCounter(tp,LOCATION_ONFIELD,0,0x700)==0 then return end
+	if Duel.GetCounter(tp,LOCATION_ONFIELD,0,0x1700)==0 then return end
 	local g=Duel.GetMatchingGroup(c200304.cfilter,tp,LOCATION_ONFIELD,0,nil)
 	local tc=g:GetFirst()
 	while tc do
-		local sct=tc:GetCounter(0x700)
-		tc:RemoveCounter(tp,0x700,sct,0)
+		local sct=tc:GetCounter(0x1700)
+		tc:RemoveCounter(tp,0x1700,sct,0)
 		tc=g:GetNext()
 	end
 	Duel.NegateActivation(ev)

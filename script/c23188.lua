@@ -37,12 +37,12 @@ function c23188.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SendtoDeck(g,nil,1,REASON_COST)
 end
 function c23188.tg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsPlayerCanDraw(tp,1) and e:GetHandler():IsCanAddCounter(0x28a,1) end
+	if chk==0 then return Duel.IsPlayerCanDraw(tp,1) and e:GetHandler():IsCanAddCounter(0x128a,1) end
 	Duel.SetOperationInfo(0,CATEGORY_DRAW,nil,0,tp,1)
 end
 function c23188.op(e,tp,eg,ep,ev,re,r,rp)
-	if not e:GetHandler():IsCanAddCounter(0x28a,1) then return end
-	e:GetHandler():AddCounter(0x28a,1)
+	if not e:GetHandler():IsCanAddCounter(0x128a,1) then return end
+	e:GetHandler():AddCounter(0x128a,1)
 		if Duel.GetFlagEffect(tp,23200)==0 then
 			Duel.RegisterFlagEffect(tp,23200,0,0,0)
 		end

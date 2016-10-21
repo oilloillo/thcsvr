@@ -30,7 +30,7 @@ function c26063.initial_effect(c)
 	c:RegisterEffect(e3)
 end
 function c26063.cffilter(c,e,tp)
-	return c:IsSetCard(0x229) and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEDOWN_DEFENCE) and not c:IsPublic()
+	return c:IsSetCard(0x229) and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEDOWN_DEFENSE) and not c:IsPublic()
 end
 function c26063.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():IsDiscardable() end
@@ -52,7 +52,7 @@ function c26063.spop(e,tp,eg,ep,ev,re,r,rp)
 	local lt=Duel.GetLocationCount(tp,LOCATION_MZONE)
 	local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS)
 	local tg=g:Filter(Card.IsRelateToEffect,nil,e)
-	if tg:GetCount()>0 and tg:GetCount()<=lt and Duel.SpecialSummon(tg,0,tp,tp,false,false,POS_FACEDOWN_DEFENCE)>1 then
+	if tg:GetCount()>0 and tg:GetCount()<=lt and Duel.SpecialSummon(tg,0,tp,tp,false,false,POS_FACEDOWN_DEFENSE)>1 then
 		Duel.ShuffleSetCard(tg)
 	end
 end

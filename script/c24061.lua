@@ -1,4 +1,4 @@
---require "expansions/nef/nef"
+require "expansions/script/nef/nef"
 --报警系✿古明地觉
 function c24061.initial_effect(c)
 	--spsummon

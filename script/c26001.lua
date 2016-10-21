@@ -51,7 +51,7 @@ function c26001.operation(e,tp,eg,ep,ev,re,r,rp)
 end
 function c26001.sco(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():IsPosition(POS_FACEUP_ATTACK)end
-	Duel.ChangePosition(e:GetHandler(),POS_FACEUP_DEFENCE)
+	Duel.ChangePosition(e:GetHandler(),POS_FACEUP_DEFENSE)
 end
 function c26001.filter(c,e,tp)
 	return c:IsSetCard(0x252) and c:IsType(TYPE_SPELL) and c:IsSSetable()

@@ -1,5 +1,4 @@
- 
---require "expansions/nef/nef"
+ require "expansions/script/nef/nef"
 --小野冢小町
 function c25007.initial_effect(c)
 	--synchro summon

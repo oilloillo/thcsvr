@@ -11,7 +11,7 @@ function c27033.initial_effect(c)
 	c:RegisterEffect(e1)
 end
 function c27033.cfilter(c)
-	return (c:GetAttack()~=c:GetTextAttack() or c:GetDefence()~=c:GetTextDefence() or c:IsDisabled()) and c:IsFaceup()
+	return (c:GetAttack()~=c:GetTextAttack() or c:GetDefense()~=c:GetTextDefense() or c:IsDisabled()) and c:IsFaceup()
 end
 function c27033.filter(c)
 	return c:IsSetCard(0x242) and c:IsFaceup()
@@ -33,10 +33,10 @@ function c27033.activate(e,tp,eg,ep,ev,re,r,rp)
 		if tc:GetAttack()~=tc:GetTextAttack() and tc:RegisterEffect(e1) then ct=ct+1 oil=1 end
 		local e2=Effect.CreateEffect(e:GetHandler())
 		e2:SetType(EFFECT_TYPE_SINGLE)
-		e2:SetCode(EFFECT_SET_DEFENCE_FINAL)
-		e2:SetValue(tc:GetTextDefence())
+		e2:SetCode(EFFECT_SET_DEFENSE_FINAL)
+		e2:SetValue(tc:GetTextDefense())
 		e2:SetReset(RESET_EVENT+0x1fe0000)
-		if tc:GetDefence()~=tc:GetTextDefence() and tc:RegisterEffect(e2) and oil==0 then ct=ct+1 oil=1 end
+		if tc:GetDefense()~=tc:GetTextDefense() and tc:RegisterEffect(e2) and oil==0 then ct=ct+1 oil=1 end
 		if tc:IsDisabled() and not tc:IsImmuneToEffect(e) then
 			Duel.Remove(tc,POS_FACEDOWN,REASON_TEMPORARY)
 			Duel.BreakEffect()
@@ -59,7 +59,7 @@ function c27033.activate(e,tp,eg,ep,ev,re,r,rp)
 			e1:SetReset(RESET_EVENT+0x1fe0000)
 			tc:RegisterEffect(e1)
 			local e2=e1:Clone()
-			e2:SetCode(EFFECT_UPDATE_DEFENCE)
+			e2:SetCode(EFFECT_UPDATE_DEFENSE)
 			tc:RegisterEffect(e2)
 			tc=dg:GetNext()
 		end

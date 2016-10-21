@@ -8,7 +8,7 @@ function c200010.initial_effect(c)
 	e1:SetRange(LOCATION_MZONE)
 	e1:SetCode(EFFECT_UPDATE_ATTACK)
 	e1:SetCondition(c200010.con)
-	e1:SetValue(c:GetDefence())
+	e1:SetValue(c:GetDefense())
 	c:RegisterEffect(e1)
 	--indes
 	local e2=Effect.CreateEffect(c)

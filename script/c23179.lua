@@ -17,7 +17,7 @@ function c23179.initial_effect(c)
 	--Def
 	local e3=Effect.CreateEffect(c)
 	e3:SetType(EFFECT_TYPE_FIELD)
-	e3:SetCode(EFFECT_SET_DEFENCE)
+	e3:SetCode(EFFECT_SET_DEFENSE)
 	e3:SetRange(LOCATION_SZONE)
 	e3:SetTarget(aux.TargetBoolFunction(Card.IsRace,RACE_PLANT))
 	e3:SetTargetRange(LOCATION_MZONE,0)
@@ -44,7 +44,7 @@ function c23179.val1(e,c)
 	return c:GetAttack()/2
 end
 function c23179.val2(e,c)
-	return c:GetDefence()/2
+	return c:GetDefense()/2
 end
 function c23179.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return eg:IsExists(c23179.cfilter,1,nil,tp) end

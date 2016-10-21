@@ -32,6 +32,7 @@ function M.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(M.filter,tp,LOCATION_SZONE,LOCATION_SZONE,1,c) end
 	local sg=Duel.GetMatchingGroup(M.filter,tp,LOCATION_SZONE,LOCATION_SZONE,c)
 	Duel.SetOperationInfo(0,CATEGORY_TOGRAVE,sg,sg:GetCount(),0,0)
+	Duel.SetOperationInfo(0, CATEGORY_DAMAGE, nil, 0, PLAYER_ALL, sg:GetCount()*800)
 end
 
 function M.filter2(c, tp)

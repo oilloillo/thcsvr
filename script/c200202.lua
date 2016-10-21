@@ -40,7 +40,7 @@ function c200202.activate(e,tp,eg,ep,ev,re,r,rp)
 		local g=Duel.SelectMatchingCard(tp,Card.IsFaceup,tp,LOCATION_ONFIELD,0,1,1,e:GetHandler())
 		if g:GetCount()>0 then
 			local cc=g:GetFirst()
-			cc:AddCounter(0x700,5)
+			cc:AddCounter(0x1700,5)
 		end
 	end
 end

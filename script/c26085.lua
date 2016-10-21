@@ -22,7 +22,7 @@ function c26085.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 function c26085.filter(c,e,tp)
-	return c:IsSetCard(0x229) and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEDOWN_DEFENCE)
+	return c:IsSetCard(0x229) and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEDOWN_DEFENSE)
 end
 function c26085.target1(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return false end
@@ -37,7 +37,7 @@ function c26085.activate1(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS)
 	local sg=g:Filter(Card.IsRelateToEffect,nil,e)
 	if sg:GetCount()~=2 then return end
-	Duel.SpecialSummon(sg,0,tp,tp,false,false,POS_FACEDOWN_DEFENCE)
+	Duel.SpecialSummon(sg,0,tp,tp,false,false,POS_FACEDOWN_DEFENSE)
 	Duel.ShuffleSetCard(sg)
 end
 function c26085.condition(e,tp,eg,ep,ev,re,r,rp)
@@ -73,5 +73,5 @@ function c26085.activate2(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS):Filter(Card.IsRelateToEffect,nil,e)
 	local ft=Duel.GetLocationCount(tp,LOCATION_MZONE)
 	if g:GetCount()>ft then return end
-	Duel.SpecialSummon(g,0,tp,tp,true,true,POS_FACEUP_ATTACK+POS_FACEDOWN_DEFENCE)
+	Duel.SpecialSummon(g,0,tp,tp,true,true,POS_FACEUP_ATTACK+POS_FACEDOWN_DEFENSE)
 end

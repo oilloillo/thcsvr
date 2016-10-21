@@ -1,5 +1,5 @@
 --光符「天照」　
---require "expansions/nef/nef"
+--require "expansions/script/nef/nef"
 function c999211.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
@@ -21,7 +21,7 @@ function c999211.activate(e,tp,eg,ep,ev,re,r,rp)
 	c:RegisterEffect(e1)
 	--defup
 	local e0=e1:Clone()
-	e0:SetCode(EFFECT_UPDATE_DEFENCE)
+	e0:SetCode(EFFECT_UPDATE_DEFENSE)
 	e0:SetValue(300)
 	c:RegisterEffect(e0)
 	--sp1

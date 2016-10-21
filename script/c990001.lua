@@ -1,5 +1,5 @@
 --轮抽模式
---require "expansions/nef/nef"
+--require "expansions/script/nef/nef"
 function c990001.initial_effect(c)
 	if c990001.counter==nil then
 		c990001.counter = true

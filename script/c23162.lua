@@ -12,7 +12,7 @@ function c23162.initial_effect(c)
 	e1:SetValue(c23162.val)
 	c:RegisterEffect(e1)
 	local e2=e1:Clone()
-	e2:SetCode(EFFECT_SET_BASE_DEFENCE)
+	e2:SetCode(EFFECT_SET_BASE_DEFENSE)
 	c:RegisterEffect(e2)
 	--atkup
 	local e3=Effect.CreateEffect(c)
@@ -23,7 +23,7 @@ function c23162.initial_effect(c)
 	e3:SetValue(c23162.atkup)
 	c:RegisterEffect(e3)
 	local e4=e3:Clone()
-	e4:SetCode(EFFECT_UPDATE_DEFENCE)
+	e4:SetCode(EFFECT_UPDATE_DEFENSE)
 	c:RegisterEffect(e4)
 	local e5=Effect.CreateEffect(c)
 	e5:SetDescription(aux.Stringid(23162,0))
@@ -37,10 +37,10 @@ function c23162.initial_effect(c)
 end
 c23162.material_setcode=0x497
 function c23162.fusfilter(c)
-	return c:GetCounter(0x28a)>0
+	return c:GetCounter(0x128a)>0
 end
 function c23162.val(e,c)
-	return Duel.GetCounter(0,LOCATION_ONFIELD,LOCATION_ONFIELD,0x28a)*300
+	return Duel.GetCounter(0,LOCATION_ONFIELD,LOCATION_ONFIELD,0x128a)*300
 end
 function c23162.atkfilter(c)
 	return c:IsFaceup() and c:IsAttribute(ATTRIBUTE_EARTH)

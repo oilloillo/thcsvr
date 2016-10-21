@@ -1,5 +1,5 @@
 --魔法『紫云之兆』
---require "expansions/nef/nef"
+--require "expansions/script/nef/nef"
 function c26142.initial_effect(c)
 	Nef.AddRitualProcEqual(c,c26142.ritual_filter,aux.Stringid(26142,0))
 	--Activate

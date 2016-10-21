@@ -52,17 +52,17 @@ function c22090.op(e,tp,eg,ep,ev,re,r,rp)
 		    e1:SetValue(-400)
 		    sc:RegisterEffect(e1)
 		    local e2=e1:Clone()
-		    e2:SetCode(EFFECT_UPDATE_DEFENCE)
+		    e2:SetCode(EFFECT_UPDATE_DEFENSE)
 		    sc:RegisterEffect(e2)
 		    sc=g:GetNext()
 		end
 	end
 end
 function c22090.lvtg(e,c)
-	return c:GetFieldID()<=e:GetLabel() and c:GetDefence()==900
+	return c:GetFieldID()<=e:GetLabel() and c:GetDefense()==900
 end
 function c22090.cfilter(c)
-	return c:IsFaceup() and c:GetDefence()==900
+	return c:IsFaceup() and c:GetDefense()==900
 end
 function c22090.lvop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()

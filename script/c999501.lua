@@ -23,6 +23,16 @@ function c999501.initial_effect(c)
 		ge2:SetOperation(c999501.clear)
 		Duel.RegisterEffect(ge2,0)
 	end
+
+	local e2=Effect.CreateEffect(c)
+	e2:SetType(EFFECT_TYPE_IGNITION)
+	e2:SetDescription(aux.Stringid(999501, 0))
+	e2:SetRange(LOCATION_GRAVE)
+	e2:SetCost(c999501.drcost)
+	e2:SetTarget(c999501.drtg)
+	e2:SetOperation(c999501.drop)
+	e2:SetCountLimit(1)
+	c:RegisterEffect(e2)
 end
 
 function c999501.checkop(e,tp,eg,ep,ev,re,r,rp)
@@ -86,4 +96,29 @@ function c999501.operation(e,tp,eg,ep,ev,re,r,rp)
 		Duel.MoveToField(token, tp, tp, LOCATION_SZONE, POS_FACEUP, true)
 		fc=rg:GetNext()
 	end
+end
+
+function c999501.drcost(e,tp,eg,ep,ev,re,r,rp,chk)
+	local c=e:GetHandler()
+	if chk==0 then return c:IsAbleToDeckAsCost() end
+	Duel.SendtoDeck(c, nil, 2, REASON_COST)
+	
+end
+
+function c999501.drfilter(c)
+	return c:IsDestructable() and c:IsSetCard(0x999) and c:GetSequence()>5
+end
+
+function c999501.drtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
+	if chk==0 then return Duel.IsExistingMatchingCard(c999501.drfilter, tp, LOCATION_SZONE, 0, 1, nil) end
+	Duel.SetTargetPlayer(tp)
+	Duel.SetTargetParam(1)
+	Duel.SetOperationInfo(0, CATEGORY_DRAW, nil, 0, tp, 1)
+end
+
+function c999501.drop(e,tp,eg,ep,ev,re,r,rp)
+	local g = Duel.GetMatchingGroup(c999501.drfilter, tp, LOCATION_SZONE, 0, nil)
+	Duel.Destroy(g, REASON_EFFECT)
+	local p, d= Duel.GetChainInfo(0, CHAININFO_TARGET_PLAYER, CHAININFO_TARGET_PARAM)
+	Duel.Draw(p, d, REASON_EFFECT)
 end

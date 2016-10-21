@@ -1,5 +1,5 @@
 --哈德曼的妖怪少女✿古明地恋
---require "expansions/nef/nef"
+require "expansions/script/nef/nef"
 function c24100.initial_effect(c)
 	--synchro summon
 	Nef.AddSynchroProcedureWithDesc(c,aux.FilterBoolFunction(Card.IsSetCard,0x514a),aux.NonTuner(nil),1,aux.Stringid(24100,0))

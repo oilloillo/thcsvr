@@ -41,7 +41,7 @@ function c70021.value(e,c)
 	return c:IsLocation(LOCATION_MZONE) and c:IsFaceup() and c:IsSetCard(0x149) and not c:IsReason(REASON_REPLACE) and c:IsControler(e:GetHandlerPlayer())
 end
 function c70021.cfilter(c)
-	return c:IsFaceup() and c:IsSetCard(0x149) and c:GetDefence()>=1000
+	return c:IsFaceup() and c:IsSetCard(0x149) and c:GetDefense()>=1000
 end
 function c70021.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():CheckRemoveOverlayCard(tp,2,REASON_COST) and Duel.IsExistingMatchingCard(c70021.cfilter,tp,LOCATION_MZONE,0,1,nil) end
@@ -49,7 +49,7 @@ function c70021.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	tc=g:GetFirst()
 	local e1=Effect.CreateEffect(e:GetHandler())
 	e1:SetType(EFFECT_TYPE_SINGLE)
-	e1:SetCode(EFFECT_UPDATE_DEFENCE)
+	e1:SetCode(EFFECT_UPDATE_DEFENSE)
 	e1:SetReset(RESET_EVENT+0x1ff0000)
 	e1:SetValue(-1000)
 	tc:RegisterEffect(e1)

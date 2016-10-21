@@ -12,7 +12,7 @@ function c22089.initial_effect(c)
 	c:RegisterEffect(e1)
 end
 function c22089.cfilter(c)
-	return c:GetDefence()==900 and c:IsDiscardable()
+	return c:GetDefense()==900 and c:IsDiscardable()
 end
 function c22089.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(c22089.cfilter,tp,LOCATION_HAND,0,1,e:GetHandler()) end

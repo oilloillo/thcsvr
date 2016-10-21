@@ -1,6 +1,5 @@
- 
---七曜-土符「慵懒巨石」
---require "expansions/nef/msc"
+ --七曜-土符「慵懒巨石」
+require "expansions/script/nef/msc"
 function c22135.initial_effect(c)
 	--activate
 	local e1=Effect.CreateEffect(c)
@@ -12,7 +11,7 @@ function c22135.initial_effect(c)
 	e2:SetType(EFFECT_TYPE_FIELD)
 	e2:SetRange(LOCATION_SZONE)
 	e2:SetTargetRange(LOCATION_MZONE,0)
-	e2:SetCode(EFFECT_UPDATE_DEFENCE)
+	e2:SetCode(EFFECT_UPDATE_DEFENSE)
 	e2:SetValue(500)
 	c:RegisterEffect(e2)
 	Msc.RegScMixEffect(c)

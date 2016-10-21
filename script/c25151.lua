@@ -30,7 +30,7 @@ function c25151.filter(c)
 end
 function c25151.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(c25151.filter,tp,0,LOCATION_MZONE,1,nil)
-		and Duel.IsPlayerCanSpecialSummonMonster(tp,25161,0x208,0x4011,2000,2000,5,RACE_PLANT,ATTRIBUTE_LIGHT,POS_FACEUP_DEFENCE,1-tp) end
+		and Duel.IsPlayerCanSpecialSummonMonster(tp,25161,0x208,0x4011,2000,2000,5,RACE_PLANT,ATTRIBUTE_LIGHT,POS_FACEUP_DEFENSE,1-tp) end
 	local sg=Duel.GetMatchingGroup(c25151.filter,tp,0,LOCATION_MZONE,nil)
 	Duel.SetOperationInfo(0,CATEGORY_DESTROY,sg,sg:GetCount(),0,0)
 	Duel.SetOperationInfo(0,CATEGORY_TOKEN,nil,2,0,0)
@@ -39,11 +39,11 @@ end
 function c25151.activate(e,tp,eg,ep,ev,re,r,rp)
 	local sg=Duel.GetMatchingGroup(c25151.filter,tp,0,LOCATION_MZONE,nil)
 	Duel.Destroy(sg,REASON_EFFECT)
-	if Duel.IsPlayerCanSpecialSummonMonster(tp,25161,0x208,0x4011,2000,2000,5,RACE_PLANT,ATTRIBUTE_LIGHT,POS_FACEUP_DEFENCE,1-tp) then
+	if Duel.IsPlayerCanSpecialSummonMonster(tp,25161,0x208,0x4011,2000,2000,5,RACE_PLANT,ATTRIBUTE_LIGHT,POS_FACEUP_DEFENSE,1-tp) then
 		Duel.BreakEffect()
 		for i = 1,2 do
 			local token=Duel.CreateToken(tp,25161)
-			Duel.SpecialSummonStep(token,0,tp,1-tp,false,false,POS_FACEUP_DEFENCE)
+			Duel.SpecialSummonStep(token,0,tp,1-tp,false,false,POS_FACEUP_DEFENSE)
 			local e1=Effect.CreateEffect(e:GetHandler())
 			e1:SetType(EFFECT_TYPE_SINGLE)
 			e1:SetCode(EFFECT_UNRELEASABLE_SUM)

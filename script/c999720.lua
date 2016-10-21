@@ -1,5 +1,5 @@
 --百万鬼夜行✿伊吹萃香
---require "expansions/nef/nef"
+--require "expansions/script/nef/nef"
 local M = c999720
 local Mid = 999720
 function M.initial_effect(c)

@@ -12,11 +12,11 @@ function c20156.initial_effect(c)
 	c:RegisterEffect(e1)
 end
 function c20156.tfilter(c,atk,def,e,tp)
-	return c:IsSetCard(0x186) and c:GetAttack()==atk and c:GetDefence()==def and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
+	return c:IsSetCard(0x186) and c:GetAttack()==atk and c:GetDefense()==def and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
 function c20156.filter(c,e,tp)
 	return c:IsFaceup() and c:IsSetCard(0x186)
-		and Duel.IsExistingMatchingCard(c20156.tfilter,tp,LOCATION_DECK+LOCATION_GRAVE,0,1,nil,c:GetAttack()-100,c:GetDefence()-100,e,tp)
+		and Duel.IsExistingMatchingCard(c20156.tfilter,tp,LOCATION_DECK+LOCATION_GRAVE,0,1,nil,c:GetAttack()-100,c:GetDefense()-100,e,tp)
 end
 function c20156.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_MZONE) and c20156.filter(chkc,e,tp) end
@@ -31,7 +31,7 @@ function c20156.activate(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
 	if not tc:IsRelateToEffect(e) or tc:IsFacedown() then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
-	local sg=Duel.SelectMatchingCard(tp,c20156.tfilter,tp,LOCATION_DECK+LOCATION_GRAVE,0,1,1,nil,tc:GetAttack()-100,tc:GetDefence()-100,e,tp)
+	local sg=Duel.SelectMatchingCard(tp,c20156.tfilter,tp,LOCATION_DECK+LOCATION_GRAVE,0,1,1,nil,tc:GetAttack()-100,tc:GetDefense()-100,e,tp)
 	if sg:GetCount()>0 then
 		Duel.SpecialSummon(sg,0,tp,tp,false,false,POS_FACEUP)
 	end

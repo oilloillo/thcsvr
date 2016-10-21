@@ -25,7 +25,7 @@ function c23153.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 function c23153.ovfilter(c)
-	return c:IsFaceup() and c:GetCounter(0x28a)>0
+	return c:IsFaceup() and c:GetCounter(0x128a)>0
 end
 function c23153.operation(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.GetMatchingGroup(Card.IsFaceup,tp,0,LOCATION_MZONE,nil)
@@ -39,7 +39,7 @@ function c23153.operation(e,tp,eg,ep,ev,re,r,rp)
 		tc:RegisterEffect(e1)
 		local e2=Effect.CreateEffect(e:GetHandler())
 		e2:SetType(EFFECT_TYPE_SINGLE)
-		e2:SetCode(EFFECT_UPDATE_DEFENCE)
+		e2:SetCode(EFFECT_UPDATE_DEFENSE)
 		e2:SetReset(RESET_EVENT+0x1fe0000)
 		e2:SetValue(-400)
 		tc:RegisterEffect(e2)

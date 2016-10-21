@@ -1,5 +1,5 @@
 --月光妖精☆露娜✿查尔德
---require "expansions/nef/nef"
+--require "expansions/script/nef/nef"
 function c999503.initial_effect(c)
 	local argTable = {1}
 	Nef.EnablePendulumAttributeSP(c,3,aux.TRUE,argTable)

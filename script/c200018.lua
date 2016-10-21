@@ -64,11 +64,13 @@ function c200018.op2(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c200018.negfilter(c)
-	return c:GetOriginalCode()==200018 and c:IsLocation(LOCATION_MZONE) and c:IsPosition(POS_FACEDOWN_DEFENCE)
+	return c:GetOriginalCode()==200018 and c:IsLocation(LOCATION_MZONE) and c:IsPosition(POS_FACEDOWN_DEFENSE)
 end
 function c200018.negop(e,tp,eg,ep,ev,re,r,rp)
 	if re:IsHasProperty(EFFECT_FLAG_CARD_TARGET) then
-		local g=Duel.GetChainInfo(ev,CHAININFO_TARGET_CARDS):Filter(c200018.negfilter,nil)
+		local tg=Duel.GetChainInfo(ev,CHAININFO_TARGET_CARDS)
+		if not tg then return end 
+		local g=tg:Filter(c200018.negfilter,nil)
 		if g:GetCount()>0 then
 			Duel.NegateActivation(ev)
 			Duel.ChangePosition(g,POS_FACEUP_ATTACK)

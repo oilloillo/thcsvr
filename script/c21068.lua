@@ -41,7 +41,7 @@ function c21068.target(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function c21068.operation(e,tp,eg,ep,ev,re,r,rp)
 	local g=eg:Filter(c21068.filter,nil,e,tp)
-	Duel.ChangePosition(g,POS_FACEDOWN_DEFENCE)
+	Duel.ChangePosition(g,POS_FACEDOWN_DEFENSE)
 end
 function c21068.sccon(e,tp,eg,ep,ev,re,r,rp)
 	return not e:GetHandler():IsStatus(STATUS_CHAINING)

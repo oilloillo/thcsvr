@@ -52,7 +52,7 @@ function c21062.op(e,tp,eg,ep,ev,re,r,rp)
 			Duel.Destroy(tg,REASON_EFFECT)
 		else
 			local tg=g:GetMaxGroup(Card.GetAttack)
-			Duel.ChangePosition(tg,POS_FACEDOWN_DEFENCE)
+			Duel.ChangePosition(tg,POS_FACEDOWN_DEFENSE)
 		end
 	end
 end

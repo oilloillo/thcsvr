@@ -1,5 +1,5 @@
 --厄运神✿键山雏
---require "expansions/nef/nef"
+require "expansions/script/nef/nef"
 function c23067.initial_effect(c)
 	--synchro summon
 	Nef.AddSynchroProcedureWithDesc(c,nil,aux.NonTuner(Card.IsSetCard,0x208),1,aux.Stringid(23067,0))

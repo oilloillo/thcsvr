@@ -17,7 +17,7 @@ function c24059.tokentg(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SetOperationInfo(0,CATEGORY_TOKEN,nil,ct+1,0,0)
 end
 function c24059.filter(c)
-	return math.abs(c:GetAttack()-c:GetDefence())==200 or math.abs(c:GetAttack()-c:GetDefence())==2000
+	return math.abs(c:GetAttack()-c:GetDefense())==200 or math.abs(c:GetAttack()-c:GetDefense())==2000
 end
 function c24059.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.CheckReleaseGroup(tp,c24059.filter,1,nil) end

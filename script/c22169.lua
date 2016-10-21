@@ -76,7 +76,7 @@ function c22169.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)
 	local g=Duel.SelectTarget(tp,c22169.filter,tp,LOCATION_MZONE,0,1,1,nil)
 	local tc=g:GetFirst()
-	local dc=tc:GetDefence()
+	local dc=tc:GetDefense()
 	if dc>1500 then dc=1500 end
 	if dc<1000 then dc=1000 end
 	Duel.SetTargetPlayer(1-tp)
@@ -85,7 +85,7 @@ function c22169.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 end
 function c22169.operation(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
-	local dc=tc:GetDefence()
+	local dc=tc:GetDefense()
 	if dc>1500 then dc=1500 end
 	if dc<1000 then dc=1000 end
 	if tc:IsRelateToEffect(e) and tc:IsFaceup() then

@@ -1,5 +1,5 @@
 --白发教团的冰枪 夏尔·谢库丽特
---require "expansions/nef/nef"
+--require "expansions/script/nef/nef"
 function c60020.initial_effect(c)
 	--pendulum summon
 	local argTable = {1}

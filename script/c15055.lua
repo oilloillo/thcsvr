@@ -28,7 +28,7 @@ function c15055.initial_effect(c)
 	--Def
 	local e4=Effect.CreateEffect(c)
 	e4:SetType(EFFECT_TYPE_FIELD)
-	e4:SetCode(EFFECT_UPDATE_DEFENCE)
+	e4:SetCode(EFFECT_UPDATE_DEFENSE)
 	e4:SetRange(LOCATION_SZONE)
 	e4:SetTarget(c15055.tg)
 	e4:SetTargetRange(LOCATION_MZONE,LOCATION_MZONE)

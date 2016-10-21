@@ -12,7 +12,7 @@ function c200209.initial_effect(c)
 	c:RegisterEffect(e1)
 end
 function c200209.filter(c)
-	return c:IsPosition(POS_DEFENCE) and c:IsDestructable()
+	return c:IsPosition(POS_DEFENSE) and c:IsDestructable()
 end
 function c200209.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_MZONE) and c200209.filter(chkc) end
@@ -23,8 +23,8 @@ function c200209.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 end
 function c200209.activate(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
-	if tc and tc:IsPosition(POS_DEFENCE) and tc:IsDestructable() and tc:IsRelateToEffect(e) then
-		if tc:IsPosition(POS_FACEDOWN_DEFENCE) and tc:IsAbleToRemove() then Duel.Destroy(tc,REASON_EFFECT,LOCATION_REMOVED)
+	if tc and tc:IsPosition(POS_DEFENSE) and tc:IsDestructable() and tc:IsRelateToEffect(e) then
+		if tc:IsPosition(POS_FACEDOWN_DEFENSE) and tc:IsAbleToRemove() then Duel.Destroy(tc,REASON_EFFECT,LOCATION_REMOVED)
 		else 
 			Duel.Destroy(tc,REASON_EFFECT)
 		end

@@ -84,11 +84,11 @@ function c50823.thop(e,tp,eg,ep,ev,re,r,rp)
 		local des=lz*100
 		local e1=Effect.CreateEffect(c)
 		e1:SetType(EFFECT_TYPE_SINGLE)
-		e1:SetCode(EFFECT_UPDATE_DEFENCE)
+		e1:SetCode(EFFECT_UPDATE_DEFENSE)
 		e1:SetReset(RESET_EVENT+0x1fe0000)
 		e1:SetValue(-des)
 		tc:RegisterEffect(e1)
-		if tc:GetDefence()==0 then
+		if tc:GetDefense()==0 then
 			Duel.Destroy(tc,REASON_EFFECT)
 		end
 	end

@@ -58,7 +58,7 @@ function c29016.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	e:GetHandler():RegisterEffect(e1)
 end
 function c29016.adfilter(c)
-	return c:GetAttack()+c:GetDefence()
+	return c:GetAttack()+c:GetDefense()
 end
 function c29016.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end

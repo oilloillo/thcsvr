@@ -23,10 +23,10 @@ end
 c999403.DescSetName = 0xa3 
 
 function c999403.filter(c)
-	return not c:IsPosition(POS_FACEUP_DEFENCE)
+	return not c:IsPosition(POS_FACEUP_DEFENSE)
 end
 function c999403.deffilter(c)
-	return c:GetDefence()>0 and c:IsFaceup()
+	return c:GetDefense()>0 and c:IsFaceup()
 end
 function c999403.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(c999403.filter,tp,LOCATION_MZONE,LOCATION_MZONE,1,nil) end
@@ -36,7 +36,7 @@ end
 function c999403.activate(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local g=Duel.GetMatchingGroup(c999403.filter,tp,LOCATION_MZONE,LOCATION_MZONE,nil)
-	Duel.ChangePosition(g,POS_FACEUP_DEFENCE)
+	Duel.ChangePosition(g,POS_FACEUP_DEFENSE)
 
 	if Duel.IsExistingMatchingCard(c999403.thfilter,tp,LOCATION_MZONE,0,1,nil) then
 		Duel.BreakEffect()
@@ -46,7 +46,7 @@ function c999403.activate(e,tp,eg,ep,ev,re,r,rp)
 			while tc do
 				local e1=Effect.CreateEffect(c)
 				e1:SetType(EFFECT_TYPE_SINGLE)
-				e1:SetCode(EFFECT_SET_DEFENCE)
+				e1:SetCode(EFFECT_SET_DEFENSE)
 				e1:SetValue(0)
 				e1:SetReset(RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END)
 				tc:RegisterEffect(e1)

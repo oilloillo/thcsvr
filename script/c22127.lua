@@ -29,7 +29,7 @@ function c22127.operation(e,tp,eg,ep,ev,re,r,rp)
 	if g2:FilterCount(Card.IsDestructable,nil)>0 and Duel.SelectYesNo(tp,aux.Stringid(22127,0)) then
 		Duel.Destroy(g2,REASON_EFFECT)
 	else
-		Duel.ChangePosition(g2,POS_FACEDOWN_DEFENCE)
+		Duel.ChangePosition(g2,POS_FACEDOWN_DEFENSE)
 	end
 	local tc=Duel.GetFirstTarget()
 	if tc:IsRelateToEffect(e) then

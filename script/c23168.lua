@@ -33,7 +33,7 @@ function c23168.ctop(e,tp,eg,ep,ev,re,r,rp,chk)
 	local tc=Duel.GetFirstTarget()
 	if not tc:IsFaceup() or not tc:IsRelateToEffect(e) then return end
 	if Duel.SelectYesNo(1-tp,aux.Stringid(23168,2)) then
-		tc:AddCounter(0x28a,2)
+		tc:AddCounter(0x128a,2)
 		local cp=tc:GetControler()
 		if Duel.GetFlagEffect(cp,23200)==0 then
 			Duel.RegisterFlagEffect(cp,23200,0,0,0)
@@ -58,7 +58,7 @@ end
 function c23168.descon(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local bc=c:GetBattleTarget()
-	return bc and bc:GetCounter(0x28a)>0 and bc:IsControlerCanBeChanged()
+	return bc and bc:GetCounter(0x128a)>0 and bc:IsControlerCanBeChanged()
 end
 function c23168.destg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
@@ -67,7 +67,7 @@ function c23168.destg(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function c23168.desop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	if c:IsRelateToEffect(e) and c:IsPosition(POS_FACEUP_ATTACK) and Duel.ChangePosition(c,POS_FACEUP_DEFENCE)>0 then
+	if c:IsRelateToEffect(e) and c:IsPosition(POS_FACEUP_ATTACK) and Duel.ChangePosition(c,POS_FACEUP_DEFENSE)>0 then
 		local bc=c:GetBattleTarget()
 		if bc:IsRelateToBattle() and not Duel.GetControl(bc,tp) then
 			if not bc:IsImmuneToEffect(e) and bc:IsAbleToChangeControler() then

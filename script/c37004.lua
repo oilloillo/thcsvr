@@ -1,5 +1,5 @@
 --决战符『灵车漂移』
---require "expansions/nef/nef"
+--require "expansions/script/nef/nef"
 function c37004.initial_effect(c)
 	--turnset
 	local e0=Effect.CreateEffect(c)

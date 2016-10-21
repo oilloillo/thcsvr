@@ -1,6 +1,5 @@
- 
---七曜-金符「金属疲劳」
---require "expansions/nef/msc"
+ --七曜-金符「金属疲劳」
+require "expansions/script/nef/msc"
 function c22134.initial_effect(c)
 	--activate
 	local e1=Effect.CreateEffect(c)
@@ -12,7 +11,7 @@ function c22134.initial_effect(c)
 	e2:SetType(EFFECT_TYPE_FIELD)
 	e2:SetRange(LOCATION_SZONE)
 	e2:SetTargetRange(0,LOCATION_MZONE)
-	e2:SetCode(EFFECT_UPDATE_DEFENCE)
+	e2:SetCode(EFFECT_UPDATE_DEFENSE)
 	e2:SetValue(-300)
 	c:RegisterEffect(e2)
 	local e3=e2:Clone()

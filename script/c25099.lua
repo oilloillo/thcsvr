@@ -46,7 +46,7 @@ function c25099.initial_effect(c)
 	c:RegisterEffect(e7)
 	local e8=Effect.CreateEffect(c)
 	e8:SetType(EFFECT_TYPE_EQUIP)
-	e8:SetCode(EFFECT_UPDATE_DEFENCE)
+	e8:SetCode(EFFECT_UPDATE_DEFENSE)
 	e8:SetValue(500)
 	c:RegisterEffect(e8)
 end

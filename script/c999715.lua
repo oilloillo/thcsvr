@@ -33,7 +33,7 @@ function M.initial_effect(c)
 	c:RegisterEffect(e4)
 	-- def up
 	local e5=e4:Clone()
-	e5:SetCode(EFFECT_UPDATE_DEFENCE)
+	e5:SetCode(EFFECT_UPDATE_DEFENSE)
 	e5:SetValue(M.defval)
 	c:RegisterEffect(e5)
 	--Destroy
@@ -92,7 +92,7 @@ function M.defval(e,c)
 	local tc=e:GetLabelObject():GetLabelObject()
 	if not tc or not e:GetHandler():IsHasCardTarget(tc) then return 0 end
 	if e:GetHandler():IsHasCardTarget(c) and c:IsSetCard(0xaa5) and c:GetControler()==e:GetHandler():GetControler() then
-		return math.min(tc:GetDefence()/2, 1000)
+		return math.min(tc:GetDefense()/2, 1000)
 	end
 	return 0
 end

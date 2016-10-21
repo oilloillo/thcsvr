@@ -63,5 +63,5 @@ function c37009.activate(e,tp,eg,ep,ev,re,r,rp)
 	c:RegisterEffect(e3)
 end
 function c37009.bantg(e,c)
-	return c:GetFieldID()<e:GetLabel() and c~=e:GetLabelObject() and not (c:IsAttribute(ATTRIBUTE_WATER) and c:GetDefence()==900)
+	return c:GetFieldID()<e:GetLabel() and c~=e:GetLabelObject() and not (c:IsAttribute(ATTRIBUTE_WATER) and c:GetDefense()==900)
 end

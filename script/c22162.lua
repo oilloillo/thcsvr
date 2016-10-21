@@ -1,6 +1,5 @@
- 
---七曜-月符「寂静的月神」
---require "expansions/nef/msc"
+ --七曜-月符「寂静的月神」
+require "expansions/script/nef/msc"
 function c22162.initial_effect(c)
 	--activate
 	local e1=Effect.CreateEffect(c)
@@ -27,7 +26,7 @@ function c22162.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.RegisterFlagEffect(tp,22162,RESET_PHASE+PHASE_END,0,1)
 end
 function c22162.filter(c)
-	return not c:IsPosition(POS_FACEUP_DEFENCE)
+	return not c:IsPosition(POS_FACEUP_DEFENSE)
 end
 function c22162.dactfilter(c)
 	return c:IsFaceup() and c:IsSetCard(0x811)
@@ -44,7 +43,7 @@ function c22162.posop(e,tp,eg,ep,ev,re,r,rp)
 	if not e:GetHandler():IsRelateToEffect(e) then return end
 	local tc=Duel.GetFirstTarget()
 	if tc:IsRelateToEffect(e) then
-		Duel.ChangePosition(tc,POS_FACEUP_DEFENCE,POS_FACEUP_DEFENCE,POS_FACEUP_DEFENCE,POS_FACEUP_DEFENCE)
+		Duel.ChangePosition(tc,POS_FACEUP_DEFENSE,POS_FACEUP_DEFENSE,POS_FACEUP_DEFENSE,POS_FACEUP_DEFENSE)
 		local e1=Effect.CreateEffect(e:GetHandler())
 		e1:SetType(EFFECT_TYPE_SINGLE)
 		e1:SetCode(EFFECT_CANNOT_CHANGE_POSITION)

@@ -1,5 +1,5 @@
 --雷电轰鸣的神灵✿苏我屠自古
---require "expansions/nef/nef"
+--require "expansions/script/nef/nef"
 function c27073.initial_effect(c)
 	c:EnableReviveLimit()
 	--pendulum summon

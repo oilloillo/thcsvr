@@ -29,7 +29,7 @@ function c23175.initial_effect(c)
 end
 function c23175.activate(e,tp,eg,ep,ev,re,r,rp)
 	if not e:GetHandler():IsRelateToEffect(e) then return end
-	e:GetHandler():AddCounter(0x28a,1)
+	e:GetHandler():AddCounter(0x128a,1)
 		if Duel.GetFlagEffect(tp,23200)==0 then
 			Duel.RegisterFlagEffect(tp,23200,0,0,0)
 		end
@@ -37,7 +37,7 @@ end
 function c23175.ctop(e,tp,eg,ep,ev,re,r,rp)
 	local ct=eg:GetCount()*2
 	if ct>5 then ct=5 end
-	e:GetHandler():AddCounter(0x28a,ct)
+	e:GetHandler():AddCounter(0x128a,ct)
 		if Duel.GetFlagEffect(tp,23200)==0 then
 			Duel.RegisterFlagEffect(tp,23200,0,0,0)
 		end
@@ -55,7 +55,7 @@ function c23175.addc(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
 	if tc:IsFaceup() and tc:IsRelateToEffect(e) then
 		local ct=tc:GetLevel()+1
-		tc:AddCounter(0x28a,ct)
+		tc:AddCounter(0x128a,ct)
 		local cp=tc:GetControler()
 		if Duel.GetFlagEffect(cp,23200)==0 then
 			Duel.RegisterFlagEffect(cp,23200,0,0,0)

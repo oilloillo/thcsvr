@@ -8,10 +8,10 @@ function c200109.initial_effect(c)
 	--defdown
 	local e3=Effect.CreateEffect(c)
 	e3:SetType(EFFECT_TYPE_FIELD)
-	e3:SetCode(EFFECT_UPDATE_DEFENCE)
+	e3:SetCode(EFFECT_UPDATE_DEFENSE)
 	e3:SetRange(LOCATION_SZONE)
 	e3:SetTargetRange(0,LOCATION_MZONE)
-	e3:SetTarget(aux.TargetBoolFunction(Card.IsPosition,POS_DEFENCE))
+	e3:SetTarget(aux.TargetBoolFunction(Card.IsPosition,POS_DEFENSE))
 	e3:SetValue(-500)
 	c:RegisterEffect(e3)
 	--des
@@ -27,11 +27,11 @@ end
 function c200109.tg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local a=Duel.GetAttacker()
 	local at=Duel.GetAttackTarget()
-	if chk==0 then return Duel.GetTurnPlayer()==tp and at and at:IsPosition(POS_FACEUP_DEFENCE) and a:GetAttack()>at:GetDefence() end
+	if chk==0 then return Duel.GetTurnPlayer()==tp and at and at:IsPosition(POS_FACEUP_DEFENSE) and a:GetAttack()>at:GetDefense() end
 	Duel.SetOperationInfo(0,CATEGORY_DESTROY,at,1,0,0)
 end
 function c200109.op(e,tp,eg,ep,ev,re,r,rp)
 	if not e:GetHandler():IsOnField() then return end
 	local at=Duel.GetAttackTarget()
-	if at and at:IsPosition(POS_FACEUP_DEFENCE) then Duel.Destroy(at,REASON_EFFECT)	end
+	if at and at:IsPosition(POS_FACEUP_DEFENSE) then Duel.Destroy(at,REASON_EFFECT)	end
 end

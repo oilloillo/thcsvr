@@ -1,5 +1,4 @@
- 
---幽冥楼阁的亡灵✿西行寺幽幽子
+ --幽冥楼阁的亡灵✿西行寺幽幽子
 function c20080.initial_effect(c)
 	c:EnableReviveLimit()
 	--special summon
@@ -64,7 +63,7 @@ function c20080.initial_effect(c)
 	c:RegisterEffect(e7)
 	local e8=e7:Clone()
 	e8:SetCode(EFFECT_UNRELEASABLE_NONSUM)
-	c:RegisterEffect(e8)
+	--c:RegisterEffect(e8)
 	--synchro summon
 	local e5=Effect.CreateEffect(c)
 	e5:SetType(EFFECT_TYPE_SINGLE)

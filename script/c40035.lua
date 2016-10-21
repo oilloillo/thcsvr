@@ -127,7 +127,7 @@ function c40035.damop(e,tp,eg,ep,ev,re,r,rp)
 	if not e:GetHandler():IsRelateToEffect(e) then return end
 	local p=Duel.GetChainInfo(0,CHAININFO_TARGET_PLAYER)
 	local ec=e:GetHandler():GetEquipTarget()
-	local d=ec:GetBattleTarget():GetBaseDefence()
+	local d=ec:GetBattleTarget():GetBaseDefense()
 	if Duel.GetFlagEffect(tp,40035)>0 then
 		local d=d+ec:GetBattleTarget():GetBaseAttack()
 		Duel.Damage(p,d,REASON_EFFECT)

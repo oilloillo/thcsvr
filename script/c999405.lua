@@ -43,7 +43,7 @@ function c999405.activate(e,tp,eg,ep,ev,re,r,rp)
 		if sg:GetCount()~=1 then return end
 		local tc=sg:GetFirst()
 		if tc:IsType(TYPE_MONSTER) then
-			Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEDOWN_DEFENCE)
+			Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEDOWN_DEFENSE)
 		else
 			Duel.SSet(tp,sg)
 		end

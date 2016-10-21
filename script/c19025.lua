@@ -1,5 +1,5 @@
 --宵暗的妖怪✿芙兰朵露
---require "expansions/nef/nef"
+require "expansions/script/nef/nef"
 function c19025.initial_effect(c)
 	Duel.EnableGlobalFlag(GLOBALFLAG_SPSUMMON_COUNT)
 	--fusion material

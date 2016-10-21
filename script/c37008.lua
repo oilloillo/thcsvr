@@ -30,7 +30,7 @@ function c37008.initial_effect(c)
 	--Def
 	local e5=Effect.CreateEffect(c)
 	e5:SetType(EFFECT_TYPE_FIELD)
-	e5:SetCode(EFFECT_UPDATE_DEFENCE)
+	e5:SetCode(EFFECT_UPDATE_DEFENSE)
 	e5:SetRange(LOCATION_SZONE)
 	e5:SetTargetRange(0,LOCATION_MZONE)
 	e5:SetValue(-400)

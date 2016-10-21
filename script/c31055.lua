@@ -55,7 +55,7 @@ function c31055.atkop(e,tp,eg,ep,ev,re,r,rp)
 		e1:SetValue(400)
 		tc:RegisterEffect(e1)
 		local e2=e1:Clone()
-		e2:SetCode(EFFECT_UPDATE_DEFENCE)
+		e2:SetCode(EFFECT_UPDATE_DEFENSE)
 		e2:SetValue(-800)
 		tc:RegisterEffect(e2)
 	end

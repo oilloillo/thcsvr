@@ -85,8 +85,8 @@ function c200005.spop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c200005.cost2(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsCanRemoveCounter(tp,1,0,0x700,3,REASON_COST) and e:GetHandler():GetFlagEffect(200005)<=0 end
-	Duel.RemoveCounter(tp,1,0,0x700,3,REASON_COST)
+	if chk==0 then return Duel.IsCanRemoveCounter(tp,1,0,0x1700,3,REASON_COST) and e:GetHandler():GetFlagEffect(200005)<=0 end
+	Duel.RemoveCounter(tp,1,0,0x1700,3,REASON_COST)
 	e:GetHandler():RegisterFlagEffect(200005,RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END,0,1)
 end
 function c200005.filter2(c)

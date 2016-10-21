@@ -1,5 +1,5 @@
 --探宝棒✿NW
---require "expansions/nef/nef"
+--require "expansions/script/nef/nef"
 function c999601.initial_effect(c)
 	--pendulum summon
 	local argTable = {1}

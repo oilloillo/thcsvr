@@ -1,5 +1,5 @@
 --白发教团的火焰 安谢丽丝·谢库丽特
---require "expansions/nef/nef"
+--require "expansions/script/nef/nef"
 function c60010.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)

@@ -100,7 +100,7 @@ function c999404.op(e,tp,eg,ep,ev,re,r,rp)
 		and Duel.IsPlayerCanSpecialSummonMonster(tp,999409,0,0x4011,0,0,1,RACE_FIEND,ATTRIBUTE_DARK) then
 		for i=1,4 do
 			local token=Duel.CreateToken(tp,999409)
-			Duel.SpecialSummonStep(token,0,tp,tp,false,false,POS_FACEUP_DEFENCE)
+			Duel.SpecialSummonStep(token,0,tp,tp,false,false,POS_FACEUP_DEFENSE)
 		end
 		Duel.SpecialSummonComplete()
 		if _G["c999409"] then

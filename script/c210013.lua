@@ -94,7 +94,7 @@ function c210013.adup(c,e)
 	e1:SetValue(500)
 	c:RegisterEffect(e1)
 	local e2=e1:Clone()
-	e2:SetCode(EFFECT_UPDATE_DEFENCE)
+	e2:SetCode(EFFECT_UPDATE_DEFENSE)
 	c:RegisterEffect(e2)
 end
 function c210013.con2(e,tp,eg,ep,ev,re,r,rp)

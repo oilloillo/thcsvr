@@ -47,15 +47,15 @@ function c23194.op(e,tp,eg,ep,ev,re,r,rp)
 	if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
 	local g=Duel.SelectMatchingCard(tp,c23194.filter,tp,LOCATION_HAND+LOCATION_DECK,0,1,1,nil,e,tp)
-	if g:GetCount()>0 and Duel.SpecialSummon(g,0,tp,tp,false,false,POS_FACEUP_DEFENCE)>0 and e:GetHandler():IsCanAddCounter(0x28a,1) then
-		e:GetHandler():AddCounter(0x28a,1)
+	if g:GetCount()>0 and Duel.SpecialSummon(g,0,tp,tp,false,false,POS_FACEUP_DEFENSE)>0 and e:GetHandler():IsCanAddCounter(0x128a,1) then
+		e:GetHandler():AddCounter(0x128a,1)
 		if Duel.GetFlagEffect(tp,23200)==0 then
 			Duel.RegisterFlagEffect(tp,23200,0,0,0)
 		end
 	end
 end
 function c23194.adcfilter(c)
-	return c:IsFaceup() and c:IsCanAddCounter(0x28a,1)
+	return c:IsFaceup() and c:IsCanAddCounter(0x128a,1)
 end
 function c23194.addct(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsOnField() and c23194.adcfilter(chkc) end
@@ -63,13 +63,13 @@ function c23194.addct(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 		and Duel.IsExistingTarget(c23194.adcfilter,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)
 	Duel.SelectTarget(tp,c23194.adcfilter,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,1,nil)
-	Duel.SetOperationInfo(0,CATEGORY_COUNTER,nil,1,0,0x28a)
+	Duel.SetOperationInfo(0,CATEGORY_COUNTER,nil,1,0,0x128a)
 	Duel.RegisterFlagEffect(tp,23194,RESET_PHASE+PHASE_END,0,0)
 end
 function c23194.addc(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
 	if tc and tc:IsFaceup() and tc:IsRelateToEffect(e) then
-		tc:AddCounter(0x28a,1)
+		tc:AddCounter(0x128a,1)
 		local cp=tc:GetControler()
 		if Duel.GetFlagEffect(cp,23200)==0 then
 			Duel.RegisterFlagEffect(cp,23200,0,0,0)

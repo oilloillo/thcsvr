@@ -18,11 +18,11 @@ function c200106.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 function c200106.cost(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsCanRemoveCounter(tp,1,0,0x700,3,REASON_COST) 
+	if chk==0 then return Duel.IsCanRemoveCounter(tp,1,0,0x1700,3,REASON_COST) 
 	or Duel.IsExistingMatchingCard(Card.IsDiscardable,tp,LOCATION_HAND,0,1,e:GetHandler()) end
 	if not Duel.IsExistingMatchingCard(Card.IsDiscardable,tp,LOCATION_HAND,0,1,e:GetHandler())
-	or (Duel.IsCanRemoveCounter(tp,1,0,0x700,3,REASON_COST) and Duel.SelectYesNo(tp,aux.Stringid(200106,0))) then 
-		Duel.RemoveCounter(tp,1,0,0x700,3,REASON_COST)
+	or (Duel.IsCanRemoveCounter(tp,1,0,0x1700,3,REASON_COST) and Duel.SelectYesNo(tp,aux.Stringid(200106,0))) then 
+		Duel.RemoveCounter(tp,1,0,0x1700,3,REASON_COST)
 	else
 		Duel.DiscardHand(tp,Card.IsDiscardable,1,1,REASON_COST+REASON_DISCARD)
 	end

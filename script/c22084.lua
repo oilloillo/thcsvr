@@ -12,7 +12,7 @@ function c22084.initial_effect(c)
 	c:RegisterEffect(e1)
 end
 function c22084.cfilter(c)
-	return c:GetDefence()==900
+	return c:GetDefense()==900
 end
 function c22084.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.CheckReleaseGroupEx(tp,c22084.cfilter,1,nil) end
@@ -21,7 +21,7 @@ function c22084.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function c22084.filter(c)
 	local lv=c:GetLevel()
-	return c:GetDefence()==900 and lv>0 and lv<4 and c:IsAbleToHand()
+	return c:GetDefense()==900 and lv>0 and lv<4 and c:IsAbleToHand()
 end
 function c22084.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(c22084.filter,tp,LOCATION_DECK,0,1,nil) end

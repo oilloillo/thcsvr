@@ -11,7 +11,7 @@ function c21145.initial_effect(c)
 	c:RegisterEffect(e1)
 end
 function c21145.filter(c)
-	return math.abs(c:GetAttack()-c:GetDefence())==200 or math.abs(c:GetAttack()-c:GetDefence())==2000
+	return math.abs(c:GetAttack()-c:GetDefense())==200 or math.abs(c:GetAttack()-c:GetDefense())==2000
 end
 function c21145.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.CheckReleaseGroupEx(tp,c21145.filter,1,e:GetHandler()) end
@@ -45,7 +45,7 @@ function c21145.activate(e,tp,eg,ep,ev,re,r,rp)
 		if e:GetLabel()==1 then
 			local g=Duel.SelectMatchingCard(tp,Card.IsCanTurnSet,tp,0,LOCATION_MZONE,1,1,nil)
 			if g:GetCount()>0 then
-				Duel.ChangePosition(g,POS_FACEDOWN_DEFENCE)
+				Duel.ChangePosition(g,POS_FACEDOWN_DEFENSE)
 			end
 		end
 	end

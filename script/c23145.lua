@@ -34,8 +34,8 @@ function c23145.activate(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
 	local c2=Duel.SelectMatchingCard(tp,c23145.spfilter,tp,LOCATION_GRAVE,0,1,1,nil,e,tp):GetFirst()
 	if c1 and c2 then
-		Duel.SpecialSummonStep(c1,0,tp,tp,false,false,POS_FACEUP_DEFENCE)
-		Duel.SpecialSummonStep(c2,0,tp,tp,false,false,POS_FACEUP_DEFENCE)
+		Duel.SpecialSummonStep(c1,0,tp,tp,false,false,POS_FACEUP_DEFENSE)
+		Duel.SpecialSummonStep(c2,0,tp,tp,false,false,POS_FACEUP_DEFENSE)
 		Duel.SpecialSummonComplete()
 	end
 end

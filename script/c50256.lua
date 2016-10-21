@@ -40,7 +40,7 @@ function c50256.initial_effect(c)
 	--def atk
 	local e5=Effect.CreateEffect(c)
 	e5:SetType(EFFECT_TYPE_SINGLE)
-	e5:SetCode(EFFECT_DEFENCE_ATTACK)
+	e5:SetCode(EFFECT_DEFENSE_ATTACK)
 	c:RegisterEffect(e5)
 end
 function c50256.xyzlimit(e,c)
