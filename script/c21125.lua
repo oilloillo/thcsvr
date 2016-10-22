@@ -44,7 +44,7 @@ function c21125.activate(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c21125.spfilter(c,e,tp)
-	return c:IsCode(21077) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
+	return c:IsSetCard(0x137) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
 function c21125.regcon(e,tp,eg,ep,ev,re,r,rp)
 	return re:IsHasType(EFFECT_TYPE_ACTIVATE) and re:IsActiveType(TYPE_SPELL)
