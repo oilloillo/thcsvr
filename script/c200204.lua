@@ -78,7 +78,7 @@ function c200204.filter(c)
 end
 function c200204.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_MZONE) and chkc:IsFaceup() end
-	if chk==0 then return tp==Duel.GetTurnPlayer() and Duel.GetCurrentPhase()==PHASE_BATTLE 
+	if chk==0 then return tp==Duel.GetTurnPlayer() and (Duel.GetCurrentPhase()>PHASE_MAIN1 and Duel.GetCurrentPhase()<PHASE_MAIN2) 
 	and Duel.IsExistingTarget(c200204.filter,tp,LOCATION_MZONE,0,1,nil) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)
 	local g=Duel.SelectTarget(tp,c200204.filter,tp,LOCATION_MZONE,0,1,1,nil)

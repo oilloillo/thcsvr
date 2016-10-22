@@ -73,7 +73,7 @@ function c50858.thcon(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.GetTurnPlayer()==tp
 end
 function c50858.ddcon(e,tp,eg,ep,ev,re,r,rp)
-	return Duel.GetCurrentPhase()==PHASE_BATTLE and e:GetHandler():GetEquipTarget():IsSetCard(0xa4bb)
+	return (Duel.GetCurrentPhase()>PHASE_MAIN1 and Duel.GetCurrentPhase()<PHASE_MAIN2) and e:GetHandler():GetEquipTarget():IsSetCard(0xa4bb)
 end
 function c50858.cost1(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetFlagEffect(tp,50858)==0 end

@@ -82,7 +82,7 @@ function c40037.aefilter(c)
 end
 function c40037.cgtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return c40037.aefilter(chkc) and chkc:GetLocation()==LOCATION_ONFIELD and chkc:IsControler(1-tp) end
-	if chk==0 then return Duel.IsExistingTarget(c40037.aefilter,tp,0,LOCATION_ONFIELD,1,nil) and Duel.GetCurrentPhase()==PHASE_BATTLE end
+	if chk==0 then return Duel.IsExistingTarget(c40037.aefilter,tp,0,LOCATION_ONFIELD,1,nil) and (Duel.GetCurrentPhase()>PHASE_MAIN1 and Duel.GetCurrentPhase()<PHASE_MAIN2) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)
 	Duel.SelectTarget(tp,c40037.aefilter,tp,0,LOCATION_ONFIELD,1,1,nil)
 end

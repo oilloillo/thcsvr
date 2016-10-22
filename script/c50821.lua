@@ -67,7 +67,7 @@ function c50821.operation(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c50821.ddcon(e,tp,eg,ep,ev,re,r,rp)
-	return Duel.GetCurrentPhase()==PHASE_BATTLE
+	return (Duel.GetCurrentPhase()>PHASE_MAIN1 and Duel.GetCurrentPhase()<PHASE_MAIN2)
 end
 function c50821.dfilter(c)
 	return c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsDestructable()

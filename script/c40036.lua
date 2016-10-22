@@ -81,7 +81,7 @@ function c40036.pfilter(c)
 end
 function c40036.postg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsControler(1-tp) and chkc:IsLocation(LOCATION_MZONE) and c40036.pfilter(chkc) end
-	if chk==0 then return Duel.IsExistingTarget(c40036.pfilter,tp,0,LOCATION_MZONE,1,nil) and Duel.GetCurrentPhase()==PHASE_BATTLE end
+	if chk==0 then return Duel.IsExistingTarget(c40036.pfilter,tp,0,LOCATION_MZONE,1,nil) and (Duel.GetCurrentPhase()>PHASE_MAIN1 and Duel.GetCurrentPhase()<PHASE_MAIN2) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_POSCHANGE)
 	Duel.SelectTarget(tp,c40036.pfilter,tp,0,LOCATION_MZONE,1,1,nil)
 end

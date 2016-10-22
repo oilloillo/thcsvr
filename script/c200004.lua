@@ -121,7 +121,7 @@ function c200004.filter(c)
 	return c:IsCode(200204) and c:IsAbleToHand()
 end
 function c200004.target(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return e:GetHandler():IsReleasable() and Duel.GetCurrentPhase()==PHASE_BATTLE
+	if chk==0 then return e:GetHandler():IsReleasable() and (Duel.GetCurrentPhase()>PHASE_MAIN1 and Duel.GetCurrentPhase()<PHASE_MAIN2)
 		and Duel.IsExistingMatchingCard(c200004.filter,tp,LOCATION_DECK+LOCATION_GRAVE,0,1,nil) end
 	Duel.SetOperationInfo(0,CATEGORY_TOHAND,nil,1,tp,LOCATION_DECK+LOCATION_GRAVE)
 end

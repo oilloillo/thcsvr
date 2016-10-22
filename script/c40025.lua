@@ -46,7 +46,7 @@ end
 function c40025.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:GetLocation()==LOCATION_MZONE and chkc:IsControler(tp) and c40025.tcfilter(chkc) end
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and e:GetHandler():IsReleasable()
-		and Duel.IsExistingTarget(c40025.tcfilter,tp,LOCATION_MZONE,0,1,nil) and Duel.GetCurrentPhase()==PHASE_BATTLE
+		and Duel.IsExistingTarget(c40025.tcfilter,tp,LOCATION_MZONE,0,1,nil) and (Duel.GetCurrentPhase()>PHASE_MAIN1 and Duel.GetCurrentPhase()<PHASE_MAIN2)
 		and Duel.IsExistingMatchingCard(c40025.eqfilter,tp,0x13,0,1,nil) end
 	Duel.Hint(HINT_SELECTMSG,tp,aux.Stringid(40025,1))
 	Duel.SelectTarget(tp,c40025.tcfilter,tp,LOCATION_MZONE,0,1,1,nil)

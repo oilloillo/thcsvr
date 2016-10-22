@@ -38,7 +38,7 @@ function c200018.initial_effect(c)
 	end
 end
 function c200018.con1(e,tp,eg,ep,ev,re,r,rp)
-	return Duel.GetTurnPlayer()==tp and Duel.GetCurrentPhase()==PHASE_BATTLE and not Duel.CheckPhaseActivity() and Duel.GetCurrentChain()==0
+	return Duel.GetTurnPlayer()==tp and (Duel.GetCurrentPhase()>PHASE_MAIN1 and Duel.GetCurrentPhase()<PHASE_MAIN2) and not Duel.CheckPhaseActivity() and Duel.GetCurrentChain()==0
 end
 function c200018.op1(e,tp,eg,ep,ev,re,r,rp)
 	local token=Duel.CreateToken(tp,200118)

@@ -36,7 +36,7 @@ function c21470016.initial_effect(c)
 	e4:SetCode(EVENT_PHASE_START+PHASE_BATTLE)
 	e4:SetRange(LOCATION_MZONE)
 	e4:SetOperation(c21470016.imop)
-	c:RegisterEffect(e4)]]		
+	c:RegisterEffect(e4)]]	  
 	--immune
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_SINGLE)
@@ -77,7 +77,7 @@ function c21470016.setop(e,tp,eg,ep,ev,re,r,rp)
 	if tc then 
 		Duel.SSet(tp,tc) 
 		Duel.ConfirmCards(1-tp,tc)
-		tc:RegisterFlagEffect(21470020,RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END,0,1)	
+		tc:RegisterFlagEffect(21470020,RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END,0,1) 
 	end
 end--[[
 function c21470016.imop(e,tp,eg,ep,ev,re,r,rp)
@@ -91,7 +91,7 @@ function c21470016.imop(e,tp,eg,ep,ev,re,r,rp)
 	e:GetHandler():RegisterEffect(e1)
 end]]
 function c21470016.tgcon(e)
-	return Duel.GetCurrentPhase()==PHASE_BATTLE or Duel.GetCurrentPhase()==PHASE_DAMAGE or Duel.GetCurrentPhase()==PHASE_DAMAGE_CAL
+	return Duel.GetCurrentPhase()>PHASE_MAIN1 and Duel.GetCurrentPhase()<PHASE_MAIN2
 end
 function c21470016.imfilter(e,te)
 	return not te:GetHandler():IsSetCard(0x742)
@@ -110,7 +110,7 @@ function c21470016.AddSynchroProcedure(c,f1,f2,ct,desc)
 	c:RegisterEffect(e1)
 end
 function c21470016.SynCondition(f1,f2,minc,maxc)
-	return	function(e,c,tuner)
+	return  function(e,c,tuner)
 				if c==nil then return true end
 				local ft=Duel.GetLocationCount(c:GetControler(),LOCATION_MZONE)
 				local ct=-ft
@@ -121,7 +121,7 @@ function c21470016.SynCondition(f1,f2,minc,maxc)
 			end
 end
 function c21470016.SynOperation(f1,f2,minc,maxc)
-	return	function(e,tp,eg,ep,ev,re,r,rp,c,tuner)
+	return  function(e,tp,eg,ep,ev,re,r,rp,c,tuner)
 				local g=nil
 				local ft=Duel.GetLocationCount(c:GetControler(),LOCATION_MZONE)
 				local ct=-ft

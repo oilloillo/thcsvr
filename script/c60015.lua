@@ -46,5 +46,5 @@ function c60015.spop(e,tp,eg,ep,ev,re,r,rp)
 end
 function c60015.atkcon(e)
 	local ph=Duel.GetCurrentPhase()
-	return ph==PHASE_BATTLE or ph==PHASE_DAMAGE or ph==PHASE_DAMAGE_CAL
+	return (ph>PHASE_MAIN1 and ph<PHASE_MAIN2)
 end
