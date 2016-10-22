@@ -2,8 +2,8 @@
 --符器-西洋魔法书
 function c200206.initial_effect(c)
 	c:SetUniqueOnField(1,0,200206)
-	c:EnableCounterPermit(0x700)
-	c:SetCounterLimit(0x700,10)
+	--c:EnableCounterPermit(0x700)
+	c:SetCounterLimit(0x1700,10)
 	--Activate
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
