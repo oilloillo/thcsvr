@@ -68,8 +68,9 @@ function c999306.splimit(e,c,sump,sumtype,sumpos,targetp,se)
 end
 
 function c999306.cost2(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.CheckReleaseGroup(tp,Card.IsCode,1,nil,999300) end
+	if chk==0 then return Duel.CheckReleaseGroup(tp,Card.IsCode,1,nil,999300) and e:GetHandler():IsAbleToRemoveAsCost() end
 	local g=Duel.SelectReleaseGroup(tp,Card.IsCode,1,1,nil,999300)
+	Duel.Remove(e:GetHandler(),POS_FACEUP,REASON_COST)
 	Duel.Release(g,REASON_COST)
 end
 

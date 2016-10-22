@@ -28,10 +28,10 @@ function c21470019.initial_effect(c)
 	c:RegisterEffect(e3)
 end
 function c21470019.eqlimit(e,c)
-	return c:GetBaseAttack()<=2000 and c:GetBaseDefence()<=2000
+	return c:GetBaseAttack()<=2000 and c:GetBaseDefense()<=2000
 end
 function c21470019.filter(c)
-	return c:IsFaceup() and c:GetBaseAttack()<=2000 and c:GetBaseDefence()<=2000
+	return c:IsFaceup() and c:GetBaseAttack()<=2000 and c:GetBaseDefense()<=2000
 end
 function c21470019.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_MZONE) and chkc:IsFaceup() and c21470019.filter(chkc) end
@@ -57,7 +57,7 @@ function c21470019.atkop(e,tp,eg,ep,ev,re,r,rp)
 	ec:RegisterEffect(e1)
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_SINGLE)
-	e1:SetCode(EFFECT_UPDATE_DEFENCE)
+	e1:SetCode(EFFECT_UPDATE_DEFENSE)
 	e1:SetValue(400)
 	e1:SetReset(RESET_EVENT+0x1fe0000)
 	ec:RegisterEffect(e1)

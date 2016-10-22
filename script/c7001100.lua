@@ -40,7 +40,7 @@ function c7001100.desop(e,tp,eg,ep,ev,re,r,rp)
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
 		local g2=Duel.SelectMatchingCard(tp,c7001100.filter,tp,LOCATION_GRAVE,0,1,1,nil,e,tp)
 		local tg=g2:GetFirst()
-		if Duel.SpecialSummonStep(tg,0,tp,1-tp,false,false,POS_FACEUP_DEFENCE) then
+		if Duel.SpecialSummonStep(tg,0,tp,1-tp,false,false,POS_FACEUP_DEFENSE) then
 			local e1=Effect.CreateEffect(e:GetHandler())
 			e1:SetType(EFFECT_TYPE_SINGLE)
 			e1:SetCode(EFFECT_DISABLE)

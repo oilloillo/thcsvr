@@ -92,9 +92,9 @@ function c21470002.setop(e,tp,eg,ep,ev,re,r,rp)
 		if c21470002.setfilter(tc) then 
 			if tc:IsType(TYPE_MONSTER) then 
 				if tc:IsType(TYPE_TRAPMONSTER) then 
-					Duel.ChangePosition(tc,POS_FACEDOWN_DEFENCE) 
+					Duel.ChangePosition(tc,POS_FACEDOWN_DEFENSE) 
 					tc:RegisterFlagEffect(21470020,RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END,0,1)
-				else Duel.ChangePosition(tc,POS_FACEDOWN_DEFENCE) end
+				else Duel.ChangePosition(tc,POS_FACEDOWN_DEFENSE) end
 			else 
 				Duel.ChangePosition(tc,POS_FACEDOWN)
 				Duel.RaiseEvent(tc,EVENT_SSET,e,REASON_EFFECT,tp,tc:GetControler(),0) 

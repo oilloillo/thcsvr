@@ -23,12 +23,12 @@ function c21470008.condition(e,tp,eg,ep,ev,re,r,rp)
 end
 function c21470008.filter(c,e,tp)
 	return c:IsSetCard(0x742) and not c:IsCode(21470008) and
-	((c:IsType(TYPE_MONSTER) and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEDOWN_DEFENCE) and Duel.GetLocationCount(tp,LOCATION_MZONE)>0) 
+	((c:IsType(TYPE_MONSTER) and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEDOWN_DEFENSE) and Duel.GetLocationCount(tp,LOCATION_MZONE)>0) 
 	or (c:IsSSetable() and c:IsAbleToHand() and c:IsType(TYPE_SPELL+TYPE_TRAP) and Duel.GetLocationCount(tp,LOCATION_SZONE)>1))
 end
 function c21470008.filter2(c,e,tp)
 	return c:IsSetCard(0x742) and not c:IsCode(21470008) and
-	((c:IsType(TYPE_MONSTER) and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEDOWN_DEFENCE) and Duel.GetLocationCount(tp,LOCATION_MZONE)>0) 
+	((c:IsType(TYPE_MONSTER) and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEDOWN_DEFENSE) and Duel.GetLocationCount(tp,LOCATION_MZONE)>0) 
 	or (c:IsSSetable() and c:IsAbleToHand() and c:IsType(TYPE_SPELL+TYPE_TRAP) and Duel.GetLocationCount(tp,LOCATION_SZONE)>0))
 end
 function c21470008.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
@@ -44,7 +44,7 @@ function c21470008.activate(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
 	if tc:IsRelateToEffect(e) then
 		if tc:IsType(TYPE_MONSTER) then	
-			if c21470008.filter2(tc,e,tp) then Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_DEFENCE) end
+			if c21470008.filter2(tc,e,tp) then Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_DEFENSE) end
 		else 
 			if c21470008.filter2(tc,e,tp) then 
 --				Duel.SendtoHand(tc,tp,REASON_EFFECT)

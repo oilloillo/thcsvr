@@ -155,7 +155,8 @@ function M.damval(e,re,val,r,rp,rc)
 	if cc==0 or bit.band(r, REASON_EFFECT)==0 then return val end
 	local cid=Duel.GetChainInfo(0, CHAININFO_CHAIN_ID)
 	if cid~=e:GetLabel() then return val end
-	local lp = Duel.GetLP(e:GetHandlerPlayer())
+	local tp = e:GetHandlerPlayer()
+	local lp = Duel.GetLP(tp)
 	if val>lp then
 		local e3=Effect.GlobalEffect()
 		e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)

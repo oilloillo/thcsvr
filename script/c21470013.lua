@@ -1,5 +1,5 @@
  
---ÑýÄ§Êé±ä»¯ í³¼Õ
+--ï¿½ï¿½Ä§ï¿½ï¿½ä»¯ ï¿½ï¿½ï¿½
 function c21470013.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
@@ -20,9 +20,9 @@ function c21470013.op(e,tp,eg,ep,ev,re,r,rp)
 	if not c:IsRelateToEffect(e) then return end
 	if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0
 		or not Duel.IsPlayerCanSpecialSummonMonster(tp,21470013,0,0x21,1000,1800,4,RACE_BEAST,ATTRIBUTE_DARK) then return end
-	c:AddTrapMonsterAttribute(TYPE_EFFECT+TYPE_TUNER,ATTRIBUTE_DARK,RACE_BEAST,4,1000,1800)
-	Duel.SpecialSummon(c,0,tp,tp,true,false,POS_FACEUP)
-	c:TrapMonsterBlock()
+	c:AddMonsterAttribute(TYPE_EFFECT+TYPE_TRAP+TYPE_TUNER)
+	Duel.SpecialSummonStep(c,0,tp,tp,true,false,POS_FACEUP)
+	c:AddMonsterAttributeComplete()
 	--handdes
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(21470013,0))
@@ -32,14 +32,14 @@ function c21470013.op(e,tp,eg,ep,ev,re,r,rp)
 	e1:SetCondition(c21470013.condition)
 	e1:SetTarget(c21470013.target)
 	e1:SetOperation(c21470013.operation)
-	e1:SetReset(RESET_EVENT+0x1fe0000)
+	e1:SetReset(RESET_EVENT+0x1fc0000)
 	c:RegisterEffect(e1)
 	--synchro limit
 	local e2=Effect.CreateEffect(c)
 	e2:SetType(EFFECT_TYPE_SINGLE)
 	e2:SetCode(EFFECT_CANNOT_BE_SYNCHRO_MATERIAL)
 	e2:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
-	e2:SetReset(RESET_EVENT+0x1fe0000)
+	e2:SetReset(RESET_EVENT+0x1fc0000)
 	e2:SetCondition(c21470013.syncon)
 	e2:SetValue(c21470013.synlimit)
 	c:RegisterEffect(e2,true)
@@ -48,10 +48,11 @@ function c21470013.op(e,tp,eg,ep,ev,re,r,rp)
 	e3:SetType(EFFECT_TYPE_SINGLE)
 	e3:SetCode(EFFECT_CANNOT_BE_XYZ_MATERIAL)
 	e3:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
-	e3:SetReset(RESET_EVENT+0x1fe0000)
+	e3:SetReset(RESET_EVENT+0x1fc0000)
 	e3:SetCondition(c21470013.syncon)
 	e3:SetValue(c21470013.synlimit)
 	c:RegisterEffect(e3,true)
+	Duel.SpecialSummonComplete()
 	--[[release sum limit
 	local e4=Effect.CreateEffect(c)
 	e4:SetType(EFFECT_TYPE_SINGLE)

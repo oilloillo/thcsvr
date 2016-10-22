@@ -27,9 +27,9 @@ function c21470017.activate(e,tp,eg,ep,ev,re,r,rp)
 	if tc:IsRelateToEffect(e) and tc:IsFaceup() then
 		if tc:IsType(TYPE_MONSTER) then 
 			if tc:IsType(TYPE_TRAPMONSTER) then 
-				Duel.ChangePosition(tc,POS_FACEDOWN_DEFENCE) 
+				Duel.ChangePosition(tc,POS_FACEDOWN_DEFENSE) 
 				tc:RegisterFlagEffect(21470020,RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END,0,1)
-			else Duel.ChangePosition(tc,POS_FACEDOWN_DEFENCE) end
+			else Duel.ChangePosition(tc,POS_FACEDOWN_DEFENSE) end
 	--		Duel.Draw(tp,1,REASON_EFFECT)
 		else 
 			Duel.ChangePosition(tc,POS_FACEDOWN)
@@ -44,7 +44,7 @@ function c21470017.activate(e,tp,eg,ep,ev,re,r,rp)
 			Duel.HintSelection(ss)
 			sc=ss:GetFirst()
 			Duel.BreakEffect()
-			if sc:IsType(TYPE_MONSTER) then Duel.ChangePosition(sc,POS_FACEDOWN_DEFENCE) 
+			if sc:IsType(TYPE_MONSTER) then Duel.ChangePosition(sc,POS_FACEDOWN_DEFENSE) 
 			else 
 				Duel.ChangePosition(sc,POS_FACEDOWN)
 				Duel.RaiseEvent(sc,EVENT_SSET,e,REASON_EFFECT,tp,sc:GetControler(),0) 

@@ -13,7 +13,7 @@ function c7001000.initial_effect(c)
 	c:RegisterEffect(e1)
 	--def
 	local e2=e1:Clone()
-	e2:SetCode(EFFECT_UPDATE_DEFENCE)
+	e2:SetCode(EFFECT_UPDATE_DEFENSE)
 	e2:SetValue(c7001000.defval)
 	c:RegisterEffect(e2)
 end
@@ -24,5 +24,5 @@ function c7001000.atkval(e,c)
 	return c:GetBaseAttack()/2
 end
 function c7001000.defval(e,c)
-	return c:GetBaseDefence()/2
+	return c:GetBaseDefense()/2
 end

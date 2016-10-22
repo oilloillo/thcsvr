@@ -46,15 +46,18 @@ function c14030.activate(e,tp,eg,ep,ev,re,r,rp)
 	if not c:IsRelateToEffect(e) then return end
 	if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0
 		or not Duel.IsPlayerCanSpecialSummonMonster(tp,14030,0,0x21,0,0,10,RACE_PLANT,ATTRIBUTE_DARK) then return end
-	c:AddTrapMonsterAttribute(TYPE_EFFECT,ATTRIBUTE_DARK,RACE_PLANT,10,0,0)
-	Duel.SpecialSummon(c,0,tp,tp,true,false,POS_FACEUP)
-	c:TrapMonsterBlock()
-	--double tribute
+	c:AddMonsterAttribute(TYPE_EFFECT+TYPE_TRAP)
+	Duel.SpecialSummonStep(c,0,tp,tp,true,false,POS_FACEUP)
+	c:AddMonsterAttributeComplete()
 	local e3=Effect.CreateEffect(c)
 	e3:SetType(EFFECT_TYPE_SINGLE)
 	e3:SetCode(EFFECT_DOUBLE_TRIBUTE)
 	e3:SetValue(c14030.condition)
-	c:RegisterEffect(e3)
+	e3:SetReset(RESET_EVENT+0x1fc0000)
+	c:RegisterEffect(e3,true)
+	Duel.SpecialSummonComplete()
+	--double tribute
+	
 end
 function c14030.condition(e,c)
 	return c:IsSetCard(0x3208)

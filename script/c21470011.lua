@@ -20,9 +20,11 @@ function c21470011.op(e,tp,eg,ep,ev,re,r,rp)
 	if not c:IsRelateToEffect(e) then return end
 	if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0
 		or not Duel.IsPlayerCanSpecialSummonMonster(tp,21470011,0,0x11,1700,1700,4,RACE_FIEND,ATTRIBUTE_DARK) then return end
-	c:AddTrapMonsterAttribute(TYPE_NORMAL+TYPE_TUNER,ATTRIBUTE_DARK,RACE_FIEND,4,1700,1700)
-	Duel.SpecialSummon(c,0,tp,tp,true,false,POS_FACEUP)
-	c:TrapMonsterBlock()--[[
+	c:AddMonsterAttribute(TYPE_NORMAL+TYPE_TRAP+TYPE_TUNER)
+	Duel.SpecialSummonStep(c,0,tp,tp,true,false,POS_FACEUP)
+	c:AddMonsterAttributeComplete()  
+	Duel.SpecialSummonComplete()
+--[[
 	--Race
 	local e2=Effect.CreateEffect(c)
 	e2:SetType(EFFECT_TYPE_SINGLE)

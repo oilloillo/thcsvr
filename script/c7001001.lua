@@ -37,7 +37,7 @@ function c7001001.con(e,tp,eg,ep,ev,re,r,rp)
 	return eg:IsExists(c7001001.cfilter,1,nil,tp)
 end
 function c7001001.spfilter(c,e,tp)
-	return c:IsPreviousLocation(LOCATION_ONFIELD)  and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEUP_DEFENCE)
+	return c:IsPreviousLocation(LOCATION_ONFIELD)  and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEUP_DEFENSE)
 end
 function c7001001.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then
@@ -50,7 +50,7 @@ function c7001001.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,g,g:GetCount(),0,0)
 end
 function c7001001.spfilter2(c,e,tp)
-	return c:IsPreviousLocation(LOCATION_ONFIELD)  and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEUP_DEFENCE) and c:IsRelateToEffect(e)
+	return c:IsPreviousLocation(LOCATION_ONFIELD)  and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEUP_DEFENSE) and c:IsRelateToEffect(e)
 end
 function c7001001.spop(e,tp,eg,ep,ev,re,r,rp)
 	local ft=Duel.GetLocationCount(tp,LOCATION_MZONE)
@@ -58,7 +58,7 @@ function c7001001.spop(e,tp,eg,ep,ev,re,r,rp)
 	if Duel.IsPlayerAffectedByEffect(tp,59822133) then ft=1 end
 	local sg=eg:Filter(c7001001.spfilter2,nil,e,tp)
 	if ft<sg:GetCount() then return end
-	Duel.SpecialSummon(sg,0,tp,tp,false,false,POS_FACEUP_DEFENCE)
+	Duel.SpecialSummon(sg,0,tp,tp,false,false,POS_FACEUP_DEFENSE)
 end
 function c7001001.thfilter(c,e,tp)
 	return c:IsPreviousLocation(LOCATION_ONFIELD)  and c:IsAbleToHand() and c:IsType(TYPE_MONSTER) 

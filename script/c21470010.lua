@@ -32,7 +32,7 @@ function c21470010.tg2(e,c)
 end
 function c21470010.filter(c)
 --	return x==21470002 or (x>=21470005 and x<=21470010) or (x>=21470012 and x<=21470017) or x==21470022
-	return c:IsFacedown() or c:IsPosition(POS_FACEUP_DEFENCE)
+	return c:IsFacedown() or c:IsPosition(POS_FACEUP_DEFENSE)
 end
 function c21470010.target(e,tp,eg,ep,ev,re,r,rp,chk)--[[
 	if chk==0 then return true end
@@ -72,7 +72,7 @@ function c21470010.activate(e,tp,eg,ep,ev,re,r,rp)--[[
 	Duel.RegisterEffect(e2,tp)
 	local e2=Effect.CreateEffect(e:GetHandler())
 	e2:SetType(EFFECT_TYPE_FIELD)
-	e2:SetCode(EFFECT_UPDATE_DEFENCE)
+	e2:SetCode(EFFECT_UPDATE_DEFENSE)
 	e2:SetTarget(c21470010.tg)
 	e2:SetTargetRange(LOCATION_MZONE,0)
 	e2:SetReset(RESET_PHASE+PHASE_END)

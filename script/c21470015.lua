@@ -39,7 +39,7 @@ function c21470015.initial_effect(c)
 	c:RegisterEffect(e1)
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_SINGLE)
-	e1:SetCode(EFFECT_UPDATE_DEFENCE)
+	e1:SetCode(EFFECT_UPDATE_DEFENSE)
 	e1:SetProperty(EFFECT_FLAG_SINGLE_RANGE)
 	e1:SetRange(LOCATION_MZONE)
 	e1:SetValue(c21470015.atkval)
@@ -104,12 +104,12 @@ function c21470015.op(e,tp,eg,ep,ev,re,r,rp)
 	if sc:IsRelateToEffect(e) and tc:IsRelateToEffect(e) and sc:IsFaceup() and tc:IsFaceup() then
 		if sc:IsType(TYPE_MONSTER) then 
 			if sc:IsType(TYPE_TRAPMONSTER) then 
-				Duel.ChangePosition(tg,POS_FACEDOWN_DEFENCE) 
+				Duel.ChangePosition(tg,POS_FACEDOWN_DEFENSE) 
 				sc:RegisterFlagEffect(21470020,RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END,0,1)
-			else Duel.ChangePosition(tg,POS_FACEDOWN_DEFENCE) end
+			else Duel.ChangePosition(tg,POS_FACEDOWN_DEFENSE) end
 		else 
 			Duel.ChangePosition(sc,POS_FACEDOWN)
-			Duel.ChangePosition(tc,POS_FACEDOWN_DEFENCE)
+			Duel.ChangePosition(tc,POS_FACEDOWN_DEFENSE)
 			Duel.RaiseEvent(sc,EVENT_SSET,e,REASON_EFFECT,tp,tc:GetControler(),0) 
 			sc:RegisterFlagEffect(21470020,RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END,0,1)			
 		end

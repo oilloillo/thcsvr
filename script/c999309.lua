@@ -1,5 +1,6 @@
 --秋符『秋季的天空』
 function c999309.initial_effect(c)
+	c:SetUniqueOnField(1,0,999309)
 	--Activate
 	local e0=Effect.CreateEffect(c)
 	e0:SetType(EFFECT_TYPE_ACTIVATE)
@@ -33,7 +34,7 @@ function c999309.initial_effect(c)
 	e4:SetDescription(aux.Stringid(999309,2))
 	e4:SetType(EFFECT_TYPE_IGNITION)
 	e4:SetCountLimit(1,999309)
-	e4:SetRange(LOCATION_SZONE+LOCATION_GRAVE)
+	e4:SetRange(LOCATION_SZONE)
 	e4:SetCost(c999309.cost2)
 	e4:SetTarget(c999309.tg3)
 	e4:SetOperation(c999309.op3)
