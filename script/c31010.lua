@@ -25,11 +25,23 @@ function c31010.initial_effect(c)
 	e3:SetProperty(EFFECT_FLAG_CARD_TARGET)
 	e3:SetCode(EVENT_FREE_CHAIN)
 	e3:SetRange(LOCATION_MZONE)
-	e3:SetCountLimit(1)
+	e3:SetCountLimit(1,EFFECT_COUNT_CODE_SINGLE)
+	e3:SetLabel(2)
+	e3:SetCondition(function(e,tp,eg,ep,ev,re,r,rp)
+		local ph=Duel.GetCurrentPhase()
+		local l=e:GetLabel()
+		if l==2 then return ph>PHASE_MAIN1 and ph<PHASE_MAIN2 and Duel.GetTurnPlayer()~=tp end
+		return Duel.GetTurnPlayer()==tp
+	end)
 	e3:SetCost(c31010.descost)
 	e3:SetTarget(c31010.destg)
 	e3:SetOperation(c31010.desop)
 	c:RegisterEffect(e3)
+	local e4=e3:Clone()
+	e4:SetType(EFFECT_TYPE_IGNITION)
+	e4:SetCode(0)
+	e4:SetLabel(1)
+	c:RegisterEffect(e4)
 end
 
 c31010.DescSetName=0x258
@@ -59,8 +71,8 @@ function c31010.descost(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function c31010.destg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsOnField() and chkc:IsDestructable() and chkc:IsControler(1-tp) end
-	if chk==0 then return (Duel.GetTurnPlayer()==tp or Duel.GetCurrentPhase()==PHASE_BATTLE)
-		and Duel.IsExistingTarget(Card.IsDestructable,tp,0,LOCATION_ONFIELD,1,nil) end
+	local ph=Duel.GetCurrentPhase()
+	if chk==0 then return Duel.IsExistingTarget(Card.IsDestructable,tp,0,LOCATION_ONFIELD,1,nil) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
 	local g=Duel.SelectTarget(tp,Card.IsDestructable,tp,0,LOCATION_ONFIELD,1,1,nil)
 	Duel.SetOperationInfo(0,CATEGORY_DESTROY,g,1,0,0)
