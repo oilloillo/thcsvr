@@ -41,7 +41,7 @@ function c12002.initial_effect(c)
 	e5:SetType(EFFECT_TYPE_SINGLE)
 	e5:SetCode(EFFECT_EQUIP_LIMIT)
 	e5:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
-	e5:SetValue(aux.TargetBoolFunction(Card.IsCode,12014))
+	e5:SetValue(aux.TargetBoolFunction(Card.IsSetCard,0x993))
 	c:RegisterEffect(e5)
 end
 function c12002.efilter(e,te)
@@ -51,7 +51,7 @@ function c12002.uncon(e)
 	return e:GetHandler():IsStatus(STATUS_UNION)
 end
 function c12002.filter(c)
-	return c:IsFaceup() and c:IsCode(12014) and c:GetUnionCount()==0
+	return c:IsFaceup() and c:IsSetCard(0x993) and c:GetUnionCount()==0
 end
 function c12002.eqtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_MZONE) and chkc:IsControler(tp) and c12002.filter(chkc) end

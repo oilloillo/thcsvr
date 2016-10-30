@@ -66,7 +66,7 @@ function c20092.aclimit(e,re,tp)
 	return re:GetHandler():IsType(TYPE_SPELL+TYPE_TRAP) and re:GetHandler():GetCode()~=20099
 end
 function c20092.xfilter(c)
-	return c:IsFaceup() and c:IsCode(20086) and c:GetCounter(0x28b)<8
+	return c:IsFaceup() and c:IsCode(20086) and c:GetCounter(0x128b)<8
 end
 function c20092.addct(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_SZONE) and chkc:IsControler(tp) and c20092.xfilter(chkc) end
@@ -76,7 +76,7 @@ end
 function c20092.addc(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
 	if tc:IsFaceup() and tc:IsRelateToEffect(e) then
-		tc:AddCounter(0x28b,8-tc:GetCounter(0x28b))
+		tc:AddCounter(0x128b,8-tc:GetCounter(0x128b))
 	end
 end
 function c20092.filter(c)

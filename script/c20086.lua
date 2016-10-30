@@ -2,8 +2,8 @@
 --西行妖
 function c20086.initial_effect(c)
 	c:SetUniqueOnField(1,0,20086)
-	c:EnableCounterPermit(0x28b)
-	c:SetCounterLimit(0x28b,8)
+	--c:EnableCounterPermit(0x128b)
+	c:SetCounterLimit(0x128b,8)
 	--Activate
 	local e0=Effect.CreateEffect(c)
 	e0:SetType(EFFECT_TYPE_ACTIVATE)
@@ -63,16 +63,16 @@ function c20086.initial_effect(c)
 end
 function c20086.addct(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetTurnPlayer()==tp end
-	Duel.SetOperationInfo(0,CATEGORY_COUNTER,nil,2,0,0x28b)
+	Duel.SetOperationInfo(0,CATEGORY_COUNTER,nil,2,0,0x128b)
 end
 function c20086.addc(e,tp,eg,ep,ev,re,r,rp)
 	if e:GetHandler():IsRelateToEffect(e) then
-		e:GetHandler():AddCounter(0x28b,2)
+		e:GetHandler():AddCounter(0x128b,2)
 	end
 end
 function c20086.descost(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return e:GetHandler():IsCanRemoveCounter(tp,0x28b,4,REASON_COST) end
-	e:GetHandler():RemoveCounter(tp,0x28b,4,REASON_COST)
+	if chk==0 then return e:GetHandler():IsCanRemoveCounter(tp,0x128b,4,REASON_COST) end
+	e:GetHandler():RemoveCounter(tp,0x128b,4,REASON_COST)
 end
 function c20086.filter(c)
 	return c:IsFaceup() and c:IsAttackPos()
@@ -95,13 +95,13 @@ function c20086.efilter(e,re)
 	return e:GetHandlerPlayer()~=re:GetHandlerPlayer()
 end
 function c20086.desrepcon(e)
-	return e:GetHandler():GetCounter(0x28b)>1
+	return e:GetHandler():GetCounter(0x128b)>1
 end
 function c20086.condition(e)
-	return e:GetHandler():GetCounter(0x28b)>3
+	return e:GetHandler():GetCounter(0x128b)>3
 end
 function c20086.igcon(e)
-	return e:GetHandler():GetCounter(0x28b)>5
+	return e:GetHandler():GetCounter(0x128b)>5
 end
 function c20086.cfilter(e)
 	return aux.TRUE

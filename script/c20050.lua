@@ -1,7 +1,7 @@
  
 --白玉楼
 function c20050.initial_effect(c)
-	c:EnableCounterPermit(0x28b)
+	--c:EnableCounterPermit(0x128b)
 	--Activate
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
@@ -78,13 +78,13 @@ function c20050.ctfilter(c)
 end
 function c20050.ctop(e,tp,eg,ep,ev,re,r,rp)
 	if eg:IsExists(c20050.ctfilter,1,nil) then
-		e:GetHandler():AddCounter(0x28b,1)
+		e:GetHandler():AddCounter(0x128b,1)
 	end
 end
 function c20050.cost1(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsCanRemoveCounter(tp,1,0,0x28b,3,REASON_COST) end
+	if chk==0 then return Duel.IsCanRemoveCounter(tp,1,0,0x128b,3,REASON_COST) end
 	Duel.Hint(HINT_OPSELECTED,1-tp,e:GetDescription())
-	Duel.RemoveCounter(tp,1,0,0x28b,3,REASON_COST)
+	Duel.RemoveCounter(tp,1,0,0x128b,3,REASON_COST)
 end
 function c20050.filter1(c)
 	return c:IsDestructable() and c:IsType(TYPE_SPELL+TYPE_TRAP)
@@ -104,9 +104,9 @@ function c20050.op1(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c20050.cost2(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsCanRemoveCounter(tp,1,0,0x28b,1,REASON_COST) end
+	if chk==0 then return Duel.IsCanRemoveCounter(tp,1,0,0x128b,1,REASON_COST) end
 	Duel.Hint(HINT_OPSELECTED,1-tp,e:GetDescription())
-	Duel.RemoveCounter(tp,1,0,0x28b,1,REASON_COST)
+	Duel.RemoveCounter(tp,1,0,0x128b,1,REASON_COST)
 end
 function c20050.filter2(c)
 	return c:IsType(TYPE_MONSTER) and c:IsAbleToGrave()
@@ -127,9 +127,9 @@ function c20050.filter3(c,e,tp)
 	return c:IsLevelBelow(5) and c:IsType(TYPE_SPIRIT) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
 function c20050.cost3(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsCanRemoveCounter(tp,1,0,0x28b,5,REASON_COST) end
+	if chk==0 then return Duel.IsCanRemoveCounter(tp,1,0,0x128b,5,REASON_COST) end
 	Duel.Hint(HINT_OPSELECTED,1-tp,e:GetDescription())
-	Duel.RemoveCounter(tp,1,0,0x28b,5,REASON_COST)
+	Duel.RemoveCounter(tp,1,0,0x128b,5,REASON_COST)
 end
 function c20050.tg3(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
@@ -147,7 +147,7 @@ function c20050.op3(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c20050.atkval(e,c)
-	return e:GetHandler():GetCounter(0x28b)*100
+	return e:GetHandler():GetCounter(0x128b)*100
 end
 function c20050.desfilter(c)
 	return c:IsSetCard(0x208) and c:IsType(TYPE_MONSTER)

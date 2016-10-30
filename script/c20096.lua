@@ -55,7 +55,7 @@ function c20096.activate2(e,tp,eg,ep,ev,re,r,rp)
 			if Duel.IsExistingMatchingCard(Card.IsFaceup,tp,LOCATION_ONFIELD,0,1,e:GetHandler())
 				and Duel.SelectYesNo(tp,aux.Stringid(20096,0)) then
 				cg=Duel.SelectMatchingCard(tp,Card.IsFaceup,tp,LOCATION_ONFIELD,0,1,1,nil)
-				cg:GetFirst():AddCounter(0x28b,1)
+				cg:GetFirst():AddCounter(0x128b,1)
 			end
 		end
 	end

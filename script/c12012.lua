@@ -1,5 +1,4 @@
- 
---邪眼西格玛
+ --邪眼西格玛
 function c12012.initial_effect(c)
 	--equip
 	local e3=Effect.CreateEffect(c)
@@ -44,8 +43,11 @@ function c12012.initial_effect(c)
 	e5:SetType(EFFECT_TYPE_SINGLE)
 	e5:SetCode(EFFECT_EQUIP_LIMIT)
 	e5:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
-	e5:SetValue(aux.TargetBoolFunction(Card.IsCode,12014))
+	e5:SetValue(c12012.eqlimit)
 	c:RegisterEffect(e5)
+end
+function c12012.eqlimit(e,c)
+	return c:IsSetCard(0x993)
 end
 function c12012.geqtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_MZONE) and chkc:IsControler(tp) and c12012.filter(chkc) end
@@ -70,7 +72,7 @@ function c12012.uncon(e)
 	return e:GetHandler():IsStatus(STATUS_UNION)
 end
 function c12012.filter(c)
-	return c:IsFaceup() and c:IsCode(12014) and c:GetUnionCount()==0
+	return c:IsFaceup() and c:IsSetCard(0x993) and c:GetUnionCount()==0
 end
 function c12012.eqtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_MZONE) and chkc:IsControler(tp) and c12012.filter(chkc) end

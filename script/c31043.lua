@@ -72,11 +72,10 @@ function c31043.val(e,c)
 	return c:GetEquipCount()*300
 end
 function c31043.cfilter(c)
-	return c:IsType(TYPE_SPELL) and c:IsLocation(LOCATION_SZONE) and c:IsAbleToGraveAsCost()
+	return c:IsType(TYPE_EQUIP) and c:IsAbleToGraveAsCost()
 end
 function c31043.descost(e,tp,eg,ep,ev,re,r,rp,chk)
-	local c=e:GetHandler()
-	local g=c:GetEquipGroup()
+	local g=Duel.GetFieldGroup(tp,LOCATION_SZONE,0)
 	if chk==0 then return g:IsExists(c31043.cfilter,1,nil) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE)
 	local sg=g:Select(tp,1,1,nil)

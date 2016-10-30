@@ -60,26 +60,26 @@ function c20114.ctfilter(c,pp)
 end
 function c20114.ctop(e,tp,eg,ep,ev,re,r,rp)
 	if eg:IsExists(c20114.ctfilter,1,nil,e:GetHandler():GetControler()) then
-		e:GetHandler():AddCounter(0x28b,1)
+		e:GetHandler():AddCounter(0x128b,1)
 	end
 end
 function c20114.ctop2(e,tp,eg,ep,ev,re,r,rp)
 	if eg:IsExists(c20114.ctfilter,1,nil,e:GetHandler():GetControler()) then
-		e:GetHandler():AddCounter(0x28b,2)
+		e:GetHandler():AddCounter(0x128b,2)
 	end
 end
 function c20114.desreptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
 	if chk==0 then return not c:IsReason(REASON_REPLACE)
-		and c:IsCanRemoveCounter(tp,0x28b,1,REASON_EFFECT) end
+		and c:IsCanRemoveCounter(tp,0x128b,1,REASON_EFFECT) end
 	if Duel.SelectYesNo(tp,aux.Stringid(20114,0)) then
-		c:RemoveCounter(tp,0x28b,1,REASON_EFFECT)
+		c:RemoveCounter(tp,0x128b,1,REASON_EFFECT)
 		return true
 	else return false end
 end
 function c20114.descost(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return e:GetHandler():IsCanRemoveCounter(tp,0x28b,3,REASON_COST) end
-	e:GetHandler():RemoveCounter(tp,0x28b,3,REASON_COST)
+	if chk==0 then return e:GetHandler():IsCanRemoveCounter(tp,0x128b,3,REASON_COST) end
+	e:GetHandler():RemoveCounter(tp,0x128b,3,REASON_COST)
 end
 function c20114.filter(c)
 	return c:IsFaceup() and c:IsDestructable()

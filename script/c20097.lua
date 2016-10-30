@@ -16,7 +16,7 @@ function c20097.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.RegisterFlagEffect(tp,20097,RESET_PHASE+PHASE_END,0,1)
 end
 function c20097.xfilter(c)
-	return c:IsFaceup() and c:IsCode(20086) and c:GetCounter(0x28b)>2
+	return c:IsFaceup() and c:IsCode(20086) and c:GetCounter(0x128b)>2
 end
 function c20097.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetCurrentPhase()==PHASE_MAIN1 
@@ -37,7 +37,7 @@ function c20097.activate(e,tp,eg,ep,ev,re,r,rp)
 	if Duel.IsExistingMatchingCard(Card.IsFaceup,tp,LOCATION_ONFIELD,0,1,e:GetHandler())
 		and Duel.SelectYesNo(tp,aux.Stringid(20097,0)) then
 		cg=Duel.SelectMatchingCard(tp,Card.IsFaceup,tp,LOCATION_ONFIELD,0,1,1,nil)
-		cg:GetFirst():AddCounter(0x28b,1)
+		cg:GetFirst():AddCounter(0x128b,1)
 	end
 end
 function c20097.rdval(e,re,val,r,rp,rc)

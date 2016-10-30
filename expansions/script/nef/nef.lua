@@ -362,3 +362,15 @@ function Nef.GetRandomCardCode(num, command)
 	end
 	return result
 end
+function Nef.kangbazi(e,te)
+	if te:IsActiveType(TYPE_MONSTER) and te:IsActivated() then
+		local ec=te:GetOwner()
+		if ec:IsType(TYPE_XYZ) then
+			return ec:GetOriginalRank()<=10 and ec:GetOriginalRank()>=4
+		else
+			return ec:GetOriginalLevel()<=10 and ec:GetOriginalLevel()>=4
+		end
+	else
+		return false
+	end
+end

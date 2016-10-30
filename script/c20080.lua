@@ -143,6 +143,6 @@ end
 function c20080.addc(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
 	if tc:IsFaceup() and tc:IsRelateToEffect(e) then
-		tc:AddCounter(0x28b,2)
+		tc:AddCounter(0x128b,2)
 	end
 end

@@ -11,7 +11,7 @@ function c20099.initial_effect(c)
 	c:RegisterEffect(e1)
 end
 function c20099.xfilter(c)
-	return c:GetCounter(0x28b)>7 and c:IsCode(20086)
+	return c:GetCounter(0x128b)>7 and c:IsCode(20086)
 end
 function c20099.filter(c,e,tp)
 	return c:IsSetCard(0x338) and c:IsCanBeSpecialSummoned(e,0,tp,true,true)
@@ -22,7 +22,7 @@ function c20099.target(e,tp,eg,ep,ev,re,r,rp,chk)
 		and Duel.IsExistingMatchingCard(c20099.xfilter,tp,LOCATION_SZONE,0,1,nil,e,tp) end
 	local g=Duel.GetMatchingGroup(c20099.xfilter,tp,LOCATION_SZONE,0,nil)
 	local tc=g:GetFirst()
-	tc:RemoveCounter(tp,0x28b,8,REASON_COST)
+	tc:RemoveCounter(tp,0x128b,8,REASON_COST)
 	local sg=Duel.GetMatchingGroup(aux.TRUE,tp,0,LOCATION_ONFIELD,nil)
 	Duel.SetOperationInfo(0,CATEGORY_TOGRAVE,sg,sg:GetCount(),0,0)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,0,LOCATION_DECK)
