@@ -93,8 +93,9 @@ function c26119.etarget(e,c)
 	return c:IsFaceup()
 end
 function c26119.tgval(e,re,rp)
-	local tp=e:GetHandler():GetControler()
-	return tp~=rp and aux.tgval(e,re,rp)
+	-- local tp=e:GetHandler():GetControler()
+	-- return tp~=rp and aux.tgval(e,re,rp)
+	return aux.tgoval(e,re,rp)
 end
 function c26119.cfilter(c)
 	return c:IsType(TYPE_MONSTER) and c:IsLevelBelow(8)
