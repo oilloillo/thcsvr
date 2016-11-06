@@ -38,6 +38,10 @@ function c19026.initial_effect(c)
 		c:RegisterEffect(e3)
 
 end
+c19026.hana_mat={
+aux.FilterBoolFunction(Card.IsSetCard,0x815),
+aux.FilterBoolFunction(Card.IsSetCard,0x276),
+}
 
 
 function c19026.cgcon(e,tp,eg,ep,ev,re,r,rp)

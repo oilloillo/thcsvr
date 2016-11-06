@@ -1,5 +1,4 @@
- 
---超越时空的梦幻居民 北白河千百合
+ --超越时空的梦幻居民 北白河千百合
 function c13016.initial_effect(c)
 	c:SetUniqueOnField(1,0,13016)
 	--spsummon
@@ -64,7 +63,7 @@ function c13016.spop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c13016.tfilter(c)
-	return c:IsAbleToRemove() and c:IsRace(RACE_SPELLCASTER) and c:IsAttribute(ATTRIBUTE_WATER)
+	return c:IsAbleToRemove() and c:IsRace(RACE_SPELLCASTER) and (c:IsAttribute(ATTRIBUTE_WATER) or c:IsAttribute(ATTRIBUTE_FIRE))
 end
 function c13016.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(c13016.tfilter,tp,LOCATION_DECK,0,1,nil) end

@@ -48,6 +48,10 @@ function M.initial_effect(c)
 	e4:SetCode(EVENT_TO_DECK)
 	c:RegisterEffect(e4)
 end
+M.hana_mat={
+aux.FilterBoolFunction(Card.IsSetCard,0xaa6),
+aux.FilterBoolFunction(Card.IsSetCard,0x200),
+}
 
 function M.ffilter(c)
 	return c:IsSetCard(0x200)

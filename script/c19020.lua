@@ -39,6 +39,10 @@ function c19020.initial_effect(c)
 		c:RegisterEffect(e4)
 
 end
+c19020.hana_mat={
+aux.FilterBoolFunction(Card.IsSetCard,0xc999),
+aux.FilterBoolFunction(Card.IsSetCard,0xa999),
+}
 
 
 function c19020.synlimit(e,c)

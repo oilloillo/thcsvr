@@ -59,6 +59,10 @@ function c19025.initial_effect(c)
 		c:RegisterEffect(e6)
 
 end
+c19025.hana_mat={
+aux.FilterBoolFunction(Card.IsSetCard,0x815),
+aux.FilterBoolFunction(Card.IsSetCard,0x110),
+}
 
 
 function c19025.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)

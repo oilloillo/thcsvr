@@ -1,7 +1,5 @@
- 
---梦幻传说 冈崎梦美
+ --梦幻传说 冈崎梦美
 function c13021.initial_effect(c)
-	c:SetUniqueOnField(1,0,13021)
 	--cannot special summon
 	local e1=Effect.CreateEffect(c)
 	e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
@@ -70,6 +68,37 @@ function c13021.initial_effect(c)
 	e9:SetCondition(c13021.accon)
 	e9:SetValue(c13021.actlimit)
 	c:RegisterEffect(e9)
+	--only 1 can exists
+	local e10=Effect.CreateEffect(c)
+	e10:SetType(EFFECT_TYPE_SINGLE)
+	e10:SetCode(EFFECT_CANNOT_FLIP_SUMMON)
+	e10:SetCondition(c13021.excon)
+	c:RegisterEffect(e10)
+	local e11=e10:Clone()
+	e11:SetCode(EFFECT_CANNOT_SPECIAL_SUMMON)
+	c:RegisterEffect(e11)
+	local e12=Effect.CreateEffect(c)
+	e12:SetType(EFFECT_TYPE_FIELD)
+	e12:SetRange(LOCATION_MZONE)
+	e12:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
+	e12:SetTargetRange(1,1)
+	e12:SetCode(EFFECT_CANNOT_SUMMON)
+	e12:SetTarget(c13021.sumlimit)
+	c:RegisterEffect(e12)
+	local e13=e12:Clone()
+	e13:SetCode(EFFECT_CANNOT_FLIP_SUMMON)
+	c:RegisterEffect(e13)
+	local e14=e12:Clone()
+	e14:SetCode(EFFECT_CANNOT_SPECIAL_SUMMON)
+	c:RegisterEffect(e14)
+	--selfdes
+	local e15=Effect.CreateEffect(c)
+	e15:SetType(EFFECT_TYPE_FIELD)
+	e15:SetCode(EFFECT_SELF_DESTROY)
+	e15:SetRange(LOCATION_MZONE)
+	e15:SetTargetRange(LOCATION_MZONE,LOCATION_MZONE)
+	e15:SetTarget(c13021.destarget)
+	c:RegisterEffect(e15)
 end
 function c13021.resetcount(e,tp,eg,ep,ev,re,r,rp)
 	c13021[0]=0
@@ -94,7 +123,7 @@ function c13021.filter(c,tp)
 end
 function c13021.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and e:GetHandler():IsCanBeSpecialSummoned(e,0,tp,true,false) 
-		and c13021[tp]>2 end
+		and c13021[tp]>3 end
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,e:GetHandler(),1,0,0)
 end
 function c13021.spop(e,tp,eg,ep,ev,re,r,rp,c)
@@ -133,4 +162,16 @@ function c13021.accon(e)
 end
 function c13021.actlimit(e,te,tp)
 	return te:IsHasType(EFFECT_TYPE_ACTIVATE)
+end
+function c13021.sumlimit(e,c)
+	return c:IsSetCard(0x13d)
+end
+function c13021.exfilter(c)
+	return c:IsFaceup() and c:IsSetCard(0x13d)
+end
+function c13021.excon(e)
+	return Duel.IsExistingMatchingCard(c13021.exfilter,0,LOCATION_MZONE,LOCATION_MZONE,1,nil)
+end
+function c13021.destarget(e,c)
+	return c:IsSetCard(0x13d) and c:GetFieldID()>e:GetHandler():GetFieldID()
 end

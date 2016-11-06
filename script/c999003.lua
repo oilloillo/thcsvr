@@ -40,6 +40,10 @@ function M.initial_effect(c)
 	e4:SetCode(EVENT_TO_DECK)
 	c:RegisterEffect(e4)
 end
+M.hana_mat={
+aux.FilterBoolFunction(Card.IsSetCard,0xaa6),
+aux.FilterBoolFunction(Card.IsSetCard,0x100),
+}
 
 function M.tdcon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():IsPreviousPosition(POS_FACEUP) and e:GetHandler():IsPreviousLocation(LOCATION_ONFIELD)

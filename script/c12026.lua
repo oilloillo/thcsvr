@@ -1,7 +1,7 @@
 --混沌翼之恶灵✿魅魔
 function c12026.initial_effect(c)
 	--true light material
-	aux.AddFusionProcFun2(c,c12026.mfilter1,c12026.mfilter2,true)
+	Fus.AddFusionProcFun2(c,c12026.mfilter1,c12026.mfilter2,true)
 	c:EnableReviveLimit()
 	--deep dark remove
 	local e1=Effect.CreateEffect(c)

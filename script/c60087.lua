@@ -1,5 +1,4 @@
- 
---忘却的重生
+ --忘却的重生
 function c60087.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)

@@ -34,6 +34,10 @@ function c31040.initial_effect(c)
 	e3:SetValue(c31040.atkval)
 	c:RegisterEffect(e3)
 end
+c31040.hana_mat={
+aux.FilterBoolFunction(Card.IsSetCard,0x100),
+aux.FilterBoolFunction(Card.IsSetCard,0x208),
+}
 function c31040.ffilter(c)
 	return c:IsSetCard(0x208)
 end

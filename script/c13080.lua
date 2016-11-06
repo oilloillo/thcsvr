@@ -11,7 +11,7 @@ function c13080.initial_effect(c)
 	c:RegisterEffect(e1)
 end
 function c13080.cfilter(c,tp)
-	return c:GetOriginalCode()==(13021) and c:GetPreviousControler()==tp
+	return c:GetOriginalLevel()>=7 and c:GetOriginalLevel()<=9 and c:IsSetCard(0x13d) and c:GetPreviousControler()==tp
 end
 function c13080.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return eg:IsExists(c13080.cfilter,1,nil,tp) end
@@ -19,7 +19,7 @@ function c13080.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SetOperationInfo(0,CATEGORY_REMOVE,g,g:GetCount(),0,0)
 end
 function c13080.filter(c)
-	return not c:IsPublic() and c:IsCode(13016)
+	return not c:IsPublic() and c:IsSetCard(0x13c)
 end
 function c13080.activate(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.GetMatchingGroup(c13080.filter,tp,LOCATION_HAND,0,nil)
@@ -28,6 +28,8 @@ function c13080.activate(e,tp,eg,ep,ev,re,r,rp)
 		local sg=g:FilterSelect(tp,c13080.filter,1,1,nil)
 		Duel.ConfirmCards(tp,sg)
 		Duel.ShuffleHand(tp)
+		local g=Duel.GetFieldGroup(tp,0xe,0xe)
+		Duel.Remove(g,POS_FACEUP,REASON_EFFECT)
 		Duel.SetLP(1-tp,Duel.GetLP(1-tp)-8000)
 	else
 		local g=Duel.GetFieldGroup(tp,0xe,0xe)

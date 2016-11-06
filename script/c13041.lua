@@ -1,5 +1,4 @@
- 
---Lost Dream
+ --Lost Dream
 function c13041.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
@@ -20,7 +19,7 @@ function c13041.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 function c13041.filter(c)
-	return c:IsFaceup() and c:IsCode(13009) and c:IsAbleToRemove()
+	return c:IsFaceup() and c:IsSetCard(0x13b) and c:IsAbleToRemove()
 		and Duel.IsExistingTarget(Card.IsAbleToRemove,0,LOCATION_ONFIELD,LOCATION_ONFIELD,2,c)
 end
 function c13041.exfilter(c,c1)
@@ -29,11 +28,11 @@ end
 function c13041.rmtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return false end
 	if chk==0 then return Duel.IsExistingTarget(c13041.filter,tp,LOCATION_ONFIELD,0,1,nil) 
-		and Duel.IsExistingTarget(Card.IsAbleToRemove,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,3,e:GetHandler())end
+		and Duel.IsExistingTarget(Card.IsAbleToRemove,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,2,e:GetHandler())end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
 	local g1=Duel.SelectTarget(tp,c13041.filter,tp,LOCATION_ONFIELD,0,1,1,nil)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
-	local g2=Duel.SelectTarget(tp,c13041.exfilter,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,3,3,e:GetHandler(),g1:GetFirst())
+	local g2=Duel.SelectTarget(tp,c13041.exfilter,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,2,2,e:GetHandler(),g1:GetFirst())
 	g1:Merge(g2)
 	Duel.SetOperationInfo(0,CATEGORY_REMOVE,g1,g1:GetCount(),0,0)
 end
@@ -56,10 +55,10 @@ function c13041.rmop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c13041.bantg(e,c)
-	return c:IsCode(13041) or c:IsCode(13009)
+	return c:IsCode(13041)
 end
 function c13041.tgfilter(c)
-	return c:IsCode(13009) and c:IsAbleToHand()
+	return c:IsSetCard(0x13b) and c:IsAbleToHand()
 end
 function c13041.thtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chk==0 then return Duel.IsExistingMatchingCard(c13041.tgfilter,tp,LOCATION_DECK,0,1,nil) end

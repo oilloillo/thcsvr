@@ -1,10 +1,8 @@
 --静谧之光✿古明地觉
 function c19012.initial_effect(c)
-
 	--fusion material
 	c:EnableReviveLimit()
 	aux.AddFusionProcFun2(c,aux.FilterBoolFunction(Card.IsSetCard,0x214a),aux.FilterBoolFunction(Card.IsCode,25021),true)
-
 		--tograve
 		local e1=Effect.CreateEffect(c)
 		e1:SetCategory(CATEGORY_TOGRAVE)
@@ -14,7 +12,6 @@ function c19012.initial_effect(c)
 		e1:SetTarget(c19012.target)
 		e1:SetOperation(c19012.activate)
 		c:RegisterEffect(e1)
-
 		--Star Light Fantasy
 		local e2=Effect.CreateEffect(c)
 		e2:SetType(EFFECT_TYPE_FIELD)
@@ -24,16 +21,15 @@ function c19012.initial_effect(c)
 		e2:SetTargetRange(1,1)
 		e2:SetValue(c19012.aclimit)
 		c:RegisterEffect(e2)
-
 end
-
-
+c19012.hana_mat={
+aux.FilterBoolFunction(Card.IsSetCard,0x214a),
+aux.FilterBoolFunction(Card.IsCode,25021),
+}
 function c19012.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetFieldGroupCount(tp,0,LOCATION_HAND)>1 end
 	Duel.SetOperationInfo(0,CATEGORY_TOGRAVE,nil,1,1-tp,LOCATION_HAND)
 end
-
-
 function c19012.activate(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.GetFieldGroup(tp,0,LOCATION_HAND)
 	if g:GetCount()>0 then
@@ -44,9 +40,6 @@ function c19012.activate(e,tp,eg,ep,ev,re,r,rp)
 		Duel.ShuffleHand(1-tp)
 	end
 end
-
-
 function c19012.aclimit(e,re,tp)
 	return re:IsActiveType(TYPE_MONSTER) and re:GetHandler():IsAttribute(ATTRIBUTE_DARK)
 end
-

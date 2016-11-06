@@ -39,6 +39,10 @@ function c27142.initial_effect(c)
 	e4:SetOperation(c27142.dop)
 	c:RegisterEffect(e4)
 end
+c27142.hana_mat={
+aux.FilterBoolFunction(Card.IsSetCard,0x522),
+aux.FilterBoolFunction(Card.IsSetCard,0x527),
+}
 function c27142.splimit(e,se,sp,st)
 	return bit.band(st,SUMMON_TYPE_FUSION)==SUMMON_TYPE_FUSION
 end

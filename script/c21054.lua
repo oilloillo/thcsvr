@@ -1,5 +1,4 @@
- 
---幻胧月睨「LunaticRedEyes」
+ --幻胧月睨「LunaticRedEyes」
 function c21054.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
@@ -67,7 +66,8 @@ end
 function c21054.recop(e,tp,eg,ep,ev,re,r,rp)
 	if not e:GetHandler():IsRelateToEffect(e) then return end
 	local tc=Duel.GetFirstTarget()
-	if tc and tc:IsRelateToEffect(e) then
+	if tc and not tc:IsImmuneToEffect(e) then
+		Duel.Damage(tp,1,REASON_EFFECT)
 		Duel.ChangeAttackTarget(tc)
 	end
 end

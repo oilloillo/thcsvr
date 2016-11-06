@@ -34,6 +34,10 @@ function c31043.initial_effect(c)
 	e3:SetOperation(c31043.desop)
 	c:RegisterEffect(e3)
 end
+c31043.hana_mat={
+aux.FilterBoolFunction(Card.IsSetCard,0x200),
+aux.FilterBoolFunction(Card.IsSetCard,0x208),
+}
 function c31043.ffilter(c)
 	return c:IsSetCard(0x208)
 end

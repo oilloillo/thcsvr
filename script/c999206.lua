@@ -37,6 +37,10 @@ function c999206.initial_effect(c)
 	e4:SetOperation(c999206.dspop)
 	c:RegisterEffect(e4)
 end
+c999206.hana_mat={
+aux.FilterBoolFunction(Card.IsCode,999203),
+aux.FilterBoolFunction(Card.IsSetCard,0xaa1),
+}
 function c999206.spfilter1(c,tp,flag,fc)
 	local loc = 0
 	if flag>0 then

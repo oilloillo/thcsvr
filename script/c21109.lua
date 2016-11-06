@@ -1,5 +1,4 @@
- 
---永夜返 -丑之刻-
+ --永夜返 -丑之刻-
 function c21109.initial_effect(c)
 	local e1=Effect.CreateEffect(c)
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON)
@@ -46,7 +45,7 @@ function c21109.activate(e,tp,eg,ep,ev,re,r,rp)
 end
 function c21109.condition(e,tp,eg,ep,ev,re,r,rp)
 	local p = Duel.GetCurrentPhase()
-	return bit.band(p,0x38)==p
+	return bit.band(p,0xf8)==p
 end
 function c21109.indtg(e,c)
 	return c:IsSetCard(0x161) or c:IsSetCard(0x256)

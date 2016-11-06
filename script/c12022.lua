@@ -70,6 +70,6 @@ end
 function c12022.tg(e,c)
 	return c:IsRace(RACE_ZOMBIE)
 end
-function c12022.efilter(e,te,re)
-	return e:GetHandlerPlayer()~=re:GetHandlerPlayer() and (te:IsActiveType(TYPE_MONSTER) or re:IsActiveType(TYPE_SPELL))
+function c12022.efilter(e,re)
+	return e:GetHandlerPlayer()~=re:GetHandlerPlayer() and (re:IsActiveType(TYPE_MONSTER) or re:IsActiveType(TYPE_SPELL))
 end

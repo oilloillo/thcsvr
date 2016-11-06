@@ -42,6 +42,10 @@ function c19014.initial_effect(c)
 		c:RegisterEffect(e3)
 
 end
+c19014.hana_mat={
+aux.FilterBoolFunction(Card.IsSetCard,0x214a),
+aux.FilterBoolFunction(Card.IsSetCard,0xa225),
+}
 
 
 function c19014.negcon(e,tp,eg,ep,ev,re,r,rp)

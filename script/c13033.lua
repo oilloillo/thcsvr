@@ -1,5 +1,4 @@
- 
---ICBM 咪咪酱
+ --ICBM 咪咪酱
 function c13033.initial_effect(c)
 	--Set
 	local e1=Effect.CreateEffect(c)
@@ -44,7 +43,7 @@ function c13033.initial_effect(c)
 	c:RegisterEffect(e5)
 end
 function c13033.eqlimit(e,c)
-	return c:IsSetCard(0x200) or c:IsCode(13021)
+	return c:IsSetCard(0x200) or c:IsSetCard(0x13d) or c:IsSetCard(0x13c)
 end
 function c13033.eqcon(e,tp,eg,ep,ev,re,r,rp)
 	return bit.band(r,0x41)==0x41
@@ -54,7 +53,7 @@ function c13033.eqcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.RegisterFlagEffect(tp,13033,RESET_PHASE+PHASE_END,0,1)
 end
 function c13033.eqfilter(c)
-	return c:IsFaceup() and (c:IsSetCard(0x200) or c:IsCode(13021))
+	return c:IsFaceup() and (c:IsSetCard(0x200) or c:IsSetCard(0x13d) or c:IsSetCard(0x13c))
 end
 function c13033.eqtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_MZONE) and chkc:IsControler(tp) and c13033.eqfilter(chkc) end

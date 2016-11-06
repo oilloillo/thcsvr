@@ -1,5 +1,4 @@
- 
---Tabula rasa
+ --Tabula rasa
 function c13039.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
@@ -38,7 +37,7 @@ function c13039.activate(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Draw(1-tp,1,REASON_EFFECT)
 end
 function c13039.tgfilter(c)
-	return c:IsCode(13001) and c:IsAbleToHand()
+	return c:IsSetCard(0x13a) and c:IsAbleToHand()
 end
 function c13039.thtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chk==0 then return Duel.IsExistingMatchingCard(c13039.tgfilter,tp,LOCATION_DECK,0,1,nil) end

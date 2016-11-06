@@ -1,5 +1,4 @@
- 
---新幻想史-Next History-
+ --新幻想史-Next History-
 function c21056.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
@@ -16,14 +15,13 @@ function c21056.filter(c,e,tp)
 	return c:IsSetCard(0x208) and c:GetLevel()==4 and c:IsCanBeEffectTarget(e) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
 function c21056.xyzfilter(c,mg)
-	if c.xyz_count~=2 then return false end
-	return c:IsXyzSummonable(mg) and c:IsSetCard(0x208)
+	return c:IsXyzSummonable(mg,2,2) and c:IsSetCard(0x208)
 end
-function c21056.mfilter1(c,exg)
-	return exg:IsExists(c21056.mfilter2,1,nil,c)
+function c21056.mfilter1(c,mg,exg)
+	return mg:IsExists(c21056.mfilter2,1,c,c,exg)
 end
-function c21056.mfilter2(c,mc)
-	return c.xyz_filter(mc)
+function c21056.mfilter2(c,mc,exg)
+	return exg:IsExists(Card.IsXyzSummonable,1,nil,Group.FromCards(c,mc))
 end
 function c21056.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return false end
@@ -34,11 +32,10 @@ function c21056.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 		and Duel.GetLocationCount(tp,LOCATION_MZONE)>1 and mg:GetCount()>1
 		and exg:GetCount()>0 end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
-	local sg1=mg:FilterSelect(tp,c21056.mfilter1,1,1,nil,exg)
+	local sg1=mg:FilterSelect(tp,c21056.mfilter1,1,1,nil,mg,exg)
 	local tc1=sg1:GetFirst()
-	local exg2=exg:Filter(c21056.mfilter2,nil,tc1)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
-	local sg2=mg:FilterSelect(tp,c21056.mfilter1,1,1,tc1,exg2)
+	local sg2=mg:FilterSelect(tp,c21056.mfilter2,1,1,tc1,tc1,exg)
 	sg1:Merge(sg2)
 	Duel.SetTargetCard(sg1)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,sg1,2,0,0)

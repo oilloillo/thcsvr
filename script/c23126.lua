@@ -1,6 +1,6 @@
 --白狼天狗✿犬走椛
 function c23126.initial_effect(c)
-	--synchro summon
+	--xyz summon
 	aux.AddXyzProcedure(c,aux.FilterBoolFunction(Card.IsSetCard,0x208),4,2)
 	c:EnableReviveLimit()
 	--atkdown

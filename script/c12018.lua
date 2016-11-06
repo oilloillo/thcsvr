@@ -33,6 +33,10 @@ function c12018.initial_effect(c)
 	e3:SetOperation(c12018.desop)
 	c:RegisterEffect(e3)
 end
+c12018.hana_mat={
+aux.FilterBoolFunction(Card.IsCode,12012),
+aux.FilterBoolFunction(Card.IsSetCard,0x993),
+}
 function c12018.efilter(e,te)
 	if te:IsActiveType(TYPE_TRAP) then return true
 	else return Nef.kangbazi(e,te) end

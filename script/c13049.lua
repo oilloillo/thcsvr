@@ -1,5 +1,4 @@
- 
---Strawberry Crisis!!
+ --Strawberry Crisis!!
 function c13049.initial_effect(c)
 	--destroy
 	local e1=Effect.CreateEffect(c)
@@ -45,7 +44,7 @@ function c13049.desop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c13049.tgfilter(c)
-	return c:IsCode(13021) and c:IsAbleToHand()
+	return c:IsSetCard(0x13d) and c:IsAbleToHand()
 end
 function c13049.thtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_GRAVE) and chkc:IsControler(tp) and c13049.tgfilter(chkc) end

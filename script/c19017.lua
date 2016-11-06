@@ -27,6 +27,10 @@ function c19017.initial_effect(c)
 		c:RegisterEffect(e2)
 
 end
+c19017.hana_mat={
+aux.FilterBoolFunction(Card.IsSetCard,0x815),
+aux.FilterBoolFunction(Card.IsSetCard,0x514a),
+}
 
 
 function c19017.filter(c)

@@ -1,5 +1,4 @@
- 
---爱莲的宠物 苏格拉底
+ --爱莲的宠物 苏格拉底
 function c13005.initial_effect(c)
 	c:SetUniqueOnField(1,0,13005)
 	--spsummon proc
@@ -44,7 +43,7 @@ function c13005.initial_effect(c)
 	e5:SetType(EFFECT_TYPE_SINGLE)
 	e5:SetCode(EFFECT_EQUIP_LIMIT)
 	e5:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
-	e5:SetValue(aux.TargetBoolFunction(Card.IsCode,13001))
+	e5:SetValue(aux.TargetBoolFunction(Card.IsSetCard,0x13a))
 	c:RegisterEffect(e5)
 end
 function c13005.spfilter1(c,tp)
@@ -70,7 +69,7 @@ function c13005.uncon(e)
 	return e:GetHandler():IsStatus(STATUS_UNION)
 end
 function c13005.filter(c)
-	return c:IsFaceup() and c:IsCode(13001) and c:GetUnionCount()==0
+	return c:IsFaceup() and c:IsSetCard(0x13a) and c:GetUnionCount()==0
 end
 function c13005.eqtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_MZONE) and chkc:IsControler(tp) and c13005.filter(chkc) end

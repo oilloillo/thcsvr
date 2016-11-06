@@ -48,7 +48,11 @@ function c19019.initial_effect(c)
 		c:RegisterEffect(e5)
 
 end
-
+c19019.hana_mat={
+aux.FilterBoolFunction(Card.IsSetCard,0x713),
+aux.FilterBoolFunction(Card.IsSetCard,0x226),
+aux.FilterBoolFunction(Card.IsSetCard,0x190),
+}
 
 function c19019.fuscon(e,g,gc,chkf)
 	if g==nil then return false end

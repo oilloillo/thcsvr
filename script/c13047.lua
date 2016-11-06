@@ -1,5 +1,4 @@
- 
---Sailor of Time
+ --Sailor of Time
 function c13047.initial_effect(c)
 	--sol
 	local e1=Effect.CreateEffect(c)
@@ -23,7 +22,7 @@ function c13047.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 function c13047.tgfilter(c)
-	return c:IsCode(13016) and c:IsAbleToHand() and (c:IsLocation(LOCATION_DECK) or (c:IsFaceup() and c:IsLocation(LOCATION_REMOVED)))
+	return c:IsSetCard(0x13c) and c:IsAbleToHand() and (c:IsLocation(LOCATION_DECK) or (c:IsFaceup() and c:IsLocation(LOCATION_REMOVED)))
 end
 function c13047.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(c13047.tgfilter,tp,LOCATION_REMOVED+LOCATION_DECK,0,1,nil) end
