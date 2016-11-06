@@ -60,6 +60,11 @@ function c12026.desop(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.GetMatchingGroup(c12026.rmfilter,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,nil)
 	if g:GetCount()>0 then
 		Duel.Remove(g,POS_FACEUP,REASON_EFFECT)
+		local cg=Duel.GetMatchingGroup(Card.IsFacedown,tp,LOCATION_MZONE,LOCATION_MZONE,nil)
+		if cg:GetCount()>0 then
+			Duel.ConfirmCards(tp,cg)
+			Duel.ConfirmCards(1-tp,cg)
+		end
 	end
 end
 function c12026.filter(c)

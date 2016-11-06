@@ -8,7 +8,7 @@ function c13070.initial_effect(c)
 	e1:SetCode(EVENT_FREE_CHAIN)
 	e1:SetProperty(EFFECT_FLAG_CARD_TARGET)
 	e1:SetRange(LOCATION_HAND)
-	e1:SetCountLimit(1)
+	e1:SetCountLimit(1,13070)
 	e1:SetCondition(c13070.condition)
 	e1:SetTarget(c13070.target)
 	e1:SetOperation(c13070.operation)
@@ -66,9 +66,9 @@ function c13070.desfilter(c)
 end
 function c13070.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsOnField() and c13070.desfilter(chkc) and chkc:IsControler(tp) end
-	if chk==0 then return Duel.IsExistingTarget(c13070.desfilter,tp,LOCATION_ONFIELD,0,1,e:GetHandler()) end
+	if chk==0 then return Duel.IsExistingTarget(c13070.desfilter,tp,0xf,0,1,e:GetHandler()) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
-	local g=Duel.SelectTarget(tp,c13070.desfilter,tp,LOCATION_ONFIELD,0,1,1,e:GetHandler())
+	local g=Duel.SelectTarget(tp,c13070.desfilter,tp,0xf,0,1,1,e:GetHandler())
 	Duel.SetOperationInfo(0,CATEGORY_DESTROY,g,1,0,0)
 	if Duel.GetTurnPlayer()==tp and Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and e:GetHandler():IsCanBeSpecialSummoned(e,0,tp,true,false) then
 		Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,e:GetHandler(),1,0,0)

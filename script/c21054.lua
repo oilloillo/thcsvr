@@ -66,9 +66,10 @@ end
 function c21054.recop(e,tp,eg,ep,ev,re,r,rp)
 	if not e:GetHandler():IsRelateToEffect(e) then return end
 	local tc=Duel.GetFirstTarget()
-	if tc and not tc:IsImmuneToEffect(e) then
-		Duel.Damage(tp,1,REASON_EFFECT)
-		Duel.ChangeAttackTarget(tc)
+	local a=Duel.GetAttacker()
+	if tc and tc:IsRelateToEffect(e)
+		and a:IsAttackable() and not a:IsImmuneToEffect(e) then
+		Duel.CalculateDamage(a,tc)
 	end
 end
 function c21054.indtg(e,c)

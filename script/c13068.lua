@@ -34,12 +34,12 @@ function c13068.tfilter(c)
 	return c:IsAbleToRemove() and c:IsSetCard(0x13d)
 end
 function c13068.target(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsExistingMatchingCard(c13068.tfilter,tp,0x13,0,1,nil) end
-	Duel.SetOperationInfo(0,CATEGORY_REMOVE,nil,1,tp,0x13)
+	if chk==0 then return Duel.IsExistingMatchingCard(c13068.tfilter,tp,0x1e,0,1,nil) end
+	Duel.SetOperationInfo(0,CATEGORY_REMOVE,nil,1,tp,0x1e)
 end
 function c13068.operation(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
-	local g=Duel.SelectMatchingCard(tp,c13068.tfilter,tp,0x13,0,1,1,nil)
+	local g=Duel.SelectMatchingCard(tp,c13068.tfilter,tp,0x1e,0,1,1,nil)
 	local tg=g:GetFirst()
 	if tg==nil then return end
 	Duel.Remove(tg,POS_FACEUP,REASON_EFFECT)
