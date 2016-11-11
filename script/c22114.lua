@@ -48,7 +48,7 @@ function c22114.ctop(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.GetMatchingGroup(c22114.ctfilter,tp,LOCATION_ONFIELD,0,nil)
 	local tc=g:GetFirst()
 	while tc do
-		tc:AddCounter(0x28c,1)
+		tc:AddCounter(0x128c,1)
 		tc=g:GetNext()
 	end
 end
@@ -56,7 +56,7 @@ function c22114.drcon(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.GetFieldGroupCount(tp,LOCATION_HAND,0)==0
 end
 function c22114.cfilter(c)
-	return c:IsFaceup() and c:GetCounter(0x28c)>0 and c:IsAbleToGraveAsCost()
+	return c:IsFaceup() and c:GetCounter(0x128c)>0 and c:IsAbleToGraveAsCost()
 end
 function c22114.drcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():IsAbleToGraveAsCost()

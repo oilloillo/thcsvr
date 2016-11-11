@@ -62,7 +62,7 @@ function c31007.sop(e,tp,eg,ep,ev,re,r,rp)
 		e4:SetCode(EVENT_PHASE+PHASE_END)
 		e4:SetCountLimit(1)
 		e4:SetRange(LOCATION_MZONE)
-		e4:SetReset(RESET_EVENT+0xfe0000+EVENT_PHASE+PHASE_END)
+		e4:SetReset(RESET_EVENT+0xfe0000+RESET_PHASE+PHASE_END)
 		e4:SetOperation(c31007.tdop)
 		c:RegisterEffect(e4)
     end

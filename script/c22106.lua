@@ -1,7 +1,7 @@
  
 --幻在「死者之时」
 function c22106.initial_effect(c)
-	c:EnableCounterPermit(0x28c)
+	--c:EnableCounterPermit(0x128c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
@@ -37,10 +37,10 @@ end
 function c22106.tg1(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
 	if Duel.GetTurnPlayer()~=tp and 
-		Duel.IsCanRemoveCounter(tp,1,0,0x28c,2,REASON_COST)
+		Duel.IsCanRemoveCounter(tp,1,0,0x128c,2,REASON_COST)
 		and Duel.SelectYesNo(tp,aux.Stringid(22106,1)) then
 		Duel.Hint(HINT_OPSELECTED,1-tp,e:GetDescription())
-		Duel.RemoveCounter(tp,1,0,0x28c,2,REASON_COST)
+		Duel.RemoveCounter(tp,1,0,0x128c,2,REASON_COST)
 		local g=Duel.SelectTarget(tp,aux.TRUE,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,1,nil)
 		Duel.SetOperationInfo(0,CATEGORY_DESTROY,g,1,0,0)
 		e:SetCategory(CATEGORY_DESTROY)
@@ -56,13 +56,13 @@ function c22106.ctfilter(c)
 end
 function c22106.ctop(e,tp,eg,ep,ev,re,r,rp)
 	if eg:IsExists(c22106.ctfilter,1,nil) then
-		e:GetHandler():AddCounter(0x28c,1)
+		e:GetHandler():AddCounter(0x128c,1)
 	end
 end
 function c22106.cost(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsCanRemoveCounter(tp,1,0,0x28c,2,REASON_COST) end
+	if chk==0 then return Duel.IsCanRemoveCounter(tp,1,0,0x128c,2,REASON_COST) end
 	Duel.Hint(HINT_OPSELECTED,1-tp,e:GetDescription())
-	Duel.RemoveCounter(tp,1,0,0x28c,2,REASON_COST)
+	Duel.RemoveCounter(tp,1,0,0x128c,2,REASON_COST)
 end
 function c22106.tg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsOnField() end
