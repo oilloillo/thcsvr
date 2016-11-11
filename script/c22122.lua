@@ -1,7 +1,7 @@
  
 --华符「破山炮」
 function c22122.initial_effect(c)
-	c:EnableCounterPermit(0x28c)
+	--c:EnableCounterPermit(0x128c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
@@ -44,12 +44,12 @@ function c22122.ctcon(e,tp,eg,ep,ev,re,r,rp)
 	return eg:IsExists(c22122.ctfilter,1,nil)
 end
 function c22122.ctop(e,tp,eg,ep,ev,re,r,rp)
-	e:GetHandler():AddCounter(0x28c,1)
+	e:GetHandler():AddCounter(0x128c,1)
 end
 function c22122.cost(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsCanRemoveCounter(tp,1,1,0x28c,1,REASON_COST) end
+	if chk==0 then return Duel.IsCanRemoveCounter(tp,1,1,0x128c,1,REASON_COST) end
 	Duel.Hint(HINT_OPSELECTED,1-tp,e:GetDescription())
-	Duel.RemoveCounter(tp,1,1,0x28c,1,REASON_COST)
+	Duel.RemoveCounter(tp,1,1,0x128c,1,REASON_COST)
 end
 function c22122.filter(c)
 	return c:IsFaceup() and c:IsLevelAbove(1)

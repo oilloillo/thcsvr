@@ -1,7 +1,7 @@
  
 --夜王「德古拉摇篮」
 function c22109.initial_effect(c)
-	c:EnableCounterPermit(0x28c)
+	--c:EnableCounterPermit(0x128c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
@@ -36,12 +36,12 @@ function c22109.ctcon(e,tp,eg,ep,ev,re,r,rp)
 end
 function c22109.ctop(e,tp,eg,ep,ev,re,r,rp)
 	local ct=eg:FilterCount(c22109.ctfilter,nil)
-	e:GetHandler():AddCounter(0x28c,ct)
+	e:GetHandler():AddCounter(0x128c,ct)
 end
 function c22109.cost(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsCanRemoveCounter(tp,1,1,0x28c,2,REASON_COST) end
+	if chk==0 then return Duel.IsCanRemoveCounter(tp,1,1,0x128c,2,REASON_COST) end
 	Duel.Hint(HINT_OPSELECTED,1-tp,e:GetDescription())
-	Duel.RemoveCounter(tp,1,1,0x28c,2,REASON_COST)
+	Duel.RemoveCounter(tp,1,1,0x128c,2,REASON_COST)
 end
 function c22109.drtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
