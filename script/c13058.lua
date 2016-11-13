@@ -45,7 +45,6 @@ function c13058.f(c)
 	return c.count_available==2 and c:IsFaceup()
 end
 function c13058.addop(e,tp,eg,ep,ev,re,r,rp)
-	Debug.ShowHint(0)
 	if c13058[rp]<=1 then
 		c13058[rp]=5
 		Duel.RaiseEvent(eg,EVENT_CUSTOM+13058,re,r,rp,ep,ev)
@@ -70,7 +69,7 @@ function c13058.operation(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c13058.stg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsPlayerCanDraw(tp,1) and Duel.IsExistingMatchingCard(c13058.cfilter,tp,LOCATION_GRAVE,0,1,nil) end
+	if chk==0 then return Duel.IsPlayerCanDraw(tp,1) and Duel.IsExistingMatchingCard(c13058.cfilter,tp,LOCATION_GRAVE,0,2,nil) end
 	Duel.SetOperationInfo(0,CATEGORY_TODECK,nil,2,0,0)
 	Duel.SetOperationInfo(0,CATEGORY_DRAW,nil,0,tp,1)
 end
