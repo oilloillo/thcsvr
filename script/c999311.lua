@@ -31,10 +31,6 @@ function c999311.initial_effect(c)
 	e3:SetOperation(c999311.eqop)
 	c:RegisterEffect(e3)
 end
-c999311.hana_mat={
-c999311.ffilter1,
-c999311.ffilter2,
-}
 c999311.DescSetName = 0xa2
 function c999311.ffilter1(c)
 	return c:IsCode(999301) or c:IsCode(23001)

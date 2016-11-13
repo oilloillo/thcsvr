@@ -50,11 +50,7 @@ function c13053.activate(e,tp,eg,ep,ev,re,r,rp)
 		e3:SetCode(EFFECT_CANNOT_ACTIVATE)
 		e3:SetTargetRange(1,0)
 		e3:SetValue(c13053.aclimit)
-		if Duel.GetTurnPlayer()==tp then
 			e3:SetReset(RESET_PHASE+PHASE_END)
-		else
-			e3:SetReset(RESET_PHASE+PHASE_END,2)
-		end
 		Duel.RegisterEffect(e3,tp)
 		Duel.BreakEffect()
 		c:CancelToGrave()
