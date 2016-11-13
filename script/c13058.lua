@@ -47,7 +47,6 @@ end
 function c13058.addop(e,tp,eg,ep,ev,re,r,rp)
 	Debug.ShowHint(0)
 	if c13058[rp]<=1 then
-		Debug.ShowHint(1)
 		c13058[rp]=5
 		Duel.RaiseEvent(eg,EVENT_CUSTOM+13058,re,r,rp,ep,ev)
 	else c13058[rp]=c13058[rp]-1 end
