@@ -51,10 +51,10 @@ function c13054.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	end
 end
 function c13054.thop(e,tp,eg,ep,ev,re,r,rp)
-	local g=Duel.SelectMatchingCard(tp,Card.IsAbleToRemove,tp,LOCATION_GRAVE,0,1,12,nil)
+	local g=Duel.SelectMatchingCard(tp,Card.IsAbleToRemove,tp,LOCATION_GRAVE,0,1,15,nil)
 	local ct=0
 	if g:GetCount()>0 then
-		ct=math.ceil(Duel.Remove(g,POS_FACEUP,REASON_EFFECT)/4)
+		ct=math.ceil(Duel.Remove(g,POS_FACEUP,REASON_EFFECT)/7)
 		local dg=Duel.GetMatchingGroup(Card.IsDestructable,tp,0,0xe,nil)
 		if ct>0 and dg:GetCount()>0 then
 			sg=dg:RandomSelect(tp,ct)

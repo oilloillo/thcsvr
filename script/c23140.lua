@@ -27,7 +27,7 @@ function c23140.initial_effect(c)
 	c:RegisterEffect(e3)
 end
 function c23140.filter(c)
-	return c:IsSetCard(0x113) and c:IsAbleToHand()
+	return c:IsSetCard(0x113) and c:IsAbleToHand() and not c:IsCode(23140)
 end
 function c23140.thtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_GRAVE) and c23140.filter(chkc) end

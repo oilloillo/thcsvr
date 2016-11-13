@@ -58,6 +58,7 @@ function c13057.target(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function c13057.operation(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
 	local g=Duel.SelectMatchingCard(tp,Card.IsAbleToRemove,tp,0xe,0,1,1,c)
 	g:AddCard(c)
 	local p=Duel.GetChainInfo(0,CHAININFO_TARGET_PLAYER)

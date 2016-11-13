@@ -97,7 +97,7 @@ function c13078.filter(c,tp)
 	return c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsReason(REASON_DESTROY) and c:GetReasonPlayer()==tp and c:GetTurnID()==Duel.GetTurnCount()
 end
 function c13078.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and e:GetHandler():IsCanBeSpecialSummoned(e,0,tp,true,false) 
+	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and e:GetHandler():IsCanBeSpecialSummoned(e,0,tp,true,true) 
 		and c13078[tp]>4 end
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,e:GetHandler(),1,0,0)
 	Duel.SetChainLimit(aux.FALSE)
@@ -105,7 +105,7 @@ end
 function c13078.spop(e,tp,eg,ep,ev,re,r,rp,c)
 	local c=e:GetHandler()
 	if c:IsRelateToEffect(e) then
-		Duel.SpecialSummon(c,0,tp,tp,true,false,POS_FACEUP)
+		Duel.SpecialSummon(c,0,tp,tp,true,true,POS_FACEUP)
 	end
 end
 function c13078.afilter(c,atk)

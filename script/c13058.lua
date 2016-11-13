@@ -62,6 +62,7 @@ function c13058.target(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function c13058.operation(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE)
 	local g=Duel.SelectMatchingCard(tp,Card.IsAbleToGrave,tp,0xe,0,1,1,c)
 	local p=Duel.GetChainInfo(0,CHAININFO_TARGET_PLAYER)
 	if Duel.SendtoGrave(g,REASON_EFFECT)>0 then

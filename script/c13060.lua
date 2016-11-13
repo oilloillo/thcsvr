@@ -24,8 +24,8 @@ function c13060.condition(e,tp,eg,ep,ev,re,r,rp)
 	local g1=Duel.GetMatchingGroupCount(aux.TRUE,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,e:GetHandler())==0
 	local g2=Duel.GetMatchingGroupCount(aux.TRUE,tp,0xe,0,e:GetHandler())==0
 	local g3=Duel.GetMatchingGroupCount(aux.TRUE,tp,0,0xe,e:GetHandler())==0
-	local g5=Duel.GetMatchingGroupCount(aux.TRUE,tp,0,LOCATION_GRAVE,e:GetHandler())==0
-	return g1 or g2 or g3 or g5
+	--local g5=Duel.GetMatchingGroupCount(aux.TRUE,tp,0,LOCATION_GRAVE,e:GetHandler())==0
+	return g1 or g2 or g3
 end
 function c13060.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
@@ -35,6 +35,8 @@ end
 function c13060.operation(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.GetFieldGroup(tp,LOCATION_HAND,LOCATION_HAND)
 	if g:GetCount()>0 then Duel.SendtoDeck(g,nil,2,REASON_EFFECT) end
+	Duel.BreakEffect()
+	Duel.ShuffleDeck()
 	Duel.Draw(tp,5,REASON_EFFECT)
 	Duel.Draw(1-tp,5,REASON_EFFECT)
 end

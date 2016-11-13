@@ -18,6 +18,7 @@ function c31049.initial_effect(c)
 	local e2=Effect.CreateEffect(c)
 	e2:SetDescription(aux.Stringid(31049,1))
 	e2:SetCategory(CATEGORY_ATKCHANGE)
+	e2:SetCountLimit(2)
 	e2:SetType(EFFECT_TYPE_IGNITION)
 	e2:SetProperty(EFFECT_FLAG_CARD_TARGET)
 	e2:SetRange(LOCATION_MZONE)
@@ -54,8 +55,9 @@ function c31049.desop(e,tp,eg,ep,ev,re,r,rp)
 end
 function c31049.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_MZONE) and chkc:IsFaceup() end
-	if chk==0 then return e:GetHandler():GetOverlayGroup():FilterCount(Card.IsAbleToHand,nil)>0
-		and Duel.IsExistingTarget(Card.IsFaceup,tp,LOCATION_MZONE,LOCATION_MZONE,1,nil) end
+	if chk==0 then return Duel.IsExistingTarget(Card.IsFaceup,tp,LOCATION_MZONE,LOCATION_MZONE,1,nil)
+		--and e:GetHandler():GetOverlayGroup():FilterCount(Card.IsAbleToHand,nil)>0
+	end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)
 	local g=Duel.SelectTarget(tp,Card.IsFaceup,tp,LOCATION_MZONE,LOCATION_MZONE,1,1,nil)
 end
@@ -89,8 +91,8 @@ function c31049.operation(e,tp,eg,ep,ev,re,r,rp)
 		c:RegisterEffect(e2)
     end
     local g=c:GetOverlayGroup()
-    local sg=g:FilterSelect(tp,Card.IsAbleToHand,1,1,nil)
+    local sg=g:FilterSelect(tp,Card.IsAbleToDeck,1,1,nil)
     if sg:GetCount()>0 then
-    	Duel.SendtoHand(sg,nil,REASON_EFFECT)
+    	Duel.SendtoDeck(sg,nil,2,REASON_EFFECT)
     end
 end
