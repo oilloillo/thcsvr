@@ -1,5 +1,5 @@
 --弧光之草莓十字
---Script by Nanahira
+--Script by Nanahira and 你们撒嘛
 function c13057.initial_effect(c)
 	--recover
 	local e1=Effect.CreateEffect(c)
@@ -26,8 +26,8 @@ function c13057.initial_effect(c)
 	c:RegisterEffect(e2)
 	if c13057.counter==nil then
 		c13057.counter=true
-		c13057[0]=5
-		c13057[1]=5
+		c13057[0]=4
+		c13057[1]=4
 		local e3=Effect.GlobalEffect()
 		e3:SetType(EFFECT_TYPE_CONTINUOUS+EFFECT_TYPE_FIELD)
 		e3:SetCode(EVENT_CHAINING)
@@ -45,7 +45,7 @@ function c13057.f(c)
 end
 function c13057.addcount(e,tp,eg,ep,ev,re,r,rp)
 	if c13057[rp]<=1 then
-		c13057[rp]=5
+		c13057[rp]=4
 		Duel.RaiseEvent(eg,EVENT_CUSTOM+13057,re,r,rp,ep,ev)
 	else c13057[rp]=c13057[rp]-1 end
 end

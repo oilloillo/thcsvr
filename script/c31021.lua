@@ -81,7 +81,8 @@ function c31021.damcon(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.GetBattleDamage(tp)>0
 end
 function c31021.damcon2(e,tp,eg,ep,ev,re,r,rp)
-	return Duel.GetBattleDamage(tp)>0 and e:GetHandler():GetPreviousLocation()==LOCATION_ONFIELD
+	return Duel.GetBattleDamage(tp)>0 and
+		bit.band(e:GetHandler():GetPreviousLocation(),LOCATION_ONFIELD)~=0
 end
 function c31021.dop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.ChangeBattleDamage(tp,0)
@@ -94,7 +95,8 @@ function c31021.condition1(e,tp,eg,ep,ev,re,r,rp)
 	return eg:IsExists(c31021.cfilter,1,nil,tp) and Duel.GetFieldGroupCount(tp,LOCATION_HAND,0)>2
 end
 function c31021.condition2(e,tp,eg,ep,ev,re,r,rp)
-	return eg:IsExists(c31021.cfilter,1,nil,tp) and Duel.GetFieldGroupCount(tp,LOCATION_HAND,0)>2 and e:GetHandler():GetPreviousLocation()==LOCATION_ONFIELD
+	return eg:IsExists(c31021.cfilter,1,nil,tp) and Duel.GetFieldGroupCount(tp,LOCATION_HAND,0)>2 and
+		bit.band(e:GetHandler():GetPreviousLocation(),LOCATION_ONFIELD)~=0
 end
 function c31021.operation(e,tp,eg,ep,ev,re,r,rp)
 	local ct=Duel.GetFieldGroupCount(tp,LOCATION_HAND,0)-2

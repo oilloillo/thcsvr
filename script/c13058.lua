@@ -1,5 +1,5 @@
 --幽光之草莓十字
---Script by Nanahira
+--Script by Nanahira and 你们撒嘛
 function c13058.initial_effect(c)
 	--recover
 	local e1=Effect.CreateEffect(c)
@@ -27,8 +27,8 @@ function c13058.initial_effect(c)
 	c:RegisterEffect(e2)
 	if not c13058.gchk then
 		c13058.gchk=true
-		c13058[0]=5
-		c13058[1]=5
+		c13058[0]=2
+		c13058[1]=2
 		local e3=Effect.GlobalEffect()
 		e3:SetType(EFFECT_TYPE_CONTINUOUS+EFFECT_TYPE_FIELD)
 		e3:SetCode(EVENT_DESTROYED)
@@ -46,7 +46,7 @@ function c13058.f(c)
 end
 function c13058.addop(e,tp,eg,ep,ev,re,r,rp)
 	if c13058[rp]<=1 then
-		c13058[rp]=5
+		c13058[rp]=2
 		Duel.RaiseEvent(eg,EVENT_CUSTOM+13058,re,r,rp,ep,ev)
 	else c13058[rp]=c13058[rp]-1 end
 end
