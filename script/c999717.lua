@@ -75,6 +75,6 @@ function M.operation(e,tp,eg,ep,ev,re,r,rp)
 	if num > count then num = count end
 	local g=Duel.SelectMatchingCard(tp, M.filter2, tp, LOCATION_DECK, 0, 1, num, nil, e, tp)
 	if g:GetCount()>0 then
-		Duel.SpecialSummon(g, 0, tp, tp, false, false, POS_FACEUP)
+		Duel.SpecialSummon(g, 0, tp, tp, false, false, POS_FACEUP_ATTACK)
 	end
 end

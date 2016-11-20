@@ -60,10 +60,10 @@ function M.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 		local sg=rg:FilterSelect(tp, M.costfilter, 1, 1, e:GetHandler(), e, dg)
 		Duel.Release(sg, REASON_COST)
 	end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
-	local g=Duel.SelectTarget(tp,Card.IsDestructable,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,1,e:GetHandler())
-	Duel.SetOperationInfo(0,CATEGORY_DESTROY,g,g:GetCount(),0,0)
-	Duel.SetOperationInfo(0,CATEGORY_DRAW,nil,0,tp,1)
+	Duel.Hint(HINT_SELECTMSG, tp, HINTMSG_DESTROY)
+	local g=Duel.SelectTarget(tp, Card.IsDestructable, tp, 0, LOCATION_ONFIELD, 1, 1, e:GetHandler())
+	Duel.SetOperationInfo(0, CATEGORY_DESTROY, g, g:GetCount(), 0, 0)
+	Duel.SetOperationInfo(0, CATEGORY_DRAW, nil, 0, tp, 1)
 end
 
 function M.activate(e,tp,eg,ep,ev,re,r,rp)
