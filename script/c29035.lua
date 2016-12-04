@@ -13,7 +13,7 @@ function c29035.initial_effect(c)
 end
 function c29035.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetFlagEffect(tp,29035)==0 end
-	Duel.RegisterFlagEffect(tp,29035,RESET_PHASE+PHASE_END,0,1)
+	Duel.RegisterFlagEffect(tp,29035,RESET_PHASE+PHASE_END,EFFECT_FLAG_OATH,1)
 end
 function c29035.spfilter(c,e,tp)
 	local code=c:GetOriginalCode()

@@ -12,7 +12,7 @@ function c21101.initial_effect(c)
 end
 function c21101.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetFlagEffect(tp,21101)==0 end
-	Duel.RegisterFlagEffect(tp,21101,RESET_PHASE+PHASE_END,0,1)
+	Duel.RegisterFlagEffect(tp,21101,RESET_PHASE+PHASE_END,EFFECT_FLAG_OATH,1)
 end
 function c21101.sfilter(c)
 	return c:IsSetCard(0x257) and c:IsSSetable() and not c:IsCode(21101)
