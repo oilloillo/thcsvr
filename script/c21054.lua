@@ -73,7 +73,7 @@ function c21054.recop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c21054.indtg(e,c)
-	return c:IsCode(21012)
+	return c:IsSetCard(0x255) and c:IsFaceup()
 end
 function c21054.filter(c)
 	return c:IsFaceup() and c:IsSetCard(0x256) and c:GetOriginalLevel()>=6 and not c:IsHasEffect(EFFECT_EXTRA_ATTACK)
