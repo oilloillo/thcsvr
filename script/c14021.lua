@@ -93,5 +93,7 @@ function c14021.thop(e,tp,eg,ep,ev,re,r,rp)
 		local tg=g1:RandomSelect(1-tp,1,1,nil)
 		Duel.SendtoHand(tg,nil,REASON_EFFECT)
 		Duel.ConfirmCards(1-tp,tg)
+		g1:RemoveCard(tg:GetFirst())
+		Duel.SendtoGrave(g1,REASON_EFFECT)
 	end
 end

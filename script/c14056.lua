@@ -24,9 +24,10 @@ function c14056.initial_effect(c)
 	local e4=Effect.CreateEffect(c)
 	e4:SetType(EFFECT_TYPE_SINGLE)
 	e4:SetCode(EFFECT_IMMUNE_EFFECT)
+	e4:SetProperty(EFFECT_FLAG_SINGLE_RANGE)
+	e4:SetRange(LOCATION_MZONE)
 	e4:SetValue(c14056.efilter)
 	e4:SetCondition(c14056.tecon)
-	e4:SetOwnerPlayer(tp)
 	c:RegisterEffect(e4)
 end
 function c14056.thfilter(c)
@@ -34,9 +35,9 @@ function c14056.thfilter(c)
 end
 function c14056.destg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsOnField() and chkc:IsAbleToHand() and chkc:IsControler(1-tp) end
-	if chk==0 then return Duel.IsExistingTarget(Card.IsAbleToHand,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil) end
+	if chk==0 then return Duel.IsExistingTarget(Card.IsAbleToHand,tp,0,LOCATION_ONFIELD,1,nil) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RTOHAND)
-	local g=Duel.SelectTarget(tp,Card.IsAbleToHand,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,1,nil)
+	local g=Duel.SelectTarget(tp,Card.IsAbleToHand,tp,0,LOCATION_ONFIELD,1,1,nil)
 	Duel.SetOperationInfo(0,CATEGORY_TOHAND,g,1,0,0)
 end
 function c14056.desop(e,tp,eg,ep,ev,re,r,rp)
@@ -70,7 +71,7 @@ function c14056.operation(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c14056.efilter(e,re)
-	return e:GetOwnerPlayer()~=re:GetOwnerPlayer()
+	return e:GetHandlerPlayer()~=re:GetOwnerPlayer()
 end
 function c14056.cfilter(c)
 	return c:IsCode(14035) and c:IsFaceup()

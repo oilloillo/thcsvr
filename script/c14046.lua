@@ -45,7 +45,7 @@ function c14046.thop(e,tp,eg,ep,ev,re,r,rp)
 		end
 	else
 		local tc=Duel.GetFirstMatchingCard(c14046.filter2,tp,LOCATION_DECK,0,nil)
-		if tc:GetCount()>0 then
+		if tc then
 			Duel.SendtoHand(tc,nil,REASON_EFFECT)
 			Duel.ConfirmCards(1-tp,tc)
 		end
