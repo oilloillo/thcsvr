@@ -1,5 +1,4 @@
- 
---梦幻馆的吸血少女 胡桃
+ --梦幻馆的吸血少女 胡桃
 function c14003.initial_effect(c)
 	--select
 	local e1=Effect.CreateEffect(c)

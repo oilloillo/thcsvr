@@ -1,5 +1,4 @@
- 
---梦幻馆的门番 艾丽
+ --梦幻馆的门番 艾丽
 function c14007.initial_effect(c)
 	--extra summon
 	local e1=Effect.CreateEffect(c)

@@ -1,5 +1,4 @@
- 
---幽香
+ --幽香
 function c14010.initial_effect(c)
 	--to hand
 	local e1=Effect.CreateEffect(c)
@@ -53,7 +52,8 @@ function c14010.thfilter(c)
 end
 function c14010.destg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsOnField() and chk:IsDestructable() end
-	if chk==0 then return Duel.IsExistingMatchingCard(c14010.thfilter,tp,LOCATION_DECK,0,1,nil) and Duel.IsExistingTarget(Card.IsDestructable,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil) end
+	if chk==0 then return Duel.IsExistingMatchingCard(c14010.thfilter,tp,LOCATION_DECK,0,1,nil)
+		and Duel.IsExistingTarget(Card.IsDestructable,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RTOHAND)
 	local g=Duel.SelectTarget(tp,Card.IsDestructable,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,1,nil)
 	Duel.SetOperationInfo(0,CATEGORY_DESTROY,g,1,0,0)

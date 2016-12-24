@@ -1,5 +1,4 @@
- 
---梦幻馆的恶魔 幻月
+ --梦幻馆的恶魔 幻月
 function c14019.initial_effect(c)
 	--xyz summon
 	aux.AddXyzProcedure(c,nil,10,3,c14019.ovfilter,aux.Stringid(14019,0))

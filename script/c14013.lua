@@ -1,5 +1,4 @@
- 
---梦幻馆之主 幽香
+ --梦幻馆之主 幽香
 function c14013.initial_effect(c)
 	--summon with 3 tribute
 	local e1=Effect.CreateEffect(c)

@@ -1,5 +1,4 @@
- 
---邪仙 霍青娥
+ --邪仙 霍青娥
 function c27007.initial_effect(c)
 	--special summon
 	local e1=Effect.CreateEffect(c)
