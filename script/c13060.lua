@@ -35,9 +35,9 @@ end
 function c13060.operation(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.GetFieldGroup(tp,LOCATION_HAND,LOCATION_HAND)
 	if g:GetCount()>0 then Duel.SendtoDeck(g,nil,2,REASON_EFFECT) end
-	Duel.BreakEffect()
 	Duel.ShuffleDeck(tp)
 	Duel.ShuffleDeck(1-tp)
+	Duel.BreakEffect()
 	Duel.Draw(tp,5,REASON_EFFECT)
 	Duel.Draw(1-tp,5,REASON_EFFECT)
 end
