@@ -62,7 +62,7 @@ end
 function c51108.indcon(e)
 	local ph=Duel.GetCurrentPhase()
 	local tp=Duel.GetTurnPlayer()
-	return tp~=e:GetHandler():GetControler() and ((ph>PHASE_MAIN1 and ph<PHASE_MAIN2))
+	return tp~=e:GetHandler():GetControler() and (ph==PHASE_BATTLE or ph==PHASE_DAMAGE or ph==PHASE_DAMAGE_CAL)
 end
 function c51108.destg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()

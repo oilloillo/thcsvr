@@ -2,6 +2,14 @@
 local M = c999411
 local Mid = 999411
 function M.initial_effect(c)
+	--self destroy
+	local e0=Effect.CreateEffect(c)
+	e0:SetType(EFFECT_TYPE_SINGLE)
+	e0:SetProperty(EFFECT_FLAG_SINGLE_RANGE)
+	e0:SetRange(LOCATION_SZONE)
+	e0:SetCode(EFFECT_SELF_DESTROY)
+	e0:SetCondition(M.sdcon)
+	c:RegisterEffect(e0)
 	--Activate
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
@@ -54,6 +62,7 @@ function M.target(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 
 function M.activate(e,tp,eg,ep,ev,re,r,rp)
+	if not e:GetHandler():IsOnField() then return end
 	local g=Group.CreateGroup()
 	Duel.ChangeTargetCard(ev, g)
 	Duel.ChangeChainOperation(ev, M.repop)
@@ -132,4 +141,13 @@ function M.rmop(e,tp,eg,ep,ev,re,r,rp)
 	if tc:IsRelateToEffect(e) then
 		Duel.SendtoGrave(tc, REASON_EFFECT)
 	end
+end
+
+function M.sdfilter(c)
+	return c:IsFaceup() and not c:IsSetCard(0x815)
+end
+
+function M.sdcon(e)
+	return not e:GetHandler():IsStatus(STATUS_DESTROY_CONFIRMED)
+		and Duel.IsExistingMatchingCard(M.sdfilter, 0, LOCATION_MZONE, 0, 1, nil)
 end

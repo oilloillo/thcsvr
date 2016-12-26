@@ -37,7 +37,7 @@ function c501105.activate(e,tp,eg,ep,ev,re,r,rp)
 		tc:SetMaterial(Group.FromCards(c))
 		Duel.Overlay(tc,Group.FromCards(c))
 		Duel.SpecialSummon(tc,SUMMON_TYPE_XYZ,tp,tp,false,false,POS_FACEUP)
-		tc:CompleteProcedure()
+	    tc:CompleteProcedure()
 	end
 end
 

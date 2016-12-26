@@ -42,8 +42,14 @@ function c51205.disop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.BreakEffect()
 	local g1=Duel.SendtoDeck(ec,nil,2,REASON_EFFECT)
 	if g1~=0 and not Duel.IsExistingMatchingCard(c51205.confilter,e:GetHandlerPlayer(),LOCATION_ONFIELD,0,1,e:GetHandler()) then
-	Duel.DiscardHand(tp,nil,1,1,REASON_EFFECT)
+	local c=e:GetHandler()
+	local e1=Effect.CreateEffect(e:GetHandler())
+	e1:SetType(EFFECT_TYPE_FIELD)
+	e1:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
+	e1:SetTargetRange(1,0)
+	e1:SetCode(EFFECT_SKIP_DP)
+	e1:SetReset(RESET_PHASE+PHASE_END+RESET_OPPO_TURN)
+	Duel.RegisterEffect(e1,tp)
 	end
 end
-
 end

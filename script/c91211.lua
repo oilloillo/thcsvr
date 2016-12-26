@@ -25,16 +25,13 @@ end
 function c91211.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>1
 		and Duel.IsPlayerCanSpecialSummonMonster(tp,91400,0,0x4011,0,0,2,RACE_BEAST,ATTRIBUTE_EARTH) end
-	Duel.SetOperationInfo(0,CATEGORY_TOKEN,nil,2,0,0)
-	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,2,0,0)
+	Duel.SetOperationInfo(0,CATEGORY_TOKEN,nil,1,0,0)
+	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,0,0)
 end
 function c91211.activate(e,tp,eg,ep,ev,re,r,rp)
 	if Duel.GetLocationCount(tp,LOCATION_MZONE)>1
 		and Duel.IsPlayerCanSpecialSummonMonster(tp,91400,0,0x4011,0,0,2,RACE_BEAST,ATTRIBUTE_EARTH) then
-		for i=1,2 do
-			local token=Duel.CreateToken(tp,91400)
-			Duel.SpecialSummonStep(token,0,tp,tp,false,false,POS_FACEUP)
-		end
-		Duel.SpecialSummonComplete()
+		local token=Duel.CreateToken(tp,91400)
+	Duel.SpecialSummon(token,0,tp,tp,false,false,POS_FACEUP)
 	end
 end

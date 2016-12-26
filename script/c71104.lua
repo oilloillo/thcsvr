@@ -1,3 +1,4 @@
+require "nef/dss"
 --No Name 黑兔
 function c71104.initial_effect(c)
 	--special summon

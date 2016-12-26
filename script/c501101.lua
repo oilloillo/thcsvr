@@ -36,6 +36,6 @@ function c501101.desop(e,tp,eg,ep,ev,re,r,rp)
 	elseif r1+r2+r3==2 then
 		Duel.DiscardHand(1-tp,nil,1,1,REASON_EFFECT+REASON_DISCARD)
 	else
-		Duel.Damage(tp,900,REASON_EFFECT)
+	    Duel.Damage(tp,900,REASON_EFFECT)
 	end
 end

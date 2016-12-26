@@ -58,7 +58,7 @@ function c421408.thcon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():GetFlagEffect(421408)>0
 end
 function c421408.thfilter(c)
-	return c:IsRace(RACE_FAIRY) and c:IsLevelBelow(3)  and c:IsAbleToHand()
+	return  c:IsAbleToHand() and c:IsSetCard(0x404)
 end
 function c421408.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(c421408.thfilter,tp,LOCATION_DECK,0,1,nil) end
