@@ -1,4 +1,4 @@
-require "nef/dss"
+
 --圣命莲
 function c26008.initial_effect(c)
 	--xyz summon
