@@ -1,5 +1,4 @@
- 
---红魔-红美铃
+ --红魔-红美铃
 function c22011.initial_effect(c)
 	--to hand
 	local e1=Effect.CreateEffect(c)
@@ -11,7 +10,7 @@ function c22011.initial_effect(c)
 	e1:SetTarget(c22011.rettg)
 	e1:SetOperation(c22011.retop)
 	c:RegisterEffect(e1)
-	--mam
+	--mamo
 	local e2=Effect.CreateEffect(c)
 	e2:SetType(EFFECT_TYPE_FIELD)
 	e2:SetCode(EFFECT_INDESTRUCTABLE_EFFECT)

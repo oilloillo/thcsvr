@@ -42,7 +42,7 @@ function c13060.operation(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Draw(1-tp,5,REASON_EFFECT)
 end
 function c13060.cost(e,tp,eg,ep,ev,re,r,rp,chk)
-	local tg=Duel.GetMatchingGroup(Card.IsAbleToRemoveAsCost,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,e:GetHandler())
+	local tg=Duel.GetMatchingGroup(Card.IsAbleToRemoveAsCost,tp,LOCATION_MZONE,LOCATION_MZONE,e:GetHandler())
 	local tc=tg:GetFirst()
 	if chk==0 then return tc end
 	while tc do

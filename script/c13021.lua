@@ -123,7 +123,7 @@ function c13021.filter(c,tp)
 end
 function c13021.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and e:GetHandler():IsCanBeSpecialSummoned(e,0,tp,true,false) 
-		and c13021[tp]>3 end
+		and c13021[tp]>2 end
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,e:GetHandler(),1,0,0)
 end
 function c13021.spop(e,tp,eg,ep,ev,re,r,rp,c)

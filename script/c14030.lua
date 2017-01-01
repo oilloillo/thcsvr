@@ -1,4 +1,3 @@
- 
 --Alice Maestra
 function c14030.initial_effect(c)
 	--Activate

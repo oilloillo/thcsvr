@@ -1,7 +1,9 @@
  --梦幻馆的恶魔 幻月
 function c14019.initial_effect(c)
 	--xyz summon
-	aux.AddXyzProcedure(c,nil,10,3,c14019.ovfilter,aux.Stringid(14019,0))
+	aux.AddXyzProcedure(c,nil,10,6,c14019.ovfilter,aux.Stringid(14019,0))
+	Nef.AddXyzProcedureWithDesc(c,nil,10,3,aux.Stringid(14019,3))
+	Nef.AddXyzProcedureWithDesc(c,aux.FilterBoolFunction(c14019.xyzfilter),10,2,aux.Stringid(14019,4))
 	c:EnableReviveLimit()
 	--attack
 	local e1=Effect.CreateEffect(c)
@@ -38,6 +40,9 @@ function c14019.initial_effect(c)
 end
 function c14019.ovfilter(c)
 	return c:IsFaceup() and c:IsCode(14016) and c:GetFlagEffect(tp,1401600)>0
+end
+function c14019.xyzfilter(c)
+	return c:IsFaceup() and Duel.GetFlagEffect(c:GetControler(),14038)>0
 end
 function c14019.filter(c)
 	return c:IsType(TYPE_EFFECT) and c:IsSetCard(0x208) and c:GetAttack()>=0

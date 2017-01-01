@@ -25,7 +25,7 @@ function c27147.initial_effect(c)
 	e3:SetType(EFFECT_TYPE_SINGLE)
 	e3:SetCode(EFFECT_TRAP_ACT_IN_HAND)
 	e3:SetCondition(c27147.handcon)
-	c:RegisterEffect(e3)
+	--c:RegisterEffect(e3)
 end
 function c27147.target1(e,tp,eg,ep,ev,re,r,rp,chk)
 	local ev=Duel.GetBattleDamage(tp)

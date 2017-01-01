@@ -50,12 +50,12 @@ function c14062.spop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)
 end
 function c14062.atkvalp(e,c)
-	return Duel.GetFieldGroupCount(c:GetControler(),0,LOCATION_MZONE)*200
+	return Duel.GetFieldGroupCount(c:GetControler(),0,LOCATION_MZONE)*300
 end
 function c14062.atkfilter(c)
 	return c:IsType(TYPE_EFFECT) and c:IsSetCard(0x208) 
 end
 function c14062.atkval(e,c)
 	local g=Duel.GetMatchingGroup(c14062.atkfilter,c:GetControler(),LOCATION_GRAVE,LOCATION_GRAVE,nil)
-	return g:GetClassCount(Card.GetCode)*200
+	return g:GetClassCount(Card.GetCode)*300
 end

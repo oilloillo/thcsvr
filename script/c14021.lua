@@ -53,7 +53,7 @@ function c14021.otcon(e,c)
 end
 function c14021.ottg(e,c)
 	local mi,ma=c:GetTributeRequirement()
-	return mi>=1
+	return mi>=1 and c:IsSetCard(0x138)
 end
 function c14021.otop(e,tp,eg,ep,ev,re,r,rp,c)
 	local mi,ma=c:GetTributeRequirement()

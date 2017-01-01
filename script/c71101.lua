@@ -45,7 +45,8 @@ function c71101.tgvalue(e,re,rp)
 	return rp~=e:GetHandlerPlayer()
 end
 function c71101.negcon(e,tp,eg,ep,ev,re,r,rp)
-	return e:GetHandler():IsPreviousLocation(LOCATION_REMOVED) and Duel.GetTurnPlayer()==tp and Duel.GetCurrentPhase()==PHASE_BATTLE and not Duel.CheckPhaseActivity() and Duel.GetCurrentChain()==0
+	return e:GetHandler():IsPreviousLocation(LOCATION_REMOVED) and Duel.GetTurnPlayer()==tp
+		and (Duel.GetCurrentPhase()>PHASE_MAIN1 and Duel.GetCurrentPhase()<PHASE_MAIN2) and not Duel.CheckPhaseActivity() and Duel.GetCurrentChain()==0
 end
 function c71101.negtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(c71101.filter1,tp,0,LOCATION_MZONE,1,nil) end

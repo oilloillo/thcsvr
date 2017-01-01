@@ -1,7 +1,8 @@
 --梦幻馆的女仆幻想✿梦月
 function c14063.initial_effect(c)
 	--xyz summon
-	aux.AddXyzProcedure(c,nil,4,2)
+	Nef.AddXyzProcedureWithDesc(c,nil,4,2,aux.Stringid(14063,1))
+	Nef.AddXyzProcedureWithDesc(c,aux.FilterBoolFunction(c14063.xyzfilter),4,1,aux.Stringid(14063,2))
 	c:EnableReviveLimit()
 	--darkness
 	local e1=Effect.CreateEffect(c)
@@ -23,6 +24,9 @@ function c14063.initial_effect(c)
 	e2:SetTarget(c14063.sptg)
 	e2:SetOperation(c14063.spop)
 	c:RegisterEffect(e2)
+end
+function c14063.xyzfilter(c)
+	return c:IsFaceup() and Duel.GetFlagEffect(c:GetControler(),14038)>0
 end
 function c14063.condition(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():GetOverlayCount()>0

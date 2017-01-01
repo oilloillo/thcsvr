@@ -1,7 +1,8 @@
 --梦幻馆的可爱恶魔✿幻月
 function c14064.initial_effect(c)
 	--xyz summon
-	aux.AddXyzProcedure(c,nil,5,2)
+	Nef.AddXyzProcedureWithDesc(c,nil,5,3,aux.Stringid(14064,1))
+	Nef.AddXyzProcedureWithDesc(c,aux.FilterBoolFunction(c14064.xyzfilter),5,2,aux.Stringid(14064,2))
 	c:EnableReviveLimit()
 	--special summon
 	local e2=Effect.CreateEffect(c)
@@ -24,6 +25,9 @@ function c14064.initial_effect(c)
 	e3:SetValue(c14064.atkval)
 	c:RegisterEffect(e3)
 end
+function c14064.xyzfilter(c)
+	return c:IsFaceup() and Duel.GetFlagEffect(c:GetControler(),14038)>0
+end
 function c14064.spcon(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.GetChainInfo(ev,CHAININFO_TARGET_CARDS)
 	return ep==1-tp and re:IsHasProperty(EFFECT_FLAG_CARD_TARGET) and g and g:IsContains(e:GetHandler())
@@ -33,7 +37,7 @@ function c14064.tgcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	e:GetHandler():RemoveOverlayCard(tp,1,1,REASON_COST)
 end
 function c14064.spfilter(c,e,tp)
-	return c:IsCode(14063) and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_XYZ,tp,false,false)
+	return c:IsCode(14064) and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_XYZ,tp,false,false)
 end
 function c14064.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(c14064.spfilter,tp,LOCATION_EXTRA,0,1,nil,e,tp) end

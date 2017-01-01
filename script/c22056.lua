@@ -1,5 +1,4 @@
- 
---红魔 永远鲜红的幼月
+ --红魔 永远鲜红的幼月
 function c22056.initial_effect(c)
 	--Race
 	local e2=Effect.CreateEffect(c)

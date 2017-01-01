@@ -1,5 +1,4 @@
- 
---红魔 完全潇洒的女仆.
+ --红魔 完全潇洒的女仆.
 function c22052.initial_effect(c)
 	--synchro summon
 	aux.AddSynchroProcedure(c,aux.FilterBoolFunction(Card.IsSetCard,0x208),aux.NonTuner(Card.IsSetCard,0x208),1)
@@ -24,7 +23,6 @@ function c22052.initial_effect(c)
 	local e4=Effect.CreateEffect(c)
 	e4:SetDescription(aux.Stringid(22052,1))
 	e4:SetCategory(CATEGORY_DISABLE)
-	--发动无效才能在伤判发动
 	--e4:SetProperty(EFFECT_FLAG_DAMAGE_STEP+EFFECT_FLAG_DAMAGE_CAL)
 	e4:SetType(EFFECT_TYPE_QUICK_O)
 	e4:SetRange(LOCATION_MZONE)

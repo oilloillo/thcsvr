@@ -1,5 +1,4 @@
- 
---红魔-十六夜咲夜
+ --红魔-十六夜咲夜
 function c22020.initial_effect(c)
 	--summon with no tribute
 	local e4=Effect.CreateEffect(c)

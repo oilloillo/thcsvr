@@ -2,9 +2,11 @@
 function c14053.initial_effect(c)
 	--recover
 	local e1=Effect.CreateEffect(c)
-	e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_CONTINUOUS)
+	e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_F)
+	e1:SetCategory(CATEGORY_RECOVER)
 	e1:SetCode(EVENT_BATTLE_DAMAGE)
 	e1:SetCondition(c14053.condition)
+	e1:SetTarget(c14053.target)
 	e1:SetOperation(c14053.operation)
 	c:RegisterEffect(e1)
 	--to hand
@@ -21,6 +23,10 @@ function c14053.initial_effect(c)
 end
 function c14053.condition(e,tp,eg,ep,ev,re,r,rp)
 	return ep~=tp 
+end
+function c14053.target(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return true end
+	Duel.SetOperationInfo(0,CATEGORY_RECOVER,0,0,tp,ev/2)
 end
 function c14053.operation(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Recover(tp,ev/2,REASON_EFFECT)

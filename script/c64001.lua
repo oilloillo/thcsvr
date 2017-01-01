@@ -21,7 +21,7 @@ function c64001.initial_effect(c)
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_BATTLE_DESTROYING)
 	e2:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
-	e2:SetCondition(aux.bdocon)
+	e2:SetCondition(c64001.damcon)
 	e2:SetCost(c64001.damcost)
 	e2:SetTarget(c64001.damtg)
 	e2:SetOperation(c64001.damop)
@@ -59,6 +59,11 @@ function c64001.atkop(e,tp,eg,ep,ev,re,r,rp)
 		c:RegisterEffect(e1)
 		c:RegisterFlagEffect(64001,RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_DAMAGE,0,1)
 	end
+end
+function c64001.damcon(e,tp,eg,ep,ev,re,r,rp)
+	local c=e:GetHandler()
+	local bc=c:GetBattleTarget()
+	return c:IsRelateToBattle() and bc:IsLocation(LOCATION_GRAVE) and bc:IsReason(REASON_BATTLE)
 end
 function c64001.damcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():CheckRemoveOverlayCard(tp,1,REASON_COST) end
