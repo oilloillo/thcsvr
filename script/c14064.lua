@@ -3,6 +3,7 @@ function c14064.initial_effect(c)
 	--xyz summon
 	Nef.AddXyzProcedureWithDesc(c,nil,5,3,aux.Stringid(14064,1))
 	Nef.AddXyzProcedureWithDesc(c,aux.FilterBoolFunction(c14064.xyzfilter),5,2,aux.Stringid(14064,2))
+	Nef.AddXyzProcedureWithDesc(c,aux.FilterBoolFunction(c14064.xyzfilter1),5,1,aux.Stringid(14064,3))
 	c:EnableReviveLimit()
 	--special summon
 	local e2=Effect.CreateEffect(c)
@@ -27,6 +28,9 @@ function c14064.initial_effect(c)
 end
 function c14064.xyzfilter(c)
 	return c:IsFaceup() and Duel.GetFlagEffect(c:GetControler(),14038)>0
+end
+function c14064.xyzfilter1(c)
+	return c:IsFaceup() and Duel.GetFlagEffect(c:GetControler(),14038)>1
 end
 function c14064.spcon(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.GetChainInfo(ev,CHAININFO_TARGET_CARDS)

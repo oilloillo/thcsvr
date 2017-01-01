@@ -1,5 +1,4 @@
- 
---✿昙花的人形使✿
+ --✿昙花的人形使✿
 function c20132.initial_effect(c)
 	--synchro summon
 	aux.AddSynchroProcedure(c,nil,aux.NonTuner(Card.IsSetCard,0x208),1)

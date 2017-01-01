@@ -4,6 +4,7 @@ function c14019.initial_effect(c)
 	aux.AddXyzProcedure(c,nil,10,6,c14019.ovfilter,aux.Stringid(14019,0))
 	Nef.AddXyzProcedureWithDesc(c,nil,10,3,aux.Stringid(14019,3))
 	Nef.AddXyzProcedureWithDesc(c,aux.FilterBoolFunction(c14019.xyzfilter),10,2,aux.Stringid(14019,4))
+	Nef.AddXyzProcedureWithDesc(c,aux.FilterBoolFunction(c14019.xyzfilter1),10,1,aux.Stringid(14019,5))
 	c:EnableReviveLimit()
 	--attack
 	local e1=Effect.CreateEffect(c)
@@ -43,6 +44,9 @@ function c14019.ovfilter(c)
 end
 function c14019.xyzfilter(c)
 	return c:IsFaceup() and Duel.GetFlagEffect(c:GetControler(),14038)>0
+end
+function c14019.xyzfilter1(c)
+	return c:IsFaceup() and Duel.GetFlagEffect(c:GetControler(),14038)>1
 end
 function c14019.filter(c)
 	return c:IsType(TYPE_EFFECT) and c:IsSetCard(0x208) and c:GetAttack()>=0

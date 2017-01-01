@@ -66,7 +66,7 @@ function c14057.xyzcon(e,c,og,min,max)
 	if ct<1 and (not min or min<=1) and mg:IsExists(c14057.ovfilter,1,nil,tp,c) then
 		return true
 	end
-	return Duel.CheckXyzMaterial(c,nil,6,2,2,og)
+	return Duel.CheckXyzMaterial(c,nil,10,2,2,og)
 end
 function c14057.xyztg(e,tp,eg,ep,ev,re,r,rp,chk,c,og,min,max)
 	if og and not min then
@@ -80,7 +80,7 @@ function c14057.xyztg(e,tp,eg,ep,ev,re,r,rp,chk,c,og,min,max)
 	else
 		mg=Duel.GetFieldGroup(tp,LOCATION_MZONE,0)
 	end
-	local b1=Duel.CheckXyzMaterial(c,nil,6,2,2,og)
+	local b1=Duel.CheckXyzMaterial(c,nil,10,2,2,og)
 	local b2=ct<1 and (not min or min<=1) and mg:IsExists(c14057.ovfilter,1,nil,tp,c)
 	local g=nil
 	if b2 and (not b1 or Duel.SelectYesNo(tp,aux.Stringid(14057,0))) then
@@ -90,7 +90,7 @@ function c14057.xyztg(e,tp,eg,ep,ev,re,r,rp,chk,c,og,min,max)
 		g:GetFirst():RemoveOverlayCard(tp,1,1,REASON_COST)
 	else
 		e:SetLabel(0)
-		g=Duel.SelectXyzMaterial(tp,c,nil,6,2,2,og)
+		g=Duel.SelectXyzMaterial(tp,c,nil,10,2,2,og)
 	end
 	if g then
 		g:KeepAlive()
