@@ -1,5 +1,4 @@
- 
---风见幽香
+ --风见幽香
 function c25004.initial_effect(c)
 	--synchro summon
 	c:EnableReviveLimit()

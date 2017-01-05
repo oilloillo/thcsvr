@@ -59,10 +59,14 @@ function c14064.spop(e,tp,eg,ep,ev,re,r,rp)
 		tc:CompleteProcedure()
 	end
 end
-function c14064.atkfilter(c)
-	return c:IsType(TYPE_EFFECT) and c:IsSetCard(0x208) 
+function c14064.atkfilter1(c)
+	return c:IsType(TYPE_XYZ) and c:IsSetCard(0x208) 
+end
+function c14064.atkfilter2(c)
+	return c:IsSetCard(0x138) 
 end
 function c14064.atkval(e,c)
-	local g=Duel.GetMatchingGroup(c14064.atkfilter,c:GetControler(),LOCATION_GRAVE,0,nil)
-	return g:GetSum(Card.GetLevel)*200+g:GetSum(Card.GetRank)*200
+	local g1=Duel.GetMatchingGroup(c14064.atkfilter1,c:GetControler(),LOCATION_GRAVE,0,nil)
+	local g2=Duel.GetMatchingGroup(c14064.atkfilter2,c:GetControler(),LOCATION_GRAVE,0,nil)
+	return g2:GetSum(Card.GetLevel)*200+g1:GetSum(Card.GetRank)*200
 end

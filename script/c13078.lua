@@ -6,7 +6,7 @@ function c13078.initial_effect(c)
 	e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
 	e1:SetType(EFFECT_TYPE_SINGLE)
 	e1:SetCode(EFFECT_SPSUMMON_CONDITION)
-	e1:SetValue(aux.FALSE)
+	--e1:SetValue(aux.FALSE)
 	c:RegisterEffect(e1)
 	--special summon
 	local e2=Effect.CreateEffect(c)
@@ -137,7 +137,7 @@ function c13078.exfilter(c)
 	return c:IsFaceup() and c:IsSetCard(0x13d)
 end
 function c13078.excon(e)
-	return Duel.IsExistingMatchingCard(c13078.exfilter,0,LOCATION_MZONE,LOCATION_MZONE,1,nil)
+	return Duel.IsExistingMatchingCard(c13078.exfilter,e:GetHandlerPlayer(),LOCATION_MZONE,0,1,nil)
 end
 function c13078.destarget(e,c)
 	return c:IsSetCard(0x13d) and c:GetFieldID()>e:GetHandler():GetFieldID()

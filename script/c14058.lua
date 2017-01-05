@@ -41,6 +41,9 @@ function c14058.operation(e,tp,eg,ep,ev,re,r,rp)
 		Duel.Destroy(tc,REASON_EFFECT)
 	end
 end
+function c14058.afilter(c)
+	return c:IsFaceup() and c:IsCode(14035)
+end
 function c14058.adcon(e)
 	local c=e:GetHandler()
 	local ph=Duel.GetCurrentPhase()
