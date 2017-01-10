@@ -58,8 +58,8 @@ function c19033.sop(e,tp,eg,ep,ev,re,r,rp)
 end
 function c19033.spr(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	if not c:IsPreviousLocation(LOCATION_ONFIELD) then return end
-	c:RegisterFlagEffect(19033,RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_STANDBY,0,1)
+	if bit.band(r,0x61)~=0x61 or not c:IsPreviousLocation(LOCATION_ONFIELD) then return end
+	c:RegisterFlagEffect(19033,RESET_EVENT+0x1ff0000+RESET_PHASE+PHASE_STANDBY,0,2)
 end
 function c19033.spcon(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()

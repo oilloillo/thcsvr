@@ -1,5 +1,4 @@
- 
---蓬莱山辉夜
+ --蓬莱山辉夜
 function c21021.initial_effect(c)
 	--synchro summon
 	aux.AddSynchroProcedure(c,nil,aux.NonTuner(Card.IsSetCard,0x256),1)
@@ -64,8 +63,8 @@ function c21021.recop(e,tp,eg,ep,ev,re,r,rp)
 end
 function c21021.spr(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	if bit.band(r,0x41)~=0x41 or c:IsPreviousLocation(LOCATION_SZONE) then return end
-	c:RegisterFlagEffect(21021,RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_STANDBY,0,1)
+	if bit.band(r,0x41)~=0x41 or not c:IsPreviousLocation(LOCATION_ONFIELD) then return end
+	c:RegisterFlagEffect(21021,RESET_EVENT+0x1ff0000+RESET_PHASE+PHASE_STANDBY,0,2)
 end
 function c21021.spcon(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()

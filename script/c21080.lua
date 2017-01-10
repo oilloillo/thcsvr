@@ -76,8 +76,8 @@ function c21080.recop(e,tp,eg,ep,ev,re,r,rp)
 end
 function c21080.spr(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	if not c:IsPreviousLocation(LOCATION_MZONE) then return end
-	c:RegisterFlagEffect(21080,RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_STANDBY,0,2)
+	if not c:IsPreviousLocation(LOCATION_ONFIELD) then return end
+	c:RegisterFlagEffect(21080,RESET_EVENT+0x1ff0000+RESET_PHASE+PHASE_STANDBY,0,2)
 end
 function c21080.spcon(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()

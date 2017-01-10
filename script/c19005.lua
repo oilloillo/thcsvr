@@ -16,7 +16,7 @@ function c19005.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.PayLPCost(tp,500)
 end
 function c19005.filter(c,e,tp)
-	return c:IsType(TYPE_FUSION) and c:IsSetCard(0x208) and not c:IsAttribute(ATTRIBUTE_DARK) and c:IsLevelBelow(6)
+	return c:IsType(TYPE_FUSION) and c:IsSetCard(0x208) and not c:IsAttribute(ATTRIBUTE_DARK) and c:IsLevelBelow(6) and not c:IsType(TYPE_TUNER)
 		and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_FUSION,tp,false,false) and c:CheckFusionMaterial()
 end
 function c19005.target(e,tp,eg,ep,ev,re,r,rp,chk)
