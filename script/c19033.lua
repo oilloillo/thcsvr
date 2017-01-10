@@ -54,11 +54,11 @@ function c19033.sop(e,tp,eg,ep,ev,re,r,rp)
 		Duel.ConfirmCards(1-tp,tc)
 		local def=Duel.GetOperatedGroup():Filter(Card.IsLocation,nil,LOCATION_HAND):GetFirst():GetDefense()
 		Duel.Recover(tp,def,REASON_EFFECT)
-    end
+	end
 end
 function c19033.spr(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	if bit.band(r,0x61)~=0x61 or not c:IsPreviousLocation(LOCATION_ONFIELD) then return end
+	if bit.band(r,REASON_BATTLE+REASON_EFFECT)==0 or bit.band(r,REASON_DESTROY)==0 or not c:IsPreviousLocation(LOCATION_ONFIELD) then return end
 	c:RegisterFlagEffect(19033,RESET_EVENT+0x1ff0000+RESET_PHASE+PHASE_STANDBY,0,2)
 end
 function c19033.spcon(e,tp,eg,ep,ev,re,r,rp)
@@ -72,6 +72,6 @@ end
 function c19033.spop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	if c:IsRelateToEffect(e) then
-	    Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)
+		Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)
 	end
 end
