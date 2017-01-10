@@ -1,5 +1,4 @@
- 
---因幡 狂气的月之兔
+ --因幡 狂气的月之兔
 function c21061.initial_effect(c)
 	--synchro summon
 	aux.AddSynchroProcedure(c,nil,aux.NonTuner(Card.IsSetCard,0x256),1)

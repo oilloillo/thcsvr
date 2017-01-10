@@ -1,5 +1,4 @@
- 
---蓬莱-竹取飞翔✿蓬莱山辉夜
+ --蓬莱-竹取飞翔✿蓬莱山辉夜
 function c21080.initial_effect(c)
 	c:EnableReviveLimit()
 	--spsummon 

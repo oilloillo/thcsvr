@@ -1,5 +1,4 @@
- 
---命莲-光符「正义的威光」
+ --命莲-光符「正义的威光」
 function c26052.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
@@ -11,12 +10,20 @@ function c26052.initial_effect(c)
 	e1:SetOperation(c26052.activate)
 	c:RegisterEffect(e1)
 end
-function c26052.tgfilter(c)
-	return (c:IsSetCard(0x208) or c:IsSetCard(0x252)) and c:IsAbleToGrave()
+function c26052.tgfilter1(c)
+	return c:IsSetCard(0x208) and c:IsAbleToGrave()
+end
+function c26052.tgfilter2(c)
+	return c:IsSetCard(0x252) and c:IsAbleToGrave()
+end
+function c26052.filter(c)
+	return c:IsFaceup() and c:IsLevelAbove(1) and c:IsSetCard(0x251)
 end
 function c26052.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chkc then return chkc:IsLocation(LOCATION_MZONE) and chkc:IsControler(tp) and c26052.filter(chkc) end
-	if chk==0 then return Duel.IsExistingMatchingCard(c26052.tgfilter,tp,LOCATION_DECK,0,1,nil) and Duel.IsExistingTarget(c26052.filter,tp,LOCATION_MZONE,0,1,nil) end
+	if chk==0 then return Duel.IsExistingMatchingCard(c26052.tgfilter1,tp,LOCATION_DECK,0,1,nil)
+		and Duel.IsExistingMatchingCard(c26052.tgfilter2,tp,LOCATION_DECK,0,1,nil)
+		and Duel.IsExistingTarget(c26052.filter,tp,LOCATION_MZONE,0,1,nil) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)
 	local g=Duel.SelectTarget(tp,c26052.filter,tp,LOCATION_MZONE,0,1,1,nil)
 	local tc=g:GetFirst()
@@ -27,10 +34,13 @@ function c26052.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SetOperationInfo(0,CATEGORY_TOGRAVE,nil,1,tp,LOCATION_DECK)
 end
 function c26052.activate(e,tp,eg,ep,ev,re,r,rp)
-	local g=Duel.GetMatchingGroup(c26052.tgfilter,tp,LOCATION_DECK,0,nil)
-	if g:GetCount()>=1 then
+	local g=Duel.GetMatchingGroup(c26052.tgfilter1,tp,LOCATION_DECK,0,nil)
+	local g2=Duel.GetMatchingGroup(c26052.tgfilter2,tp,LOCATION_DECK,0,nil)
+	if g:GetCount()>=1 and g2:GetCount()>0 then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE)
 		local sg=g:Select(tp,1,1,nil)
+		local sg2=g2:Select(tp,1,1,nil)
+		sg:Merge(sg2)
 		Duel.SendtoGrave(sg,REASON_EFFECT)
 	end
 	local c=e:GetHandler()
@@ -45,7 +55,4 @@ function c26052.activate(e,tp,eg,ep,ev,re,r,rp)
 		else e1:SetValue(-1) end
 		tc:RegisterEffect(e1)
 	end
-end
-function c26052.filter(c)
-	return c:IsFaceup() and c:IsLevelAbove(1) and c:IsSetCard(0x251)
 end

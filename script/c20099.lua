@@ -1,5 +1,4 @@
- 
---反魂蝶 -八分咲-
+ --反魂蝶 -八分咲-
 function c20099.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
@@ -57,9 +56,9 @@ end
 function c20099.lpop(e,tp,eg,ep,ev,re,r,rp)
 	if Duel.GetTurnPlayer()==tp then return end
 	local lp=Duel.GetLP(tp)
-	if lp<=4000 then
-		Duel.SetLP(tp,0)
-	else
-		Duel.SetLP(tp,lp-4000)
-	end
+	local lp1=Duel.GetLP(1-tp)
+	if lp<4000 then lp=4000 end
+	if lp1<4000 then lp1=4000 end
+	Duel.SetLP(tp,lp-4000)
+	Duel.SetLP(1-tp,lp1-4000)
 end

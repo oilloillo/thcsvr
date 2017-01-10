@@ -1,5 +1,4 @@
- 
---竹林的狼人✿今泉影狼
+ --竹林的狼人✿今泉影狼
 function c29009.initial_effect(c)
 	--destroy
 	local e1=Effect.CreateEffect(c)
@@ -59,7 +58,7 @@ function c29009.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	e2:SetTarget(aux.TargetBoolFunction(c29009.cfilter))
 	e2:SetTargetRange(LOCATION_MZONE,LOCATION_MZONE)
 	e2:SetReset(RESET_PHASE+PHASE_END)
-	Duel.RegisterEffect(e2,tp)
+	--Duel.RegisterEffect(e2,tp)
 	Duel.RegisterFlagEffect(tp,290090,RESET_PHASE+PHASE_END,0,1)
 end
 function c29009.desfilter(c)

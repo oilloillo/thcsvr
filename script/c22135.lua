@@ -12,7 +12,7 @@ function c22135.initial_effect(c)
 	e2:SetRange(LOCATION_SZONE)
 	e2:SetTargetRange(LOCATION_MZONE,0)
 	e2:SetCode(EFFECT_UPDATE_DEFENSE)
-	e2:SetValue(500)
+	e2:SetValue(700)
 	c:RegisterEffect(e2)
 	Msc.RegScMixEffect(c)
 end

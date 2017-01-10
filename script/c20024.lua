@@ -1,5 +1,4 @@
- 
---莱拉·普莉兹姆利巴
+ --莱拉·普莉兹姆利巴
 function c20024.initial_effect(c)
 	--xyz summon
 	c:EnableReviveLimit()
@@ -46,9 +45,9 @@ end
 function c20024.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	local ctb=0
 	if e:GetHandler():GetOverlayGroup():IsExists(Card.IsType,1,nil,TYPE_SPIRIT) then
-		ctb=2
+		ctb=4
 	else
-		ctb=1
+		ctb=2
 	end
 	if chkc then return chkc:GetLocation()==LOCATION_GRAVE and chkc:IsAbleToRemove() end
 	if chk==0 then return e:GetHandler():GetFlagEffect(20024)==0 and Duel.IsExistingTarget(Card.IsAbleToRemove,tp,LOCATION_GRAVE,LOCATION_GRAVE,1,nil) end
@@ -75,7 +74,7 @@ function c20024.target2(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:GetLocation()==LOCATION_GRAVE and chkc:IsAbleToRemove() end
 	if chk==0 then return e:GetHandler():GetFlagEffect(20024)==0 and Duel.IsExistingTarget(Card.IsAbleToRemove,tp,LOCATION_GRAVE,LOCATION_GRAVE,1,nil) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
-	local g=Duel.SelectTarget(tp,Card.IsAbleToRemove,tp,LOCATION_GRAVE,LOCATION_GRAVE,1,3*ctb,nil)
+	local g=Duel.SelectTarget(tp,Card.IsAbleToRemove,tp,LOCATION_GRAVE,LOCATION_GRAVE,1,4*ctb,nil)
 	Duel.SetOperationInfo(0,CATEGORY_REMOVE,g,g:GetCount(),0,0)
 	e:GetHandler():RegisterFlagEffect(20024,RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END,0,1)
 end

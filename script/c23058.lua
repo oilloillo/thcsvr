@@ -1,5 +1,4 @@
- 
---豊作「谷物神之约定」
+ --豊作「谷物神之约定」
 function c23058.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
@@ -44,7 +43,7 @@ function c23058.activate(e,tp,eg,ep,ev,re,r,rp)
 	e2:SetCountLimit(1)
 	e2:SetReset(RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END)
 	e2:SetOperation(c23058.desop)
-	tc:RegisterEffect(e2)
+	--tc:RegisterEffect(e2)
 end
 function c23058.desop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Destroy(e:GetHandler(),nil,REASON_EFFECT)

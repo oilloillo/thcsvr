@@ -31,7 +31,7 @@ function c14023.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.PayLPCost(tp,500)
 end
 function c14023.filter(c)
-	return c:IsSetCard(0x138) and c:GetLevel()>2
+	return c:IsSetCard(0x138) and c:GetLevel()>0
 end
 function c14023.lvtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(c14023.filter,tp,LOCATION_HAND,0,1,nil) end
@@ -50,8 +50,8 @@ function c14023.lvop(e,tp,eg,ep,ev,re,r,rp)
 		Duel.ShuffleHand(tp)
 		local e1=Effect.CreateEffect(c)
 		e1:SetType(EFFECT_TYPE_SINGLE)
-		e1:SetCode(EFFECT_UPDATE_LEVEL)
-		e1:SetValue(-2)
+		e1:SetCode(EFFECT_CHANGE_LEVEL)
+		e1:SetValue(4)
 		e1:SetReset(RESET_EVENT+0xfe0000)
 		g:GetFirst():RegisterEffect(e1)
 	end

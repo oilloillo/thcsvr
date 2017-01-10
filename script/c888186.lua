@@ -1,5 +1,4 @@
- 
---七曜-日月符「皇家钻戒」
+ --七曜-日月符「皇家钻戒」
 function c888186.initial_effect(c)
 	--d&d
 	local e4=Effect.CreateEffect(c)
@@ -39,6 +38,12 @@ function c888186.operation(e,tp,eg,ep,ev,re,r,rp)
 				e2:SetCode(EFFECT_DISABLE_EFFECT)
 				e2:SetReset(RESET_EVENT+0x1fe0000)
 				sg:RegisterEffect(e2)
+				local e3=Effect.CreateEffect(c)
+				e3:SetType(EFFECT_TYPE_SINGLE)
+				e3:SetCode(EFFECT_SET_ATTACK_FINAL)
+				e3:SetReset(RESET_EVENT+0x1fe0000)
+				e3:SetValue(sg:GetAttack()/2)
+				sg:RegisterEffect(e3)
 				sg=g:GetNext()
 			end
 		else if Duel.Destroy(tc,REASON_EFFECT)~=0 then

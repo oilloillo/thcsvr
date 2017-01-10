@@ -11,7 +11,7 @@ function c27098.initial_effect(c)
 	c:RegisterEffect(e1)
 end
 function c27098.cost(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.GetLP(tp)<Duel.GetLP(1-tp) and Duel.CheckLPCost(tp,1000) end
+	if chk==0 then return Duel.CheckLPCost(tp,1000) end
 	Duel.PayLPCost(tp,1000)
 end
 function c27098.lr(c)

@@ -1,5 +1,4 @@
- 
---旧地狱街道 -废狱-
+ --旧地狱街道 -废狱-
 function c24042.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
@@ -100,7 +99,7 @@ function c24042.scop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c24042.cfilter(c)
-	return c:IsAttackAbove(2600) and c:IsSetCard(0x625) and c:IsAbleToDeckAsCost()
+	return c:IsAttackAbove(2300) and c:IsSetCard(0x625) and c:IsAbleToDeckAsCost()
 end
 function c24042.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(c24042.cfilter,tp,LOCATION_GRAVE,0,1,nil) end

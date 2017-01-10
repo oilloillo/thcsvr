@@ -1,5 +1,5 @@
 --有时像虎有时似鸟的家伙✿封兽鵺
---script by Nanahira
+--script by Nanahir
 function c26125.initial_effect(c)
 	--spsummon
 	local e1=Effect.CreateEffect(c)
@@ -39,29 +39,24 @@ end
 function c26125.filter1(c,e)
 	return c:IsCanBeFusionMaterial() and not c:IsImmuneToEffect(e)
 end
-function c26125.filter2(c,e,tp,mg,f)
+function c26125.filter2(c,e,tp,m,f)
 	return c:IsType(TYPE_FUSION) and c:IsSetCard(0x208) and (not f or f(c))
-		and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_FUSION,tp,false,false) and mg:IsExists(c26125.filter0,1,nil,e,c)
-end
-function c26125.chain_mat_filter(c,e,tp,mg,f,chkf)
-	return c:IsType(TYPE_FUSION) and c:IsSetCard(0x208) and (not f or f(c))
-		and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_FUSION,tp,false,false) and c:CheckFusionMaterial(mg,e:GetHandler(),chkf)
+		and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_FUSION,tp,false,false) and Duel.IsExistingMatchingCard(c26125.filter0,tp,0x6,0,1,nil,e,c)
 end
 --mg1:FilterCount(Card.IsLocation,nil,LOCATION_MZONE)
 function c26125.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
 	if chk==0 then
-		local mg1=Duel.GetMatchingGroup(Card.IsCanBeFusionMaterial,tp,0x6,0,c)
+		local mg1=Duel.GetMatchingGroup(Card.IsCanBeFusionMaterial,tp,0x6,0,nil)
 		local res=Duel.GetLocationCount(tp,LOCATION_MZONE)>(0)
 			and Duel.IsExistingMatchingCard(c26125.filter2,tp,LOCATION_EXTRA,0,1,nil,e,tp,mg1,nil)
 		if not res then
 			local ce=Duel.GetChainMaterial(tp)
 			if ce~=nil then
-				local chkf=Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and PLAYER_NONE or tp
 				local fgroup=ce:GetTarget()
 				local mg2=fgroup(ce,e,tp)
 				local mf=ce:GetValue()
-				res=Duel.IsExistingMatchingCard(c26125.chain_mat_filter,tp,LOCATION_EXTRA,0,1,nil,e,tp,mg2,mf,chkf)
+				res=Duel.IsExistingMatchingCard(c26125.filter2,tp,LOCATION_EXTRA,0,1,nil,e,tp,mg2,mf)
 			end
 		end
 		return res
@@ -77,11 +72,10 @@ function c26125.spop(e,tp,eg,ep,ev,re,r,rp)
 	local sg2=nil
 	local ce=Duel.GetChainMaterial(tp)
 	if ce~=nil then
-		local chkf=Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and PLAYER_NONE or tp
 		local fgroup=ce:GetTarget()
 		mg2=fgroup(ce,e,tp)
 		local mf=ce:GetValue()
-		sg2=Duel.GetMatchingGroup(c26125.chain_mat_filter,tp,LOCATION_EXTRA,0,nil,e,tp,mg2,mf,chkf)
+		sg2=Duel.GetMatchingGroup(c26125.filter2,tp,LOCATION_EXTRA,0,nil,e,tp,mg2,mf,c)
 	end
 	if (Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and sg1:GetCount()>0) or (sg2~=nil and sg2:GetCount()>0) then
 		local sg=sg1:Clone()
@@ -97,16 +91,22 @@ function c26125.spop(e,tp,eg,ep,ev,re,r,rp)
 			Duel.BreakEffect()
 			Duel.SpecialSummon(tc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)
 		else
-			local mat2=Duel.SelectFusionMaterial(tp,tc,mg2,c,chkf)
+			local mat2=Duel.SelectFusionMaterial(tp,tc,mg2,c)
 			local fop=ce:GetOperation()
 			fop(ce,e,tp,tc,mat2)
 		end
 		local e1=Effect.CreateEffect(c)
 		e1:SetType(EFFECT_TYPE_SINGLE)
 		e1:SetCode(EFFECT_UPDATE_ATTACK)
-		e1:SetValue(-1000)
+		e1:SetValue(-800)
 		e1:SetReset(RESET_EVENT+0x1fe0000)
 		tc:RegisterEffect(e1)
+		local e2=Effect.CreateEffect(c)
+		e2:SetType(EFFECT_TYPE_SINGLE)
+		e2:SetCode(EFFECT_UPDATE_DEFENSE)
+		e2:SetValue(-800)
+		e2:SetReset(RESET_EVENT+0x1fe0000)
+		tc:RegisterEffect(e2)
 		tc:CompleteProcedure()
 	end
 end

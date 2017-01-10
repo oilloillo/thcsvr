@@ -1,5 +1,4 @@
- 
---秘封「到达幻想的病」
+ --秘封「到达幻想的病」
 function c28064.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)

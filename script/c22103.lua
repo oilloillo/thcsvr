@@ -1,5 +1,4 @@
- 
---空虚「膨胀空间」
+ --空虚「膨胀空间」
 function c22103.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
