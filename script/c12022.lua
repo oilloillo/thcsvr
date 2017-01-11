@@ -42,7 +42,8 @@ function c12022.eqop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local tc=Duel.GetFirstTarget()
 	if not tc:IsRelateToEffect(e) then return end
-	if tc:IsFaceup() and Duel.Destroy(tc,REASON_EFFECT,LOCATION_REMOVED)>0 then
+	if tc:IsFaceup() then
+		Duel.Destroy(tc,REASON_EFFECT,LOCATION_REMOVED)
 		local e2=Effect.CreateEffect(c)
 		e2:SetType(EFFECT_TYPE_SINGLE)
 		e2:SetCode(EFFECT_UPDATE_ATTACK)

@@ -5,7 +5,7 @@ function c13066.initial_effect(c)
 	aux.AddFusionProcFun2(c,aux.FilterBoolFunction(Card.IsSetCard,0x13c),aux.FilterBoolFunction(Card.IsSetCard,0x817),true)
 	--Destroy
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(13066,0))
+	e1:SetDescription(aux.Stringid(76774528,0))
 	e1:SetType(EFFECT_TYPE_QUICK_O)
 	e1:SetCountLimit(1)
 	e1:SetCode(EVENT_FREE_CHAIN)

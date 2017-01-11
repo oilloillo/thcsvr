@@ -109,7 +109,7 @@ function c14022.spop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c14022.refilter(c)
-	return c:IsSetCard(0x138) and c:IsFaceup() and c:IsType(TYPE_PENDULUM) and c:IsAbleToHand()
+	return c:IsSetCard(0x208) and c:IsFaceup() and c:IsType(TYPE_PENDULUM) and c:IsAbleToHand()
 end
 function c14022.retg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(c14022.refilter,tp,LOCATION_EXTRA,0,2,nil) end
