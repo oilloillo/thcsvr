@@ -62,17 +62,28 @@ end
 function c19018.operation(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
 	if tc:IsRelateToEffect(e) and tc:IsFaceup() then
+		-- local e1=Effect.CreateEffect(e:GetHandler())
+		-- e1:SetType(EFFECT_TYPE_SINGLE)
+		-- e1:SetCode(EFFECT_INDESTRUCTABLE_COUNT)
+		-- e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
+		-- e1:SetCountLimit(1)
+		-- e1:SetValue(c19018.valcon)
+		-- e1:SetReset(RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END)
+		-- tc:RegisterEffect(e1)
+
 		local e1=Effect.CreateEffect(e:GetHandler())
 		e1:SetType(EFFECT_TYPE_SINGLE)
-		e1:SetCode(EFFECT_INDESTRUCTABLE_COUNT)
+		e1:SetCode(EFFECT_INDESTRUCTABLE_BATTLE)
 		e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
-		--e1:SetCountLimit(1)
-		e1:SetValue(c19018.valcon)
+		e1:SetValue(1)
 		e1:SetReset(RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END)
 		tc:RegisterEffect(e1)
+		local e2=e1:Clone()
+		e2:SetCode(EFFECT_INDESTRUCTABLE_EFFECT)
+		tc:RegisterEffect(e2)
 	end
 end
-function c19018.valcon(e,re,r,rp)
-	return bit.band(r,REASON_BATTLE+REASON_EFFECT)~=0
-end
+-- function c19018.valcon(e,re,r,rp)
+--	 return bit.band(r,REASON_BATTLE+REASON_EFFECT)~=0
+-- end
 
