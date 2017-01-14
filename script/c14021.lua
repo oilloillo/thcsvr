@@ -90,6 +90,8 @@ function c14021.thop(e,tp,eg,ep,ev,re,r,rp)
 
 		local g3=g:Select(tp,1,1,nil)
 		g1:Merge(g3)
+		
+		Duel.HintSelection(g1)
 
 		Duel.ConfirmCards(1-tp,g1)
 		local tg=g1:RandomSelect(1-tp,1,1,nil)
