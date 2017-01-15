@@ -48,5 +48,5 @@ function c20153.operation(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c20153.tg(e,c)
-	return c:IsCode(20007)
+	return c:IsSetCard(0x300) and c:IsLevelAbove(5)
 end
