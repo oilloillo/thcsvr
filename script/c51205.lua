@@ -1,6 +1,6 @@
 --逐客令
 function c51205.initial_effect(c)
-     --Activate
+	 --Activate
 	local e1=Effect.CreateEffect(c)
 	e1:SetCategory(CATEGORY_NEGATE+CATEGORY_DESTROY+CATEGORY_TODECK)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
@@ -9,7 +9,7 @@ function c51205.initial_effect(c)
 	e1:SetTarget(c51205.distg)
 	e1:SetOperation(c51205.disop)
 	c:RegisterEffect(e1)
-    --act in hand
+	--act in hand
 	local e2=Effect.CreateEffect(c)
 	e2:SetType(EFFECT_TYPE_SINGLE)
 	e2:SetCode(EFFECT_TRAP_ACT_IN_HAND)
@@ -38,18 +38,18 @@ function c51205.disop(e,tp,eg,ep,ev,re,r,rp)
 	local ec=re:GetHandler()
 	Duel.NegateActivation(ev)
 	if re:GetHandler():IsRelateToEffect(re) then
+		Duel.BreakEffect()
 		ec:CancelToGrave()
-	Duel.BreakEffect()
-	local g1=Duel.SendtoDeck(ec,nil,2,REASON_EFFECT)
-	if g1~=0 and not Duel.IsExistingMatchingCard(c51205.confilter,tp,LOCATION_ONFIELD,0,1,e:GetHandler()) then
-		local e1=Effect.CreateEffect(e:GetHandler())
-		e1:SetType(EFFECT_TYPE_FIELD)
-		e1:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
-		e1:SetCode(EFFECT_SKIP_DP)
-		e1:SetTargetRange(1,0)
-		e1:SetReset(RESET_PHASE+PHASE_END,3)
-		Duel.RegisterEffect(e1,tp)
+		local g1=Duel.SendtoDeck(ec,nil,2,REASON_EFFECT)
+		if g1~=0 and not Duel.IsExistingMatchingCard(c51205.confilter,tp,LOCATION_ONFIELD,0,1,e:GetHandler()) then
+			local ct=Duel.GetTurnPlayer==tp and 2 or 1
+			local e1=Effect.CreateEffect(e:GetHandler())
+			e1:SetType(EFFECT_TYPE_FIELD)
+			e1:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
+			e1:SetCode(EFFECT_SKIP_DP)
+			e1:SetTargetRange(1,0)
+			e1:SetReset(RESET_PHASE+PHASE_END,ct)
+			Duel.RegisterEffect(e1,tp)
+		end
 	end
-end
-
 end
