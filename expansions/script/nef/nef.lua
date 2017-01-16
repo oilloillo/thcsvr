@@ -3,17 +3,17 @@ Nef = Nef or {}
 local os = require("os")
 require "expansions/script/nef/cardList"
 function Nef.unpack(t, i)
-    i = i or 1
-    if t[i] then
-       return t[i], Nef.unpack(t, i + 1)
-    end
+	i = i or 1
+	if t[i] then
+	   return t[i], Nef.unpack(t, i + 1)
+	end
 end
 
 function Nef.unpackOneMember(t, member, i)
-    i = i or 1
-    if t[i] and t[i][member] then
-       return t[i][member], Nef.unpackOneMember(t, member, i+1)
-    end
+	i = i or 1
+	if t[i] and t[i][member] then
+	   return t[i][member], Nef.unpackOneMember(t, member, i+1)
+	end
 end
 
 function Nef.AddSynchroProcedureWithDesc(c,f1,f2,ct,desc)
@@ -165,7 +165,7 @@ function Nef.PConditionFilterSP2(c,e,tp,lscale,rscale,filter,argTable,filter2,ar
 end
 
 function Nef.PendConditionSP()
-	return	function(e,c,og)
+	return  function(e,c,og)
 				if c==nil then return true end
 				local tp=c:GetControler()
 
@@ -201,7 +201,7 @@ function Nef.PendConditionSP()
 end
 
 function Nef.PendOperationSP()
-	return	function(e,tp,eg,ep,ev,re,r,rp,c,sg,og)
+	return  function(e,tp,eg,ep,ev,re,r,rp,c,sg,og)
 				local lpz=Duel.GetFieldCard(tp,LOCATION_SZONE,6)
 				local rpz=Duel.GetFieldCard(tp,LOCATION_SZONE,7)
 
@@ -373,4 +373,11 @@ function Nef.kangbazi(e,te)
 	else
 		return false
 	end
+end
+Nef.order_table=Nef.order_table or {}
+Nef.order_count=Nef.order_count or 0
+function Nef.order_table_new(v)
+	Nef.order_count=Nef.order_count+1
+	Nef.order_table[Nef.order_count]=v
+	return Nef.order_count
 end
