@@ -42,7 +42,7 @@ function c51205.disop(e,tp,eg,ep,ev,re,r,rp)
 		ec:CancelToGrave()
 		local g1=Duel.SendtoDeck(ec,nil,2,REASON_EFFECT)
 		if g1~=0 and not Duel.IsExistingMatchingCard(c51205.confilter,tp,LOCATION_ONFIELD,0,1,e:GetHandler()) then
-			local ct=Duel.GetTurnPlayer==tp and 2 or 1
+			local ct=Duel.GetTurnPlayer==tp and 3 or 2
 			local e1=Effect.CreateEffect(e:GetHandler())
 			e1:SetType(EFFECT_TYPE_FIELD)
 			e1:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
