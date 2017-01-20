@@ -65,10 +65,11 @@ function c19032.rmfilter2(c)
 	return c:IsSetCard(0x3208) and c:IsAbleToRemove()
 end
 function c19032.futg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and e:GetHandler():IsAbleToRemove()
-		and Duel.IsExistingMatchingCard(c19032.rmfilter1,tp,LOCATION_GRAVE,0,1,nil)
-		and Duel.IsExistingMatchingCard(c19032.rmfilter2,tp,LOCATION_GRAVE,0,1,nil)
-		and Duel.IsExistingMatchingCard(c19032.filter,tp,LOCATION_EXTRA,0,1,nil,e,tp) end
+	if chk==0 then
+		local g1=Duel.GetMatchingGroupCount(c19032.rmfilter1,tp,LOCATION_GRAVE,0,nil)
+		local g2=Duel.GetMatchingGroupCount(c19032.rmfilter2,tp,LOCATION_GRAVE,0,nil)
+		return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and e:GetHandler():IsAbleToRemove()
+		and g1>0 and g2>0 and (g1+g2)>1 and Duel.IsExistingMatchingCard(c19032.filter,tp,LOCATION_EXTRA,0,1,nil,e,tp) end
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_EXTRA)
 	Duel.SetOperationInfo(0,CATEGORY_REMOVE,nil,3,tp,LOCATION_GRAVE)
 end
@@ -76,7 +77,7 @@ function c19032.fuop(e,tp,eg,ep,ev,re,r,rp)
 	if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
 	local mg=Duel.SelectMatchingCard(tp,c19032.rmfilter1,tp,LOCATION_GRAVE,0,1,1,nil)
-	local mg2=Duel.SelectMatchingCard(tp,c19032.rmfilter2,tp,LOCATION_GRAVE,0,1,1,nil)
+	local mg2=Duel.SelectMatchingCard(tp,c19032.rmfilter2,tp,LOCATION_GRAVE,0,1,1,mg:GetFirst())
 	mg:Merge(mg2)
 	mg:AddCard(e:GetHandler())
 	if mg:GetCount()<3 then return end

@@ -149,5 +149,5 @@ end
 
 function M.sdcon(e)
 	return not e:GetHandler():IsStatus(STATUS_DESTROY_CONFIRMED)
-		and Duel.IsExistingMatchingCard(M.sdfilter, 0, LOCATION_MZONE, 0, 1, nil)
+		and Duel.IsExistingMatchingCard(M.sdfilter, e:GetHandler():GetControler(), LOCATION_MZONE, 0, 1, nil)
 end
