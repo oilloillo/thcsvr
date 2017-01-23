@@ -58,10 +58,10 @@ end
 function c14070.vacon(e,tp,eg,ep,ev,re,r,rp)
 	local ph=Duel.GetCurrentPhase()
 	return ph>=PHASE_BATTLE_START and ph<=PHASE_BATTLE 
-		and re:IsActiveType(TYPE_MONSTER) and re:IsActivated() and re:GetHandler():IsRace(RACE_ZOMBIE) and re:GetHandler():IsSetCard(0x208)
+		and re:IsActiveType(TYPE_MONSTER) and re:IsActivated() and re:GetHandler():IsRace(RACE_ZOMBIE) and re:GetHandler():IsSetCard(0x208) and rp==tp
 end
 function c14070.vaop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_CARD,0,14070)
-	if ev>2400 then ev=2400 end
-	Duel.Recover(tp,ev,REASON_EFFECT)
+	local ct=math.min(ev,2400)
+	Duel.Recover(tp,ct,REASON_EFFECT)
 end
