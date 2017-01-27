@@ -1,4 +1,3 @@
- 
 --虚人「无」
 function c21125.initial_effect(c)
 	--Activate
@@ -50,7 +49,7 @@ function c21125.regcon(e,tp,eg,ep,ev,re,r,rp)
 	return re:IsHasType(EFFECT_TYPE_ACTIVATE) and re:IsActiveType(TYPE_SPELL)
 end
 function c21125.regop(e,tp,eg,ep,ev,re,r,rp)
-	local g=Duel.GetMatchingGroup(c21125.spfilter,tp,LOCATION_DECK+LOCATION_GRAVE,0,nil,e,tp)
+	local g=Duel.GetMatchingGroup(c21125.spfilter,tp,LOCATION_GRAVE,0,nil,e,tp)
 	if g:GetCount()<1 or not Duel.SelectYesNo(tp,aux.Stringid(21125,0)) then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
 	local sg=g:Select(tp,1,1,nil)

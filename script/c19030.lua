@@ -2,7 +2,7 @@
 function c19030.initial_effect(c)
 	--fusion material
 	c:EnableReviveLimit()
-	aux.AddFusionProcFun2(c,aux.FilterBoolFunction(Card.IsSetCard,0x273),aux.FilterBoolFunction(Card.IsSetCard,0x3208),true)
+	aux.AddFusionProcFun2(c,aux.FilterBoolFunction(Card.IsFusionSetCard,0x273),aux.FilterBoolFunction(Card.IsFusionSetCard,0x3208),true)
 	--spsummon condition
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_SINGLE)
@@ -42,8 +42,8 @@ function c19030.initial_effect(c)
 	c:RegisterEffect(e4)
 end
 c19030.hana_mat={
-aux.FilterBoolFunction(Card.IsSetCard,0x273),
-aux.FilterBoolFunction(Card.IsSetCard,0x3208),
+aux.FilterBoolFunction(Card.IsFusionSetCard,0x273),
+aux.FilterBoolFunction(Card.IsFusionSetCard,0x3208),
 }
 function c19030.condition(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.GetCurrentPhase()==PHASE_END

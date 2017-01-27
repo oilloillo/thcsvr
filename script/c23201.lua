@@ -31,15 +31,12 @@ end
 function c23201.filter1(c)
 	return (c:IsSetCard(0x494) or c:IsSetCard(0x496)) and c:IsType(TYPE_SPELL) and c:IsAbleToHand()
 end
-function c23201.mfilter1(c,e)
-	return c:IsSetCard(0x497) and c:IsCanBeFusionMaterial() and not c:IsImmuneToEffect(e)
-end
 function c23201.mfilter2(c,e)
-	return c:GetCounter(0x128a)>0 and c:IsCanBeFusionMaterial() and not c:IsImmuneToEffect(e)
+	return c:GetCounter(0x128a)>0 and c:IsCanBeFusionMaterial() and not c:IsImmuneToEffect(e) and c:IsType(TYPE_MONSTER)
 end
 function c23201.filter2(c,e,tp,m,chkf)
 	return c:IsType(TYPE_FUSION) and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_FUSION,tp,false,false) and aux.IsMaterialListSetCard(c,0x497)
-		--and c:CheckFusionMaterial(m,nil,chkf)
+		and m:IsExists(Fus.CheckMaterialSingle,1,nil,c)
 end
 function c23201.mfilter3(c)
 	return c:GetCounter(0x128a)>8 and c:IsReleasable()
@@ -49,7 +46,7 @@ function c23201.filter3(c,e,tp)
 end
 function c23201.op(e,tp,eg,ep,ev,re,r,rp)
 	local chkf=Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and PLAYER_NONE or tp
-	local mg1=Duel.GetMatchingGroup(c23201.mfilter1,tp,LOCATION_HAND+LOCATION_MZONE,0,nil,e)
+	local mg1=Fus.GetFusionMaterial(tp,nil,nil,Card.IsSetCard,nil,e,0x497)
 	local mg2=Duel.GetMatchingGroup(c23201.mfilter2,tp,LOCATION_MZONE,LOCATION_MZONE,nil,e)
 	mg1:Merge(mg2)
 	local g=Duel.GetMatchingGroup(c23201.filter2,tp,LOCATION_EXTRA,0,nil,e,tp,mg1,chkf)
@@ -79,7 +76,8 @@ function c23201.op(e,tp,eg,ep,ev,re,r,rp)
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
 		local sg=g:Select(tp,1,1,nil)
 		local tc=sg:GetFirst()
-		local mat1=mg1:Select(tp,1,1,nil)
+		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FMATERIAL)
+		local mat1=mg1:FilterSelect(tp,Fus.CheckMaterialSingle,1,1,nil,tc)
 		Duel.SendtoGrave(mat1:GetFirst(),REASON_EFFECT+REASON_MATERIAL)
 		Duel.BreakEffect()
 		Duel.SpecialSummon(tc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)

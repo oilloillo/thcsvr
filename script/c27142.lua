@@ -2,7 +2,7 @@
 function c27142.initial_effect(c)
 	--fusion material
 	c:EnableReviveLimit()
-	aux.AddFusionProcFun2(c,aux.FilterBoolFunction(Card.IsSetCard,0x522),aux.FilterBoolFunction(Card.IsSetCard,0x527),false)
+	aux.AddFusionProcFun2(c,aux.FilterBoolFunction(Card.IsFusionSetCard,0x522),aux.FilterBoolFunction(Card.IsFusionSetCard,0x527),false)
 	--spsummon condition
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_SINGLE)
@@ -40,8 +40,8 @@ function c27142.initial_effect(c)
 	c:RegisterEffect(e4)
 end
 c27142.hana_mat={
-aux.FilterBoolFunction(Card.IsSetCard,0x522),
-aux.FilterBoolFunction(Card.IsSetCard,0x527),
+aux.FilterBoolFunction(Card.IsFusionSetCard,0x522),
+aux.FilterBoolFunction(Card.IsFusionSetCard,0x527),
 }
 function c27142.splimit(e,se,sp,st)
 	return bit.band(st,SUMMON_TYPE_FUSION)==SUMMON_TYPE_FUSION

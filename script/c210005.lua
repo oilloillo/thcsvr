@@ -3,10 +3,10 @@ function c210005.initial_effect(c)
 	--special summon
 	local e2=Effect.CreateEffect(c)
 	e2:SetDescription(aux.Stringid(210005,0))
-	e2:SetCategory(CATEGORY_SPECIAL_SUMMON)
+	e2:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_FUSION_SUMMON)
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_SUMMON_SUCCESS)
---	e2:SetCost(c210005.spcost)
+--  e2:SetCost(c210005.spcost)
 	e2:SetTarget(c210005.sptg)
 	e2:SetOperation(c210005.spop)
 	c:RegisterEffect(e2)--[[
@@ -91,9 +91,6 @@ function c210005.spop(e,tp,eg,ep,ev,re,r,rp)
 		Duel.RegisterEffect(e1,tp)]]
 	end
 end
-function c210005.filter1(c,e)
-	return c:IsCanBeFusionMaterial() and c:IsAbleToRemove() and not c:IsImmuneToEffect(e)
-end
 function c210005.filter2(c,e,tp,m,f,chkf)
 	return c:IsType(TYPE_FUSION) and c:IsSetCard(0x2710) and (not f or f(c))
 		and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_FUSION,tp,false,false) and c:CheckFusionMaterial(m,nil,chkf)
@@ -101,7 +98,7 @@ end
 function c210005.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then
 		local chkf=Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and PLAYER_NONE or tp
-		local mg1=Duel.GetMatchingGroup(c210005.filter1,tp,LOCATION_MZONE,0,nil,e)
+		local mg1=Fus.GetFusionMaterial(tp,LOCATION_ONFIELD,nil,Card.IsAbleToRemove)
 		local res=Duel.IsExistingMatchingCard(c210005.filter2,tp,LOCATION_EXTRA,0,1,nil,e,tp,mg1,nil,chkf)
 		if not res then
 			local ce=Duel.GetChainMaterial(tp)
@@ -118,7 +115,7 @@ function c210005.target(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function c210005.operation(e,tp,eg,ep,ev,re,r,rp)
 	local chkf=Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and PLAYER_NONE or tp
-	local mg1=Duel.GetMatchingGroup(c210005.filter1,tp,LOCATION_MZONE,0,nil,e)
+	local mg1=Fus.GetFusionMaterial(tp,LOCATION_ONFIELD,nil,Card.IsAbleToRemove,nil,e)
 	local sg1=Duel.GetMatchingGroup(c210005.filter2,tp,LOCATION_EXTRA,0,nil,e,tp,mg1,nil,chkf)
 	local mg2=nil
 	local sg2=nil

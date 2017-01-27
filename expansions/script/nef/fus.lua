@@ -281,3 +281,43 @@ function Fus.FOperationFunMulti(funs,n,insf)
 		Duel.SetFusionMaterial(sg)
 	end
 end
+function Fus.NonImmuneFilter(c,e)
+	return not c:IsImmuneToEffect(e)
+end
+function Fus.FusionMaterialFilter(c,oppo)
+	if oppo and c:IsLocation(LOCATION_ONFIELD+LOCATION_REMOVED) and c:IsFacedown() then return false end
+	return c:IsCanBeFusionMaterial() and c:IsType(TYPE_MONSTER)
+end
+function Fus.GetFusionMaterial(tp,loc,oloc,f,gc,e,...)
+	local g1=Duel.GetFusionMaterial(tp)
+	if loc then
+		local floc=bit.band(loc,LOCATION_ONFIELD+LOCATION_HAND)
+		if floc~=0 then
+			g1=g1:Filter(Card.IsLocation,nil,floc)
+		else
+			g1:Clear()
+		end
+		local eloc=loc-floc
+		if eloc~=0 then
+			local g2=Duel.GetMatchingGroup(Fus.FusionMaterialFilter,tp,eloc,0,nil)
+			g1:Merge(g2)
+		end
+	end
+	if oloc and oloc~=0 then
+		local g3=Duel.GetMatchingGroup(Fus.FusionMaterialFilter,tp,0,oloc,nil,true)
+		g1:Merge(g3)
+	end
+	if f then g1=g1:Filter(f,nil,...) end
+	if gc then g1:RemoveCard(gc) end
+	if e then g1=g1:Filter(Fus.NonImmuneFilter,nil,e) end
+	return g1
+end
+function Fus.CheckMaterialSingle(c,fc)
+	if not c:IsCanBeFusionMaterial(fc) then return false end
+	local t=fc.hana_mat
+	if not t then return false end
+	for i,f in pairs(t) do
+		if f(c) then return true end
+	end
+	return false
+end

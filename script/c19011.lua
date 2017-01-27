@@ -3,7 +3,7 @@ function c19011.initial_effect(c)
 
 	--fusion material
 	c:EnableReviveLimit()
-	aux.AddFusionProcFun2(c,aux.FilterBoolFunction(Card.IsSetCard,0x497),aux.FilterBoolFunction(Card.IsSetCard,0x713),true)
+	Fus.AddFusionProcFun2(c,aux.FilterBoolFunction(Card.IsFusionSetCard,0x497),aux.FilterBoolFunction(Card.IsFusionSetCard,0x713),true)
 		--奇跡☆
 		local e1=Effect.CreateEffect(c)
 		e1:SetDescription(aux.Stringid(19011,0))
@@ -25,10 +25,6 @@ function c19011.initial_effect(c)
 		c:RegisterEffect(e2)
 
 end
-c19011.hana_mat={
-aux.FilterBoolFunction(Card.IsSetCard,0x497),
-aux.FilterBoolFunction(Card.IsSetCard,0x713),
-}
 
 
 c19011.material_setcode=0x497

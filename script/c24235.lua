@@ -3,7 +3,7 @@ function c24235.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(24235,0))
-	e1:SetCategory(CATEGORY_SPECIAL_SUMMON)
+	e1:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_FUSION_SUMMON)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
 	e1:SetTarget(c24235.target)
@@ -12,7 +12,7 @@ function c24235.initial_effect(c)
 	--banana
 	local e2=Effect.CreateEffect(c)
 	e2:SetDescription(aux.Stringid(24235,0))
-	e2:SetCategory(CATEGORY_SPECIAL_SUMMON)
+	e2:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_FUSION_SUMMON)
 	e2:SetType(EFFECT_TYPE_IGNITION)
 	e2:SetRange(LOCATION_GRAVE)
 	e2:SetCondition(aux.exccon)
@@ -20,12 +20,6 @@ function c24235.initial_effect(c)
 	e2:SetTarget(c24235.tdtg)
 	e2:SetOperation(c24235.tdop)
 	c:RegisterEffect(e2)
-end
-function c24235.filter0(c)
-	return c:IsCanBeFusionMaterial() and c:IsAbleToGrave()
-end
-function c24235.filter1(c,e)
-	return c:IsCanBeFusionMaterial() and c:IsAbleToGrave() and not c:IsImmuneToEffect(e)
 end
 function c24235.filter2(c,e,tp,m,f,chkf)
 	return c:IsType(TYPE_FUSION) and (not f or f(c)) and c:IsSetCard(0x208)
@@ -42,7 +36,7 @@ function c24235.target(e,tp,eg,ep,ev,re,r,rp,chk)
 			and Duel.GetFieldGroupCount(tp,LOCATION_MZONE,0)==0 then
 			loc=loc+LOCATION_DECK
 		end
-		local mg1=Duel.GetMatchingGroup(c24235.filter0,tp,loc,0,nil)
+		local mg1=Fus.GetFusionMaterial(tp,loc)
 		local res=Duel.IsExistingMatchingCard(c24235.filter2,tp,LOCATION_EXTRA,0,1,nil,e,tp,mg1,nil,chkf)
 		if not res then
 			local ce=Duel.GetChainMaterial(tp)
@@ -64,7 +58,7 @@ function c24235.activate(e,tp,eg,ep,ev,re,r,rp)
 		and Duel.GetFieldGroupCount(tp,LOCATION_MZONE,0)==0 then
 		loc=loc+LOCATION_DECK
 	end
-	local mg1=Duel.GetMatchingGroup(c24235.filter1,tp,loc,0,nil,e)
+	local mg1=Fus.GetFusionMaterial(tp,loc,nil,nil,nil,e)
 	local sg1=Duel.GetMatchingGroup(c24235.filter2,tp,LOCATION_EXTRA,0,nil,e,tp,mg1,nil,chkf)
 	local mg2=nil
 	local sg2=nil
@@ -106,7 +100,7 @@ end
 function c24235.tdtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then
 		local chkf=Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and PLAYER_NONE or tp
-		local mg1=Duel.GetMatchingGroup(c24235.filter1,tp,LOCATION_MZONE,0,nil,e)
+		local mg1=Fus.GetFusionMaterial(tp,LOCATION_ONFIELD)
 		local res=Duel.IsExistingMatchingCard(c24235.filter3,tp,LOCATION_EXTRA,0,1,nil,e,tp,mg1,nil,chkf)
 		if not res then
 			local ce=Duel.GetChainMaterial(tp)
@@ -123,7 +117,7 @@ function c24235.tdtg(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function c24235.tdop(e,tp,eg,ep,ev,re,r,rp)
 	local chkf=Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and PLAYER_NONE or tp
-	local mg1=Duel.GetMatchingGroup(c24235.filter1,tp,LOCATION_MZONE,0,nil,e)
+	local mg1=Fus.GetFusionMaterial(tp,LOCATION_ONFIELD,nil,nil,nil,e)
 	local sg1=Duel.GetMatchingGroup(c24235.filter3,tp,LOCATION_EXTRA,0,nil,e,tp,mg1,nil,chkf)
 	local mg2=nil
 	local sg2=nil

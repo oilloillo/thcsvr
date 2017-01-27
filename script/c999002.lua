@@ -5,7 +5,7 @@ local Mid = 999002
 function M.initial_effect(c)
 	-- fusion material
 	c:EnableReviveLimit()
-	aux.AddFusionProcFun2(c, aux.FilterBoolFunction(Card.IsSetCard, 0xaa6), aux.FilterBoolFunction(Card.IsSetCard, 0x200), true)
+	aux.AddFusionProcFun2(c, aux.FilterBoolFunction(Card.IsFusionSetCard, 0xaa6), aux.FilterBoolFunction(Card.IsFusionSetCard, 0x200), true)
 	--
 	Afi.AdjustFieldInfoStore(c)
 	-- atk up
@@ -49,8 +49,8 @@ function M.initial_effect(c)
 	c:RegisterEffect(e4)
 end
 M.hana_mat={
-aux.FilterBoolFunction(Card.IsSetCard,0xaa6),
-aux.FilterBoolFunction(Card.IsSetCard,0x200),
+aux.FilterBoolFunction(Card.IsFusionSetCard,0xaa6),
+aux.FilterBoolFunction(Card.IsFusionSetCard,0x200),
 }
 
 function M.ffilter(c)

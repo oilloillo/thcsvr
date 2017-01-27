@@ -1,4 +1,3 @@
- 
 --不死「火鸟 -凤翼天翔-」
 function c21121.initial_effect(c)
 	--Activate
@@ -16,7 +15,7 @@ function c21121.sumcon(e,tp,eg,ep,ev,re,r,rp)
 	return ep==tp
 end
 function c21121.filter(c,e,tp)
-	return (c:IsCode(21024) or c:IsCode(21077)) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
+	return (c:IsSetCard(0x137)) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
 function c21121.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0

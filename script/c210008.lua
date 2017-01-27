@@ -31,7 +31,7 @@ aux.FilterBoolFunction(Card.IsCode,210005),
 aux.FilterBoolFunction(Card.IsSetCard,0x710),
 }
 function c210008.ffilter(c)
-	return c:IsSetCard(0x710)
+	return c:IsFusionSetCard(0x710)
 end
 function c210008.desfilter(c)
 	return c:IsDestructable() and c:IsType(TYPE_SPELL+TYPE_TRAP)

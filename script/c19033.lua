@@ -2,7 +2,7 @@
 function c19033.initial_effect(c)
 	--fusion material
 	c:EnableReviveLimit()
-	aux.AddFusionProcFun2(c,aux.FilterBoolFunction(Card.IsSetCard,0x255),aux.FilterBoolFunction(Card.IsSetCard,0x261),true)
+	aux.AddFusionProcFun2(c,aux.FilterBoolFunction(Card.IsFusionSetCard,0x255),aux.FilterBoolFunction(Card.IsFusionSetCard,0x261),true)
 	--spell set
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(19033,0))
@@ -33,8 +33,8 @@ function c19033.initial_effect(c)
 	c:RegisterEffect(e5)
 end
 c19033.hana_mat={
-aux.FilterBoolFunction(Card.IsSetCard,0x255),
-aux.FilterBoolFunction(Card.IsSetCard,0x261),
+aux.FilterBoolFunction(Card.IsFusionSetCard,0x255),
+aux.FilterBoolFunction(Card.IsFusionSetCard,0x261),
 }
 function c19033.filter(c)
 	return c:IsSetCard(0x256) and c:IsAbleToHand()

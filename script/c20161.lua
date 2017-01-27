@@ -1,4 +1,4 @@
- --天空的花之都
+--天空的花之都
 function c20161.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)

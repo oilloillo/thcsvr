@@ -3,7 +3,7 @@ function c23203.initial_effect(c)
 	--special summon
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
-	e1:SetCategory(CATEGORY_SPECIAL_SUMMON)
+	e1:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_FUSION_SUMMON)
 	e1:SetCode(EVENT_FREE_CHAIN)
 	e1:SetTarget(c23203.damtg)
 	e1:SetOperation(c23203.damop)
@@ -21,18 +21,25 @@ function c23203.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 function c23203.mfilter1(c,e)
-	return c:IsSetCard(0x497) and c:IsCanBeFusionMaterial() and not c:IsImmuneToEffect(e) and c:IsAbleToDeck()
+	return c:IsSetCard(0x497) and c:IsCanBeFusionMaterial() and not c:IsImmuneToEffect(e) and c:IsAbleToDeck() and c:IsType(TYPE_MONSTER)
 end
 function c23203.mfilter2(c,e)
-	return c:GetCounter(0x128a)>0 and c:IsCanBeFusionMaterial() and not c:IsImmuneToEffect(e) and c:IsAbleToDeck()
+	return c:GetCounter(0x128a)>0 and c:IsCanBeFusionMaterial() and not c:IsImmuneToEffect(e) and c:IsAbleToDeck() and c:IsType(TYPE_MONSTER)
 end
-function c23203.filter2(c,e,tp,m,chkf)
+function c23203.filter2(c,e,tp,m1,m2,chkf)
 	return c:IsType(TYPE_FUSION) and aux.IsMaterialListSetCard(c,0x497) and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_FUSION,tp,false,false)
-		--and (c:CheckFusionMaterial(m,nil,chkf))
+		and m1:IsExists(c23203.chkfilter1,1,nil,c,m2,chkf)
+end
+function c23203.chkfilter1(c,fc,m2,chkf)
+	return m2:IsExists(c23203.chkfilter2,1,nil,fc,c,chkf)
+end
+function c23203.chkfilter2(c,fc,mc,chkf)
+	local mg=Group.FromCards(c,mc)
+	return fc:CheckFusionMaterial(mg,nil,chkf)
 end
 function c23203.damtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local chkf=Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and PLAYER_NONE or tp
-	local mg1=Duel.GetMatchingGroup(c23203.mfilter1,tp,LOCATION_HAND+LOCATION_MZONE+LOCATION_GRAVE,0,nil,e)
+	local mg1=Fus.GetFusionMaterial(tp,LOCATION_HAND+LOCATION_MZONE+LOCATION_GRAVE,nil,Card.IsSetCard,nil,nil,0x497)
 	local mg2=Duel.GetMatchingGroup(c23203.mfilter2,tp,LOCATION_MZONE,LOCATION_MZONE,nil,e)
 	local mg=Group.CreateGroup()
 	mg:Merge(mg1)
@@ -40,19 +47,18 @@ function c23203.damtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	-- local ce=Duel.GetChainMaterial(tp)
 	-- local mf=nil
 	-- if ce~=nil then
-	-- 	local fgroup=ce:GetTarget()
-	-- 	local mg3=fgroup(ce,e,tp)
-	-- 	mf=ce:GetValue()
+	--  local fgroup=ce:GetTarget()
+	--  local mg3=fgroup(ce,e,tp)
+	--  mf=ce:GetValue()
 	-- end
-	local g=Duel.GetMatchingGroup(c23203.filter2,tp,LOCATION_EXTRA,0,nil,e,tp,mg,chkf)
-	if chk==0 then
-		return g:GetCount()>0 and mg:GetCount()>1 and mg1:GetCount()>0 and mg2:GetCount()>0 end
+	local g=Duel.GetMatchingGroup(c23203.filter2,tp,LOCATION_EXTRA,0,nil,e,tp,mg1,mg2,chkf)
+	if chk==0 then return g:GetCount()>0 end
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_EXTRA)
 	Duel.SetOperationInfo(0,CATEGORY_TODECK,nil,2,0,0x16)
 end
 function c23203.damop(e,tp,eg,ep,ev,re,r,rp)
 	local chkf=Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and PLAYER_NONE or tp
-	local mg1=Duel.GetMatchingGroup(c23203.mfilter1,tp,LOCATION_HAND+LOCATION_MZONE+LOCATION_GRAVE,0,nil,e)
+	local mg1=Fus.GetFusionMaterial(tp,LOCATION_HAND+LOCATION_MZONE+LOCATION_GRAVE,nil,Card.IsSetCard,nil,e,0x497)
 	local mg2=Duel.GetMatchingGroup(c23203.mfilter2,tp,LOCATION_MZONE,LOCATION_MZONE,nil,e)
 	local mg=Group.CreateGroup()
 	mg:Merge(mg1)
@@ -60,21 +66,25 @@ function c23203.damop(e,tp,eg,ep,ev,re,r,rp)
 	-- local ce=Duel.GetChainMaterial(tp)
 	-- local mf=nil
 	-- if ce~=nil then
-	-- 	local fgroup=ce:GetTarget()
-	-- 	local mg3=fgroup(ce,e,tp)
-	-- 	mf=ce:GetValue()
+	--  local fgroup=ce:GetTarget()
+	--  local mg3=fgroup(ce,e,tp)
+	--  mf=ce:GetValue()
 	-- end
 	local g=Duel.GetMatchingGroup(c23203.filter2,tp,LOCATION_EXTRA,0,nil,e,tp,mg,chkf)
 	if g:GetCount()>0 and mg:GetCount()>1 and mg1:GetCount()>0 and mg2:GetCount()>0 then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
 		local sg=g:Select(tp,1,1,nil)
 		local tc=sg:GetFirst()
-		local mat2=mg1:Select(tp,1,1,nil)
-		Duel.SendtoDeck(mat2,nil,1,REASON_EFFECT)
-		mg2:RemoveCard(mat2:GetFirst())
-		local mat1=mg2:Select(tp,1,1,nil)
+		local mat=Group.CreateGroup()
+		local mat1=mg1:FilterSelect(tp,c23203.chkfilter1,1,1,nil,tc,mg2,chkf)
 		Duel.HintSelection(mat1)
-		Duel.SendtoDeck(mat1,nil,1,REASON_EFFECT)
+		mat:Merge(mat1)
+		mg2:Sub(mat1)
+		local mat2=mg2:FilterSelect(tp,c23203.chkfilter2,1,1,nil,tc,mat1:GetFirst(),chkf)
+		Duel.HintSelection(mat2)
+		mat:Merge(mat2)
+		tc:SetMaterial(mat)
+		Duel.SendtoDeck(mat,nil,1,REASON_EFFECT)
 		Duel.BreakEffect()
 		Duel.SpecialSummon(tc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)
 		tc:CompleteProcedure()

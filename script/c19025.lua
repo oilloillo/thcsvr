@@ -4,7 +4,7 @@ function c19025.initial_effect(c)
 	Duel.EnableGlobalFlag(GLOBALFLAG_SPSUMMON_COUNT)
 	--fusion material
 	c:EnableReviveLimit()
-	aux.AddFusionProcFun2(c,aux.FilterBoolFunction(Card.IsSetCard,0x815),aux.FilterBoolFunction(Card.IsSetCard,0x110),true)
+	aux.AddFusionProcFun2(c,aux.FilterBoolFunction(Card.IsFusionSetCard,0x815),aux.FilterBoolFunction(Card.IsFusionSetCard,0x110),true)
 
 		--destroy
 		local e1=Effect.CreateEffect(c)
@@ -60,8 +60,8 @@ function c19025.initial_effect(c)
 
 end
 c19025.hana_mat={
-aux.FilterBoolFunction(Card.IsSetCard,0x815),
-aux.FilterBoolFunction(Card.IsSetCard,0x110),
+aux.FilterBoolFunction(Card.IsFusionSetCard,0x815),
+aux.FilterBoolFunction(Card.IsFusionSetCard,0x110),
 }
 
 

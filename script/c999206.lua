@@ -4,7 +4,7 @@ function c999206.initial_effect(c)
 	--pend
 	aux.EnablePendulumAttribute(c)
 	-- fusion
-	aux.AddFusionProcCodeFun(c,999203,aux.FilterBoolFunction(Card.IsSetCard,0xaa1),1,true,true)
+	aux.AddFusionProcCodeFun(c,999203,aux.FilterBoolFunction(Card.IsFusionSetCard,0xaa1),1,true,true)
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_FIELD)
 	e1:SetCode(EFFECT_SPSUMMON_PROC)
@@ -38,8 +38,8 @@ function c999206.initial_effect(c)
 	c:RegisterEffect(e4)
 end
 c999206.hana_mat={
-aux.FilterBoolFunction(Card.IsCode,999203),
-aux.FilterBoolFunction(Card.IsSetCard,0xaa1),
+aux.FilterBoolFunction(Card.IsFusionCode,999203),
+aux.FilterBoolFunction(Card.IsFusionSetCard,0xaa1),
 }
 function c999206.spfilter1(c,tp,flag,fc)
 	local loc = 0

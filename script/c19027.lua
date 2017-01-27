@@ -3,7 +3,7 @@ function c19027.initial_effect(c)
 
 	--fusion material
 	c:EnableReviveLimit()
-	aux.AddFusionProcFun2(c,aux.FilterBoolFunction(Card.IsSetCard,0x666),aux.FilterBoolFunction(Card.IsSetCard,0x9999),true)
+	aux.AddFusionProcFun2(c,aux.FilterBoolFunction(Card.IsFusionSetCard,0x666),aux.FilterBoolFunction(Card.IsFusionSetCard,0x9999),true)
 
 		--ban le ni ge gua b
 		local e1=Effect.CreateEffect(c)
@@ -31,20 +31,17 @@ function c19027.initial_effect(c)
 
 end
 c19027.hana_mat={
-aux.FilterBoolFunction(Card.IsSetCard,0x666),
-aux.FilterBoolFunction(Card.IsSetCard,0x9999),
+aux.FilterBoolFunction(Card.IsFusionSetCard,0x666),
+aux.FilterBoolFunction(Card.IsFusionSetCard,0x9999),
 }
-
 
 function c19027.cgcon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():GetSummonType()==SUMMON_TYPE_FUSION
 end
 
-
 function c19027.destg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(aux.TRUE,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,e:GetHandler()) end
 end
-
 
 function c19027.desop(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.GetMatchingGroup(aux.TRUE,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,e:GetHandler())
@@ -65,16 +62,13 @@ function c19027.desop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 
-
 function c19027.cfilter(c,tp)
 	return c:IsAttribute(ATTRIBUTE_WATER) and c:GetAttack()<=2000 and c:IsSetCard(0x208)
 end
 
-
 function c19027.spcon(e,tp,eg,ep,ev,re,r,rp)
 	return eg:IsExists(c19027.cfilter,1,nil,tp)
 end
-
 
 function c19027.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
@@ -84,7 +78,6 @@ function c19027.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	end
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,c,1,0,0)
 end
-
 
 function c19027.spop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()

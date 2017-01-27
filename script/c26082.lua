@@ -11,7 +11,7 @@ function c26082.initial_effect(c)
 	--fussummon
 	local e2=Effect.CreateEffect(c)
 	e2:SetDescription(aux.Stringid(26082,0))
-	e2:SetCategory(CATEGORY_SPECIAL_SUMMON)
+	e2:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_FUSION_SUMMON)
 	e2:SetType(EFFECT_TYPE_IGNITION)
 	e2:SetRange(LOCATION_GRAVE)
 	e2:SetProperty(EFFECT_FLAG_CARD_TARGET)
@@ -72,34 +72,34 @@ function c26082.scost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():IsAbleToDeckAsCost() end
 	Duel.SendtoDeck(e:GetHandler(),nil,1,REASON_COST)
 end
-function c26082.filter1(c)
-	return c:IsSetCard(0x208) and c:IsRace(RACE_ZOMBIE)
+function c26082.filter1(c,exg)
+	return c:IsSetCard(0x208) and c:IsRace(RACE_ZOMBIE) and exg:IsExists(c26082.filter3,1,nil,c)
 end
 function c26082.filter2(c,e,tp)
 	return c:IsSetCard(0x229) and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_FUSION,tp,false,false) and c:IsType(TYPE_FUSION)
-	-- and c:CheckFusionMaterial(mg)
+end
+function c26082.filter3(c,mc)
+	return Fus.CheckMaterialSingle(mc,c)
 end
 function c26082.stg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_MZONE) and chkc:IsControler(tp) and c26082.filter1(chkc) end
 	if chk==0 then
-		local mg=Duel.GetMatchingGroup(c26082.filter1,tp,LOCATION_MZONE,0,nil)
-		return Duel.GetLocationCount(tp,LOCATION_MZONE)>-1 and Duel.IsExistingTarget(c26082.filter1,tp,LOCATION_MZONE,0,1,nil,e,tp)
-		and Duel.IsExistingMatchingCard(c26082.filter2,tp,LOCATION_EXTRA,0,1,nil,e,tp) and Duel.GetFieldGroupCount(tp,LOCATION_MZONE,0)==1 end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_XMATERIAL)
-	local g=Duel.SelectTarget(tp,c26082.filter1,tp,LOCATION_MZONE,0,1,1,nil,e,tp)
+		local exg=Duel.GetMatchingGroup(c26082.filter2,tp,LOCATION_EXTRA,0,nil,e,tp)
+		return Duel.GetLocationCount(tp,LOCATION_MZONE)>-1 and Duel.IsExistingTarget(c26082.filter1,tp,LOCATION_MZONE,0,1,nil,exg)
+	end
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FMATERIAL)
+	local g=Duel.SelectTarget(tp,c26082.filter1,tp,LOCATION_MZONE,0,1,1,nil)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,0,LOCATION_EXTRA)
 end
 function c26082.sop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
 	if not tc or not tc:IsRelateToEffect(e) or tc:IsControler(1-tp) then return end
-	local mg=Duel.GetMatchingGroup(c26082.filter1,tp,LOCATION_MZONE,0,nil)
+	local exg=Duel.GetMatchingGroup(c26082.filter2,tp,LOCATION_EXTRA,0,nil,e,tp)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
-	local g=Duel.SelectMatchingCard(tp,c26082.filter2,tp,LOCATION_EXTRA,0,1,1,nil,e,tp)
+	local g=exg:FilterSelect(tp,c26082.filter3,1,1,nil,tc)
 	local sc=g:GetFirst()
 	if sc then
-		local mat=Group.CreateGroup()
-		mat:AddCard(tc)
-		sc:SetMaterial(mat)
+		local mat=Group.FromCards(tc)
 		Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)
 		Duel.BreakEffect()
 		Duel.SpecialSummon(sc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)

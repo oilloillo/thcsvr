@@ -1,5 +1,4 @@
- 
---不死鸟重生
+ --不死鸟重生
 function c21127.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
@@ -17,10 +16,10 @@ function c21127.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 function c21127.filter(c,e,tp)
-	return (c:IsCode(21024) or c:IsCode(21077)) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
+	return (c:IsSetCard(0x137)) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
 function c21127.cfilter(c)
-	return (c:IsCode(21024) or c:IsCode(21077)) and c:IsFaceup()
+	return (c:IsSetCard(0x137)) and c:IsFaceup()
 end
 function c21127.sfilter(c,e,tp)
 	return c:IsCanBeSpecialSummoned(e,0,tp,false,false)

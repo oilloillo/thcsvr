@@ -1,5 +1,4 @@
- 
---灭罪「正直者之死」
+ --灭罪「正直者之死」
 function c21124.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
@@ -12,7 +11,7 @@ function c21124.initial_effect(c)
 	c:RegisterEffect(e1)
 end
 function c21124.filter(c,e,tp)
-	return (c:IsCode(21024) or c:IsCode(21077)) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
+	return (c:IsSetCard(0x137)) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
 function c21124.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	local a=Duel.GetAttacker()

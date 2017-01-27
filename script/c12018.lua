@@ -34,8 +34,8 @@ function c12018.initial_effect(c)
 	c:RegisterEffect(e3)
 end
 c12018.hana_mat={
-aux.FilterBoolFunction(Card.IsCode,12012),
-aux.FilterBoolFunction(Card.IsSetCard,0x993),
+aux.FilterBoolFunction(Card.IsFusionCode,12012),
+aux.FilterBoolFunction(Card.IsFusionSetCard,0x993),
 }
 function c12018.efilter(e,te)
 	if te:IsActiveType(TYPE_TRAP) then return true

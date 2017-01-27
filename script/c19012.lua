@@ -2,7 +2,7 @@
 function c19012.initial_effect(c)
 	--fusion material
 	c:EnableReviveLimit()
-	aux.AddFusionProcFun2(c,aux.FilterBoolFunction(Card.IsSetCard,0x214a),aux.FilterBoolFunction(Card.IsCode,25021),true)
+	Fus.AddFusionProcCodeFun(c,25021,aux.FilterBoolFunction(Card.IsFusionSetCard,0x214a),true)
 		--tograve
 		local e1=Effect.CreateEffect(c)
 		e1:SetCategory(CATEGORY_TOGRAVE)
@@ -23,8 +23,8 @@ function c19012.initial_effect(c)
 		c:RegisterEffect(e2)
 end
 c19012.hana_mat={
-aux.FilterBoolFunction(Card.IsSetCard,0x214a),
-aux.FilterBoolFunction(Card.IsCode,25021),
+aux.FilterBoolFunction(Card.IsFusionSetCard,0x214a),
+aux.FilterBoolFunction(Card.IsFusionCode,25021),
 }
 function c19012.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetFieldGroupCount(tp,0,LOCATION_HAND)>1 end

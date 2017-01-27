@@ -33,11 +33,11 @@ function c999311.initial_effect(c)
 end
 c999311.DescSetName = 0xa2
 function c999311.ffilter1(c)
-	return c:IsCode(999301) or c:IsCode(23001)
+	return c:IsFusionCode(999301) or c:IsFusionCode(23001)
 end
 
 function c999311.ffilter2(c)
-	return c:IsCode(999302) or c:IsCode(23004)
+	return c:IsFusionCode(999302) or c:IsFusionCode(23004)
 end
 
 function c999311.splimit(e,se,sp,st)

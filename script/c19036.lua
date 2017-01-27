@@ -2,7 +2,7 @@
 function c19036.initial_effect(c)
 	--fusion material
 	c:EnableReviveLimit()
-	aux.AddFusionProcFun2(c,aux.FilterBoolFunction(Card.IsSetCard,0x713),aux.FilterBoolFunction(Card.IsSetCard,0x226),true)
+	aux.AddFusionProcFun2(c,aux.FilterBoolFunction(Card.IsFusionSetCard,0x713),aux.FilterBoolFunction(Card.IsFusionSetCard,0x226),true)
 	--multi attack
 	local e2=Effect.CreateEffect(c)
 	e2:SetType(EFFECT_TYPE_SINGLE)
@@ -23,8 +23,8 @@ function c19036.initial_effect(c)
 	c:RegisterEffect(e1)
 end
 c19036.hana_mat={
-aux.FilterBoolFunction(Card.IsSetCard,0x713),
-aux.FilterBoolFunction(Card.IsSetCard,0x226),
+aux.FilterBoolFunction(Card.IsFusionSetCard,0x713),
+aux.FilterBoolFunction(Card.IsFusionSetCard,0x226),
 }
 function c19036.drcon(e,tp,eg,ep,ev,re,r,rp)
 	local g1=Duel.GetMatchingGroup(Card.IsFaceup,tp,LOCATION_MZONE,0,nil)

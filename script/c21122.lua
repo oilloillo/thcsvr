@@ -1,5 +1,4 @@
- 
---藤原「灭罪寺院伤」
+ --藤原「灭罪寺院伤」
 function c21122.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
@@ -16,7 +15,7 @@ function c21122.filter(c)
 	return c:IsDestructable()
 end
 function c21122.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
-	local mc=Duel.GetMatchingGroupCount(Card.IsSetCard,tp,LOCATION_HAND,0,nil,0x161)
+	local mc=Duel.GetMatchingGroupCount(Card.IsSetCard,tp,LOCATION_HAND,0,nil,0x137)
 	if chkc then return chkc:IsLocation(LOCATION_ONFIELD) and chkc:IsControler(1-tp) and c21122.filter(chkc) end
 	if chk==0 then return Duel.IsExistingTarget(c21122.filter,tp,0,LOCATION_ONFIELD,1,e:GetHandler()) and mc>0 end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
@@ -31,7 +30,7 @@ function c21122.activate(e,tp,eg,ep,ev,re,r,rp)
 	local ct=e:GetLabel()
 	if tg:GetCount()>0 and Duel.Destroy(tg,REASON_EFFECT)~=0 then
 		if Duel.Damage(1-tp,ct*200,REASON_EFFECT) then
-			local dis=Duel.SelectMatchingCard(tp,Card.IsSetCard,tp,LOCATION_HAND,0,ct,ct,nil,0x161)
+			local dis=Duel.SelectMatchingCard(tp,Card.IsSetCard,tp,LOCATION_HAND,0,ct,ct,nil,0x137)
 			Duel.SendtoGrave(dis,REASON_EFFECT)
 		end
 	end

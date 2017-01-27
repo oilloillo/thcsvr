@@ -2,7 +2,7 @@
 function c26078.initial_effect(c)
 	--fusion material
 	c:EnableReviveLimit()
-	Fus.AddFusionProcFun2(c,c26078.ffilter,aux.FilterBoolFunction(Card.IsType,TYPE_FLIP),false)
+	Fus.AddFusionProcFun2(c,c26078.ffilter,aux.FilterBoolFunction(Card.IsFusionType,TYPE_FLIP),false)
 	--special summon rule
 	local e0=Effect.CreateEffect(c)
 	e0:SetType(EFFECT_TYPE_FIELD)
@@ -34,7 +34,7 @@ function c26078.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 function c26078.ffilter(c)
-	return c:IsSetCard(0x229)
+	return c:IsFusionSetCard(0x229)
 end
 function c26078.spfilter1(c,tp)
 	return c:IsSetCard(0x229) and c:IsCanBeFusionMaterial() and Duel.CheckReleaseGroup(tp,c26078.spfilter2,1,c)

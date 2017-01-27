@@ -3,7 +3,8 @@ function c19019.initial_effect(c)
 
 		--fusion material
 		c:EnableReviveLimit()
-		Fus.AddFusionProcFunMulti(c,true,aux.FilterBoolFunction(Card.IsSetCard,0x713),aux.FilterBoolFunction(Card.IsSetCard,0x226),aux.FilterBoolFunction(Card.IsSetCard,0x190))
+		Fus.AddFusionProcFunMulti(c,true,aux.FilterBoolFunction(Card.IsFusionSetCard,0x713),aux.FilterBoolFunction(Card.IsFusionSetCard,0x226),
+			aux.FilterBoolFunction(Card.IsFusionSetCard,0x190))
 
 			--multi attack
 			local e2=Effect.CreateEffect(c)

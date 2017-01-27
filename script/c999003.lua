@@ -4,7 +4,7 @@ local Mid = 999003
 function M.initial_effect(c)
 	-- fusion material
 	c:EnableReviveLimit()
-	aux.AddFusionProcFun2(c, aux.FilterBoolFunction(Card.IsSetCard, 0xaa6), aux.FilterBoolFunction(Card.IsSetCard, 0x100), true)
+	aux.AddFusionProcFun2(c, aux.FilterBoolFunction(Card.IsFusionSetCard, 0xaa6), aux.FilterBoolFunction(Card.IsFusionSetCard, 0x100), true)
 	-- immune
 	local e0=Effect.CreateEffect(c)
 	e0:SetType(EFFECT_TYPE_FIELD)
@@ -41,8 +41,8 @@ function M.initial_effect(c)
 	c:RegisterEffect(e4)
 end
 M.hana_mat={
-aux.FilterBoolFunction(Card.IsSetCard,0xaa6),
-aux.FilterBoolFunction(Card.IsSetCard,0x100),
+aux.FilterBoolFunction(Card.IsFusionSetCard,0xaa6),
+aux.FilterBoolFunction(Card.IsFusionSetCard,0x100),
 }
 
 function M.tdcon(e,tp,eg,ep,ev,re,r,rp)

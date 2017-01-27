@@ -4,6 +4,7 @@ local Mid = 999004
 function M.initial_effect(c)
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_QUICK_O)
+	e1:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_FUSION_SUMMON)
 	e1:SetDescription(aux.Stringid(Mid, 0))
 	e1:SetRange(LOCATION_MZONE+LOCATION_HAND)
 	e1:SetCode(EVENT_CHAINING)
@@ -23,23 +24,26 @@ function M.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 
-function M.filter(c,e,tp,mg)
-	return c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_FUSION,tp,false,false) and c:CheckFusionMaterial(mg)
+function M.filter(c,e,tp,mg,chkf)
+	return c:IsType(TYPE_FUSION) and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_FUSION,tp,false,false) and c:CheckFusionMaterial(mg,nil,chkf)
 end
 
 function M.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	local rc=re:GetHandler()
 	local c=e:GetHandler()
+	local chkf=Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and PLAYER_NONE or tp
 	if chk==0 then return rc and c and ep == tp and rc:IsAbleToDeck() and c:IsAbleToDeck() 
-		and Duel.IsExistingMatchingCard(M.filter, tp, LOCATION_EXTRA, 0, 1, nil, e, tp, Group.FromCards(rc, c)) end
+		and Duel.IsExistingMatchingCard(M.filter, tp, LOCATION_EXTRA, 0, 1, nil, e, tp, Group.FromCards(rc, c), chkf) end
+	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_EXTRA)
 end
 
 function M.operation(e,tp,eg,ep,ev,re,r,rp)
 	local rc=re:GetHandler()
 	local c=e:GetHandler()
+	local chkf=Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and PLAYER_NONE or tp
 	if not rc or not c then return end
 	local mg = Group.FromCards(rc, c)
-	if ep == tp and rc:IsAbleToDeck() and c:IsAbleToDeck() and Duel.IsExistingMatchingCard(M.filter, tp, LOCATION_EXTRA, 0, 1, nil, e, tp, mg) then
+	if ep == tp and rc:IsAbleToDeck() and c:IsAbleToDeck() and Duel.IsExistingMatchingCard(M.filter, tp, LOCATION_EXTRA, 0, 1, nil, e, tp, mg, chkf) then
 		Duel.SendtoDeck(mg, nil, 2, REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)
 		local g = Duel.SelectMatchingCard(tp, M.filter, tp, LOCATION_EXTRA, 0, 1, 1, nil, e, tp, mg)
 		Duel.SpecialSummon(g, SUMMON_TYPE_FUSION, tp, tp, false, false, POS_FACEUP)
