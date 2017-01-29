@@ -32,17 +32,21 @@ end
 function c26125.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
 	if chk==0 then
-		local mg1=Fus.GetFusionMaterial(tp,LOCATION_HAND,nil,nil,c)
-		return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and Duel.IsExistingMatchingCard(c26125.filter2,tp,LOCATION_EXTRA,0,1,nil,e,tp,mg1,nil)
+		local loc=LOCATION_MZONE
+		if Duel.GetLocationCount(tp,LOCATION_MZONE)>0 then loc=loc+LOCATION_SZONE+LOCATION_HAND end
+		local mg1=Fus.GetFusionMaterial(tp,loc,nil,nil,c)
+		return Duel.IsExistingMatchingCard(c26125.filter2,tp,LOCATION_EXTRA,0,1,nil,e,tp,mg1,nil)
 	end
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_EXTRA)
 end
 function c26125.spop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	if not c:IsRelateToEffect(e) or c:IsImmuneToEffect(e) then return end
-	local mg1=Fus.GetFusionMaterial(tp,LOCATION_HAND,nil,nil,c,e)
+	local loc=LOCATION_MZONE
+	if Duel.GetLocationCount(tp,LOCATION_MZONE)>0 then loc=loc+LOCATION_SZONE+LOCATION_HAND end
+	local mg1=Fus.GetFusionMaterial(tp,loc,nil,nil,c,e)
 	local sg1=Duel.GetMatchingGroup(c26125.filter2,tp,LOCATION_EXTRA,0,nil,e,tp,mg1,nil)
-	if Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and sg1:GetCount()>0 then
+	if sg1:GetCount()>0 then
 		local sg=sg1:Clone()
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
 		local tg=sg:Select(tp,1,1,nil)
