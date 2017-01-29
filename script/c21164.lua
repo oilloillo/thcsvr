@@ -60,7 +60,7 @@ function c21164.hspcost(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function c21164.hsptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and e:GetHandler():IsCanBeSpecialSummoned(e,0,tp,false,false)
-		and Duel.GetFieldGroupCount(tp,LOCATION_MZONE,0,nil)<Duel.GetFieldGroupCount(tp,0,LOCATION_MZONE,nil) end
+		and Duel.GetFieldGroupCount(tp,LOCATION_MZONE,0,nil)<=Duel.GetFieldGroupCount(tp,0,LOCATION_MZONE,nil) end
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,e:GetHandler(),1,0,0)
 end
 function c21164.hspop(e,tp,eg,ep,ev,re,r,rp)

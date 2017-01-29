@@ -38,8 +38,10 @@ function c21167.initial_effect(c)
 	local e4=Effect.CreateEffect(c)
 	e4:SetDescription(aux.Stringid(21167,4))
 	e4:SetCategory(CATEGORY_SPECIAL_SUMMON)
-	e4:SetType(EFFECT_TYPE_IGNITION)
+	e4:SetType(EFFECT_TYPE_QUICK_O)
 	e4:SetRange(LOCATION_GRAVE)
+	e4:SetCode(EVENT_FREE_CHAIN)
+	e4:SetProperty(EFFECT_FLAG_CHAIN_UNIQUE)
 	e4:SetCost(c21167.hspcost)
 	e4:SetTarget(c21167.hsptg)
 	e4:SetOperation(c21167.hspop)
@@ -55,13 +57,13 @@ end
 function c21167.xyzcon(e,c)
 	if c==nil then return true end
 	local tp=c:GetControler()
-	if Duel.GetLocationCount(tp,LOCATION_MZONE)<-2 then return false end
-	return Duel.IsExistingMatchingCard(c21167.hofilter, tp, LOCATION_MZONE, 0, 3, nil, tp, c)
+	if Duel.GetLocationCount(tp,LOCATION_MZONE)<-1 then return false end
+	return Duel.IsExistingMatchingCard(c21167.hofilter, tp, LOCATION_MZONE, 0, 2, nil, tp, c)
 end
 function c21167.xyzop(e,tp,eg,ep,ev,re,r,rp,c)
 	local tp=c:GetControler()
-	local mg = Duel.SelectMatchingCard(tp, c21167.hofilter, tp, LOCATION_MZONE, 0, 3, 3, nil, tp, c)
-	if mg:GetCount()<3 then return end
+	local mg = Duel.SelectMatchingCard(tp, c21167.hofilter, tp, LOCATION_MZONE, 0, 2, 2, nil, tp, c)
+	if mg:GetCount()<2 then return end
 		c:SetMaterial(mg)
 		Duel.Overlay(c, mg)
 end
@@ -89,14 +91,17 @@ function c21167.descost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():CheckRemoveOverlayCard(tp,1,REASON_COST) end
 	e:GetHandler():RemoveOverlayCard(tp,1,1,REASON_COST)
 end
+function c21167.filter(c)
+	return c:IsType(TYPE_MONSTER) and c:IsDestructable()
+end
 function c21167.destg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsExistingMatchingCard(Card.IsDestructable,tp,LOCATION_DECK,LOCATION_MZONE,1,nil) end
-	local g=Duel.GetMatchingGroup(Card.IsDestructable,tp,LOCATION_DECK,LOCATION_ONFIELD,nil)
+	if chk==0 then return Duel.IsExistingMatchingCard(c21167.filter,tp,LOCATION_DECK,LOCATION_MZONE,1,nil) end
+	local g=Duel.GetMatchingGroup(c21167.filter,tp,LOCATION_DECK,LOCATION_ONFIELD,nil)
 	Duel.SetOperationInfo(0,CATEGORY_DESTROY,g,1,0,0)
 end
 function c21167.desop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
-	local dg=Duel.SelectMatchingCard(tp,Card.IsDestructable,tp,LOCATION_DECK,LOCATION_ONFIELD,1,1,nil)
+	local dg=Duel.SelectMatchingCard(tp,c21167.filter,tp,LOCATION_DECK,LOCATION_ONFIELD,1,1,nil)
 	Duel.HintSelection(dg)
 	Duel.Destroy(dg,REASON_EFFECT)
 end
