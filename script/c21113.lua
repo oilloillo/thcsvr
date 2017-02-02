@@ -1,5 +1,4 @@
- 
---永夜返 -寅之刻-
+ --永夜返 -寅之刻-
 function c21113.initial_effect(c)
 	local e1=Effect.CreateEffect(c)
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON)
@@ -49,7 +48,7 @@ function c21113.activate(e,tp,eg,ep,ev,re,r,rp)
 			e1:SetCode(EFFECT_CANNOT_ATTACK)
 			e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
 			e1:SetReset(RESET_EVENT+0x1fe0000)
-			tc:RegisterEffect(e1)
+			--tc:RegisterEffect(e1)
 	end
 end
 function c21113.condition(e,tp,eg,ep,ev,re,r,rp)

@@ -1,5 +1,4 @@
- 
---蓬莱「凯风快晴」
+ --蓬莱「凯风快晴」
 function c21126.initial_effect(c)
 	--extra summon
 	local e1=Effect.CreateEffect(c)
@@ -21,7 +20,7 @@ function c21126.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 function c21126.smfilter(c)
-	return (c:IsSetCard(0x208) and c:IsType(TYPE_DUAL)) or c:IsCode(21077)
+	return (c:IsSetCard(0x208) and c:IsType(TYPE_DUAL)) or c:IsSetCard(0x137)
 end
 function c21126.sumop(e,tp,eg,ep,ev,re,r,rp)
 	if Duel.GetFlagEffect(tp,21126)~=0 then return end

@@ -1,5 +1,4 @@
- 
---心的轮盘
+ --心的轮盘
 function c25127.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
@@ -16,6 +15,7 @@ function c25127.initial_effect(c)
 	e2:SetProperty(EFFECT_FLAG_CARD_TARGET)
 	e2:SetType(EFFECT_TYPE_IGNITION)
 	e2:SetRange(LOCATION_GRAVE)
+	e2:SetCondition(aux.exccon)
 	e2:SetCost(c25127.cost)
 	e2:SetTarget(c25127.thtg)
 	e2:SetOperation(c25127.thop)

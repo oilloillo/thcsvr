@@ -1,5 +1,4 @@
- 
---星幽剑士 矜羯罗
+ --星幽剑士 矜羯罗
 function c11018.initial_effect(c)
 	--xyz summon
 	aux.AddXyzProcedure(c,aux.FilterBoolFunction(Card.IsSetCard,0x208),9,2)

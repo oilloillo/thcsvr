@@ -47,7 +47,6 @@ function c25064.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(c25064.rfilter3,tp,LOCATION_GRAVE,0,3,nil)
 		or Duel.IsExistingMatchingCard(c25064.rfilter2,tp,LOCATION_GRAVE,0,1,nil) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
-	--突然意识到不需要重写的>_>，懒得再改回去了
 	local a=Duel.GetMatchingGroup(c25064.rfilter3,tp,LOCATION_GRAVE,0,nil)
 	local b=Duel.GetMatchingGroup(c25064.rfilter2,tp,LOCATION_GRAVE,0,nil)
 	if a:GetCount()>2 and(b:GetCount()<1 or Duel.SelectYesNo(tp,aux.Stringid(25064,2)))

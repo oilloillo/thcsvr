@@ -47,9 +47,6 @@ function c21167.initial_effect(c)
 	e4:SetOperation(c21167.hspop)
 	c:RegisterEffect(e4)
 end
-function c21167.xyzfilter(c)
-	return c:IsSetCard(0x208)
-end
 function c21167.hofilter(c, tp, xyzc, lv)
 	if c:IsType(TYPE_TOKEN) or not c:IsCanBeXyzMaterial(xyzc) then return false end
 	return c:IsSetCard(0x137) and c:IsFaceup()
@@ -88,21 +85,24 @@ function c21167.disop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c21167.descost(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return e:GetHandler():CheckRemoveOverlayCard(tp,1,REASON_COST) end
-	e:GetHandler():RemoveOverlayCard(tp,1,1,REASON_COST)
+	if chk==0 then return e:GetHandler():CheckRemoveOverlayCard(tp,2,REASON_COST) end
+	e:GetHandler():RemoveOverlayCard(tp,2,2,REASON_COST)
 end
 function c21167.filter(c)
 	return c:IsType(TYPE_MONSTER) and c:IsDestructable()
 end
 function c21167.destg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsExistingMatchingCard(c21167.filter,tp,LOCATION_DECK,LOCATION_MZONE,1,nil) end
-	local g=Duel.GetMatchingGroup(c21167.filter,tp,LOCATION_DECK,LOCATION_ONFIELD,nil)
+	if chk==0 then return Duel.IsExistingMatchingCard(c21167.filter,tp,LOCATION_DECK,0,1,nil)
+		and Duel.IsExistingMatchingCard(c21167.filter,tp,0,LOCATION_MZONE,1,nil) end
+	local g=Duel.GetMatchingGroup(c21167.filter,tp,LOCATION_DECK,LOCATION_MZONE,nil)
 	Duel.SetOperationInfo(0,CATEGORY_DESTROY,g,1,0,0)
 end
 function c21167.desop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
-	local dg=Duel.SelectMatchingCard(tp,c21167.filter,tp,LOCATION_DECK,LOCATION_ONFIELD,1,1,nil)
-	Duel.HintSelection(dg)
+	local dg=Duel.SelectMatchingCard(tp,c21167.filter,tp,LOCATION_DECK,0,1,1,nil)
+	local g=Duel.SelectMatchingCard(tp,c21167.filter,tp,0,LOCATION_MZONE,1,1,nil)
+	Duel.HintSelection(g)
+	dg:Merge(g)
 	Duel.Destroy(dg,REASON_EFFECT)
 end
 function c21167.rfilter(c)

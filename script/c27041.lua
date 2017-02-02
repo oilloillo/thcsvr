@@ -1,12 +1,11 @@
- 
---神光「无忤为宗」
+ --神光「无忤为宗」
 function c27041.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
 	e1:SetCategory(CATEGORY_TOGRAVE)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
-	e1:SetCost(c27041.cost)
+	--e1:SetCost(c27041.cost)
 	e1:SetTarget(c27041.target)
 	e1:SetOperation(c27041.activate)
 	c:RegisterEffect(e1)
@@ -19,18 +18,18 @@ function c27041.filter(c)
 	return c:IsSetCard(0x208) or not c:IsType(TYPE_MONSTER)
 end
 function c27041.target(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsExistingMatchingCard(aux.TRUE,tp,0,LOCATION_ONFIELD+LOCATION_HAND,4,e:GetHandler())
-		and Duel.IsExistingMatchingCard(c27041.filter,tp,LOCATION_ONFIELD+LOCATION_HAND,0,2,e:GetHandler()) end
+	if chk==0 then return Duel.IsExistingMatchingCard(aux.TRUE,tp,0,LOCATION_ONFIELD+LOCATION_HAND,2,e:GetHandler())
+		and Duel.IsExistingMatchingCard(c27041.filter,tp,LOCATION_ONFIELD+LOCATION_HAND,0,1,e:GetHandler()) end
 	Duel.SetOperationInfo(0,CATEGORY_TOGRAVE,nil,2,PLAYER_ALL,LOCATION_ONFIELD+LOCATION_HAND)
 end
 function c27041.activate(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG,1-tp,HINTMSG_TOGRAVE)
-	local g1=Duel.SelectMatchingCard(1-tp,aux.TRUE,1-tp,LOCATION_ONFIELD+LOCATION_HAND,0,2,2,e:GetHandler())
-	local g2=Duel.SelectMatchingCard(tp,c27041.filter,tp,LOCATION_ONFIELD+LOCATION_HAND,0,2,2,e:GetHandler())
+	local g1=Duel.SelectMatchingCard(1-tp,aux.TRUE,1-tp,LOCATION_ONFIELD+LOCATION_HAND,0,1,1,e:GetHandler())
+	local g2=Duel.SelectMatchingCard(tp,c27041.filter,tp,LOCATION_ONFIELD+LOCATION_HAND,0,1,1,e:GetHandler())
 	g1:Merge(g2)
 	Duel.HintSelection(g1)
-	local d=Duel.SendtoGrave(g1,nil,2,REASON_EFFECT)
-	if d==0 then return end
+	local d=Duel.SendtoGrave(g1,REASON_EFFECT)
+	if d<2 then return end
 	local e1=Effect.CreateEffect(e:GetHandler())
 	e1:SetType(EFFECT_TYPE_FIELD)
 	e1:SetCode(EFFECT_CHANGE_DAMAGE)

@@ -74,7 +74,7 @@ function c21161.adop(e,tp,eg,ep,ev,re,r,rp)
 	local sc=sg:GetFirst()
 	Duel.SendtoGrave(sc,REASON_EFFECT)
 	local dg=Duel.GetMatchingGroup(Card.IsFaceup,tp,0,LOCATION_MZONE,nil)
-	local ct=-100*2^math.floor(sc:GetAttack()/1000)
+	local ct=-200*2^math.floor(sc:GetAttack()/1000)
 	local tc=dg:GetFirst()
 	while tc do
 		local e1=Effect.CreateEffect(e:GetHandler())

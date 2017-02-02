@@ -73,7 +73,7 @@ function c26082.scost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SendtoDeck(e:GetHandler(),nil,1,REASON_COST)
 end
 function c26082.filter1(c,exg)
-	return c:IsSetCard(0x208) and c:IsRace(RACE_ZOMBIE) and c:IsType(TYPE_MONSTER) and c:IsFaceup() and exg:IsExists(c26082.filter3,1,nil,c)
+	return c:IsSetCard(0x208) and c:IsRace(RACE_ZOMBIE) and exg:IsExists(c26082.filter3,1,nil,c)
 end
 function c26082.filter2(c,e,tp)
 	return c:IsSetCard(0x229) and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_FUSION,tp,false,false) and c:IsType(TYPE_FUSION)
@@ -82,25 +82,24 @@ function c26082.filter3(c,mc)
 	return Fus.CheckMaterialSingle(mc,c)
 end
 function c26082.stg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
-	local exg=Duel.GetMatchingGroup(c26082.filter2,tp,LOCATION_EXTRA,0,nil,e,tp)
-	if chkc then return false end
+	if chkc then return chkc:IsLocation(LOCATION_MZONE) and chkc:IsControler(tp) and c26082.filter1(chkc) end
 	if chk==0 then
-		return Duel.GetLocationCount(tp,LOCATION_MZONE)>-1 and Duel.GetFieldGroupCount(tp,LOCATION_MZONE,0)==1 and Duel.IsExistingTarget(c26082.filter1,tp,LOCATION_MZONE,0,1,nil,exg)
+		local exg=Duel.GetMatchingGroup(c26082.filter2,tp,LOCATION_EXTRA,0,nil,e,tp)
+		return Duel.GetLocationCount(tp,LOCATION_MZONE)>-1 and Duel.IsExistingTarget(c26082.filter1,tp,LOCATION_MZONE,0,1,nil,exg)
 	end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FMATERIAL)
-	local g=Duel.SelectTarget(tp,c26082.filter1,tp,LOCATION_MZONE,0,1,1,nil,exg)
+	local g=Duel.SelectTarget(tp,c26082.filter1,tp,LOCATION_MZONE,0,1,1,nil)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,0,LOCATION_EXTRA)
 end
 function c26082.sop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
-	if not tc or not tc:IsRelateToEffect(e) or tc:IsControler(1-tp) or tc:IsImmuneToEffect(e) then return end
+	if not tc or not tc:IsRelateToEffect(e) or tc:IsControler(1-tp) then return end
 	local exg=Duel.GetMatchingGroup(c26082.filter2,tp,LOCATION_EXTRA,0,nil,e,tp)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
 	local g=exg:FilterSelect(tp,c26082.filter3,1,1,nil,tc)
 	local sc=g:GetFirst()
 	if sc then
 		local mat=Group.FromCards(tc)
-		sc:SetMaterial(mat)
 		Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)
 		Duel.BreakEffect()
 		Duel.SpecialSummon(sc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)

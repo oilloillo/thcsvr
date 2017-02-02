@@ -35,7 +35,7 @@ function c999401.filter(c)
 end
 
 function c999401.destg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
-	if chkc then return chkc:IsOnField() and chkc:IsControler(1-tp) and c999401.filter(chkc) end
+	if chkc then return chkc:IsOnField() and c999401.filter(chkc) end
 	if chk==0 then return Duel.IsExistingTarget(c999401.filter,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
 	local g=Duel.SelectTarget(tp,c999401.filter,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,1,nil)

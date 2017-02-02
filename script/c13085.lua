@@ -26,7 +26,7 @@ function c13085.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SendtoGrave(e:GetHandler(),REASON_COST)
 end
 function c13085.filter(c)
-	return c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsFaceup()
+	return c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsFaceup() and bit.band(c:GetType(),0x20002)~=0x20002
 end
 function c13085.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsOnField() and c13085.filter(chkc) end

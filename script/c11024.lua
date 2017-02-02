@@ -1,5 +1,4 @@
- 
---恶魔之眼 幽玄魔眼
+ --恶魔之眼 幽玄魔眼
 function c11024.initial_effect(c)
 	--xyz summon
 	aux.AddXyzProcedure(c,aux.FilterBoolFunction(Card.IsSetCard,0x208),6,2)

@@ -30,7 +30,7 @@ function c21091.reccon(e,tp,eg,ep,ev,re,r,rp)
 	local t=Duel.GetAttackTarget()
 	if ev==1 then t=Duel.GetAttacker() end
 	if not c:IsRelateToBattle() or c:IsFacedown() then return false end
-	e:SetLabel(t:GetLevel()*200)
+	e:SetLabel(t:GetLevel()*300)
 	return t:GetLocation()==LOCATION_GRAVE and t:IsType(TYPE_MONSTER)
 end
 function c21091.rectg(e,tp,eg,ep,ev,re,r,rp,chk)
