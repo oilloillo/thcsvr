@@ -59,7 +59,11 @@ end
 function c19033.spr(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	if bit.band(r,REASON_BATTLE+REASON_EFFECT)==0 or bit.band(r,REASON_DESTROY)==0 or not c:IsPreviousLocation(LOCATION_ONFIELD) then return end
-	c:RegisterFlagEffect(19033,RESET_EVENT+0x1ff0000+RESET_PHASE+PHASE_STANDBY,0,2)
+	if Duel.GetCurrentPhase()<=PHASE_STANDBY then
+		c:RegisterFlagEffect(19033,RESET_EVENT+0x1ff0000+RESET_PHASE+PHASE_STANDBY,0,2)
+	else
+		c:RegisterFlagEffect(19033,RESET_EVENT+0x1ff0000+RESET_PHASE+PHASE_STANDBY,0,1)
+	end
 end
 function c19033.spcon(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()

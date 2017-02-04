@@ -2,7 +2,7 @@
 --夜雀之怪 米斯蒂娅·萝蕾拉
 function c21066.initial_effect(c)
 	--synchro summon
-	aux.AddSynchroProcedure(c,nil,aux.NonTuner(Card.IsSetCard,0x208),1)
+	aux.AddSynchroProcedure(c,nil,aux.NonTuner(nil),1)
 	c:EnableReviveLimit()
 	--pos
 	local e1=Effect.CreateEffect(c)

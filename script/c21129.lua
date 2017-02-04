@@ -1,5 +1,4 @@
- 
---药符「壶中的大银河」
+ --药符「壶中的大银河」
 function c21129.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
@@ -14,7 +13,7 @@ function c21129.initial_effect(c)
 end
 function c21129.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetFlagEffect(tp,21129)==0 end
-	Duel.RegisterFlagEffect(tp,21129,RESET_PHASE+PHASE_END,0,3)
+	Duel.RegisterFlagEffect(tp,21129,RESET_PHASE+PHASE_END,0,5)
 end
 function c21129.filter(c)
 	return c:IsType(TYPE_MONSTER) and c:IsAbleToDeck() and c:IsSetCard(0x208)

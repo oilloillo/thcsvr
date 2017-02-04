@@ -77,11 +77,15 @@ end
 function c21080.spr(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	if not c:IsPreviousLocation(LOCATION_ONFIELD) then return end
-	c:RegisterFlagEffect(21080,RESET_EVENT+0x1ff0000+RESET_PHASE+PHASE_STANDBY,0,2)
+	if Duel.GetCurrentPhase()==PHASE_STANDBY then
+		c:RegisterFlagEffect(21080,RESET_EVENT+0x1ff0000+RESET_PHASE+PHASE_STANDBY,0,2)
+	else
+		c:RegisterFlagEffect(21080,RESET_EVENT+0x1ff0000+RESET_PHASE+PHASE_STANDBY,0,1)
+	end
 end
 function c21080.spcon(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	return c:GetTurnID()~=Duel.GetTurnCount() and c:GetFlagEffect(21080)>0 and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
+	return c:GetFlagEffect(21080)>0 and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
 function c21080.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end

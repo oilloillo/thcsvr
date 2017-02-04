@@ -1,5 +1,4 @@
- 
---剑式制冰器
+ --剑式制冰器
 function c22085.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
