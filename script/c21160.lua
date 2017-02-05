@@ -47,6 +47,19 @@ function c21160.activate(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Damage(tp,d,REASON_EFFECT)
 	Duel.Damage(1-tp,d,REASON_EFFECT)
 	Duel.RDComplete()
+	if e:IsHasType(EFFECT_TYPE_ACTIVATE) then
+		local e1=Effect.CreateEffect(e:GetHandler())
+		e1:SetType(EFFECT_TYPE_FIELD)
+		e1:SetCode(EFFECT_CHANGE_DAMAGE)
+		e1:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
+		e1:SetTargetRange(0,1)
+		e1:SetValue(c21160.damval)
+		e1:SetReset(RESET_PHASE+PHASE_END,1)
+		Duel.RegisterEffect(e1,tp)
+	end
+end
+function c21160.damval(e,re,val,r,rp,rc)
+	return val/2
 end
 function c21160.thcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():IsAbleToRemoveAsCost() end

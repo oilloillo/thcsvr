@@ -50,6 +50,7 @@ function c11029.desop(e,tp,eg,ep,ev,re,r,rp,chk)
 	if tc:IsRelateToEffect(e) then
 		if Duel.Destroy(tc,REASON_EFFECT)>0 then
 			local tpa=tc:GetControler()
+			if not tpa then return end
 			local thg=Duel.GetMatchingGroup(c11029.mofuckfilter,tpa,LOCATION_GRAVE,0,nil)
 			if thg:GetCount()>0 and Duel.SelectYesNo(tpa,aux.Stringid(11029,2)) then
 				local sg=thg:Select(tpa,1,1,nil)

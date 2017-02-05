@@ -15,7 +15,7 @@ function c27147.initial_effect(c)
 	e2:SetType(EFFECT_TYPE_ACTIVATE)
 	e2:SetProperty(EFFECT_FLAG_DAMAGE_STEP)
 	e2:SetCode(EVENT_DAMAGE)
-	e2:SetCountLimit(1,27147+EFFECT_COUNT_CODE_OATH)
+	e2:SetCountLimit(1,271470+EFFECT_COUNT_CODE_OATH)
 	e2:SetCondition(c27147.condition)
 	e2:SetTarget(c27147.target2)
 	e2:SetOperation(c27147.activate2)
@@ -29,7 +29,7 @@ function c27147.initial_effect(c)
 end
 function c27147.target1(e,tp,eg,ep,ev,re,r,rp,chk)
 	local ev=Duel.GetBattleDamage(tp)
-	if chk==0 then return ev>0 end
+	if chk==0 then return ev>0 and Duel.GetTurnPlayer()~=tp end
 	Duel.SetOperationInfo(0,CATEGORY_DAMAGE,nil,0,1-tp,ev*2)
 end
 function c27147.activate1(e,tp,eg,ep,ev,re,r,rp)
