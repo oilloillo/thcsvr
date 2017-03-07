@@ -46,11 +46,11 @@ function c15075.spcon(e,c)
 	if c==nil then return true end
 	return Duel.GetLocationCount(c:GetControler(),LOCATION_MZONE)>-1
 		and Duel.GetTurnCount()~=c:GetTurnID() or c:IsReason(REASON_RETURN)
-		and Duel.IsExistingMatchingCard(c15075.spfilter,c:GetControler(),LOCATION_GRAVE,0,1,c)
+		and Duel.IsExistingMatchingCard(c15075.spfilter,c:GetControler(),LOCATION_GRAVE,0,6,c)
 end
 function c15075.spop(e,tp,eg,ep,ev,re,r,rp,c)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RTOHAND)
-	local g=Duel.SelectMatchingCard(tp,c15075.spfilter,tp,LOCATION_GRAVE,0,1,1,nil)
+	local g=Duel.SelectMatchingCard(tp,c15075.spfilter,tp,LOCATION_GRAVE,0,6,6,nil)
 	Duel.Remove(g,POS_FACEUP,REASON_COST)
 end
 function c15075.rmtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)

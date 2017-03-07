@@ -6,6 +6,7 @@ function c22024.initial_effect(c)
 	--Destroy
 	local e1=Effect.CreateEffect(c)
 	e1:SetCategory(CATEGORY_DESTROY)
+	e1:SetProperty(EFFECT_FLAG_CHAIN_UNIQUE)
 	e1:SetDescription(aux.Stringid(22024,0))
 	e1:SetType(EFFECT_TYPE_QUICK_O)
 	e1:SetCode(EVENT_FREE_CHAIN)

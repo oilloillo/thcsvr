@@ -1,5 +1,4 @@
 --幽光之草莓十字
---Script by Nanahira and 你们撒嘛
 function c13058.initial_effect(c)
 	--recover
 	local e1=Effect.CreateEffect(c)
@@ -82,6 +81,7 @@ function c13058.sop(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.SelectMatchingCard(tp,c13058.cfilter,tp,LOCATION_GRAVE,0,2,2,nil)
 	if g:GetCount()>1 then
 		Duel.SendtoDeck(g,nil,2,REASON_EFFECT)
+		Duel.BreakEffect()
 		Duel.Draw(tp,1,REASON_EFFECT)
 	end
 end

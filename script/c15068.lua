@@ -35,7 +35,7 @@ function c15068.initial_effect(c)
 	c:RegisterEffect(e3)
 end
 function c15068.spfilter(c)
-	return c:IsSetCard(0x150) and c:IsAbleToGraveAsCost()
+	return c:IsSetCard(0x150) and c:IsAbleToGraveAsCost() and c:IsType(TYPE_MONSTER)
 end
 function c15068.deepdarkspfilter(c)
 	return not c:IsAttribute(ATTRIBUTE_DARK) and c:IsSetCard(0x150) and c:IsAbleToGraveAsCost()
@@ -104,7 +104,7 @@ function c15068.op(e,tp,eg,ep,ev,re,r,rp)
 		Duel.Damage(tp,2500,REASON_EFFECT)
 	end
 	Duel.Hint(HINT_SELECTMSG,1-tp,HINTMSG_SPSUMMON)
-	local g2=Duel.SelectMatchingCard(tp,c15068.filter,tp,0,LOCATION_DECK,1,1,nil,e,tp)
+	local g2=Duel.SelectMatchingCard(1-tp,c15068.filter,tp,0,LOCATION_DECK,1,1,nil,e,tp)
 	if g2:GetCount()>0 then
 		Duel.SpecialSummonStep(g2,0,1-tp,1-tp,false,false,POS_FACEDOWN_DEFENSE)
 	else

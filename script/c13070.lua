@@ -1,5 +1,6 @@
 --槐安之梦✿冈崎梦美
 function c13070.initial_effect(c)
+	c:SetUniqueOnField(1,0,1302170,LOCATION_MZONE)
 	--destroy
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(13070,0))

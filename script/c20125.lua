@@ -1,5 +1,4 @@
- 
---✿雹之人形使✿
+ --✿雹之人形使✿
 function c20125.initial_effect(c)
 	--xyz summon
 	aux.AddXyzProcedure(c,aux.FilterBoolFunction(c20125.xyzfilter),4,2)
@@ -84,8 +83,12 @@ function c20125.scop(e,tp,eg,ep,ev,re,r,rp)
 		Duel.ConfirmCards(1-tp,g)
 	end
 end
+function c20125.cfilter(c)
+	return c:IsAttribute(ATTRIBUTE_LIGHT+ATTRIBUTE_DARK)
+end
 function c20125.target(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsPlayerCanDraw(tp,1) and Duel.IsPlayerCanDraw(1-tp,1) and e:GetHandler():GetOverlayCount()~=0 end
+	if chk==0 then return Duel.IsPlayerCanDraw(tp,1) and Duel.IsPlayerCanDraw(1-tp,1)
+		and e:GetHandler():GetOverlayGroup():FilterCount(c20125.cfilter,nil)>0 end
 	Duel.Hint(HINT_OPSELECTED,1-tp,e:GetDescription())
 	Duel.SetOperationInfo(0,CATEGORY_DRAW,nil,0,tp,1)
 	Duel.SetOperationInfo(0,CATEGORY_DRAW,nil,0,1-tp,1)

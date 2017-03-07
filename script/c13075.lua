@@ -1,5 +1,6 @@
 --赤色教授✿冈崎梦美
 function c13075.initial_effect(c)
+	c:SetUniqueOnField(1,0,1302170,LOCATION_MZONE)
 	--cannot special summon
 	local e1=Effect.CreateEffect(c)
 	e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)

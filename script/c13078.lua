@@ -1,5 +1,6 @@
 --最强人类✿冈崎梦美
 function c13078.initial_effect(c)
+	c:SetUniqueOnField(1,0,1302170,LOCATION_MZONE)
 	c:EnableReviveLimit()
 	--cannot special summon
 	local e1=Effect.CreateEffect(c)

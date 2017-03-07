@@ -28,7 +28,7 @@ function c15025.initial_effect(c)
 	c:RegisterEffect(e3)
 end
 function c15025.spfilter(c,e,tp)
-	return c:IsSetCard(0x150) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
+	return c:IsSetCard(0x150) and c:IsCanBeSpecialSummoned(e,0,tp,false,false) and not c:IsRace(RACE_CREATORGOD)
 end
 function c15025.sptg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(e:GetLabel()) and chkc:IsControler(tp) end
