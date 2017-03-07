@@ -1,5 +1,4 @@
- 
---死之天使 萨丽爱尔
+ --死之天使 萨丽爱尔
 function c11031.initial_effect(c)
 	--synchro summon
 	aux.AddSynchroProcedure(c,nil,aux.NonTuner(Card.IsSetCard,0x208),2)
@@ -13,15 +12,6 @@ function c11031.initial_effect(c)
 	e1:SetOperation(c11031.lpop)
 	c:RegisterEffect(e1)
 	--cant be target
-	local e2=Effect.CreateEffect(c)
-	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
-	e2:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
-	e2:SetCode(EVENT_CHAINING)
-	e2:SetRange(0xff)
-	e2:SetCountLimit(1)
-	e2:SetCondition(c11031.condition)
-	e2:SetOperation(c11031.operation)
-	c:RegisterEffect(e2)
 	local e3=Effect.CreateEffect(c)
 	e3:SetType(EFFECT_TYPE_SINGLE)
 	e3:SetProperty(EFFECT_FLAG_SINGLE_RANGE)
@@ -41,6 +31,29 @@ function c11031.initial_effect(c)
 	e4:SetTarget(c11031.destarget)
 	e4:SetOperation(c11031.desoperation)
 	c:RegisterEffect(e4)
+	if c11031.counter==nil then
+		c11031.counter=true
+		c11031[0]=0
+		c11031[1]=0
+		local e4=Effect.CreateEffect(c)
+		e4:SetType(EFFECT_TYPE_CONTINUOUS+EFFECT_TYPE_FIELD)
+		e4:SetCode(EVENT_PHASE_START+PHASE_DRAW)
+		e4:SetOperation(c11031.resetcount)
+		Duel.RegisterEffect(e4,0)
+		local e5=Effect.CreateEffect(c)
+		e5:SetType(EFFECT_TYPE_CONTINUOUS+EFFECT_TYPE_FIELD)
+		e5:SetCode(EVENT_CHAINING)
+		e5:SetOperation(c11031.addcount)
+		Duel.RegisterEffect(e5,0)
+	end
+end
+function c11031.resetcount(e,tp,eg,ep,ev,re,r,rp)
+	c11031[0]=0
+	c11031[1]=0
+end
+function c11031.addcount(e,tp,eg,ep,ev,re,r,rp)
+	if not re:IsHasType(EFFECT_TYPE_ACTIVATE) or not re:IsActiveType(TYPE_SPELL) then return end
+	c11031[rp]=c11031[rp]+1
 end
 function c11031.lptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return ep~=tp and Duel.GetAttackTarget()==nil end
@@ -57,7 +70,7 @@ function c11031.operation(e,tp,eg,ep,ev,re,r,rp)
 end
 function c11031.indcon(e,tp)
 	local tp=e:GetHandlerPlayer()
-	return Duel.GetFlagEffect(tp,11031)~=0
+	return c11031[tp]>0
 end
 function c11031.descondition(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():IsPreviousLocation(LOCATION_ONFIELD)

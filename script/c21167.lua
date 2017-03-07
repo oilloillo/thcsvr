@@ -2,7 +2,7 @@
 function c21167.initial_effect(c)
 	--xyz summon
 	c:EnableReviveLimit()
-	Nef.AddXyzProcedureWithDesc(c,aux.FilterBoolFunction(c21167.xyzfilter),9,2,aux.Stringid(21167,0))
+	Nef.AddXyzProcedureWithDesc(c,nil,9,2,aux.Stringid(21167,0))
 	-- xyzop
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(21167,1))

@@ -1,5 +1,4 @@
- 
---Grimoire of Alice
+ --Grimoire of Alice
 function c15050.initial_effect(c)
 	local e1=Effect.CreateEffect(c)
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON)
@@ -65,5 +64,5 @@ function c15050.activate(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c15050.atkfilter(c)
-	return c:IsFaceup() and (c:IsCode(15007) or c:IsCode(20007) or c:IsCode(20061) or c:IsCode(15024))
+	return c:IsFaceup() and c:IsSetCard(0x300) and (c:IsLevelBelow(5) or c:IsRankBelow(5))
 end

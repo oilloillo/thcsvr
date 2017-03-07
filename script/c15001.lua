@@ -1,5 +1,4 @@
- 
---魔界门番 沙罗
+ --魔界门番 沙罗
 function c15001.initial_effect(c)
 	--immune effect
 	local e1=Effect.CreateEffect(c)

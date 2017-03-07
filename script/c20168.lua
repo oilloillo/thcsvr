@@ -1,5 +1,4 @@
- 
---柊去椿来
+ --柊去椿来
 function c20168.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)

@@ -1,5 +1,4 @@
- 
---秘封「梦违科学世纪」
+ --秘封「梦违科学世纪」
 function c28022.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
@@ -53,7 +52,8 @@ function c28022.cfilter(c)
 	return c:IsSetCard(0x211) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsAbleToRemoveAsCost()
 end
 function c28022.cost1(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return e:GetHandler():IsAbleToRemoveAsCost() and Duel.IsExistingMatchingCard(c28022.cfilter,tp,LOCATION_GRAVE,0,1,e:GetHandler()) end
+	if chk==0 then return e:GetHandler():IsAbleToRemoveAsCost()
+		and Duel.IsExistingMatchingCard(c28022.cfilter,tp,LOCATION_GRAVE,0,1,e:GetHandler()) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
 	local g=Duel.SelectMatchingCard(tp,c28022.cfilter,tp,LOCATION_GRAVE,0,1,1,e:GetHandler())
 	Duel.Remove(e:GetHandler(),POS_FACEUP,REASON_COST)
