@@ -34,9 +34,10 @@ function c15070.initial_effect(c)
 	--remove
 	local e4=Effect.CreateEffect(c)
 	e4:SetCategory(CATEGORY_DESTROY)
-	e4:SetType(EFFECT_TYPE_QUICK_O)
+	e4:SetType(EFFECT_TYPE_QUICK_F)
 	e4:SetCode(EVENT_BATTLE_START)
 	e4:SetRange(LOCATION_MZONE)
+	e4:SetProperty(EFFECT_FLAG_CHAIN_UNIQUE)
 	e4:SetCondition(c15070.rmcon)
 	e4:SetTarget(c15070.rmtg)
 	e4:SetOperation(c15070.rmop)
@@ -67,7 +68,7 @@ function c15070.filter(c)
 	return c:IsSetCard(0x150) and c:IsAbleToHand()
 end
 function c15070.tuhanfilter(c,lv)
-	return c:GetLevel()<=lv and not c:IsType(TYPE_XYZ) and c:IsAbleToHand()
+	return c:GetLevel()<=lv and not c:IsType(TYPE_XYZ) and c:IsAbleToHand() and c:IsType(TYPE_MONSTER)
 end
 function c15070.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(c15070.filter,tp,LOCATION_REMOVED+LOCATION_DECK,0,1,nil) end

@@ -30,7 +30,7 @@ function c15066.initial_effect(c)
 	c:RegisterEffect(e3)
 end
 function c15066.spfilter(c)
-	return c:IsSetCard(0x150) and c:IsAbleToGraveAsCost()
+	return c:IsSetCard(0x150) and c:IsAbleToGraveAsCost() and c:IsType(TYPE_MONSTER)
 end
 function c15066.fantasyspfilter(c)
 	return c:IsAttribute(ATTRIBUTE_DARK) and c:IsSetCard(0x150) and c:IsAbleToGraveAsCost()

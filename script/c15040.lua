@@ -52,7 +52,7 @@ function c15040.activate(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c15040.cfilter(c)
-	return c:IsAttribute(0x70) and c:IsFaceup()
+	return (c:IsAttribute(ATTRIBUTE_DEVINE) or c:IsAttribute(ATTRIBUTE_LIGHT) or c:IsAttribute(ATTRIBUTE_DARK)) and c:IsFaceup()
 end
 function c15040.condition(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.GetMatchingGroupCount(c15040.cfilter,tp,LOCATION_MZONE,0,nil)==1
