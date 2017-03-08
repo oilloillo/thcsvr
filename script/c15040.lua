@@ -7,6 +7,7 @@ function c15040.initial_effect(c)
 	e1:SetProperty(EFFECT_FLAG_CARD_TARGET)
 	e1:SetCode(EVENT_FREE_CHAIN)
 	e1:SetCountLimit(1,15040+EFFECT_COUNT_CODE_OATH)
+	e1:SetCondition(c15040.con)
 	e1:SetCost(c15040.cost)
 	e1:SetTarget(c15040.target)
 	e1:SetOperation(c15040.activate)
@@ -22,8 +23,11 @@ function c15040.initial_effect(c)
 	e2:SetOperation(c15040.op)
 	c:RegisterEffect(e2)
 end
+function c15040.con(e,tp,eg,ep,ev,re,r,rp)
+	return Duel.GetFieldGroupCount(tp,LOCATION_MZONE,0)==0
+end
 function c15040.cost(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.GetFieldGroupCount(tp,LOCATION_MZONE,0)==0 and Duel.GetCurrentPhase()==PHASE_MAIN1 end
+	if chk==0 then return Duel.GetCurrentPhase()==PHASE_MAIN1 end
 	local e1=Effect.CreateEffect(e:GetHandler())
 	e1:SetType(EFFECT_TYPE_FIELD)
 	e1:SetCode(EFFECT_CANNOT_BP)
