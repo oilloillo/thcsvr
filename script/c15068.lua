@@ -99,14 +99,14 @@ function c15068.op(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
 	local g1=Duel.SelectMatchingCard(tp,c15068.filter,tp,LOCATION_DECK,0,1,1,nil,e,tp)
 	if g1:GetCount()>0 then
-		Duel.SpecialSummonStep(g1,0,tp,tp,false,false,POS_FACEDOWN_DEFENSE)
+		Duel.SpecialSummonStep(g1:GetFirst(),0,tp,tp,false,false,POS_FACEDOWN_DEFENSE)
 	else
 		Duel.Damage(tp,2500,REASON_EFFECT)
 	end
 	Duel.Hint(HINT_SELECTMSG,1-tp,HINTMSG_SPSUMMON)
 	local g2=Duel.SelectMatchingCard(1-tp,c15068.filter,tp,0,LOCATION_DECK,1,1,nil,e,tp)
 	if g2:GetCount()>0 then
-		Duel.SpecialSummonStep(g2,0,1-tp,1-tp,false,false,POS_FACEDOWN_DEFENSE)
+		Duel.SpecialSummonStep(g2:GetFirst(),0,1-tp,1-tp,false,false,POS_FACEDOWN_DEFENSE)
 	else
 		Duel.Damage(1-tp,2500,REASON_EFFECT)
 	end
