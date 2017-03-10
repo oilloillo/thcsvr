@@ -64,7 +64,7 @@ function c15053.imop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c15053.efilter(e,re)
-	return e:GetOwnerPlayer()~=re:GetOwnerPlayer() and re:IsActiveType(TYPE_SPELL)
+	return re:IsActiveType(TYPE_SPELL)
 end
 function c15053.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local fa=Duel.GetFlagEffect(tp,15000)
@@ -82,13 +82,13 @@ function c15053.target(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function c15053.operation(e,tp,eg,ep,ev,re,r,rp)
 	local d=e:GetHandler()
-	local g=Duel.GetMatchingGroup(c15053.filter,tp,LOCATION_MZONE,LOCATION_MZONE,nil,d)
+	local g=Duel.GetMatchingGroup(c15053.filter,tp,0,LOCATION_MZONE,nil,d)
 	local tc=g:GetFirst()
 	while tc do
 		local e1=Effect.CreateEffect(d)
 		e1:SetType(EFFECT_TYPE_SINGLE)
 		e1:SetCode(EFFECT_UPDATE_ATTACK)
-		e1:SetValue(-700)
+		e1:SetValue(-1000)
 		e1:SetReset(RESET_EVENT+0x1fe0000)
 		tc:RegisterEffect(e1)
 		local e3=e1:Clone()

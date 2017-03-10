@@ -1,5 +1,4 @@
- 
---魔界~Devil's World
+ --魔界~Devil's World
 function c15055.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
@@ -45,6 +44,16 @@ function c15055.initial_effect(c)
 	e5:SetTarget(c15055.target)
 	e5:SetOperation(c15055.operation)
 	c:RegisterEffect(e5)
+	--lvdown
+	local e6=Effect.CreateEffect(c)
+	e6:SetDescription(aux.Stringid(15055,1))
+	e6:SetType(EFFECT_TYPE_IGNITION)
+	e6:SetRange(LOCATION_SZONE)
+	e6:SetCountLimit(1)
+	e6:SetProperty(EFFECT_FLAG_CARD_TARGET)
+	e6:SetTarget(c15055.target1)
+	e6:SetOperation(c15055.operation1)
+	c:RegisterEffect(e6)
 end
 function c15055.lvtg(e,c)
 	return c:IsSetCard(0x150)
@@ -67,5 +76,32 @@ function c15055.operation(e,tp,eg,ep,ev,re,r,rp)
 	if tc then
 		Duel.SendtoHand(tc,nil,REASON_EFFECT)
 		Duel.ConfirmCards(1-tp,tc)
+	end
+end
+function c15055.filter1(c)
+	return c:IsFaceup() and c:IsLevelAbove(2) and c:IsSetCard(0x150)
+end
+function c15055.target1(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
+	if chkc then return false end
+	if chk==0 then return Duel.IsExistingTarget(c15055.filter1,tp,LOCATION_MZONE,0,1,nil) end
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)
+	local g=Duel.SelectTarget(tp,c15055.filter1,tp,LOCATION_MZONE,0,1,9,nil)
+end
+function c15055.cefilter(c,e)
+	return c:IsFaceup() and c:IsLevelAbove(2) and c:IsRelateToEffect(e)
+end
+function c15055.operation1(e,tp,eg,ep,ev,re,r,rp)
+	if not e:GetHandler():IsRelateToEffect(e) then return end
+	local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS)
+	local tg=g:Filter(c15055.cefilter,nil,e)
+	local tc=tg:GetFirst()
+	while tc do
+		local e1=Effect.CreateEffect(e:GetHandler())
+		e1:SetType(EFFECT_TYPE_SINGLE)
+		e1:SetCode(EFFECT_UPDATE_LEVEL)
+		e1:SetReset(RESET_EVENT+0x1fe0000)
+		e1:SetValue(-1)
+		tc:RegisterEffect(e1)
+		tc=tg:GetNext()
 	end
 end

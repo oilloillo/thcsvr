@@ -3,13 +3,15 @@ function c15045.initial_effect(c)
 	--spsummon
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(15045,0))
-	e1:SetCategory(CATEGORY_SPECIAL_SUMMON)
-	e1:SetType(EFFECT_TYPE_IGNITION)
+	--e1:SetCategory(CATEGORY_SPECIAL_SUMMON)
+	e1:SetType(EFFECT_TYPE_FIELD)
+	e1:SetCode(EFFECT_SPSUMMON_PROC)
+	e1:SetProperty(EFFECT_FLAG_UNCOPYABLE)
 	e1:SetRange(LOCATION_HAND)
 	e1:SetCondition(c15045.spcon)
-	e1:SetCost(c15045.cost)
-	e1:SetTarget(c15045.sptg)
-	e1:SetOperation(c15045.spop)
+	--e1:SetCost(c15045.cost)
+	--e1:SetTarget(c15045.sptg)
+	--e1:SetOperation(c15045.spop)
 	c:RegisterEffect(e1)
 	--destroy
 	local e2=Effect.CreateEffect(c)
@@ -27,8 +29,10 @@ end
 function c15045.cfilter(c)
 	return c:IsFaceup() and c:IsAttribute(ATTRIBUTE_FIRE+ATTRIBUTE_WATER)
 end
-function c15045.spcon(e,tp,eg,ep,ev,re,r,rp)
-	return Duel.IsExistingMatchingCard(c15045.cfilter,tp,LOCATION_MZONE,0,1,nil)
+function c15045.spcon(e,c)
+	if c==nil then return true end
+	local tp=c:GetControler()
+	return Duel.IsExistingMatchingCard(c15045.cfilter,tp,LOCATION_MZONE,0,1,nil) and Duel.GetLocationCount(tp,LOCATION_MZONE)>0
 end
 function c15045.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local fa=Duel.GetFlagEffect(tp,15000)
@@ -61,9 +65,9 @@ end
 function c15045.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_ONFIELD) and chkc:IsControler(1-tp) and c15045.filter(chkc) end
 	if chk==0 then return Duel.IsExistingTarget(c15045.filter,tp,0,LOCATION_ONFIELD,1,nil)
-		and Duel.IsExistingMatchingCard(c15045.rfilter,tp,LOCATION_GRAVE,0,1,nil) end
+		and Duel.IsExistingMatchingCard(c15045.rfilter,tp,LOCATION_GRAVE,0,2,nil) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
-	local sg=Duel.SelectMatchingCard(tp,c15045.rfilter,tp,LOCATION_GRAVE,0,1,1,nil)
+	local sg=Duel.SelectMatchingCard(tp,c15045.rfilter,tp,LOCATION_GRAVE,0,2,2,nil)
 	Duel.Remove(sg,POS_FACEUP,REASON_COST)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
 	local g=Duel.SelectTarget(tp,c15045.filter,tp,0,LOCATION_ONFIELD,1,1,nil)
