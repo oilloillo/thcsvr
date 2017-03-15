@@ -47,11 +47,12 @@ function c15070.hofilter(c, tp, xyzc, lv)
 	if c:IsType(TYPE_TOKEN) or not c:IsCanBeXyzMaterial(xyzc) then return false end
 	return c:IsSetCard(0x150) and c:IsFaceup() and c:GetOriginalLevel()>=4
 end
-function c15070.xyzcon(e,c)
+function c15070.xyzcon(e,c,mg)
 	if c==nil then return true end
 	local tp=c:GetControler()
 	if Duel.GetLocationCount(tp,LOCATION_MZONE)<-2 then return false end
-	return Duel.IsExistingMatchingCard(c15070.hofilter, tp, LOCATION_MZONE, 0, 3, nil, tp, c)
+	if mg then return mg:FilterCount(c15070.hofilter, nil, tp, c) >= 3
+	else return Duel.IsExistingMatchingCard(c15070.hofilter, tp, LOCATION_MZONE, 0, 3, nil, tp, c) end
 end
 function c15070.xyzop(e,tp,eg,ep,ev,re,r,rp,c)
 	local tp=c:GetControler()
