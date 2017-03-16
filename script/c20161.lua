@@ -12,6 +12,7 @@ function c20161.initial_effect(c)
 	e3:SetRange(LOCATION_ONFIELD)
 	e3:SetCode(EFFECT_INDESTRUCTABLE_COUNT)
 	e3:SetCountLimit(1)
+	e3:SetValue(c20161.valcon)
 	c:RegisterEffect(e3)
 	--special summon
 	local e4=Effect.CreateEffect(c)
@@ -25,6 +26,9 @@ function c20161.initial_effect(c)
 	e4:SetTarget(c20161.target)
 	e4:SetOperation(c20161.operation)
 	c:RegisterEffect(e4)
+end
+function c20161.valcon(e,re,r,rp)
+	return bit.band(r,REASON_EFFECT)~=0
 end
 function c20161.spfilter(c,e,tp)
 	return (c:IsCode(20013) or c:IsCode(20016) or c:IsSetCard(0x123)) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
