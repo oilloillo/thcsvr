@@ -14,8 +14,8 @@ function c7001101.filter(c)
 	return c:IsDestructable() or c:IsAbleToHand() 
 end
 function c7001101.tg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsExistingTarget(c7001101.filter,tp,0,LOCATION_MZONE,1,e:GetHandler()) end
-	Duel.SetOperationInfo(0,CATEGORY_COIN,g,1,0,0)
+	if chk==0 then return Duel.IsExistingMatchingCard(c7001101.filter,tp,0,LOCATION_MZONE,1,e:GetHandler()) end
+	Duel.SetOperationInfo(0,CATEGORY_COIN,nil,1,0,0)
 end
 function c7001101.activate(e,tp,eg,ep,ev,re,r,rp)
 	local res=Duel.TossCoin(tp,1)

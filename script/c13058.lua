@@ -80,8 +80,12 @@ function c13058.sop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
 	local g=Duel.SelectMatchingCard(tp,c13058.cfilter,tp,LOCATION_GRAVE,0,2,2,nil)
 	if g:GetCount()>1 then
-		Duel.SendtoDeck(g,nil,2,REASON_EFFECT)
-		Duel.BreakEffect()
-		Duel.Draw(tp,1,REASON_EFFECT)
+		Duel.SendtoDeck(g,nil,0,REASON_EFFECT)
+		local og=Duel.GetOperatedGroup()
+		if og:IsExists(Card.IsLocation,1,nil,LOCATION_DECK) then Duel.ShuffleDeck(tp) end
+		if og:FilterCount(Card.IsLocation,nil,LOCATION_DECK+LOCATION_EXTRA) == 2 then
+			Duel.BreakEffect()
+			Duel.Draw(tp,1,REASON_EFFECT)
+		end
 	end
 end
