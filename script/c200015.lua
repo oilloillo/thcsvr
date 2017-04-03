@@ -27,7 +27,7 @@ function c200015.initial_effect(c)
 	e3:SetCode(EVENT_TO_GRAVE)
 	e3:SetCondition(c200015.condition)
 	e3:SetCountLimit(1,2000015)
---	e3:SetCost(c200015.cost2)
+--  e3:SetCost(c200015.cost2)
 	e3:SetTarget(c200015.tg2)
 	e3:SetOperation(c200015.op2)
 	c:RegisterEffect(e3)
@@ -46,16 +46,7 @@ end
 function c200015.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
 	Duel.Hint(HINT_SELECTMSG,tp,0)
-	local ac=Duel.AnnounceCard(tp)
-	local ct=1
-	while not c200015.filter(ac) and ct<5 do
-	Duel.SelectOption(tp,aux.Stringid(200015,1))
-	Duel.Hint(HINT_SELECTMSG,tp,0)
-	ac=Duel.AnnounceCard(tp)
-	if ac>=200501 and ac<=200520 then ac=ac-400 end
-	ct=ct+1
-	end
-	if not c200015.filter(ac) and ct==5 then ac=math.random(200101,200120) end
+	local ac=Duel.AnnounceCardFilter(tp,0x701,OPCODE_ISSETCARD,TYPE_TOKEN,OPCODE_ISTYPE,OPCODE_AND)
 	e:SetLabel(ac)
 end
 function c200015.activate(e,tp,eg,ep,ev,re,r,rp)

@@ -18,28 +18,16 @@ function c200301.initial_effect(c)
 	e1:SetOperation(c200301.op2)
 	c:RegisterEffect(e1)
 end
-function c200301.filter(x)
-	return x>=200101 and x<=200120
-end
 function c200301.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
 	Duel.Hint(HINT_SELECTMSG,tp,0)
-	local ac=Duel.AnnounceCard(tp)
-	local t=1
-	while not c200301.filter(ac) and t<5 do
-	Duel.SelectOption(tp,aux.Stringid(200301,1))
-	Duel.Hint(HINT_SELECTMSG,tp,0)
-	ac=Duel.AnnounceCard(tp)
-	if ac>=200501 and ac<=200520 then ac=ac-400 end
-	t=t+1
-	end
-	if not c200301.filter(ac) and t==5 then ac=math.random(200101,200120) end
+	local ac=Duel.AnnounceCardFilter(tp,0x701,OPCODE_ISSETCARD,TYPE_TOKEN,OPCODE_ISTYPE,OPCODE_AND)
 	e:SetLabel(ac)
 end
 function c200301.activate(e,tp,eg,ep,ev,re,r,rp)
 	local token=Duel.CreateToken(tp,e:GetLabel())
 	Duel.MoveToField(token,tp,tp,LOCATION_SZONE,POS_FACEUP,true)
---	Duel.RaiseEvent(token,EVENT_CHAIN_SOLVED,token:GetActivateEffect(),0,tp,tp,Duel.GetCurrentChain())
+--  Duel.RaiseEvent(token,EVENT_CHAIN_SOLVED,token:GetActivateEffect(),0,tp,tp,Duel.GetCurrentChain())
 end
 function c200301.filter2(c)
 	return c:IsSetCard(0x701) and c:IsFaceup() and c:IsAbleToRemove()
