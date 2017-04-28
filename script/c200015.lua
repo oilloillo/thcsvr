@@ -44,13 +44,14 @@ function c200015.filter(x)
 	return x>=200101 and x<=200120
 end
 function c200015.target(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return true end
+	if chk==0 then return not Duel.IsPlayerAffectedByEffect(tp, EFFECT_CANNOT_SSET) end
 	Duel.Hint(HINT_SELECTMSG,tp,0)
 	local ac=Duel.AnnounceCardFilter(tp,0x701,OPCODE_ISSETCARD,TYPE_TOKEN,OPCODE_ISTYPE,OPCODE_AND)
 	e:SetLabel(ac)
 end
 function c200015.activate(e,tp,eg,ep,ev,re,r,rp)
 	local token=Duel.CreateToken(tp,e:GetLabel())
+	if not token:IsSSetable() then return end
 	Duel.MoveToField(token,tp,tp,LOCATION_SZONE,POS_FACEDOWN,false)
 	Duel.RaiseEvent(token,EVENT_SSET,e,REASON_EFFECT,tp,tp,0) 
 	Duel.ConfirmCards(1-tp,token)
