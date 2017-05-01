@@ -32,7 +32,7 @@ function M.mtfilter1(c,mg,sg,exg,chkf,ct)
 	sg1:AddCard(c)
 	if sg1:GetCount()==3 then
 		if sg1:FilterCount(M.chkfilter,nil,exg)>ct then return false end
-		if chkf~=PLAYER_NONE and not mg:IsExists(aux.FConditionCheckF,1,nil,chkf) then return false end
+		if chkf~=PLAYER_NONE and not sg1:IsExists(aux.FConditionCheckF,1,nil,chkf) then return false end
 		return sg1:IsExists(M.fusfilter,1,nil,sg1,25020)
 	end
 	return mg:IsExists(M.mtfilter1,1,nil,mg,sg1,exg,chkf,ct)
