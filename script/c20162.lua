@@ -12,6 +12,7 @@ function c20162.initial_effect(c)
 	e3:SetRange(LOCATION_ONFIELD)
 	e3:SetCode(EFFECT_INDESTRUCTABLE_COUNT)
 	e3:SetCountLimit(1)
+	e3:SetValue(1)
 	c:RegisterEffect(e3)
 	--special summon
 	local e4=Effect.CreateEffect(c)

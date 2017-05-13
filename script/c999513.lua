@@ -1,5 +1,5 @@
 --✿光之三妖精☆
---modded by Karen
+--script by Nanahira / Karen
 local M = c999513
 local Mid = 999513
 function M.initial_effect(c)
@@ -53,7 +53,7 @@ function M.exfilter2(c,fc,mg)
 	return c:IsCanBeFusionMaterial(fc) and not mg:IsContains(c)
 end
 function M.fuscon(e,g,gc,chkf)
-	if g==nil then return false end
+	if g==nil then return true end
 	local mg=g:Filter(Card.IsCanBeFusionMaterial,nil,e:GetHandler())
 	local ct=Duel.GetMatchingGroup(M.filter2,e:GetHandlerPlayer(),LOCATION_GRAVE+LOCATION_ONFIELD,0,nil):GetClassCount(Card.GetCode)
 	local sg=Group.CreateGroup()

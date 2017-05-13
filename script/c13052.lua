@@ -47,7 +47,7 @@ function c13052.activate(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c13052.condition2(e,tp,eg,ep,ev,re,r,rp)
-	return re:GetHandler():IsOnField() and re:IsActiveType(TYPE_MONSTER)
+	return re:GetHandler():IsOnField() and re:IsActiveType(TYPE_MONSTER) and re:GetHandler():IsControler(1-tp)
 end
 function c13052.target2(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return false end

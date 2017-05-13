@@ -7,9 +7,15 @@ function c15051.initial_effect(c)
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_CONTINUOUS)
 	e1:SetCode(EVENT_SPSUMMON_SUCCESS)
-	e1:SetCondition(c15051.condition)
 	e1:SetOperation(c15051.sumsuc)
 	c:RegisterEffect(e1)
+	local e11=Effect.CreateEffect(c)
+	e11:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
+	e11:SetCode(EVENT_CHAIN_END)
+	e11:SetRange(LOCATION_MZONE)
+	e11:SetOperation(c15051.cedop)
+	e11:SetLabelObject(e1)
+	c:RegisterEffect(e11)
 	--destroy
 	local e2=Effect.CreateEffect(c)
 	e2:SetCategory(CATEGORY_DESTROY+CATEGORY_ATKCHANGE)
@@ -33,13 +39,20 @@ end
 function c15051.mfilter2(c)
 	return c:IsAttribute(ATTRIBUTE_WATER) and c:IsLevelBelow(6)
 end
-function c15051.condition(e,tp,eg,ep,ev,re,r,rp)
-	return e:GetHandler():GetSummonType()==SUMMON_TYPE_FUSION
-end
 function c15051.sumsuc(e,tp,eg,ep,ev,re,r,rp)
-	Duel.RegisterFlagEffect(tp,150000,RESET_PHASE+PHASE_END,0,1)
-	Duel.RegisterFlagEffect(tp,150000,RESET_PHASE+PHASE_END,0,1)
-	Duel.SetChainLimitTillChainEnd(aux.FALSE)
+	if e:GetHandler():GetSummonType()==SUMMON_TYPE_FUSION then
+		Duel.RegisterFlagEffect(tp,150000,RESET_PHASE+PHASE_END,0,1)
+		Duel.RegisterFlagEffect(tp,150000,RESET_PHASE+PHASE_END,0,1)
+		e:SetLabel(1)
+	else
+		e:SetLabel(0)
+	end
+end
+function c15051.cedop(e,tp,eg,ep,ev,re,r,rp)
+	if Duel.CheckEvent(EVENT_SPSUMMON_SUCCESS) and e:GetLabelObject():GetLabel()==1 then
+		Duel.SetChainLimitTillChainEnd(aux.FALSE)
+	end
+	e:GetLabelObject():SetLabel(0)
 end
 function c15051.descon1(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.GetCurrentPhase()==PHASE_MAIN1

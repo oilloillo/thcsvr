@@ -46,7 +46,7 @@ function c13060.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local tc=tg:GetFirst()
 	if chk==0 then return tc end
 	while tc do
-		Duel.Remove(tc,POS_FACEUP,REASON_EFFECT+REASON_TEMPORARY)
+		Duel.Remove(tc,POS_FACEUP,REASON_COST+REASON_TEMPORARY)
 		local e1=Effect.CreateEffect(e:GetHandler())
 		e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
 		e1:SetCode(EVENT_PHASE+PHASE_END)

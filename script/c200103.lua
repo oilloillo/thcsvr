@@ -21,11 +21,12 @@ function c200103.initial_effect(c)
 	e4:SetRange(LOCATION_SZONE)
 	e4:SetTargetRange(LOCATION_HAND,0)
 	e4:SetTarget(c200103.tg)
+	e4:SetCountLimit(1)
 	e4:SetValue(0x1)
 	c:RegisterEffect(e4)
 	local e5=e4:Clone()
 	e5:SetCode(EFFECT_DECREASE_TRIBUTE_SET)
-	c:RegisterEffect(e5)
+	--c:RegisterEffect(e5)
 end
 function c200103.condition(e,tp,eg,ep,ev,re,r,rp)
 	return not e:GetHandler():IsStatus(STATUS_SET_TURN) and e:GetHandler():GetFlagEffect(200103)<=0

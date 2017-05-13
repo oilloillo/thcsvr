@@ -58,9 +58,6 @@ function c71205.operation(e,tp,eg,ep,ev,re,r,rp)
 		g:Sub(sg)
 		Duel.SendtoGrave(g,REASON_RULE)
 	end
-	local sg=Duel.GetFieldGroup(p,LOCATION_HAND,0)
-	Duel.BreakEffect()
-	Duel.SendtoGrave(sg,REASON_EFFECT)
 end
 function c71205.checkop(e,tp,eg,ep,ev,re,r,rp)
 	if e:GetHandler():IsDisabled() then

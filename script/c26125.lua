@@ -1,5 +1,4 @@
 --有时像虎有时似鸟的家伙✿封兽鵺
---script by Nanahira
 function c26125.initial_effect(c)
 	--spsummon
 	local e1=Effect.CreateEffect(c)

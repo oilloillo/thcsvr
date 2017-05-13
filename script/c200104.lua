@@ -41,6 +41,7 @@ function c200104.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	end
 end
 function c200104.activate(e,tp,eg,ep,ev,re,r,rp)
+	if not e:GetHandler():IsRelateToEffect(e) then return end
 	local fop=re:GetOperation()
 	fop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Remove(e:GetHandler(),POSITION_FACEUP,REASON_EFFECT)

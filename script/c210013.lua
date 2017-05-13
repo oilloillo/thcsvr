@@ -45,7 +45,7 @@ function c210013.initial_effect(c)
 	c:RegisterEffect(e6)
 end
 function c210013.filter(c)
-	return c:IsSetCard(0x710) and c:IsType(TYPE_MONSTER) and not c:IsType(TYPE_PENDULUM)
+	return c:IsSetCard(0x710) and c:IsType(TYPE_MONSTER) and not c:IsType(TYPE_PENDULUM) and (not c:IsLocation(LOCATION_REMOVED) or c:IsFaceup())
 end
 function c210013.tg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local m=Duel.GetMatchingGroupCount(c210013.cfilter,e:GetHandlerPlayer(),LOCATION_ONFIELD,0,nil)

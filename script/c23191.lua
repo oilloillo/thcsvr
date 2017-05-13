@@ -28,14 +28,23 @@ function c23191.cfilter(c)
 	return c:IsType(TYPE_MONSTER) and c:IsAbleToDeckAsCost()
 end
 function c23191.cost(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsExistingMatchingCard(c23191.cfilter,tp,LOCATION_HAND+LOCATION_MZONE,0,1,e:GetHandler()) end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
-	local g=Duel.SelectMatchingCard(tp,c23191.cfilter,tp,LOCATION_HAND+LOCATION_MZONE,0,1,1,e:GetHandler())
-	Duel.ConfirmCards(1-tp,g)
-	Duel.SendtoDeck(g,nil,1,REASON_COST)
+	local mc=Duel.GetLocationCount(tp,LOCATION_MZONE)
+	if chk==0 then return (mc>0 and Duel.IsExistingMatchingCard(c23020.cfilter,tp,LOCATION_MZONE+LOCATION_HAND,0,1,e:GetHandler()))
+		or (mc==0 and Duel.IsExistingMatchingCard(c23020.cfilter,tp,LOCATION_MZONE,0,1,e:GetHandler())) end
+	if mc>0 then
+		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
+		local g=Duel.SelectMatchingCard(tp,c23020.cfilter,tp,LOCATION_MZONE+LOCATION_HAND,0,1,1,e:GetHandler())
+		Duel.ConfirmCards(1-tp,g)
+		Duel.SendtoDeck(g,nil,1,REASON_COST)
+	else
+		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
+		local g=Duel.SelectMatchingCard(tp,c23020.cfilter,tp,LOCATION_MZONE,0,1,1,e:GetHandler())
+		Duel.ConfirmCards(1-tp,g)
+		Duel.SendtoDeck(g,nil,1,REASON_COST)
+	end
 end
 function c23191.tg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and e:GetHandler():IsCanBeSpecialSummoned(e,0,tp,false,false) end
+	if chk==0 then return e:GetHandler():IsCanBeSpecialSummoned(e,0,tp,false,false) end
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,e:GetHandler(),1,0,0)
 end
 function c23191.op(e,tp,eg,ep,ev,re,r,rp)
