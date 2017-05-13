@@ -92,6 +92,7 @@ end
 M.OriginalSetMaterial=Card.SetMaterial
 function M.SetMaterial(c,g)
 	M.OriginalSetMaterial(c,g)
+	if not g then return end
 	local rg1=g:Filter(M.rfilter,nil,1)
 	if rg1:GetCount()>0 then
 		g:Sub(rg1)
