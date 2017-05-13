@@ -36,7 +36,7 @@ function c12026.initial_effect(c)
 	c:RegisterEffect(e3)
 end
 function c12026.mfilter1(c)
-	return c:IsFusionSetCard(0x208) and c:IsFusionAttribute(ATTRIBUTE_LIGHT) and c:IsFusionType(TYPE_SYNCHRO)
+	return c:IsFusionSetCard(0x208) and c:IsFusionAttribute(ATTRIBUTE_LIGHT) and c:IsType(TYPE_SYNCHRO)
 end
 function c12026.mfilter2(c)
 	return c:IsFusionSetCard(0x208) and c:IsFusionAttribute(ATTRIBUTE_DARK) and c:IsFusionType(TYPE_XYZ)

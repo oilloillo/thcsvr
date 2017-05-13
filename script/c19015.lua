@@ -2,7 +2,7 @@
 function c19015.initial_effect(c)
 	--fusion material
 	c:EnableReviveLimit()
-	aux.AddFusionProcFun2(c,aux.FilterBoolFunction(Card.FusionIsSetCard,0x814),aux.FilterBoolFunction(Card.FusionIsSetCard,0x125),true)
+	aux.AddFusionProcFun2(c,aux.FilterBoolFunction(Card.IsFusionSetCard,0x814),aux.FilterBoolFunction(Card.IsFusionSetCard,0x125),true)
 		--direct atk
 		local e6=Effect.CreateEffect(c)
 		e6:SetType(EFFECT_TYPE_SINGLE)
@@ -36,8 +36,8 @@ function c19015.initial_effect(c)
 		c:RegisterEffect(e3)
 end
 c19015.hana_mat={
-aux.FilterBoolFunction(Card.FusionIsSetCard,0x814),
-aux.FilterBoolFunction(Card.FusionIsSetCard,0x125),
+aux.FilterBoolFunction(Card.IsFusionSetCard,0x814),
+aux.FilterBoolFunction(Card.IsFusionSetCard,0x125),
 }
 function c19015.dam(e,tp,eg,ep,ev,re,r,rp)
 	if ep==tp then return end

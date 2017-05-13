@@ -2,7 +2,7 @@
 function c19012.initial_effect(c)
 	--fusion material
 	c:EnableReviveLimit()
-	Fus.AddFusionProcCodeFun(c,25021,aux.FilterBoolFunction(Card.IsFusionSetCard,0x214a),true)
+	Fus.AddFusionProcCodeFun(c,25021,aux.FilterBoolFunction(Card.IsFusionSetCard,0x214a),true,true)
 		--tograve
 		local e1=Effect.CreateEffect(c)
 		e1:SetCategory(CATEGORY_TOGRAVE)

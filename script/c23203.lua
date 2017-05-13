@@ -31,7 +31,7 @@ function c23203.filter2(c,e,tp,m1,m2,chkf)
 		and m1:IsExists(c23203.chkfilter1,1,nil,c,m2,chkf)
 end
 function c23203.chkfilter1(c,fc,m2,chkf)
-	return m2:IsExists(c23203.chkfilter2,1,c,fc,c,chkf)
+	return m2:IsExists(c23203.chkfilter2,1,nil,fc,c,chkf)
 end
 function c23203.chkfilter2(c,fc,mc,chkf)
 	local mg=Group.FromCards(c,mc)
@@ -41,6 +41,9 @@ function c23203.damtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local chkf=Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and PLAYER_NONE or tp
 	local mg1=Fus.GetFusionMaterial(tp,LOCATION_HAND+LOCATION_MZONE+LOCATION_GRAVE,nil,Card.IsSetCard,nil,nil,0x497)
 	local mg2=Duel.GetMatchingGroup(c23203.mfilter2,tp,LOCATION_MZONE,LOCATION_MZONE,nil,e)
+	local mg=Group.CreateGroup()
+	mg:Merge(mg1)
+	mg:Merge(mg2)
 	-- local ce=Duel.GetChainMaterial(tp)
 	-- local mf=nil
 	-- if ce~=nil then
@@ -57,8 +60,18 @@ function c23203.damop(e,tp,eg,ep,ev,re,r,rp)
 	local chkf=Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and PLAYER_NONE or tp
 	local mg1=Fus.GetFusionMaterial(tp,LOCATION_HAND+LOCATION_MZONE+LOCATION_GRAVE,nil,Card.IsSetCard,nil,e,0x497)
 	local mg2=Duel.GetMatchingGroup(c23203.mfilter2,tp,LOCATION_MZONE,LOCATION_MZONE,nil,e)
-	local g=Duel.GetMatchingGroup(c23203.filter2,tp,LOCATION_EXTRA,0,nil,e,tp,mg1,mg2,chkf)
-	if g:GetCount()>0 and mg1:GetCount()>0 and mg2:GetCount()>0 then
+	local mg=Group.CreateGroup()
+	mg:Merge(mg1)
+	mg:Merge(mg2)
+	-- local ce=Duel.GetChainMaterial(tp)
+	-- local mf=nil
+	-- if ce~=nil then
+	--  local fgroup=ce:GetTarget()
+	--  local mg3=fgroup(ce,e,tp)
+	--  mf=ce:GetValue()
+	-- end
+	local g=Duel.GetMatchingGroup(c23203.filter2,tp,LOCATION_EXTRA,0,nil,e,tp,mg,chkf)
+	if g:GetCount()>0 and mg:GetCount()>1 and mg1:GetCount()>0 and mg2:GetCount()>0 then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
 		local sg=g:Select(tp,1,1,nil)
 		local tc=sg:GetFirst()
@@ -66,7 +79,8 @@ function c23203.damop(e,tp,eg,ep,ev,re,r,rp)
 		local mat1=mg1:FilterSelect(tp,c23203.chkfilter1,1,1,nil,tc,mg2,chkf)
 		Duel.HintSelection(mat1)
 		mat:Merge(mat1)
-		local mat2=mg2:FilterSelect(tp,c23203.chkfilter2,1,1,mat1:GetFirst(),tc,mat1:GetFirst(),chkf)
+		mg2:Sub(mat1)
+		local mat2=mg2:FilterSelect(tp,c23203.chkfilter2,1,1,nil,tc,mat1:GetFirst(),chkf)
 		Duel.HintSelection(mat2)
 		mat:Merge(mat2)
 		tc:SetMaterial(mat)

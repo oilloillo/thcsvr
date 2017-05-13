@@ -39,14 +39,17 @@ function c51205.disop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.NegateActivation(ev)
 	if re:GetHandler():IsRelateToEffect(re) then
 		Duel.BreakEffect()
-		Duel.SendtoDeck(ec,nil,2,REASON_EFFECT)
-		local ct=Duel.GetTurnPlayer==tp and 3 or 2
-		local e1=Effect.CreateEffect(e:GetHandler())
-		e1:SetType(EFFECT_TYPE_FIELD)
-		e1:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
-		e1:SetCode(EFFECT_SKIP_DP)
-		e1:SetTargetRange(1,0)
-		e1:SetReset(RESET_PHASE+PHASE_END,ct)
-		Duel.RegisterEffect(e1,tp)
+		ec:CancelToGrave()
+		local g1=Duel.SendtoDeck(ec,nil,2,REASON_EFFECT)
+		if g1~=0 and not Duel.IsExistingMatchingCard(c51205.confilter,tp,LOCATION_ONFIELD,0,1,e:GetHandler()) then
+			local ct=Duel.GetTurnPlayer==tp and 2 or 1
+			local e1=Effect.CreateEffect(e:GetHandler())
+			e1:SetType(EFFECT_TYPE_FIELD)
+			e1:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
+			e1:SetCode(EFFECT_SKIP_DP)
+			e1:SetTargetRange(1,0)
+			e1:SetReset(RESET_PHASE+PHASE_END,ct)
+			Duel.RegisterEffect(e1,tp)
+		end
 	end
 end

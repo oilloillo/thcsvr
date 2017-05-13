@@ -2,7 +2,7 @@
 function c27142.initial_effect(c)
 	--fusion material
 	c:EnableReviveLimit()
-	aux.AddFusionProcFun2(c,aux.FilterBoolFunction(Card.IsFusionSetCard,0x522),aux.FilterBoolFunction(Card.IsFusionSetCard,0x527),false)
+	aux.AddFusionProcFun2(c,aux.FilterBoolFunction(Card.IsFusionSetCard,0x522),aux.FilterBoolFunction(Card.IsFusionSetCard,0x527),true)
 	--spsummon condition
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_SINGLE)
@@ -124,7 +124,7 @@ function c27142.spop(e,tp,eg,ep,ev,re,r,rp,c)
 			end
 			Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE)
 			local sg2=mg2:FilterSelect(tp,aux.TRUE,1,1,sg:GetFirst())
-			sg:Merge(sg2)		
+			sg:Merge(sg2)	   
 		else
 			Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE)
 			if ct2>1 then
@@ -141,7 +141,7 @@ function c27142.spop(e,tp,eg,ep,ev,re,r,rp,c)
 				local sg2=mg2:FilterSelect(tp,Card.IsLocation,1,1,sg:GetFirst(),LOCATION_MZONE)
 				sg:Merge(sg2)
 			end
-		end		
+		end	 
 	end
 	Duel.SendtoGrave(sg,REASON_EFFECT)
 end
