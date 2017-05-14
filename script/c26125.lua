@@ -1,9 +1,8 @@
 --有时像虎有时似鸟的家伙✿封兽鵺
---script by Nanahira
 function c26125.initial_effect(c)
 	--spsummon
 	local e1=Effect.CreateEffect(c)
-	e1:SetCategory(CATEGORY_SPECIAL_SUMMON)
+	e1:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_FUSION_SUMMON)
 	e1:SetType(EFFECT_TYPE_IGNITION)
 	e1:SetRange(LOCATION_HAND)
 	e1:SetCountLimit(1,26125)
@@ -26,22 +25,27 @@ function c26125.initial_effect(c)
 		c:RegisterEffect(e3)
 end
 function c26125.filter2(c,e,tp,m)
+	if not c.hana_mat then return false end
 	return c:IsType(TYPE_FUSION) and c:IsSetCard(0x208) and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_FUSION,tp,false,false) and #c.hana_mat==2 and m:IsExists(Fus.CheckMaterialSingle,1,e:GetHandler(),c) and e:GetHandler():IsCanBeFusionMaterial(c)
 end
 function c26125.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
 	if chk==0 then
-		local mg1=Fus.GetFusionMaterial(tp,LOCATION_HAND,nil,nil,c)
-		return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and Duel.IsExistingMatchingCard(c26125.filter2,tp,LOCATION_EXTRA,0,1,nil,e,tp,mg1,nil)
+		local loc=LOCATION_MZONE
+		if Duel.GetLocationCount(tp,LOCATION_MZONE)>0 then loc=loc+LOCATION_SZONE+LOCATION_HAND end
+		local mg1=Fus.GetFusionMaterial(tp,loc,nil,nil,c)
+		return Duel.IsExistingMatchingCard(c26125.filter2,tp,LOCATION_EXTRA,0,1,nil,e,tp,mg1,nil)
 	end
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_EXTRA)
 end
 function c26125.spop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	if not c:IsRelateToEffect(e) or c:IsImmuneToEffect(e) then return end
-	local mg1=Fus.GetFusionMaterial(tp,LOCATION_HAND,nil,nil,c,e)
+	local loc=LOCATION_MZONE
+	if Duel.GetLocationCount(tp,LOCATION_MZONE)>0 then loc=loc+LOCATION_SZONE+LOCATION_HAND end
+	local mg1=Fus.GetFusionMaterial(tp,loc,nil,nil,c,e)
 	local sg1=Duel.GetMatchingGroup(c26125.filter2,tp,LOCATION_EXTRA,0,nil,e,tp,mg1,nil)
-	if Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and sg1:GetCount()>0 then
+	if sg1:GetCount()>0 then
 		local sg=sg1:Clone()
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
 		local tg=sg:Select(tp,1,1,nil)
