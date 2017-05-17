@@ -53,7 +53,7 @@ function M.exfilter2(c,fc,mg)
 	return c:IsCanBeFusionMaterial(fc) and not mg:IsContains(c)
 end
 function M.fuscon(e,g,gc,chkf)
-	if g==nil then return true end
+	if g==nil then return false end
 	local mg=g:Filter(Card.IsCanBeFusionMaterial,nil,e:GetHandler())
 	local ct=Duel.GetMatchingGroup(M.filter2,e:GetHandlerPlayer(),LOCATION_GRAVE+LOCATION_ONFIELD,0,nil):GetClassCount(Card.GetCode)
 	local sg=Group.CreateGroup()
