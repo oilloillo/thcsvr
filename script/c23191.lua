@@ -29,16 +29,16 @@ function c23191.cfilter(c)
 end
 function c23191.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local mc=Duel.GetLocationCount(tp,LOCATION_MZONE)
-	if chk==0 then return (mc>0 and Duel.IsExistingMatchingCard(c23020.cfilter,tp,LOCATION_MZONE+LOCATION_HAND,0,1,e:GetHandler()))
-		or (mc==0 and Duel.IsExistingMatchingCard(c23020.cfilter,tp,LOCATION_MZONE,0,1,e:GetHandler())) end
+	if chk==0 then return (mc>0 and Duel.IsExistingMatchingCard(c23191.cfilter,tp,LOCATION_MZONE+LOCATION_HAND,0,1,e:GetHandler()))
+		or (mc==0 and Duel.IsExistingMatchingCard(c23191.cfilter,tp,LOCATION_MZONE,0,1,e:GetHandler())) end
 	if mc>0 then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
-		local g=Duel.SelectMatchingCard(tp,c23020.cfilter,tp,LOCATION_MZONE+LOCATION_HAND,0,1,1,e:GetHandler())
+		local g=Duel.SelectMatchingCard(tp,c23191.cfilter,tp,LOCATION_MZONE+LOCATION_HAND,0,1,1,e:GetHandler())
 		Duel.ConfirmCards(1-tp,g)
 		Duel.SendtoDeck(g,nil,1,REASON_COST)
 	else
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
-		local g=Duel.SelectMatchingCard(tp,c23020.cfilter,tp,LOCATION_MZONE,0,1,1,e:GetHandler())
+		local g=Duel.SelectMatchingCard(tp,c23191.cfilter,tp,LOCATION_MZONE,0,1,1,e:GetHandler())
 		Duel.ConfirmCards(1-tp,g)
 		Duel.SendtoDeck(g,nil,1,REASON_COST)
 	end
