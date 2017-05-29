@@ -18,7 +18,9 @@ function c20028.initial_effect(c)
 	e2:SetDescription(aux.Stringid(20028,0))
 	e2:SetCategory(CATEGORY_EQUIP)
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_F)
+	e2:SetProperty(EFFECT_FLAG_NO_TURN_RESET)
 	e2:SetCode(EVENT_EQUIP)
+	e2:SetCountLimit(1)
 	e2:SetTarget(c20028.destg)
 	e2:SetOperation(c20028.desop)
 	c:RegisterEffect(e2)
@@ -57,7 +59,7 @@ function c20028.desop(e,tp,eg,ep,ev,re,r,rp)
 	if c:IsFacedown() or not c:IsRelateToEffect(e) then return end
 	local c1=Duel.IsExistingMatchingCard(c20028.filter,tp,LOCATION_DECK,0,1,nil,e:GetHandler())
 	local c2=Duel.IsExistingMatchingCard(c20028.filter,tp,LOCATION_GRAVE,0,2,nil,e:GetHandler()) and Duel.GetLocationCount(tp,LOCATION_SZONE)>1
-	if not c1 or not c2 then return end
+	if not c1 and not c2 then return end
 	local opt=2
 	if c1 then opt=0 end
 	if c2 then opt=1 end
