@@ -1,5 +1,4 @@
- 
---白玉楼
+ --白玉楼
 function c20050.initial_effect(c)
 	--c:EnableCounterPermit(0x128b)
 	--Activate
@@ -19,7 +18,7 @@ function c20050.initial_effect(c)
 	e3:SetType(EFFECT_TYPE_FIELD)
 	e3:SetCode(EFFECT_UPDATE_ATTACK)
 	e3:SetRange(LOCATION_SZONE)
-	e3:SetTargetRange(LOCATION_MZONE,LOCATION_MZONE)
+	e3:SetTargetRange(LOCATION_MZONE,0)
 	e3:SetTarget(aux.TargetBoolFunction(Card.IsType,TYPE_SPIRIT))
 	e3:SetValue(c20050.atkval)
 	c:RegisterEffect(e3)

@@ -46,7 +46,7 @@ function c20175.initial_effect(c)
 	c:RegisterEffect(e5)
 end
 function c20175.filter(c)
-	return c:IsFaceup() and c:IsSetCard(0x713)
+	return c:IsFaceup() and c:IsRace(RACE_WARRIOR)
 end
 function c20175.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_MZONE) and c20175.filter(chkc) end
