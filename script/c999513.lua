@@ -26,22 +26,18 @@ end
 M.material={25020,25021,25022}
 M.material_count=3
 M.hana_mat={Fus.CodeFilter(25020),Fus.CodeFilter(25021),Fus.CodeFilter(25022)}
-function M.mtfilter1(c,mg,sg,exg,chkf,ct)
-	if sg:IsContains(c) then return false end
-	local sg1=sg:Clone()
-	sg1:AddCard(c)
-	if sg1:GetCount()==3 then
-		if sg1:FilterCount(M.chkfilter,nil,exg)>ct then return false end
-		if chkf~=PLAYER_NONE and not sg1:IsExists(aux.FConditionCheckF,1,nil,chkf) then return false end
-		return sg1:IsExists(M.fusfilter,1,nil,sg1,25020)
-	end
-	return mg:IsExists(M.mtfilter1,1,nil,mg,sg1,exg,chkf,ct)
+function M.fcheck(g,chkf,exg,ct)
+	if g:FilterCount(M.chkfilter,nil,exg)>ct then return false end
+	if chkf~=PLAYER_NONE and not g:IsExists(aux.FConditionCheckF,1,nil,chkf) then return false end
+	return g:IsExists(M.fusfilter,1,nil,g,25020)
 end
-function M.fusfilter(c,sg1,code)
+function M.fusfilter(c,g,code)
 	if not c:IsFusionCode(code) then return false end
 	if code==25022 then return true end
-	local sg2=sg1:Filter(aux.TRUE,c)
-	return sg2:IsExists(M.fusfilter,1,nil,sg2,code+1)
+	g:RemoveCard(c)
+	local res=g:IsExists(M.fusfilter,1,nil,g,code+1)
+	g:AddCard(c)
+	return res
 end
 function M.chkfilter(c,exg)
 	return exg:IsContains(c)
@@ -52,33 +48,43 @@ end
 function M.exfilter2(c,fc,mg)
 	return c:IsCanBeFusionMaterial(fc) and not mg:IsContains(c)
 end
+function M.mfilter(c,fc)
+	if not c:IsCanBeFusionMaterial(fc) then return false end
+	for i=25020,25022 do
+		if c:IsFusionCode(i) then return true end
+	end
+	return false
+end
 function M.fuscon(e,g,gc,chkf)
 	if g==nil then return false end
-	local mg=g:Filter(Card.IsCanBeFusionMaterial,nil,e:GetHandler())
-	local ct=Duel.GetMatchingGroup(M.filter2,e:GetHandlerPlayer(),LOCATION_GRAVE+LOCATION_ONFIELD,0,nil):GetClassCount(Card.GetCode)
-	local sg=Group.CreateGroup()
-	if gc then sg:AddCard(gc) end
-	local exg=Duel.GetMatchingGroup(M.exfilter,e:GetHandlerPlayer(),LOCATION_GRAVE,0,nil,e:GetHandler(),mg)
-	local exg2=Duel.GetFusionMaterial(e:GetHandlerPlayer()):Filter(M.exfilter2,nil,e:GetHandler(),mg)
+	local c=e:GetHandler()
+	local tp=c:GetControler()
+	local mg=g:Filter(M.mfilter,nil,c)
+	local ct=Duel.GetMatchingGroup(M.filter2,c,LOCATION_GRAVE+LOCATION_ONFIELD,0,nil):GetClassCount(Card.GetCode)
+	local exg=Duel.GetMatchingGroup(M.exfilter,tp,LOCATION_GRAVE,0,nil,c,mg)
+	local exg2=Duel.GetFusionMaterial(tp):Filter(M.exfilter2,nil,c,mg)
 	mg:Merge(exg)
 	mg:Merge(exg2)
-	return mg:IsExists(M.mtfilter1,1,nil,mg,sg,exg,chkf,ct)
+	local cg=Group.CreateGroup()
+	if gc then
+		if not M.mfilter(gc,c) then return false end
+		cg:AddCard(gc)
+	end
+	return Nef.CheckGroup(mg,M.fcheck,cg,3,3,chkf,exg,ct)
 end
 function M.fusop(e,tp,eg,ep,ev,re,r,rp,gc,chkf)
 	local c=e:GetHandler()
-	local mg=eg:Filter(Card.IsCanBeFusionMaterial,nil,c)
-	local ct=Duel.GetMatchingGroup(M.filter2,tp,LOCATION_GRAVE+LOCATION_ONFIELD,0,nil):GetClassCount(Card.GetCode)
-	local sg=Group.CreateGroup()
-	if gc then sg:AddCard(gc) end
+	local mg=eg:Filter(M.mfilter,nil,c)
+	local ct=Duel.GetMatchingGroup(M.filter2,c,LOCATION_GRAVE+LOCATION_ONFIELD,0,nil):GetClassCount(Card.GetCode)
 	local exg=Duel.GetMatchingGroup(M.exfilter,tp,LOCATION_GRAVE,0,nil,c,mg)
-	local exg2=Duel.GetFusionMaterial(e:GetHandlerPlayer()):Filter(M.exfilter2,nil,e:GetHandler(),mg)
+	local exg2=Duel.GetFusionMaterial(tp):Filter(M.exfilter2,nil,c,mg)
 	mg:Merge(exg)
 	mg:Merge(exg2)
-	repeat
-		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FMATERIAL)
-		local g=mg:FilterSelect(tp,M.mtfilter1,1,1,nil,mg,sg,exg,chkf,ct)
-		sg:Merge(g)
-	until sg:GetCount()==3
+	local cg=Group.CreateGroup()
+	if gc then
+		cg:AddCard(gc)
+	end
+	local sg=Nef.SelectGroup(tp,HINTMSG_FMATERIAL,mg,M.fcheck,cg,3,3,chkf,exg,ct)
 	local rg1=sg:Filter(M.chkfilter,nil,exg)
 	local rg2=sg:Filter(M.chkfilter,nil,exg2)
 	for rc in aux.Next(rg1) do

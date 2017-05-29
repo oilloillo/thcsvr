@@ -381,3 +381,148 @@ function Nef.order_table_new(v)
 	Nef.order_table[Nef.order_count]=v
 	return Nef.order_count
 end
+function Nef.CheckGroupRecursive(c,sg,g,f,min,max,ext_params)
+	if sg:IsContains(c) then return false end
+	sg:AddCard(c)
+	local ct=sg:GetCount()
+	local res=(ct>=min and f(sg,table.unpack(ext_params)))
+		or (ct<max and g:IsExists(Nef.CheckGroupRecursive,1,nil,sg,g,f,min,max,ext_params))
+	sg:RemoveCard(c)
+	return res
+end
+function Nef.CheckGroup(g,f,cg,min,max,...)
+	local min=min or 1
+	local max=max or g:GetCount()
+	if min>max then return false end
+	local ext_params={...}
+	local sg=Group.CreateGroup()
+	if cg then sg:Merge(cg) end
+	local ct=sg:GetCount()
+	if ct>=min and ct<max and f(sg,...) then return true end
+	return g:IsExists(Nef.CheckGroupRecursive,1,nil,sg,g,f,min,max,ext_params)
+end
+function Nef.SelectGroup(tp,desc,g,f,cg,min,max,...)
+	local min=min or 1
+	local max=max or g:GetCount()
+	local ext_params={...}
+	local sg=Group.CreateGroup()
+	if cg then sg:Merge(cg) end
+	local ct=sg:GetCount()
+	while ct<max and not (ct>=min and f(sg,...) and not (g:IsExists(Nef.CheckGroupRecursive,1,nil,sg,g,f,min,max,ext_params) and Duel.SelectYesNo(tp,210))) do
+		Duel.Hint(HINT_SELECTMSG,tp,desc)
+		local tg=g:FilterSelect(tp,Nef.CheckGroupRecursive,1,1,nil,sg,g,f,min,max,ext_params)
+		sg:Merge(tg)
+		ct=sg:GetCount()
+	end
+	return sg
+end
+function Nef.OverlayCard(c,tc,xm,nchk)
+	if not nchk and (not c:IsLocation(LOCATION_MZONE) or c:IsFacedown() or not c:IsType(TYPE_XYZ) or tc:IsType(TYPE_TOKEN)) then return end
+	if tc:IsStatus(STATUS_LEAVE_CONFIRMED) then
+		tc:CancelToGrave()
+	end
+	if tc:GetOverlayCount()>0 then
+		local og=tc:GetOverlayGroup()
+		if xm then
+			Duel.Overlay(c,og)
+		else
+			Duel.SendtoGrave(og,REASON_RULE)
+		end
+	end
+	Duel.Overlay(c,tc)
+end
+function Nef.OverlayFilter(c,nchk)
+	return nchk or not c:IsType(TYPE_TOKEN)
+end
+function Nef.OverlayGroup(c,g,xm,nchk)
+	if not nchk and (not c:IsLocation(LOCATION_MZONE) or c:IsFacedown() or g:GetCount()<=0 or not c:IsType(TYPE_XYZ)) then return end
+	local tg=g:Filter(Nef.OverlayFilter,nil,nchk)
+	if tg:GetCount()==0 then return end
+	local og=Group.CreateGroup()
+	for tc in aux.Next(tg) do
+		if tc:IsStatus(STATUS_LEAVE_CONFIRMED) then
+			tc:CancelToGrave()
+		end
+		og:Merge(tc:GetOverlayGroup())
+	end
+	if og:GetCount()>0 then
+		if xm then
+			Duel.Overlay(c,og)
+		else
+			Duel.SendtoGrave(og,REASON_RULE)
+		end
+	end
+	Duel.Overlay(c,tg)
+end
+function Nef.CheckFieldFilter(g,tp,c,f,...)
+	return Duel.GetLocationCount(tp,LOCATION_MZONE)+g:FilterCount(aux.FConditionCheckF,nil,tp)>0 and (not f or f(g,...))
+	--return Duel.GetLocationCountFromEx(tp,tp,g,c)>0 and (not f or f(g,...))
+end
+function Nef.AddXyzProcedureCustom(c,func,gf,minc,maxc,...)
+	local ext_params={...}
+	if c.xyz_filter==nil then
+		local code=c:GetOriginalCode()
+		local mt=_G["c" .. code]
+		mt.xyz_filter=func or aux.TRUE
+		mt.xyz_count=minc
+	end
+	local maxc=maxc or minc
+	local e1=Effect.CreateEffect(c)
+	e1:SetType(EFFECT_TYPE_FIELD)
+	e1:SetCode(EFFECT_SPSUMMON_PROC)
+	e1:SetProperty(EFFECT_FLAG_UNCOPYABLE)
+	e1:SetRange(LOCATION_EXTRA)
+	e1:SetCondition(Nef.XyzProcedureCustomCondition(func,gf,minc,maxc,ext_params))
+	e1:SetOperation(Nef.XyzProcedureCustomOperation(func,gf,minc,maxc,ext_params))
+	e1:SetValue(SUMMON_TYPE_XYZ)
+	c:RegisterEffect(e1)
+	return e1
+end
+function Nef.XyzProcedureCustomFilter(c,xyzcard,func,ext_params)
+	if c:IsLocation(LOCATION_ONFIELD+LOCATION_REMOVED) and c:IsFacedown() then return false end
+	return c:IsCanBeXyzMaterial(xyzcard) and (not func or func(c,xyzcard,table.unpack(ext_params)))
+end
+function Nef.XyzProcedureCustomCondition(func,gf,minct,maxct,ext_params)
+	return function(e,c,og,min,max)
+		if c==nil then return true end
+		if c:IsType(TYPE_PENDULUM) and c:IsFaceup() then return false end
+		local tp=c:GetControler()
+		local minc=minct or 2
+		local maxc=maxct or minct or 63
+		if min then
+			minc=math.max(minc,min)
+			maxc=math.min(maxc,max)
+		end
+		local mg=nil
+		if og then
+			mg=og:Filter(Nef.XyzProcedureCustomFilter,nil,c,func,ext_params)
+		else
+			mg=Duel.GetMatchingGroup(Nef.XyzProcedureCustomFilter,tp,LOCATION_MZONE,0,nil,c,func,ext_params)
+		end
+		return maxc>=minc and Nef.CheckGroup(mg,Nef.CheckFieldFilter,nil,minc,maxc,tp,c,gf,c)
+	end
+end
+function Nef.XyzProcedureCustomOperation(func,gf,minct,maxct,ext_params)
+	return function(e,tp,eg,ep,ev,re,r,rp,c,og,min,max)
+		local g=nil
+		if og and not min then
+			g=og
+		else
+			local mg=nil
+			if og then
+				mg=og:Filter(Nef.XyzProcedureCustomFilter,nil,c,func,ext_params)
+			else
+				mg=Duel.GetMatchingGroup(Nef.XyzProcedureCustomFilter,tp,LOCATION_MZONE,0,nil,c,func,ext_params)
+			end
+			local minc=minct or 2
+			local maxc=maxct or minct or 63
+			if min then
+				minc=math.max(minc,min)
+				maxc=math.min(maxc,max)
+			end
+			g=Nef.SelectGroup(tp,HINTMSG_XMATERIAL,mg,Nef.CheckFieldFilter,nil,minc,maxc,tp,c,gf,c)
+		end
+		c:SetMaterial(g)
+		Nef.OverlayGroup(c,g,false,true)
+	end
+end

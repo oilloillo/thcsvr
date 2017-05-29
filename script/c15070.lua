@@ -2,18 +2,7 @@
 function c15070.initial_effect(c)
 	--xyz summon
 	c:EnableReviveLimit()
-	Nef.AddXyzProcedureWithDesc(c,nil,12,2,aux.Stringid(15070,0))
-	-- xyzop
-	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(15070,1))
-	e1:SetType(EFFECT_TYPE_FIELD)
-	e1:SetCode(EFFECT_SPSUMMON_PROC)
-	e1:SetProperty(EFFECT_FLAG_UNCOPYABLE)
-	e1:SetRange(LOCATION_EXTRA)
-	e1:SetCondition(c15070.xyzcon)
-	e1:SetOperation(c15070.xyzop)
-	e1:SetValue(SUMMON_TYPE_XYZ)
-	c:RegisterEffect(e1)
+	Nef.AddXyzProcedureCustom(c,c15070.mfilter,c15070.xyzcheck,2,3)
 	--search
 	local e2=Effect.CreateEffect(c)
 	e2:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH)
@@ -43,24 +32,16 @@ function c15070.initial_effect(c)
 	e4:SetOperation(c15070.rmop)
 	c:RegisterEffect(e4)
 end
-function c15070.hofilter(c, tp, xyzc, lv)
-	if c:IsType(TYPE_TOKEN) or not c:IsCanBeXyzMaterial(xyzc) then return false end
-	return c:IsSetCard(0x150) and c:IsFaceup() and c:GetOriginalLevel()>=4
+function c15070.mfilter(c,xyzc)
+	return c:IsXyzLevel(xyzc,12) or (c:IsSetCard(0x150) and c:GetOriginalLevel()>=4)
 end
-function c15070.xyzcon(e,c,mg)
-	if c==nil then return true end
-	local tp=c:GetControler()
-	if Duel.GetLocationCount(tp,LOCATION_MZONE)<-2 then return false end
-	if mg then return mg:FilterCount(c15070.hofilter, nil, tp, c) >= 3
-	else return Duel.IsExistingMatchingCard(c15070.hofilter, tp, LOCATION_MZONE, 0, 3, nil, tp, c) end
+function c15070.xyzcheck(g,xyzc)
+	return not g:IsExists(c15070.counter[g:GetCount()],1,nil,xyzc)
 end
-function c15070.xyzop(e,tp,eg,ep,ev,re,r,rp,c)
-	local tp=c:GetControler()
-	local mg = Duel.SelectMatchingCard(tp, c15070.hofilter, tp, LOCATION_MZONE, 0, 3, 3, nil, tp, c)
-	if mg:GetCount()<1 then return end
-		c:SetMaterial(mg)
-		Duel.Overlay(c, mg)
-end
+c15070.counter={
+	[2]=function(c,xyzc) return not c:IsXyzLevel(xyzc,12) end,
+	[3]=function(c,xyzc) return not c:IsSetCard(0x150) or c:GetOriginalLevel()<4 end,
+}
 function c15070.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():CheckRemoveOverlayCard(tp,1,REASON_COST) end
 	e:GetHandler():RemoveOverlayCard(tp,1,1,REASON_COST)

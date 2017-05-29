@@ -1,5 +1,4 @@
- 
---妖剑「辉针剑」
+ --妖剑「辉针剑」
 function c29041.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
