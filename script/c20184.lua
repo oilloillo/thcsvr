@@ -57,7 +57,7 @@ end
 function c20184.sfilter(c)
 	return c:IsSetCard(0x201) and c:IsAbleToRemoveAsCost()
 end
-function c20184.scost(e,tp,eg,ep,ev,re,r,rp,chk)
+function c20184.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local g1=Duel.GetMatchingGroup(c20184.cfilter,tp,LOCATION_ONFIELD,0,nil)
 	local g2=Duel.GetMatchingGroup(c20184.sfilter,tp,LOCATION_GRAVE,0,nil)
 	local c1=g1:GetCount()>=2 and g1:IsExists(Card.IsCode,1,nil,20175)
