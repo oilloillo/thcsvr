@@ -2,18 +2,7 @@
 function c21167.initial_effect(c)
 	--xyz summon
 	c:EnableReviveLimit()
-	Nef.AddXyzProcedureWithDesc(c,nil,9,2,aux.Stringid(21167,0))
-	-- xyzop
-	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(21167,1))
-	e1:SetType(EFFECT_TYPE_FIELD)
-	e1:SetCode(EFFECT_SPSUMMON_PROC)
-	e1:SetProperty(EFFECT_FLAG_UNCOPYABLE)
-	e1:SetRange(LOCATION_EXTRA)
-	e1:SetCondition(c21167.xyzcon)
-	e1:SetOperation(c21167.xyzop)
-	e1:SetValue(SUMMON_TYPE_XYZ)
-	c:RegisterEffect(e1)
+	Nef.AddXyzProcedureCustom(c,c21167.mfilter,c21167.xyzcheck,2,2)
 	--atkup
 	local e2=Effect.CreateEffect(c)
 	e2:SetDescription(aux.Stringid(21167,2))
@@ -47,22 +36,11 @@ function c21167.initial_effect(c)
 	e4:SetOperation(c21167.hspop)
 	c:RegisterEffect(e4)
 end
-function c21167.hofilter(c, tp, xyzc, lv)
-	if c:IsType(TYPE_TOKEN) or not c:IsCanBeXyzMaterial(xyzc) then return false end
-	return c:IsSetCard(0x137) and c:IsFaceup()
+function c21167.mfilter(c,xyzc)
+	return c:IsXyzLevel(xyzc,9) or c:IsSetCard(0x137)
 end
-function c21167.xyzcon(e,c)
-	if c==nil then return true end
-	local tp=c:GetControler()
-	if Duel.GetLocationCount(tp,LOCATION_MZONE)<-1 then return false end
-	return Duel.IsExistingMatchingCard(c21167.hofilter, tp, LOCATION_MZONE, 0, 2, nil, tp, c)
-end
-function c21167.xyzop(e,tp,eg,ep,ev,re,r,rp,c)
-	local tp=c:GetControler()
-	local mg = Duel.SelectMatchingCard(tp, c21167.hofilter, tp, LOCATION_MZONE, 0, 2, 2, nil, tp, c)
-	if mg:GetCount()<2 then return end
-		c:SetMaterial(mg)
-		Duel.Overlay(c, mg)
+function c21167.xyzcheck(g,xyzc)
+	return g:IsExists(Card.IsXyzLevel,2,nil,xyzc,9) or g:IsExists(Card.IsSetCard,2,nil,0x137)
 end
 function c21167.discon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():GetSummonType()==SUMMON_TYPE_XYZ

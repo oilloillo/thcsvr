@@ -82,13 +82,13 @@ function c26082.filter3(c,mc)
 	return Fus.CheckMaterialSingle(mc,c)
 end
 function c26082.stg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
-	if chkc then return chkc:IsLocation(LOCATION_MZONE) and chkc:IsControler(tp) and c26082.filter1(chkc) end
+	local exg=Duel.GetMatchingGroup(c26082.filter2,tp,LOCATION_EXTRA,0,nil,e,tp)
+	if chkc then return chkc:IsLocation(LOCATION_MZONE) and chkc:IsControler(tp) and c26082.filter1(chkc,exg) end
 	if chk==0 then
-		local exg=Duel.GetMatchingGroup(c26082.filter2,tp,LOCATION_EXTRA,0,nil,e,tp)
 		return Duel.GetLocationCount(tp,LOCATION_MZONE)>-1 and Duel.IsExistingTarget(c26082.filter1,tp,LOCATION_MZONE,0,1,nil,exg)
 	end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FMATERIAL)
-	local g=Duel.SelectTarget(tp,c26082.filter1,tp,LOCATION_MZONE,0,1,1,nil)
+	local g=Duel.SelectTarget(tp,c26082.filter1,tp,LOCATION_MZONE,0,1,1,nil,exg)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,0,LOCATION_EXTRA)
 end
 function c26082.sop(e,tp,eg,ep,ev,re,r,rp)
