@@ -1,5 +1,4 @@
- 
---苍天的庭师✿魂魄妖梦
+ --苍天的庭师✿魂魄妖梦
 function c20083.initial_effect(c)
 	--special summon
 	local e1=Effect.CreateEffect(c)

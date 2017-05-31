@@ -55,19 +55,19 @@ function c20216.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SendtoGrave(e:GetHandler(),REASON_COST)
 end
 function c20216.filter(c)
-	return c:IsFaceup() --and c:IsCanAddCounter(0x208b,2)
+	return c:IsFaceup() --and c:IsCanAddCounter(0x128b,2)
 end
 function c20216.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsControler(tp) and chkc:IsOnField() and c20216.filter(chkc) end
 	if chk==0 then return Duel.IsExistingTarget(c20216.filter,tp,LOCATION_ONFIELD,0,1,nil) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)
 	Duel.SelectTarget(tp,c20216.filter,tp,LOCATION_ONFIELD,0,1,1,nil)
-	Duel.SetOperationInfo(0,CATEGORY_COUNTER,nil,2,0,0x208b)
+	Duel.SetOperationInfo(0,CATEGORY_COUNTER,nil,2,0,0x128b)
 end
 function c20216.ope(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
 	if tc:IsFaceup() and tc:IsRelateToEffect(e) then
-		tc:AddCounter(0x208b,2)
+		tc:AddCounter(0x128b,2)
 	end
 end
 function c20216.retreg(e,tp,eg,ep,ev,re,r,rp)

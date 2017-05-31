@@ -27,7 +27,7 @@ function c20181.initial_effect(c)
 	local e4=Effect.CreateEffect(c)
 	e4:SetType(EFFECT_TYPE_EQUIP)
 	e4:SetCode(EFFECT_UPDATE_ATTACK)
-	e4:SetValue(400)
+	e4:SetValue(500)
 	c:RegisterEffect(e4)
 	--redirect
 	local e5=Effect.CreateEffect(c)

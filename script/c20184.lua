@@ -37,7 +37,7 @@ function c20184.initial_effect(c)
 	local e4=Effect.CreateEffect(c)
 	e4:SetType(EFFECT_TYPE_EQUIP)
 	e4:SetCode(EFFECT_UPDATE_ATTACK)
-	e4:SetValue(500)
+	e4:SetValue(600)
 	c:RegisterEffect(e4)
 	--to hand
 	local e8=Effect.CreateEffect(c)

@@ -1,5 +1,4 @@
- 
---亡乡「亡我乡」
+ --亡乡「亡我乡」
 function c20090.initial_effect(c)
 	local e1=Effect.CreateEffect(c)
 	e1:SetCategory(CATEGORY_TOGRAVE)
@@ -59,8 +58,8 @@ function c20090.xfilter(c)
 end
 function c20090.addct(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_ONFIELD) and chkc:IsControler(tp) and c20090.xfilter(chkc) end
-	if chk==0 then return Duel.IsExistingTarget(c20090.xfilter,tp,LOCATION_ONFIELD,0,1,e:GetHandler()) end
-	Duel.SelectTarget(tp,c20090.xfilter,tp,LOCATION_ONFIELD,0,1,1,e:GetHandler())
+	if chk==0 then return Duel.IsExistingTarget(c20090.xfilter,tp,LOCATION_ONFIELD,0,1,nil) end
+	Duel.SelectTarget(tp,c20090.xfilter,tp,LOCATION_ONFIELD,0,1,1,nil)
 end
 function c20090.addc(e,tp,eg,ep,ev,re,r,rp)
 	if not e:GetHandler():IsRelateToEffect(e) then return end

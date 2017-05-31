@@ -43,6 +43,9 @@ end
 function c20223.descost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(c20223.cfilter,tp,LOCATION_ONFIELD+LOCATION_GRAVE,0,1,nil) end
 	local g=Duel.SelectMatchingCard(tp,c20223.cfilter,tp,LOCATION_ONFIELD+LOCATION_GRAVE,0,1,1,nil)
+	if g:GetFirst():IsLocation(LOCATION_ONFIELD) and g:GetFirst():IsFacedown() then
+		Duel.ConfirmCards(1-tp,g)
+	end
 	Duel.HintSelection(g)
 	Duel.SendtoDeck(g,nil,2,REASON_COST)
 end
