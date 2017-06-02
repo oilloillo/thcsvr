@@ -1,5 +1,4 @@
- 
---魅魔
+ --魅魔
 function c11011.initial_effect(c)
 	--special summon
 	local e1=Effect.CreateEffect(c)

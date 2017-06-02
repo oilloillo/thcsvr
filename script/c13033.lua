@@ -21,6 +21,7 @@ function c13033.initial_effect(c)
 	e3:SetProperty(EFFECT_FLAG_CARD_TARGET)
 	e3:SetCategory(CATEGORY_EQUIP)
 	e3:SetRange(LOCATION_MZONE+LOCATION_GRAVE)
+	e3:SetCountLimit(1,13033)
 	e3:SetTarget(c13033.eqtg)
 	e3:SetOperation(c13033.eqop)
 	c:RegisterEffect(e3)
@@ -45,23 +46,14 @@ end
 function c13033.eqlimit(e,c)
 	return c:IsSetCard(0x200) or c:IsSetCard(0x13d) or c:IsSetCard(0x13c)
 end
-function c13033.eqcon(e,tp,eg,ep,ev,re,r,rp)
-	return bit.band(r,0x41)==0x41
-end
-function c13033.eqcost(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.GetFlagEffect(tp,13033)==0 end
-	Duel.RegisterFlagEffect(tp,13033,RESET_PHASE+PHASE_END,0,1)
-end
 function c13033.eqfilter(c)
 	return c:IsFaceup() and (c:IsSetCard(0x200) or c:IsSetCard(0x13d) or c:IsSetCard(0x13c))
 end
 function c13033.eqtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_MZONE) and chkc:IsControler(tp) and c13033.eqfilter(chkc) end
-	if chk==0 then return Duel.GetFlagEffect(tp,13033)==0 and Duel.GetLocationCount(tp,LOCATION_SZONE)>0
-		and Duel.IsExistingTarget(c13033.eqfilter,tp,LOCATION_MZONE,0,1,nil) end
+	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and Duel.IsExistingTarget(c13033.eqfilter,tp,LOCATION_MZONE,0,1,nil) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_EQUIP)
 	Duel.SelectTarget(tp,c13033.eqfilter,tp,LOCATION_MZONE,0,1,1,nil)
-	Duel.RegisterFlagEffect(tp,13033,RESET_PHASE+PHASE_END,0,1)
 end
 function c13033.eqop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
