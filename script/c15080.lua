@@ -48,7 +48,7 @@ function c15080.spop1(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c15080.condition(e,tp,eg,ep,ev,re,r,rp)
-	return re:IsActiveType(TYPE_MONSTER) and re:GetCode()==EVENT_SPSUMMON_SUCCESS and Duel.IsChainNegatable(ev)
+	return re:IsActiveType(TYPE_MONSTER) and re:GetCode()==EVENT_SPSUMMON_SUCCESS and Duel.IsChainNegatable(ev) and ep~=tp
 end
 function c15080.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():IsDiscardable() end
@@ -62,7 +62,8 @@ function c15080.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	end
 end
 function c15080.activate(e,tp,eg,ep,ev,re,r,rp)
-	if Duel.NegateActivation(ev) and re:GetHandler():IsRelateToEffect(re) then
-		Duel.Destroy(eg,REASON_EFFECT)
+	if Duel.NegateActivation(ev) then
+		Duel.RegisterFlagEffect(tp,150000,RESET_PHASE+PHASE_END,0,1)
+		Duel.RegisterFlagEffect(tp,150000,RESET_PHASE+PHASE_END,0,1)
 	end
 end

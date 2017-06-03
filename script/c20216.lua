@@ -38,7 +38,7 @@ function c20216.tgfilter(c)
 end
 function c20216.thtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_GRAVE) and chkc:GetControler()==tp and c20216.tgfilter(chkc) end
-	if chk==0 then return true end
+	if chk==0 then return Duel.IsExistingTarget(c20216.tgfilter,tp,LOCATION_GRAVE,0,1,nil) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 	local g=Duel.SelectTarget(tp,c20216.tgfilter,tp,LOCATION_GRAVE,0,1,1,nil)
 	Duel.SetOperationInfo(0,CATEGORY_TOHAND,g,1,0,0)
@@ -55,13 +55,13 @@ function c20216.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SendtoGrave(e:GetHandler(),REASON_COST)
 end
 function c20216.filter(c)
-	return c:IsFaceup() --and c:IsCanAddCounter(0x128b,2)
+	return c:IsFaceup()
 end
 function c20216.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsControler(tp) and chkc:IsOnField() and c20216.filter(chkc) end
-	if chk==0 then return Duel.IsExistingTarget(c20216.filter,tp,LOCATION_ONFIELD,0,1,nil) end
+	if chk==0 then return Duel.IsExistingTarget(c20216.filter,tp,LOCATION_ONFIELD,0,1,e:GetHandler()) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)
-	Duel.SelectTarget(tp,c20216.filter,tp,LOCATION_ONFIELD,0,1,1,nil)
+	Duel.SelectTarget(tp,c20216.filter,tp,LOCATION_ONFIELD,0,1,1,e:GetHandler())
 	Duel.SetOperationInfo(0,CATEGORY_COUNTER,nil,2,0,0x128b)
 end
 function c20216.ope(e,tp,eg,ep,ev,re,r,rp)
