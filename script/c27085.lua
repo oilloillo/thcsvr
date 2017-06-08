@@ -100,7 +100,7 @@ function c27085.cost2(e,tp,eg,ep,ev,re,r,rp,chk)
 	end
 end
 function c27085.filter(c)
-	return c:IsFaceup() and c:IsAbleToHand() and (c:GetLevel()>5 or c:GetRank()>5)
+	return c:IsFaceup() and c:IsAbleToHand() and (c:GetLevel()>5 or c:GetRank()>5) and c:IsType(TYPE_MONSTER)
 end
 function c27085.target2(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsControler(1-tp) and chkc:IsOnField() and c27085.filter(chkc) end

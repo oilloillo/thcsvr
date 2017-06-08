@@ -36,7 +36,7 @@ function c12026.initial_effect(c)
 	c:RegisterEffect(e3)
 end
 function c12026.mfilter1(c)
-	return c:IsFusionSetCard(0x208) and c:IsFusionAttribute(ATTRIBUTE_LIGHT) and c:IsType(TYPE_SYNCHRO)
+	return c:IsFusionSetCard(0x208) and c:IsFusionAttribute(ATTRIBUTE_LIGHT) and c:IsFusionType(TYPE_SYNCHRO)
 end
 function c12026.mfilter2(c)
 	return c:IsFusionSetCard(0x208) and c:IsFusionAttribute(ATTRIBUTE_DARK) and c:IsFusionType(TYPE_XYZ)
@@ -46,7 +46,7 @@ function c12026.descost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.PayLPCost(tp,2000)
 end
 function c12026.rmfilter(c)
-	return c:IsAbleToRemove() and not c:IsAttribute(ATTRIBUTE_DARK) and not c:IsAttribute(ATTRIBUTE_LIGHT)
+	return c:IsAbleToRemove() and not (c:IsType(TYPE_MONSTER) and (c:IsAttribute(ATTRIBUTE_DARK) or c:IsAttribute(ATTRIBUTE_LIGHT)))
 end
 function c12026.descon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():GetSummonType()==SUMMON_TYPE_FUSION
