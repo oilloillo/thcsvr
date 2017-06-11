@@ -81,9 +81,9 @@ function c20050.ctop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c20050.cost1(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsCanRemoveCounter(tp,1,0,0x128b,3,REASON_COST) end
+	if chk==0 then return Duel.IsCanRemoveCounter(tp,1,0,0x128b,4,REASON_COST) end
 	Duel.Hint(HINT_OPSELECTED,1-tp,e:GetDescription())
-	Duel.RemoveCounter(tp,1,0,0x128b,3,REASON_COST)
+	Duel.RemoveCounter(tp,1,0,0x128b,4,REASON_COST)
 end
 function c20050.filter1(c)
 	return c:IsDestructable() and c:IsType(TYPE_SPELL+TYPE_TRAP)
@@ -103,9 +103,9 @@ function c20050.op1(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c20050.cost2(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsCanRemoveCounter(tp,1,0,0x128b,1,REASON_COST) end
+	if chk==0 then return Duel.IsCanRemoveCounter(tp,1,0,0x128b,2,REASON_COST) end
 	Duel.Hint(HINT_OPSELECTED,1-tp,e:GetDescription())
-	Duel.RemoveCounter(tp,1,0,0x128b,1,REASON_COST)
+	Duel.RemoveCounter(tp,1,0,0x128b,2,REASON_COST)
 end
 function c20050.filter2(c)
 	return c:IsType(TYPE_MONSTER) and c:IsAbleToGrave()
@@ -126,9 +126,9 @@ function c20050.filter3(c,e,tp)
 	return c:IsLevelBelow(5) and c:IsType(TYPE_SPIRIT) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
 function c20050.cost3(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsCanRemoveCounter(tp,1,0,0x128b,5,REASON_COST) end
+	if chk==0 then return Duel.IsCanRemoveCounter(tp,1,0,0x128b,6,REASON_COST) end
 	Duel.Hint(HINT_OPSELECTED,1-tp,e:GetDescription())
-	Duel.RemoveCounter(tp,1,0,0x128b,5,REASON_COST)
+	Duel.RemoveCounter(tp,1,0,0x128b,6,REASON_COST)
 end
 function c20050.tg3(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0

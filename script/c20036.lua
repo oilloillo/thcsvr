@@ -1,5 +1,4 @@
- 
---策士之九尾
+ --策士之九尾
 function c20036.initial_effect(c)
 	--synchro summon
 	aux.AddSynchroProcedure(c,nil,aux.NonTuner(Card.IsSetCard,0x208),2)
