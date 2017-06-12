@@ -3,17 +3,17 @@ Nef = Nef or {}
 local os = require("os")
 require "expansions/script/nef/cardList"
 function Nef.unpack(t, i)
-	i = i or 1
-	if t[i] then
-	   return t[i], Nef.unpack(t, i + 1)
-	end
+    i = i or 1
+    if t[i] then
+       return t[i], Nef.unpack(t, i + 1)
+    end
 end
 
 function Nef.unpackOneMember(t, member, i)
-	i = i or 1
-	if t[i] and t[i][member] then
-	   return t[i][member], Nef.unpackOneMember(t, member, i+1)
-	end
+    i = i or 1
+    if t[i] and t[i][member] then
+       return t[i][member], Nef.unpackOneMember(t, member, i+1)
+    end
 end
 
 function Nef.AddSynchroProcedureWithDesc(c,f1,f2,ct,desc)
@@ -80,6 +80,19 @@ function Auxiliary.EnablePendulumAttribute(c,reg)
 	return Nef.EnablePendulumAttributeSP(c,99,Auxiliary.TRUE,argTable,reg,nil)
 end
 
+function Nef.GetExtraPendulumEffect(c, code, count)
+	local e1=Effect.CreateEffect(c)
+	e1:SetType(EFFECT_TYPE_FIELD)
+	e1:SetCode(EFFECT_SPSUMMON_PROC_G)
+	e1:SetProperty(EFFECT_FLAG_UNCOPYABLE+EFFECT_FLAG_CANNOT_DISABLE)
+	e1:SetRange(LOCATION_PZONE)
+	e1:SetCountLimit(count or 1, code or 10000000)
+	e1:SetCondition(Nef.PendConditionSP())
+	e1:SetOperation(Nef.PendOperationSP())
+	e1:SetValue(SUMMON_TYPE_PENDULUM)
+	return e1
+end
+
 function Nef.EnablePendulumAttributeSP(c,num,filter,argTable,reg,tag)
 	local code=c:GetOriginalCode()
 	local mt=_G["c" .. code]
@@ -94,20 +107,23 @@ function Nef.EnablePendulumAttributeSP(c,num,filter,argTable,reg,tag)
 	e1:SetCode(EFFECT_SPSUMMON_PROC_G)
 	e1:SetProperty(EFFECT_FLAG_UNCOPYABLE+EFFECT_FLAG_CANNOT_DISABLE)
 	e1:SetRange(LOCATION_PZONE)
-	e1:SetCountLimit(1,10000000)
+	e1:SetCountLimit(1, 10000000)
 	e1:SetCondition(Nef.PendConditionSP())
 	e1:SetOperation(Nef.PendOperationSP())
 	e1:SetValue(SUMMON_TYPE_PENDULUM)
 	c:RegisterEffect(e1)
-	--disable spsummon
-	local e2=Effect.CreateEffect(c)
-	e2:SetType(EFFECT_TYPE_FIELD)
-	e2:SetRange(LOCATION_PZONE)
-	e2:SetCode(EFFECT_CANNOT_SPECIAL_SUMMON)
-	e2:SetProperty(EFFECT_FLAG_PLAYER_TARGET+EFFECT_FLAG_UNCOPYABLE+EFFECT_FLAG_CANNOT_DISABLE)
-	e2:SetTargetRange(1,0)
-	e2:SetTarget(Nef.PendSummonLimitTarget)
-	c:RegisterEffect(e2)
+
+	-- 由于utility处加载nef，不需要再无效效果
+	-- --disable HINTMSG_SPSUMMON 
+	-- local e2=Effect.CreateEffect(c)
+	-- e2:SetType(EFFECT_TYPE_FIELD)
+	-- e2:SetRange(LOCATION_PZONE)
+	-- e2:SetCode(EFFECT_CANNOT_SPECIAL_SUMMON)
+	-- e2:SetProperty(EFFECT_FLAG_PLAYER_TARGET+EFFECT_FLAG_UNCOPYABLE+EFFECT_FLAG_CANNOT_DISABLE)
+	-- e2:SetTargetRange(1,0)
+	-- e2:SetTarget(Nef.PendSummonLimitTarget)
+	-- c:RegisterEffect(e2)
+
 	--register by default
 	if reg==nil or reg then
 		local e3=Effect.CreateEffect(c)
@@ -165,18 +181,18 @@ function Nef.PConditionFilterSP2(c,e,tp,lscale,rscale,filter,argTable,filter2,ar
 end
 
 function Nef.PendConditionSP()
-	return  function(e,c,og)
+	return	function(e,c,og)
 				if c==nil then return true end
 				local tp=c:GetControler()
 
 				local lpz=Duel.GetFieldCard(tp,LOCATION_SZONE,6)
 				local rpz=Duel.GetFieldCard(tp,LOCATION_SZONE,7)
 				if not (lpz and rpz) then return false end
-				if c==rpz and _G["c" .. lpz:GetOriginalCode()].pend_filter then return false end
 
-				local temp = (c==lpz and rpz or lpz)
-				local n1, filter1, argTable1, tag1, pexfunc1 = Nef.GetPendSPInfo(c)
-				local n2, filter2, argTable2, tag2, pexfunc2 = Nef.GetPendSPInfo(temp)
+				local n1, filter1, argTable1, tag1, pexfunc1 = Nef.GetPendSPInfo(lpz)
+				local n2, filter2, argTable2, tag2, pexfunc2 = Nef.GetPendSPInfo(rpz)
+
+				if math.min(n1, n2) < 1 then return end
 
 				local lscale=lpz:GetLeftScale()
 				local rscale=rpz:GetRightScale()
@@ -185,10 +201,10 @@ function Nef.PendConditionSP()
 				local ft=Duel.GetLocationCount(tp,LOCATION_MZONE)
 				if ft<=0 then return false end
 
-				if pexfunc1 and pexfunc1(c):IsExists(Nef.PConditionFilterSP2,1,nil,e,tp,lscale,rscale,filter1,argTable1,filter2,argTable2,lpz,rpz) then
+				if pexfunc1 and pexfunc1(lpz):IsExists(Nef.PConditionFilterSP2,1,nil,e,tp,lscale,rscale,filter1,argTable1,filter2,argTable2,lpz,rpz) then
 					return true
 				end
-				if pexfunc2 and pexfunc2(temp):IsExists(Nef.PConditionFilterSP2,1,nil,e,tp,lscale,rscale,filter1,argTable1,filter2,argTable2,lpz,rpz) then
+				if pexfunc2 and pexfunc2(rpz):IsExists(Nef.PConditionFilterSP2,1,nil,e,tp,lscale,rscale,filter1,argTable1,filter2,argTable2,lpz,rpz) then
 					return true
 				end
 
@@ -201,13 +217,12 @@ function Nef.PendConditionSP()
 end
 
 function Nef.PendOperationSP()
-	return  function(e,tp,eg,ep,ev,re,r,rp,c,sg,og)
+	return	function(e,tp,eg,ep,ev,re,r,rp,c,sg,og)
 				local lpz=Duel.GetFieldCard(tp,LOCATION_SZONE,6)
 				local rpz=Duel.GetFieldCard(tp,LOCATION_SZONE,7)
 
-				local temp = (c==lpz and rpz or lpz)
-				local n1, filter1, argTable1, tag1, pexfunc1 = Nef.GetPendSPInfo(c)
-				local n2, filter2, argTable2, tag2, pexfunc2 = Nef.GetPendSPInfo(temp)
+				local n1, filter1, argTable1, tag1, pexfunc1 = Nef.GetPendSPInfo(lpz)
+				local n2, filter2, argTable2, tag2, pexfunc2 = Nef.GetPendSPInfo(rpz)
 				
 				local lscale=lpz:GetLeftScale()
 				local rscale=rpz:GetRightScale()
@@ -218,8 +233,8 @@ function Nef.PendOperationSP()
 				pn = (pn>n2 and n2 or pn)
 
 				local exg = Group.CreateGroup()
-				if pexfunc1 then exg:Merge(pexfunc1(c)) end
-				if pexfunc2 then exg:Merge(pexfunc2(temp)) end
+				if pexfunc1 then exg:Merge(pexfunc1(lpz)) end
+				if pexfunc2 then exg:Merge(pexfunc2(rpz)) end
 
 				if og then
 					Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
@@ -227,7 +242,6 @@ function Nef.PendOperationSP()
 					local g2=og:Filter(Nef.PConditionFilterSP,nil,e,tp,lscale,rscale,filter1,argTable1,filter2,argTable2,lpz,rpz)
 					g1:Merge(g2)
 					local g=Group.Select(g1, tp, 1, pn, nil)
-					-- local g=og:FilterSelect(tp,Nef.PConditionFilterSP,1,pn,nil,e,tp,lscale,rscale,filter1,argTable1,filter2,argTable2,lpz,rpz)
 					sg:Merge(g)
 				else
 					Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
@@ -235,11 +249,10 @@ function Nef.PendOperationSP()
 					local g2=Duel.GetFieldGroup(tp,LOCATION_HAND+LOCATION_EXTRA,0):Filter(Nef.PConditionFilterSP,nil,e,tp,lscale,rscale,filter1,argTable1,filter2,argTable2,lpz,rpz)
 					g1:Merge(g2)
 					local g=Group.Select(g1, tp, 1, pn, nil)
-					-- local g=Duel.SelectMatchingCard(tp,Nef.PConditionFilterSP,tp,LOCATION_HAND+LOCATION_EXTRA,0,1,pn,nil,e,tp,lscale,rscale,filter1,argTable1,filter2,argTable2,lpz,rpz)
 					sg:Merge(g)
 				end
-				Duel.HintSelection(Group.FromCards(c))
-				Duel.HintSelection(Group.FromCards(temp))
+				Duel.HintSelection(Group.FromCards(lpz))
+				Duel.HintSelection(Group.FromCards(rpz))
 			end
 end
 
@@ -253,7 +266,6 @@ function Nef.SetPendMaxNum(c, num, reset_flag, property, reset_count)
 end
 
 function Nef.SetPendExTarget(c, filter_func)
-	-- if not filter_func then filter_func = function(c) return Group.CreateGroup() end
 	local code=c:GetOriginalCode()
 	local mt=_G["c" .. code]
 	if mt.pend_effect1==nil then Auxiliary.EnablePendulumAttribute(c) end
@@ -269,9 +281,14 @@ function Nef.GetPendSPInfo(c)
 	local mt=_G["c" .. code]
 	if mt.pend_effect1==nil then Auxiliary.EnablePendulumAttribute(c) end
 
-	local pend_num = mt.pend_num and mt.pend_num or 99
+	local pend_num = 0
+	if type(mt.pend_num) == "function" then 
+		pend_num = mt.pend_num(c)
+	else
+		pend_num = mt.pend_num and mt.pend_num or 99
+	end
 	local max_pend_num = Nef.GetPendMaxNum(c)
-	if max_pend_num>0 then pend_num = max_pend_num end
+	if max_pend_num > 0 then pend_num = max_pend_num end
 	local pend_filter = mt.pend_filter and mt.pend_filter or Auxiliary.TRUE
 	local pend_arg = mt.pend_arg and mt.pend_arg or {1}
 	local pend_tag = mt.pend_tag
@@ -298,11 +315,12 @@ function Nef.GetFieldRightScale(tp)
 	end
 end
 
-function Nef.PendSummonLimitTarget(e,c,sump,sumtype,sumpos,targetp)
-	local c = nil
-	if e then c = e:GetHandler() end
-	return c and sumtype==SUMMON_TYPE_PENDULUM and _G["c" .. c:GetOriginalCode()].pend_filter==nil
-end
+-- function Nef.PendSummonLimitTarget(e,c,sump,sumtype,sumpos,targetp)
+-- 	local c = nil
+-- 	if e then c = e:GetHandler() end
+-- 	return c and sumtype==SUMMON_TYPE_PENDULUM and _G["c" .. c:GetOriginalCode()].pend_filter==nil 
+-- 	and (c == Duel.GetFieldCard(tp,LOCATION_SZONE, 6) or c == Duel.GetFieldCard(tp,LOCATION_SZONE, 7))
+-- end
 
 function Nef.EnableDualAttributeSP(c)
 	local e1=Effect.CreateEffect(c)
@@ -374,6 +392,7 @@ function Nef.kangbazi(e,te)
 		return false
 	end
 end
+
 Nef.order_table=Nef.order_table or {}
 Nef.order_count=Nef.order_count or 0
 function Nef.order_table_new(v)
@@ -381,6 +400,7 @@ function Nef.order_table_new(v)
 	Nef.order_table[Nef.order_count]=v
 	return Nef.order_count
 end
+
 function Nef.CheckGroupRecursive(c,sg,g,f,min,max,ext_params)
 	if sg:IsContains(c) then return false end
 	sg:AddCard(c)
@@ -524,5 +544,74 @@ function Nef.XyzProcedureCustomOperation(func,gf,minct,maxct,ext_params)
 		end
 		c:SetMaterial(g)
 		Nef.OverlayGroup(c,g,false,true)
+	end
+end
+
+function Nef.CommonCounterGroup(c, code)
+	Nef.ccg = Nef.ccg or {}
+	Nef.counter = Nef.counter or {[0] = {}, [1] = {},}
+	if not Nef.ccg[code] then
+		Nef.ccg[code] = Group.CreateGroup()
+		Nef.ccg[code]:KeepAlive()
+		Nef.counter[0][code] = 0
+		Nef.counter[1][code] = 0
+	end
+
+	if not Nef.ccg[code]:IsContains(c) then
+		Nef.ccg[code]:AddCard(c)
+	end
+end
+
+function Nef.AddCommonCounter(num, code, tp)
+	if not tp then
+		Nef.AddCommonCounter(num, code, 0)
+		Nef.AddCommonCounter(num, code, 1)
+		return
+	end
+	if Nef.ccg[code] then
+		Nef.counter[tp][code] = Nef.counter[tp][code] + num
+		if Nef.counter[tp][code] < 0 then Nef.counter[tp][code] = 0 end
+		local tag = math.min(Nef.counter[tp][code], 11)
+
+		local tc = Nef.ccg[code]:GetFirst()
+		while tc do
+			if tc:IsControler(tp) then
+				tc:ResetFlagEffect(999900+code)
+				if tc:IsLocation(LOCATION_ONFIELD) and tag > 0 then
+					tc:RegisterFlagEffect(999900+code, RESET_EVENT+0xfe0000, EFFECT_FLAG_CLIENT_HINT+EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE, 0, 0, 
+						aux.Stringid(code, tag))
+				end
+			end
+			tc = Nef.ccg[code]:GetNext()
+		end
+	end
+end
+
+function Nef.SetCommonCounter(num, code, tp)
+	if not tp then
+		Nef.SetCommonCounter(num, code, 0)
+		Nef.SetCommonCounter(num, code, 1)
+		return
+	end
+	if Nef.ccg[code] then
+		Nef.counter[tp][code] = num
+		Nef.AddCommonCounter(0, code, tp)
+	end
+end
+
+function Nef.GetCommonCounter(code, tp)
+	local result = 0
+	if Nef.counter[tp] then
+		result = Nef.counter[tp][code] or 0
+	end
+	return result
+end
+
+function Nef.RefreshCommonCounter(c, code)
+	local tag = math.min(Nef.counter[c:GetControler()][code], 11)
+	c:ResetFlagEffect(999900+code)
+	if tag > 0 then
+		c:RegisterFlagEffect(999900+code, RESET_EVENT+0xfe0000, EFFECT_FLAG_CLIENT_HINT+EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE, 0, 0, 
+			aux.Stringid(code, tag))
 	end
 end

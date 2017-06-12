@@ -63,7 +63,7 @@ function c20210.hspop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.RegisterEffect(e1,tp)
 end
 function c20210.splimit(e,c,sump,sumtype,sumpos,targetp,se)
-	return c:GetOriginalLevel()<=3 or c:GetOriginalLevel()>=7
+	return c:IsLevelBelow(3) or c:IsLevelAbove(7)
 end
 function c20210.lvval(e,c)
 	local tp=c:GetControler()
