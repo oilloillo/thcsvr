@@ -50,47 +50,77 @@ function c999304.selffilter(c,tc)
 end
 
 function c999304.tokenfilter(c)
-	return c:IsType(TYPE_TOKEN)
+	return c:IsType(TYPE_TOKEN) and c:IsRace(RACE_PLANT) and c:IsReleasable() and c:IsLevelBelow(2)
 end
-
-function c999304.xyzcon(e,c)
-	if c==nil then return true end
-	local tp=c:GetControler()
-	if Duel.GetLocationCount(tp,LOCATION_MZONE)<-1 then return false end
-	local mg=Duel.GetMatchingGroup(aux.TRUE,tp,LOCATION_MZONE,0,nil)
-	return mg:CheckWithSumEqual(c999304.buildval(c,tp),4,2,5)
+function c999304.mfilter(c,xyzc)
+	return c:IsRace(RACE_PLANT) and c:IsXyzLevel(xyzc,2)
 end
-
-function c999304.buildval(xyz,tp)
-	return 
-		function(c)
-			if c:IsFaceup() and c:IsRace(RACE_PLANT) then
-				if c:IsCanBeXyzMaterial(xyz) and c:GetLevel()==2 then 
-					return 2
-				elseif c:IsType(TYPE_TOKEN) and Duel.CheckReleaseGroup(tp,c999304.selffilter,1,nil,c) and c:GetLevel()<3 then
-					return c:GetLevel()
-				end
+function c999304.xyzcheck(g,xyzc,exg)
+	local ct=g:GetCount()
+	return g:CheckWithSumEqual(c999304.val(exg),4,ct,ct)
+end
+function c999304.val(exg)
+	return 	function(c)
+				return exg:IsContains(c) and c:GetLevel() or 2
 			end
-			return 99
-		end
 end
-
+function c999304.xyzcon(e,c,og,min,max)
+	if c==nil then return true end
+	if c:IsType(TYPE_PENDULUM) and c:IsFaceup() then return false end
+	local tp=c:GetControler()
+	local func=c999304.mfilter
+	local gf=c999304.xyzcheck
+	local ext_params={}
+	local minc=2
+	local maxc=4
+	if min then
+		minc=math.max(minc,min)
+		maxc=math.min(maxc,max)
+	end
+	local mg=nil
+	local exg=Group.CreateGroup()
+	if og then
+		mg=og:Filter(Nef.XyzProcedureCustomFilter,nil,c,func,ext_params)
+		exg=og:Filter(c999304.tokenfilter,nil)
+	else
+		mg=Duel.GetMatchingGroup(Nef.XyzProcedureCustomFilter,tp,LOCATION_MZONE,0,nil,c,func,ext_params)
+		exg=Duel.GetMatchingGroup(c999304.tokenfilter,tp,LOCATION_MZONE,0,nil)
+		mg:Merge(exg)
+	end
+	return maxc>=minc and Nef.CheckGroup(mg,Nef.CheckFieldFilter,nil,minc,maxc,tp,c,gf,c,exg)
+end
 function c999304.xyzop(e,tp,eg,ep,ev,re,r,rp,c)
-	local mg=Duel.GetMatchingGroup(aux.TRUE,c:GetControler(),LOCATION_MZONE,0,nil)
-	local mat=mg:SelectWithSumEqual(c:GetControler(),c999304.buildval(c,tp),4,2,5)
+	local g=nil
+	local exg=Group.CreateGroup()
+	if og and not min then
+		g=og
+	else
+		local func=c999304.mfilter
+		local gf=c999304.xyzcheck
+		local ext_params={}
+		local mg=nil
 
-	local tokeng = mat:Filter(c999304.tokenfilter,nil)
-	if tokeng:GetCount()>0 then
-		mat:Remove(c999304.tokenfilter,nil)
-		Duel.Release(tokeng,REASON_EFFECT)
+		if og then
+			mg=og:Filter(Nef.XyzProcedureCustomFilter,nil,c,func,ext_params)
+			exg=og:Filter(c999304.tokenfilter,nil)
+		else
+			mg=Duel.GetMatchingGroup(Nef.XyzProcedureCustomFilter,tp,LOCATION_MZONE,0,nil,c,func,ext_params)
+			exg=Duel.GetMatchingGroup(c999304.tokenfilter,tp,LOCATION_MZONE,0,nil)
+			mg:Merge(exg)
+		end
+		local minc=2
+		local maxc=4
+		if min then
+			minc=math.max(minc,min)
+			maxc=math.min(maxc,max)
+		end
+		g=Nef.SelectGroup(tp,HINTMSG_XMATERIAL,mg,Nef.CheckFieldFilter,nil,minc,maxc,tp,c,gf,c,exg)
 	end
-
-	if mat:GetCount()>0 then
-		c:SetMaterial(mat)
-		Duel.Overlay(c,mat)
-	-- else
-	-- 	Duel.SpecialSummon(c, SUMMON_TYPE_XYZ, tp, tp, true, true, POS_FACEUP)
-	end
+	c:SetMaterial(g)
+	local rg=g:Filter(function(c) return exg:IsContains(c) end,nil)
+	g:Sub(rg)
+	Duel.Release(rg,REASON_COST+REASON_MATERIAL)
+	Nef.OverlayGroup(c,g,false,true)
 end
 
 function c999304.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
