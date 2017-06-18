@@ -89,7 +89,7 @@ function c999304.xyzcon(e,c,og,min,max)
 	end
 	return maxc>=minc and Nef.CheckGroup(mg,Nef.CheckFieldFilter,nil,minc,maxc,tp,c,gf,c,exg)
 end
-function c999304.xyzop(e,tp,eg,ep,ev,re,r,rp,c)
+function c999304.xyzop(e,tp,eg,ep,ev,re,r,rp,c,og,min,max)
 	local g=nil
 	local exg=Group.CreateGroup()
 	if og and not min then
