@@ -1,5 +1,4 @@
- 
---当代的念写记者 姬海棠极
+ --当代的念写记者 姬海棠极
 function c23028.initial_effect(c)
 	--spsummon
 	local e1=Effect.CreateEffect(c)
@@ -44,11 +43,14 @@ end
 function c23028.con(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():IsPreviousLocation(LOCATION_HAND)
 end
+function c23028.filter(c)
+	return c:GetSequence()<5 and c:IsAbleToDeck()
+end
 function c23028.tg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
-	if chkc then return chkc:IsControler(1-tp) and chkc:GetLocation()==LOCATION_SZONE and chkc:IsAbleToDeck() end
-	if chk==0 then return Duel.IsExistingTarget(Card.IsAbleToDeck,tp,0,LOCATION_SZONE,1,nil) end
+	if chkc then return chkc:IsControler(1-tp) and chkc:GetLocation()==LOCATION_SZONE and c23028.filter(chkc) end
+	if chk==0 then return Duel.IsExistingTarget(c23028.filter,tp,0,LOCATION_SZONE,1,nil) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
-	local g=Duel.SelectTarget(tp,Card.IsAbleToDeck,tp,0,LOCATION_SZONE,1,1,nil)
+	local g=Duel.SelectTarget(tp,c23028.filter,tp,0,LOCATION_SZONE,1,1,nil)
 	Duel.SetOperationInfo(0,CATEGORY_TODECK,g,g:GetCount(),0,0)
 end
 function c23028.op(e,tp,eg,ep,ev,re,r,rp)

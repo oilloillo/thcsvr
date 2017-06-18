@@ -1,5 +1,4 @@
- 
---半分幻的庭师
+ --半分幻的庭师
 function c20041.initial_effect(c)
 	--synchro summon
 	aux.AddSynchroProcedure(c,nil,aux.NonTuner(Card.IsSetCard,0x208),1)

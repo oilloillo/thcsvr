@@ -37,7 +37,7 @@ function c20184.initial_effect(c)
 	local e4=Effect.CreateEffect(c)
 	e4:SetType(EFFECT_TYPE_EQUIP)
 	e4:SetCode(EFFECT_UPDATE_ATTACK)
-	e4:SetValue(600)
+	e4:SetValue(500)
 	c:RegisterEffect(e4)
 	--to hand
 	local e8=Effect.CreateEffect(c)
@@ -91,7 +91,7 @@ function c20184.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 end
 function c20184.operation(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
-	if e:GetHandler():IsRelateToEffect(e) and tc:IsRelateToEffect(e) and tc:IsFaceup() then
+	if tc and e:GetHandler():IsRelateToEffect(e) and tc:IsRelateToEffect(e) and tc:IsFaceup() then
 		Duel.Equip(tp,e:GetHandler(),tc)
     end
 end

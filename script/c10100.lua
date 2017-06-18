@@ -23,7 +23,9 @@ function c10100.activate(e,tp,eg,ep,ev,re,r,rp)
 	e1:SetReset(RESET_PHASE+PHASE_END+RESET_OPPO_TURN)
 	Duel.RegisterEffect(e1,tp)
 	local c,n,m = Nef.GetDate()
-	if (n==12 or n<3) and Duel.SelectYesNo(tp,aux.Stringid(10100,0)) then
+	local flag = Duel.IsPlayerAffectedByEffect(tp, 999104) and Nef.GetCommonCounter(999104, tp) == 4
+	if ((n==12 or n<3) or flag) and Duel.SelectYesNo(tp,aux.Stringid(10100,0)) then
+		if flag then Duel.Hint(HINT_CARD, 0, 999104) end
 		Duel.Recover(tp,2000,REASON_EFFECT)
 	end
 end

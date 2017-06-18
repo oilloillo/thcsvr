@@ -12,13 +12,12 @@ function c20193.initial_effect(c)
 	local e4=Effect.CreateEffect(c)
 	e4:SetDescription(aux.Stringid(20193,0))
 	e4:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
-	e4:SetProperty(EFFECT_FLAG_DELAY)
+	e4:SetProperty(EFFECT_FLAG_DELAY+EFFECT_FLAG_DAMAGE_STEP)
 	e4:SetCode(EVENT_LEAVE_FIELD)
 	e4:SetRange(LOCATION_GRAVE)
 	e4:SetCountLimit(1)
 	e4:SetCondition(c20193.spcon)
 	e4:SetCost(c20193.spcost)
-	e4:SetTarget(c20193.sptg2)
 	e4:SetOperation(c20193.spop)
 	c:RegisterEffect(e4)
 end
@@ -49,12 +48,6 @@ function c20193.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.HintSelection(g)
 	Duel.SendtoDeck(e:GetHandler(),nil,2,REASON_COST)
 	Duel.SendtoGrave(g,REASON_COST+REASON_RETURN)
-end
-function c20193.sptg2(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return e:GetHandler():IsRelateToEffect(e)
-		and Duel.GetLocationCount(tp,LOCATION_MZONE)>0
-		and Duel.IsExistingMatchingCard(c20193.spfilter,tp,LOCATION_HAND,0,1,nil,e,tp) end
-	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND)
 end
 function c20193.spop(e,tp,eg,ep,ev,re,r,rp)
 	local e1=Effect.CreateEffect(e:GetHandler())

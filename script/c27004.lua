@@ -1,5 +1,4 @@
- 
---忠诚的尸体 物部·宫古芳香
+ --忠诚的尸体 物部·宫古芳香
 function c27004.initial_effect(c)
 	--special summon
 	local e1=Effect.CreateEffect(c)

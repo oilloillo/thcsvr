@@ -2,7 +2,7 @@
 function c20245.initial_effect(c)
 	--fusion material
 	c:EnableReviveLimit()
-	Fus.AddFusionProcFun2(c,aux.FilterBoolFunction(Card.IsFusionSetCard,0x713),c20245.mfilter,true)
+	Fus.AddFusionProcFun2(c,c20245.mfilter1,c20245.mfilter,true)
 	--destroy
 	local e2=Effect.CreateEffect(c)
 	e2:SetDescription(aux.Stringid(20245,0))
@@ -25,6 +25,9 @@ function c20245.initial_effect(c)
 	e5:SetOperation(c20245.thop)
 	c:RegisterEffect(e5)
 end
+function c20245.mfilter1(c)
+	return c:IsSetCard(0x713) and c:IsLevelAbove(3)
+end
 function c20245.mfilter(c)
 	return c:IsType(TYPE_TOKEN) and c:IsRace(RACE_ZOMBIE)
 end
@@ -32,15 +35,16 @@ function c20245.costfilter(c)
 	return c:IsType(TYPE_SPIRIT) and c:IsLevelAbove(3) and c:IsAbleToRemoveAsCost()
 end
 function c20245.cost(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsExistingMatchingCard(c20245.costfilter,tp,LOCATION_GRAVE,0,1,nil) end
+	if chk==0 then return Duel.IsExistingMatchingCard(c20245.costfilter,tp,LOCATION_GRAVE,0,1,nil) and e:GetHandler():IsAttackPos() end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
 	local g=Duel.SelectMatchingCard(tp,c20245.costfilter,tp,LOCATION_GRAVE,0,1,1,nil)
 	Duel.Remove(g,POS_FACEUP,REASON_COST)
+	Duel.ChangePosition(e:GetHandler(),POS_FACEUP_DEFENSE)
 end
 function c20245.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	local c=e:GetHandler()
 	if chkc then return chkc:IsLocation(LOCATION_MZONE) and chkc:IsControler(1-tp) and chkc:IsFaceup() end
-	if chk==0 then return Duel.IsExistingTarget(Card.IsFaceup,tp,0,LOCATION_MZONE,1,nil) and not c:IsStatus(STATUS_CHAINING) and c:IsAttackPos() end
+	if chk==0 then return Duel.IsExistingTarget(Card.IsFaceup,tp,0,LOCATION_MZONE,1,nil) and not c:IsStatus(STATUS_CHAINING) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
 	local g=Duel.SelectTarget(tp,Card.IsFaceup,tp,0,LOCATION_MZONE,1,1,nil)
 	Duel.SetOperationInfo(0,CATEGORY_DESTROY,g,1,0,0)
@@ -48,8 +52,8 @@ function c20245.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 end
 function c20245.activate(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
-	if tc and tc:IsRelateToEffect(e) and Duel.Destroy(tc,REASON_EFFECT)>0 then
-		Duel.ChangePosition(e:GetHandler(),POS_FACEUP_DEFENSE)
+	if tc and tc:IsRelateToEffect(e) then
+		Duel.Destroy(tc,REASON_EFFECT)
 	end
 end
 function c20245.thcon(e,tp,eg,ep,ev,re,r,rp)

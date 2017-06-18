@@ -2,7 +2,7 @@
 function c20191.initial_effect(c)
 	--to grave
 	local e2=Effect.CreateEffect(c)
-	e2:SetCategory(CATEGORY_TOGRAVE)
+	e2:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH)
 	e2:SetProperty(EFFECT_FLAG_CARD_TARGET)
 	e2:SetType(EFFECT_TYPE_ACTIVATE)
 	e2:SetCode(EVENT_FREE_CHAIN)
@@ -22,7 +22,7 @@ function c20191.dtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	Duel.SetOperationInfo(0,CATEGORY_TOGRAVE,0,1,0,0)
 end
 function c20191.filter(c,code)
-	return c:IsAbleToGrave() and c:GetCode()==code
+	return c:IsAbleToHand() and c:GetCode()==code
 end
 function c20191.dop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
@@ -32,7 +32,7 @@ function c20191.dop(e,tp,eg,ep,ev,re,r,rp)
 		if Duel.IsExistingMatchingCard(c20191.filter,tp,LOCATION_DECK,0,1,e:GetHandler())
 			and Duel.SelectYesNo(tp,aux.Stringid(20191,0)) then
 			cg=Duel.SelectMatchingCard(tp,c20191.filter,tp,LOCATION_DECK,0,1,1,nil)
-			Duel.SendtoGrave(cg,REASON_EFFECT)
+			Duel.SendtoHand(cg,nil,REASON_EFFECT)
 		end
 		local e1=Effect.CreateEffect(c)
 		e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)

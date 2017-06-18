@@ -25,17 +25,20 @@ function c20200.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	g1:Merge(g2)
 	Duel.SetOperationInfo(0,CATEGORY_TOHAND,g1,2,0,0)
 	local y,m,d = Nef.GetDate()
-	if (m>=3 and m<=5) then
+	local flag = Duel.IsPlayerAffectedByEffect(tp, 999104) and Nef.GetCommonCounter(999104, tp) == 1
+	if (m>=3 and m<=5) or flag then
 		Duel.SetOperationInfo(0,CATEGORY_RECOVER,nil,0,tp,1000)
 	end
 end
 function c20200.operation(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS):Filter(Card.IsRelateToEffect,nil,e)
 	local y,m,d = Nef.GetDate()
+	local flag = Duel.IsPlayerAffectedByEffect(tp, 999104) and Nef.GetCommonCounter(999104, tp) == 1
 	if g:GetCount()==2 then
 		Duel.SendtoHand(g,nil,REASON_EFFECT)
 	end
-	if (m>=3 and m<=5) then
+	if (m>=3 and m<=5) or flag then
+		if flag then Duel.Hint(HINT_CARD, 0, 999104) end
 		Duel.Recover(tp,1000,REASON_EFFECT)
 		local sg=Duel.SelectMatchingCard(tp,Card.IsFaceup,tp,LOCATION_REMOVED,0,1,1,nil)
 		if sg:GetCount()>0 then

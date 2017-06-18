@@ -42,27 +42,27 @@ function c999402.con(e,tp,eg,ep,ev,re,r,rp)
 end
 
 function c999402.activate(e,tp,eg,ep,ev,re,r,rp)
-	local c=e:GetHandler()
-	local atk=e:GetLabel()
-	while atk>=400 do
-		local random = math.random(1,2)
-		local mg=Duel.GetMatchingGroup(Card.IsFaceup,tp,0,LOCATION_MZONE,nil)
-		if random==2 and mg:GetCount()>0 then
-			local tc=mg:RandomSelect(tp, 1):GetFirst()
+	local c = e:GetHandler()
+	local atk = e:GetLabel()
+	while atk >= 400 do
+		local mg = Duel.GetMatchingGroup(Card.IsFaceup,tp,0,LOCATION_MZONE,nil)
+		mg:AddCard(c)
+		local rc = mg:RandomSelect(tp, 1):GetFirst()
+		if rc == c then
+			Duel.Damage(1-tp, 500, REASON_EFFECT)
+		else
 			local e1=Effect.CreateEffect(c)
 			e1:SetType(EFFECT_TYPE_SINGLE)
 			e1:SetCode(EFFECT_UPDATE_ATTACK)
 			e1:SetValue(-800)
 			e1:SetReset(RESET_EVENT+0x1fe0000)
-			tc:RegisterEffect(e1)
+			rc:RegisterEffect(e1)
 			local e2=e1:Clone()
 			e2:SetCode(EFFECT_UPDATE_DEFENSE)
-			tc:RegisterEffect(e2)
-			if tc:GetDefense()<=0 or tc:GetAttack()<=0 then
-				Duel.Destroy(tc, REASON_EFFECT)
+			rc:RegisterEffect(e2)
+			if rc:GetDefense()<=0 or rc:GetAttack()<=0 then
+				Duel.Destroy(rc, REASON_EFFECT)
 			end
-		else
-			Duel.Damage(1-tp, 500, REASON_EFFECT)
 		end
 		atk = atk - 400
 	end

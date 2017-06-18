@@ -1,5 +1,4 @@
- 
---七曜-日水符「氢化日珥」
+ --七曜-日水符「氢化日珥」
 function c888185.initial_effect(c)
 	--d&d
 	local e4=Effect.CreateEffect(c)
@@ -7,6 +6,7 @@ function c888185.initial_effect(c)
 	e4:SetCategory(CATEGORY_TOGRAVE+CATEGORY_SPECIAL_SUMMON+CATEGORY_DRAW)
 	e4:SetType(EFFECT_TYPE_ACTIVATE)
 	e4:SetCode(EVENT_FREE_CHAIN)
+	e4:SetCountLimit(1,888185)
 	e4:SetProperty(EFFECT_FLAG_CARD_TARGET)
 	e4:SetTarget(c888185.target)
 	e4:SetOperation(c888185.operation)

@@ -1,5 +1,4 @@
- 
---七曜-日水符「氢化日珥」
+ --七曜-日水符「氢化日珥」
 function c22185.initial_effect(c)
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)

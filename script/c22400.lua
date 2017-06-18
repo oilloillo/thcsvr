@@ -35,8 +35,10 @@ function c22400.activate(e,tp,eg,ep,ev,re,r,rp)
 	e1:SetReset(RESET_PHASE+PHASE_END)
 	Duel.RegisterEffect(e1,tp)
 	local d,p,l = Nef.GetDate()
+	local flag = Duel.IsPlayerAffectedByEffect(tp, 999104) and Nef.GetCommonCounter(999104, tp) == 2
 	local g=Duel.GetMatchingGroup(c22400.filter,tp,LOCATION_MZONE,0,nil)
-	if (p>5 or p<10) and g:GetCount()>0 and Duel.SelectYesNo(tp,aux.Stringid(22400,0)) then
+	if flag then Duel.Hint(HINT_CARD, 0, 999104) end
+	if ((p>5 or p<10) or flag) and g:GetCount()>0 and Duel.SelectYesNo(tp,aux.Stringid(22400,0)) then
 		local tc=g:GetFirst()
 		while tc do
 			local e1=Effect.CreateEffect(c)

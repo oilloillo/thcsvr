@@ -115,7 +115,7 @@ function c999309.tg3(e,tp,eg,ep,ev,re,r,rp,chk)
 		if c:IsLocation(LOCATION_GRAVE) then 
 			return Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and c:IsSSetable()
 		elseif c:IsLocation(LOCATION_SZONE) then
-			return c:IsSSetable()
+			return c:IsSSetable(true)
 		end
 	end
 end
@@ -125,7 +125,7 @@ function c999309.op3(e,tp,eg,ep,ev,re,r,rp)
 	if not c:IsRelateToEffect(e) then return end
 	if c:IsLocation(LOCATION_GRAVE) and Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and c:IsSSetable() then 
 		Duel.SSet(tp,c)
-	elseif c:IsLocation(LOCATION_SZONE) and c:IsSSetable() then
+	elseif c:IsLocation(LOCATION_SZONE) and c:IsSSetable(true) then
 		Duel.ChangePosition(c,POS_FACEDOWN)
 		Duel.RaiseEvent(c,EVENT_SSET,e,REASON_EFFECT,tp,tp,0)
 	end

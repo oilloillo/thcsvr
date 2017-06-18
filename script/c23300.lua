@@ -25,7 +25,9 @@ function c23300.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chk==0 then return Duel.IsExistingTarget(c23300.filter1,tp,0,LOCATION_ONFIELD,1,nil)
 		or Duel.IsExistingTarget(c23300.filter2,tp,0,LOCATION_ONFIELD,1,nil) end
 	local y,m,d = Nef.GetDate()
-	if (m==10 or m==11) then
+	local flag = Duel.IsPlayerAffectedByEffect(tp, 999104) and Nef.GetCommonCounter(999104, tp) == 3
+	if (m==10 or m==11) or flag then
+		if flag then Duel.Hint(HINT_CARD, 0, 999104) end
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RTOHAND)
 		local g=Duel.SelectTarget(tp,c23300.filter,tp,0,LOCATION_ONFIELD,1,2,nil)
 	else
