@@ -29,9 +29,9 @@ function c20191.dop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
 	if tc:IsRelateToEffect(e) then
 		local code=tc:GetCode()
-		if Duel.IsExistingMatchingCard(c20191.filter,tp,LOCATION_DECK,0,1,e:GetHandler())
+		if Duel.IsExistingMatchingCard(c20191.filter,tp,LOCATION_DECK,0,1,e:GetHandler(),code)
 			and Duel.SelectYesNo(tp,aux.Stringid(20191,0)) then
-			cg=Duel.SelectMatchingCard(tp,c20191.filter,tp,LOCATION_DECK,0,1,1,nil)
+			cg=Duel.SelectMatchingCard(tp,c20191.filter,tp,LOCATION_DECK,0,1,1,nil,code)
 			Duel.SendtoHand(cg,nil,REASON_EFFECT)
 		end
 		local e1=Effect.CreateEffect(c)

@@ -1,5 +1,6 @@
 --庭师剑-妖妖散夜对剑
 function c20187.initial_effect(c)
+	c:SetUniqueOnField(1,0,20187,LOCATION_ONFIELD)
 	--Equip limit
 	local e0=Effect.CreateEffect(c)
 	e0:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)

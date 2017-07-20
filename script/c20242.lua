@@ -3,7 +3,7 @@ function c20242.initial_effect(c)
 	--xyz summon
 	c:EnableReviveLimit()
 	Nef.AddXyzProcedureWithDesc(c,nil,4,2)
-	--tohand
+	--tograve
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(20242,0))
 	e1:SetCategory(CATEGORY_DRAW)
@@ -41,7 +41,7 @@ function c20242.cost1(e,tp,eg,ep,ev,re,r,rp,chk)
 	local opt=2
 	if c1 then opt=0 end
 	if c2 then opt=1 end
-	if c1 and c2 then opt=Duel.SelectOption(tp,aux.Stringid(20242,1),aux.Stringid(20242,2)) end
+	if c1 and c2 then opt=Duel.SelectOption(tp,aux.Stringid(20242,2),aux.Stringid(20242,3)) end
 	if opt==0 then 
 		Duel.Hint(HINT_OPSELECTED,1-tp,e:GetDescription())
 		e:GetHandler():RemoveOverlayCard(tp,1,1,REASON_COST)
@@ -73,7 +73,7 @@ end
 function c20242.reptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
 	if chk==0 then return c:CheckRemoveOverlayCard(tp,1,REASON_EFFECT) end
-	if Duel.SelectYesNo(tp,aux.Stringid(20242,3)) then
+	if Duel.SelectYesNo(tp,aux.Stringid(20242,1)) then
 		c:RemoveOverlayCard(tp,1,1,REASON_EFFECT)
 		return true
 	else return false end
