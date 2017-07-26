@@ -44,8 +44,8 @@ function M.operation(e,tp,eg,ep,ev,re,r,rp)
 	if not rc or not c then return end
 	local mg = Group.FromCards(rc, c)
 	if ep == tp and rc:IsAbleToDeck() and c:IsAbleToDeck() and Duel.IsExistingMatchingCard(M.filter, tp, LOCATION_EXTRA, 0, 1, nil, e, tp, mg, chkf) then
+		local g = Duel.SelectMatchingCard(tp, M.filter, tp, LOCATION_EXTRA, 0, 1, 1, nil, e, tp, mg, chkf)
 		Duel.SendtoDeck(mg, nil, 2, REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)
-		local g = Duel.SelectMatchingCard(tp, M.filter, tp, LOCATION_EXTRA, 0, 1, 1, nil, e, tp, mg)
 		Duel.SpecialSummon(g, SUMMON_TYPE_FUSION, tp, tp, false, false, POS_FACEUP)
 	end
 end

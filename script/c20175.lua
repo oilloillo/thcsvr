@@ -72,7 +72,7 @@ function c20175.dbcon(e,tp,eg,ep,ev,re,r,rp)
 	return ec:GetEquipGroup():IsExists(c20175.cfilter,1,nil) and bc and bc:IsStatus(STATUS_BATTLE_DESTROYED)
 end
 function c20175.dbtg(e,tp,eg,ep,ev,re,r,rp,chk)
-	local atk=e:GetHandler():GetEquipTarget():GetAttack()/2
+	local atk=e:GetHandler():GetEquipTarget():GetAttack()
 	if chk==0 then return true end
 	Duel.SetTargetPlayer(1-tp)
 	Duel.SetTargetParam(atk)
@@ -83,7 +83,7 @@ function c20175.atkop(e,tp,eg,ep,ev,re,r,rp)
 	local ec=c:GetEquipTarget()
 	if ec and c:IsRelateToEffect(e) then
 		local p=Duel.GetChainInfo(0,CHAININFO_TARGET_PLAYER)
-		local d=ec:GetAttack()/2
+		local d=ec:GetAttack()
 		Duel.Damage(p,d,REASON_EFFECT)
 	end
 end
