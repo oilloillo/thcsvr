@@ -95,6 +95,7 @@ function c20248.desop(e,tp,eg,ep,ev,re,r,rp)
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 		local sg=g:FilterSelect(tp,c20248.filter,1,1,nil)
 		if sg:GetCount()>0 then
+			Duel.DisableShuffleCheck()
 			if sg:GetFirst():IsAbleToHand() then
 				Duel.SendtoHand(sg,nil,REASON_EFFECT)
 				Duel.ConfirmCards(1-tp,sg)
