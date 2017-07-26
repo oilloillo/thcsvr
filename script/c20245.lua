@@ -3,6 +3,13 @@ function c20245.initial_effect(c)
 	--fusion material
 	c:EnableReviveLimit()
 	Fus.AddFusionProcFun2(c,c20245.mfilter1,c20245.mfilter,true)
+	--看闹特比性哭咯马特绕
+	local e1=Effect.CreateEffect(c)
+	e1:SetType(EFFECT_TYPE_SINGLE)
+	e1:SetCode(EFFECT_CANNOT_BE_SYNCHRO_MATERIAL)
+	e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
+	e1:SetValue(1)
+	c:RegisterEffect(e1)
 	--destroy
 	local e2=Effect.CreateEffect(c)
 	e2:SetDescription(aux.Stringid(20245,0))
@@ -15,7 +22,7 @@ function c20245.initial_effect(c)
 	e2:SetTarget(c20245.target)
 	e2:SetOperation(c20245.activate)
 	c:RegisterEffect(e2)
-	--to hand
+	--呃呃呃呃呃呃呃呃呃呃呃呃
 	local e5=Effect.CreateEffect(c)
 	e5:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e5:SetProperty(EFFECT_FLAG_DELAY)

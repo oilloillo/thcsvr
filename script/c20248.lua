@@ -102,8 +102,10 @@ function c20248.desop(e,tp,eg,ep,ev,re,r,rp)
 			else
 				Duel.SendtoGrave(sg,REASON_RULE)
 			end
+			Duel.BreakEffect()
 			Duel.SortDecktop(tp,tp,3)
 		else
+			Duel.BreakEffect()
 			Duel.SortDecktop(tp,tp,4)
 		end
 		local c=e:GetHandler()
