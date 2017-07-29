@@ -35,6 +35,10 @@ function c20248.initial_effect(c)
 	e6:SetTarget(c20248.drtg)
 	e6:SetOperation(c20248.drop)
 	c:RegisterEffect(e6)
+	local e7=e6:Clone()
+	e7:SetCode(EVENT_BE_MATERIAL)
+	e7:SetCondition(c20248.con2)
+	c:RegisterEffect(e7)
 end
 function c20248.retreg(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
@@ -95,7 +99,6 @@ function c20248.desop(e,tp,eg,ep,ev,re,r,rp)
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 		local sg=g:FilterSelect(tp,c20248.filter,1,1,nil)
 		if sg:GetCount()>0 then
-			Duel.DisableShuffleCheck()
 			if sg:GetFirst():IsAbleToHand() then
 				Duel.SendtoHand(sg,nil,REASON_EFFECT)
 				Duel.ConfirmCards(1-tp,sg)
@@ -125,7 +128,10 @@ function c20248.tgop(e,tp,eg,ep,ev,re,r,rp)
 		Duel.SendtoGrave(c,REASON_EFFECT)
 end
 function c20248.condition(e,tp,eg,ep,ev,re,r,rp)
-	return (e:GetHandler():IsReason(REASON_MATERIAL) and r==REASON_SYNCHRO) or e:GetHandler():IsReason(REASON_BATTLE)
+	return e:GetHandler():IsReason(REASON_BATTLE)
+end
+function c20248.con2(e,tp,eg,ep,ev,re,r,rp)
+	return e:GetHandler():IsLocation(LOCATION_GRAVE) and r==REASON_SYNCHRO
 end
 function c20248.drtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
@@ -143,6 +149,6 @@ function c20248.drop(e,tp,eg,ep,ev,re,r,rp)
 		Duel.Draw(tp,c2-h1,REASON_EFFECT)
 	end
 	if h2<c1 then
-		Duel.Draw(tp,c1-h2,REASON_EFFECT)
+		Duel.Draw(1-tp,c1-h2,REASON_EFFECT)
 	end
 end
