@@ -96,6 +96,7 @@ function c20248.desop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.ConfirmDecktop(tp,4)
 	local g=Duel.GetDecktopGroup(tp,4)
 	if g:GetCount()>0 then
+		Duel.DisableShuffleCheck()
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 		local sg=g:FilterSelect(tp,c20248.filter,1,1,nil)
 		if sg:GetCount()>0 then
@@ -106,10 +107,8 @@ function c20248.desop(e,tp,eg,ep,ev,re,r,rp)
 			else
 				Duel.SendtoGrave(sg,REASON_RULE)
 			end
-			Duel.BreakEffect()
 			Duel.SortDecktop(tp,tp,3)
 		else
-			Duel.BreakEffect()
 			Duel.SortDecktop(tp,tp,4)
 		end
 		local c=e:GetHandler()
