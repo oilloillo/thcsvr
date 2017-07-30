@@ -124,7 +124,7 @@ function c13078.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SetChainLimit(aux.FALSE)
 end
 function c13078.operation(e,tp,eg,ep,ev,re,r,rp)
-	local sg=Duel.GetMatchingGroup(c13078.afilter,tp,LOCATION_MZONE,LOCATION_MZONE,e:GetHandler(),atk)
+	local sg=Duel.GetMatchingGroup(c13078.afilter,tp,LOCATION_MZONE,LOCATION_MZONE,e:GetHandler(),e:GetHandler():GetAttack())
 	Duel.Remove(sg,POS_FACEUP,REASON_EFFECT)
 	local og=Duel.GetOperatedGroup()
 	local ct=og:FilterCount(Card.IsLocation,nil,LOCATION_REMOVED)
