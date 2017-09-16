@@ -112,8 +112,9 @@ function Fus.GetFusionMaterial(tp,loc,oloc,f,gc,e,...)
 	if e then g1=g1:Filter(Fus.NonImmuneFilter,nil,e) end
 	return g1
 end
-function Fus.CheckMaterialSingle(c,fc)
-	if not c:IsCanBeFusionMaterial(fc) then return false end
+function Fus.CheckMaterialSingle(c,fc,mc)
+	local tp=fc:GetControler()
+	if not c:IsCanBeFusionMaterial(fc) or Duel.GetLocationCountFromEx(tp,tp,Group.FromCards(c,mc),fc)<=0 then return false end
 	local t=fc.hana_mat
 	if not t then return false end
 	for i,f in pairs(t) do
