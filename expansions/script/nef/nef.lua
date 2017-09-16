@@ -475,8 +475,7 @@ function Nef.OverlayGroup(c,g,xm,nchk)
 	Duel.Overlay(c,tg)
 end
 function Nef.CheckFieldFilter(g,tp,c,f,...)
-	return Duel.GetLocationCount(tp,LOCATION_MZONE)+g:FilterCount(aux.FConditionCheckF,nil,tp)>0 and (not f or f(g,...))
-	--return Duel.GetLocationCountFromEx(tp,tp,g,c)>0 and (not f or f(g,...))
+	return Duel.GetLocationCountFromEx(tp,tp,g,c)>0 and (not f or f(g,...))
 end
 function Nef.AddXyzProcedureCustom(c,func,gf,minc,maxc,...)
 	local ext_params={...}
