@@ -31,12 +31,12 @@ public:
 	
 	void DuelEndProc();
 	void WaitforResponse(int playerid);
-	void RefreshMzone(int player, int flag = 0x81fff, int use_cache = 1);
+	void RefreshMzone(int player, int flag = 0x881fff, int use_cache = 1);
 	void RefreshSzone(int player, int flag = 0x681fff, int use_cache = 1);
 	void RefreshHand(int player, int flag = 0x781fff, int use_cache = 1);
 	void RefreshGrave(int player, int flag = 0x81fff, int use_cache = 1);
 	void RefreshExtra(int player, int flag = 0x81fff, int use_cache = 1);
-	void RefreshSingle(int player, int location, int sequence, int flag = 0x781fff);
+	void RefreshSingle(int player, int location, int sequence, int flag = 0xf81fff);
 	
 	static int MessageHandler(long fduel, int type);
 	static void TagTimer(evutil_socket_t fd, short events, void* arg);
@@ -46,7 +46,10 @@ protected:
 	DuelPlayer* pplayer[4];
 	DuelPlayer* cur_player[2];
 	std::set<DuelPlayer*> observers;
-	std::set<DuelPlayer*> recorders;
+#ifdef YGOPRO_SERVER_MODE
+	DuelPlayer* cache_recorder;
+	DuelPlayer* replay_recorder;
+#endif
 	bool ready[4];
 	Deck pdeck[4];
 	unsigned char hand_result[2];

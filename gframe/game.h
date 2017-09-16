@@ -2,21 +2,27 @@
 #define GAME_H
 
 #include "config.h"
-//#include "client_field.h"
-//#include "deck_con.h"
-//#include "menu_handler.h"
+#ifndef YGOPRO_SERVER_MODE
+#include "client_field.h"
+#include "deck_con.h"
+#include "menu_handler.h"
+#else
+#include "netserver.h"
+#endif //YGOPRO_SERVER_MODE
 #include <unordered_map>
 #include <vector>
 #include <list>
 
 namespace ygo {
 
+#ifndef YGOPRO_SERVER_MODE
 struct Config {
 	bool use_d3d;
+	bool use_image_scale;
 	unsigned short antialias;
 	unsigned short serverport;
 	unsigned char textfontsize;
-	wchar_t lastip[20];
+	wchar_t lasthost[100];
 	wchar_t lastport[10];
 	wchar_t nickname[20];
 	wchar_t gamename[20];
@@ -25,7 +31,8 @@ struct Config {
 	wchar_t numfont[256];
 	wchar_t roompass[20];
 	//settings
-	int chkAutoPos;
+	int chkMAutoPos;
+	int chkSTAutoPos;
 	int chkRandomPos;
 	int chkAutoChain;
 	int chkWaitChain;
@@ -36,6 +43,8 @@ struct Config {
 	int control_mode;
 	int draw_field_spell;
 	int separate_clear_button;
+	int auto_search_limit;
+	int chkIgnoreDeckChanges;
 };
 
 struct DuelInfo {
@@ -48,6 +57,7 @@ struct DuelInfo {
 	bool is_shuffling;
 	bool tag_player[2];
 	int lp[2];
+	int duel_rule;
 	int turn;
 	short curMsg;
 	wchar_t hostname[20];
@@ -61,7 +71,7 @@ struct DuelInfo {
 	unsigned short time_limit;
 	unsigned short time_left[2];
 };
-/*
+
 struct FadingUnit {
 	bool signalAction;
 	bool isFadein;
@@ -73,28 +83,36 @@ struct FadingUnit {
 	irr::core::vector2di fadingLR;
 	irr::core::vector2di fadingDiff;
 };
-*/
+#endif //YGOPRO_SERVER_MODE
+
 class Game {
 
 public:
 	bool Initialize();
-	//void MainLoop();
-	void MainServerLoop(int bDuel_mode, int lflist);
-    /*
+#ifdef YGOPRO_SERVER_MODE
+	void MainServerLoop();
+	void LoadExpansionDB();
+	void AddDebugMsg(char* msgbuf);
+#else
+	void MainLoop();
 	void BuildProjectionMatrix(irr::core::matrix4& mProjection, f32 left, f32 right, f32 bottom, f32 top, f32 znear, f32 zfar);
 	void InitStaticText(irr::gui::IGUIStaticText* pControl, u32 cWidth, u32 cHeight, irr::gui::CGUITTFont* font, const wchar_t* text);
 	void SetStaticText(irr::gui::IGUIStaticText* pControl, u32 cWidth, irr::gui::CGUITTFont* font, const wchar_t* text, u32 pos = 0);
-	void RefreshExpansionDB();
+	void LoadExpansionDB();
 	void RefreshDeck(irr::gui::IGUIComboBox* cbDeck);
 	void RefreshReplay();
 	void RefreshSingleplay();
 	void DrawSelectionLine(irr::video::S3DVertex* vec, bool strip, int width, float* cv);
 	void DrawBackGround();
+	void DrawLinkedZones(ClientCard* pcard);
+	void CheckMutual(ClientCard* pcard, int mark);
 	void DrawCards();
 	void DrawCard(ClientCard* pcard);
 	void DrawMisc();
+	void DrawStatus(ClientCard* pcard, int x1, int y1, int x2, int y2);
 	void DrawGUI();
 	void DrawSpec();
+	void DrawBackImage(irr::video::ITexture* texture);
 	void ShowElement(irr::gui::IGUIElement* element, int autoframe = 0);
 	void HideElement(irr::gui::IGUIElement* element, bool set_action = false);
 	void PopupElement(irr::gui::IGUIElement* element, int hideframe = 0);
@@ -105,21 +123,20 @@ public:
 	void SaveConfig();
 	void ShowCardInfo(int code);
 	void AddChatMsg(wchar_t* msg, int player);
+	void AddDebugMsg(char* msgbuf);
 	void ClearTextures();
 	void CloseDuelWindow();
-    */
+
 	int LocalPlayer(int player);
 	const wchar_t* LocalName(int local_player);
 
-	/*
-    bool HasFocus(EGUI_ELEMENT_TYPE type) const {
-		//irr::gui::IGUIElement* focus = env->getFocus();
+	bool HasFocus(EGUI_ELEMENT_TYPE type) const {
+		irr::gui::IGUIElement* focus = env->getFocus();
 		return focus && focus->hasType(type);
 	}
-	
- 	void SetWindowsIcon();
+
+	void SetWindowsIcon();
 	void FlashWindow();
-   */
 
 	Mutex gMutex;
 	Mutex gBuffer;
@@ -132,7 +149,7 @@ public:
 	Config gameConf;
 	DuelInfo dInfo;
 
-	/*std::list<FadingUnit> fadingList;
+	std::list<FadingUnit> fadingList;
 	std::vector<int> logParam;
 	std::wstring chatMsg[8];
 
@@ -165,9 +182,8 @@ public:
 
 	bool is_building;
 	bool is_siding;
-    */
-	/*
-    ClientField dField;
+
+	ClientField dField;
 	DeckBuilder deckBuilder;
 	MenuHandler menuHandler;
 	irr::IrrlichtDevice* device;
@@ -201,12 +217,15 @@ public:
 	irr::gui::IGUIStaticText* stSetName;
 	irr::gui::IGUIStaticText* stText;
 	irr::gui::IGUIScrollBar* scrCardText;
-	irr::gui::IGUICheckBox* chkAutoPos;
+	irr::gui::IGUICheckBox* chkMAutoPos;
+	irr::gui::IGUICheckBox* chkSTAutoPos;
 	irr::gui::IGUICheckBox* chkRandomPos;
 	irr::gui::IGUICheckBox* chkAutoChain;
 	irr::gui::IGUICheckBox* chkWaitChain;
 	irr::gui::IGUICheckBox* chkHideSetname;
 	irr::gui::IGUICheckBox* chkHideHintButton;
+	irr::gui::IGUICheckBox* chkIgnoreDeckChanges;
+	irr::gui::IGUICheckBox* chkAutoSearch;
 	irr::gui::IGUIListBox* lstLog;
 	irr::gui::IGUIButton* btnClearLog;
 	irr::gui::IGUIButton* btnSaveLog;
@@ -223,7 +242,7 @@ public:
 	irr::gui::IGUIEditBox* ebNickName;
 	irr::gui::IGUIListBox* lstHostList;
 	irr::gui::IGUIButton* btnLanRefresh;
-	irr::gui::IGUIEditBox* ebJoinIP;
+	irr::gui::IGUIEditBox* ebJoinHost;
 	irr::gui::IGUIEditBox* ebJoinPort;
 	irr::gui::IGUIEditBox* ebJoinPass;
 	irr::gui::IGUIButton* btnJoinHost;
@@ -240,7 +259,7 @@ public:
 	irr::gui::IGUIEditBox* ebDrawCount;
 	irr::gui::IGUIEditBox* ebServerName;
 	irr::gui::IGUIEditBox* ebServerPass;
-	irr::gui::IGUICheckBox* chkEnablePriority;
+	irr::gui::IGUIComboBox* cbDuelRule;
 	irr::gui::IGUICheckBox* chkNoCheckDeck;
 	irr::gui::IGUICheckBox* chkNoShuffleDeck;
 	irr::gui::IGUIButton* btnHostConfirm;
@@ -255,6 +274,8 @@ public:
 	irr::gui::IGUIComboBox* cbDeckSelect;
 	irr::gui::IGUIStaticText* stHostPrepRule;
 	irr::gui::IGUIStaticText* stHostPrepOB;
+	irr::gui::IGUIButton* btnHostPrepReady;
+	irr::gui::IGUIButton* btnHostPrepNotReady;
 	irr::gui::IGUIButton* btnHostPrepStart;
 	irr::gui::IGUIButton* btnHostPrepCancel;
 	//replay
@@ -327,7 +348,7 @@ public:
 	irr::gui::IGUICheckBox* chkAttribute[7];
 	//announce race
 	irr::gui::IGUIWindow* wANRace;
-	irr::gui::IGUICheckBox* chkRace[24];
+	irr::gui::IGUICheckBox* chkRace[25];
 	//cmd menu
 	irr::gui::IGUIWindow* wCmdMenu;
 	irr::gui::IGUIButton* btnActivate;
@@ -349,9 +370,7 @@ public:
 	irr::gui::IGUICheckBox* chkIgnore2;
 	//phase button
 	irr::gui::IGUIStaticText* wPhase;
-	irr::gui::IGUIButton* btnDP;
-	irr::gui::IGUIButton* btnSP;
-	irr::gui::IGUIButton* btnM1;
+	irr::gui::IGUIButton* btnPhaseStatus;
 	irr::gui::IGUIButton* btnBP;
 	irr::gui::IGUIButton* btnM2;
 	irr::gui::IGUIButton* btnEP;
@@ -386,6 +405,10 @@ public:
 	irr::gui::IGUIWindow* wCategories;
 	irr::gui::IGUICheckBox* chkCategory[32];
 	irr::gui::IGUIButton* btnCategoryOK;
+	irr::gui::IGUIButton* btnMarksFilter;
+	irr::gui::IGUIWindow* wLinkMarks;
+	irr::gui::IGUIButton* btnMark[8];
+	irr::gui::IGUIButton* btnMarksOK;
 	//sort type
 	irr::gui::IGUIStaticText* wSort;
 	irr::gui::IGUIComboBox* cbSortType;
@@ -404,30 +427,30 @@ public:
 	irr::gui::IGUIButton* btnReplaySwap;
 	//surrender/leave
 	irr::gui::IGUIButton* btnLeaveGame;
+	//swap
+	irr::gui::IGUIButton* btnSpectatorSwap;
 	//chain control
 	irr::gui::IGUIButton* btnChainIgnore;
 	irr::gui::IGUIButton* btnChainAlways;
 	irr::gui::IGUIButton* btnChainWhenAvail;
 	//cancel or finish
 	irr::gui::IGUIButton* btnCancelOrFinish;
-    */
+#endif //YGOPRO_SERVER_MODE
 };
 
 extern Game* mainGame;
+#ifdef YGOPRO_SERVER_MODE
 extern unsigned short aServerPort;
-extern unsigned int lflist;
-extern unsigned char rule;
-extern unsigned char mode;
-extern bool enable_priority;
-extern bool no_check_deck;
-extern bool no_shuffle_deck;
-extern unsigned int start_lp;
-extern unsigned short time_limit;
 extern unsigned short replay_mode;
-extern unsigned char start_hand;
-extern unsigned char draw_count;
+extern HostInfo game_info;
+#endif
 
 }
+
+#define CARD_IMG_WIDTH		177
+#define CARD_IMG_HEIGHT		254
+#define CARD_THUMB_WIDTH	44
+#define CARD_THUMB_HEIGHT	64
 
 #define UEVENT_EXIT			0x1
 #define UEVENT_TOWINDOW		0x2
@@ -464,6 +487,8 @@ extern unsigned char draw_count;
 #define BUTTON_HP_CANCEL			123
 #define BUTTON_HP_KICK				124
 #define CHECKBOX_HP_READY			125
+#define BUTTON_HP_READY				126
+#define BUTTON_HP_NOTREADY			127
 #define LISTBOX_REPLAY_LIST			130
 #define BUTTON_LOAD_REPLAY			131
 #define BUTTON_CANCEL_REPLAY		132
@@ -514,6 +539,7 @@ extern unsigned char draw_count;
 #define BUTTON_CHAIN_ALWAYS			265
 #define BUTTON_CHAIN_WHENAVAIL		266
 #define BUTTON_CANCEL_OR_FINISH		267
+#define BUTTON_PHASE				268
 #define BUTTON_CLEAR_LOG			270
 #define LISTBOX_LOG					271
 #define SCROLL_CARDTEXT				280
@@ -536,11 +562,14 @@ extern unsigned char draw_count;
 #define BUTTON_SIDE_OK				309
 #define BUTTON_SHUFFLE_DECK			310
 #define COMBOBOX_MAINTYPE			311
-#define BUTTON_EFFECT_FILTER		312
-#define BUTTON_START_FILTER			313
-#define SCROLL_FILTER				314
-#define EDITBOX_KEYWORD				315
-#define BUTTON_CLEAR_FILTER			316
+#define COMBOBOX_SECONDTYPE			312
+#define BUTTON_EFFECT_FILTER		313
+#define BUTTON_START_FILTER			314
+#define SCROLL_FILTER				315
+#define EDITBOX_KEYWORD				316
+#define BUTTON_CLEAR_FILTER			317
+#define COMBOBOX_ATTRIBUTE			318
+#define COMBOBOX_RACE				319
 #define BUTTON_REPLAY_START			320
 #define BUTTON_REPLAY_PAUSE			321
 #define BUTTON_REPLAY_STEP			322
@@ -552,5 +581,12 @@ extern unsigned char draw_count;
 #define LISTBOX_SINGLEPLAY_LIST		350
 #define BUTTON_LOAD_SINGLEPLAY		351
 #define BUTTON_CANCEL_SINGLEPLAY	352
+#define CHECKBOX_AUTO_SEARCH		360
 #define COMBOBOX_SORTTYPE			370
+#define COMBOBOX_LIMIT				371
+
+#define BUTTON_MARKS_FILTER			380
+#define BUTTON_MARKERS_OK			381
+
+#define DEFAULT_DUEL_RULE			4
 #endif // GAME_H

@@ -15,14 +15,13 @@ struct HostInfo {
 	unsigned int lflist;
 	unsigned char rule;
 	unsigned char mode;
-	bool enable_priority;
+	unsigned char duel_rule;
 	bool no_check_deck;
 	bool no_shuffle_deck;
 	unsigned int start_lp;
 	unsigned char start_hand;
 	unsigned char draw_count;
 	unsigned short time_limit;
-	unsigned short replay_mode;
 };
 struct HostPacket {
 	unsigned short identifier;

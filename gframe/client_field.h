@@ -2,14 +2,14 @@
 #define CLIENT_FIELD_H
 
 #include "config.h"
-/*
 #include <vector>
+#include <set>
 
 namespace ygo {
 
 class ClientCard;
 
-struct ChainInfo{
+struct ChainInfo {
 	irr::core::vector3df chain_pos;
 	ClientCard* chain_card;
 	int code;
@@ -18,6 +18,7 @@ struct ChainInfo{
 	int location;
 	int sequence;
 	bool solved;
+	std::set<ClientCard*> target;
 };
 
 class ClientField: public irr::IEventReceiver {
@@ -42,7 +43,7 @@ public:
 	std::vector<int> select_options;
 	std::vector<ChainInfo> chains;
 	int extra_p_count[2];
-	
+
 	size_t selected_option;
 	ClientCard* attacker;
 	ClientCard* attack_target;
@@ -55,6 +56,7 @@ public:
 	int select_sumval;
 	int select_cancelable;
 	int select_mode;
+	bool select_panalmode;
 	bool select_ready;
 	int announce_count;
 	int declarable_type;
@@ -79,7 +81,7 @@ public:
 	bool last_chain;
 	bool deck_reversed;
 	bool conti_selecting;
-	
+
 	ClientField();
 	void Clear();
 	void Initial(int player, int deckc, int extrac);
@@ -96,14 +98,14 @@ public:
 	void ShowLocationCard();
 	void ReplaySwap();
 	void RefreshAllCards();
-	
+
 	void GetChainLocation(int controler, int location, int sequence, irr::core::vector3df* t);
 	void GetCardLocation(ClientCard* pcard, irr::core::vector3df* t, irr::core::vector3df* r, bool setTrans = false);
 	void MoveCard(ClientCard* pcard, int frame);
 	void FadeCard(ClientCard* pcard, int alpha, int frame);
 	bool ShowSelectSum(bool panelmode);
 	bool CheckSelectSum();
-	bool check_min(std::set<ClientCard*>& left, std::set<ClientCard*>::iterator index, int min, int max);
+	bool check_min(const std::set<ClientCard*>& left, std::set<ClientCard*>::const_iterator index, int min, int max);
 	bool check_sel_sum_s(const std::set<ClientCard*>& left, int index, int acc);
 	void check_sel_sum_t(const std::set<ClientCard*>& left, int acc);
 	bool check_sum(std::set<ClientCard*>::const_iterator index, std::set<ClientCard*>::const_iterator end, int acc, int count);
@@ -128,15 +130,17 @@ public:
 	int list_command;
 
 	virtual bool OnEvent(const irr::SEvent& event);
+	virtual bool OnCommonEvent(const irr::SEvent& event);
 	void GetHoverField(int x, int y);
 	void ShowMenu(int flag, int x, int y);
 	void UpdateChainButtons();
 	void ShowCancelOrFinishButton(int buttonOp);
+	void SetShowMark(ClientCard* pcard, bool enable);
 	void SetResponseSelectedCards() const;
 };
 
 }
-*/
+
 //special cards
 #define CARD_MARINE_DOLPHIN	78734254
 #define CARD_TWINKLE_MOSS	13857930
