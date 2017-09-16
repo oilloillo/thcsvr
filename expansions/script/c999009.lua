@@ -46,7 +46,7 @@ function M.initial_effect(c)
 end
 
 function M.spfilter(c, e, tp, lv, def, code)
-	local flag = not c:IsType(TYPE_XYZ) and lv > c:GetLevel() and c:IsCanBeSpecialSummoned(e, 0, tp, false, false, POS_FACEUP_DEFENSE)
+	local flag = (not c:IsType(TYPE_XYZ) and not c:IsType(TYPE_LINK)) and lv > c:GetLevel() and c:IsCanBeSpecialSummoned(e, 0, tp, false, false, POS_FACEUP_DEFENSE)
 	if def then
 		return flag and c:GetDefense() == def and c:GetCode() ~= code
 	else

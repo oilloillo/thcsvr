@@ -9,30 +9,31 @@ function M.initial_effect(c)
 	e1:SetOperation(M.activate)
 	c:RegisterEffect(e1)
 end
+
 function M.activate(e,tp,eg,ep,ev,re,r,rp)
-	local c=e:GetHandler()
+	local c = e:GetHandler()
 	--atkup
-	local e1=Effect.CreateEffect(c)
+	local e1 = Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_FIELD)
 	e1:SetCode(EFFECT_UPDATE_ATTACK)
 	e1:SetRange(LOCATION_ONFIELD)
-	e1:SetTargetRange(LOCATION_MZONE,0)
+	e1:SetTargetRange(LOCATION_MZONE, 0)
 	e1:SetTarget(M.uptg)
 	e1:SetValue(300)
 	c:RegisterEffect(e1)
 	--defup
-	local e0=e1:Clone()
+	local e0 = e1:Clone()
 	e0:SetCode(EFFECT_UPDATE_DEFENSE)
 	e0:SetValue(300)
 	c:RegisterEffect(e0)
 	--sp1
-	local e2=Effect.CreateEffect(c)
+	local e2 = Effect.CreateEffect(c)
 	e2:SetCategory(CATEGORY_SPECIAL_SUMMON)
-	e2:SetDescription(aux.Stringid(Mid,0))
+	e2:SetDescription(aux.Stringid(Mid, 0))
 	e2:SetType(EFFECT_TYPE_QUICK_O)
 	e2:SetCode(EVENT_FREE_CHAIN)
 	e2:SetRange(LOCATION_ONFIELD)
-	e2:SetCountLimit(1,Mid)
+	e2:SetCountLimit(1, Mid)
 	e2:SetCondition(M.spcon1)
 	e2:SetTarget(M.sptarget1)
 	e2:SetOperation(M.spop1)
@@ -40,7 +41,7 @@ function M.activate(e,tp,eg,ep,ev,re,r,rp)
 	--sp2
 	local e3=Effect.CreateEffect(c)
 	e3:SetCategory(CATEGORY_SPECIAL_SUMMON)
-	e3:SetDescription(aux.Stringid(Mid,1))
+	e3:SetDescription(aux.Stringid(Mid, 1))
 	e3:SetType(EFFECT_TYPE_QUICK_O)
 	e3:SetCode(EVENT_FREE_CHAIN)
 	e3:SetCountLimit(1)
@@ -61,26 +62,31 @@ function M.spcon1(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.GetMatchingGroupCount(M.chkfilter,tp,LOCATION_MZONE+LOCATION_EXTRA,0,nil) > 2
 end
 function M.spfilter1(c,e,tp,lv)
-	local temp = c:GetLevel()
-	if temp == 0 then temp = c:GetRank() end
-	if temp == 0 then return false end
-	return c:IsAttribute(ATTRIBUTE_LIGHT) and c:IsSetCard(0x208) and temp<=lv
-		and c:IsCanBeSpecialSummoned(e,0,tp,false,false) and Duel.GetLocationCountFromEx(tp)>0
+	local temp = 99
+	if c:IsType(TYPE_LINK) then 
+		return false
+	elseif c:IsType(TYPE_XYZ) then
+		temp = c:GetRank()
+	else
+		temp = c:GetLevel()
+	end
+	return c:IsAttribute(ATTRIBUTE_LIGHT) and c:IsSetCard(0x208) and temp <= lv
+		and c:IsCanBeSpecialSummoned(e, 0, tp, false, false) and Duel.GetLocationCountFromEx(tp) > 0
 end
 function M.sptarget1(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then 
-		local lv = Duel.GetMatchingGroupCount(M.chkfilter,tp,LOCATION_MZONE+LOCATION_EXTRA,0,nil)
-		return Duel.GetLocationCountFromEx(tp)>0
-			and Duel.IsExistingMatchingCard(M.spfilter1,tp,LOCATION_EXTRA,0,1,nil,e,tp,lv) 
+	if chk == 0 then 
+		local lv = Duel.GetMatchingGroupCount(M.chkfilter, tp, LOCATION_MZONE+LOCATION_EXTRA, 0, nil)
+		return Duel.GetLocationCountFromEx(tp) > 0
+			and Duel.IsExistingMatchingCard(M.spfilter1, tp, LOCATION_EXTRA, 0, 1, nil, e, tp, lv) 
 	end
-	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_EXTRA)
+	Duel.SetOperationInfo(0, CATEGORY_SPECIAL_SUMMON, nil, 1, tp, LOCATION_EXTRA)
 end
 function M.spop1(e,tp,eg,ep,ev,re,r,rp)
 	if Duel.GetLocationCountFromEx(tp)<=0 then return end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
-	local lv = Duel.GetMatchingGroupCount(M.chkfilter,tp,LOCATION_MZONE+LOCATION_EXTRA,0,nil)
-	local g=Duel.SelectMatchingCard(tp,M.spfilter1,tp,LOCATION_EXTRA,0,1,1,nil,e,tp,lv)
-	Duel.SpecialSummon(g,0,tp,tp,false,false,POS_FACEUP)
+	Duel.Hint(HINT_SELECTMSG, tp, HINTMSG_SPSUMMON)
+	local lv = Duel.GetMatchingGroupCount(M.chkfilter, tp, LOCATION_MZONE+LOCATION_EXTRA, 0, nil)
+	local g = Duel.SelectMatchingCard(tp, M.spfilter1, tp, LOCATION_EXTRA, 0, 1, 1, nil, e, tp, lv)
+	Duel.SpecialSummon(g, 0, tp, tp, false, false, POS_FACEUP)
 end
 --
 function M.encon(e,tp,eg,ep,ev,re,r,rp)

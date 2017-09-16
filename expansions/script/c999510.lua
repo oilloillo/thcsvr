@@ -118,19 +118,19 @@ function M.selfdes(e,tp,eg,ep,ev,re,r,rp)
 end
 --
 function M.desfilter(c)
-	return c:IsDestructable() and c:IsFaceup() and c:GetLevel()>0 and c:GetLevel()<=Duel.GetTurnCount()
+	return c:IsDestructable() and c:IsFaceup() and c:GetLevel()>0 and c:GetLevel() <= Duel.GetTurnCount()
 end
 
 function M.destg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chkc then return chkc:IsLocation(LOCATION_MZONE) and chkc:IsControler(1-tp) and M.desfilter(chkc) end
-	if chk==0 then return Duel.IsExistingMatchingCard(M.desfilter,tp,LOCATION_MZONE,LOCATION_MZONE,1,nil) end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
-	local g=Duel.SelectTarget(tp,M.desfilter,tp,LOCATION_MZONE,LOCATION_MZONE,1,1,nil)
-	Duel.SetOperationInfo(0,CATEGORY_DESTROY,g,g:GetCount(),0,0)
+	if chk == 0 then return Duel.IsExistingMatchingCard(M.desfilter, tp, LOCATION_MZONE, LOCATION_MZONE, 1, nil) end
+	Duel.Hint(HINT_SELECTMSG, tp, HINTMSG_DESTROY)
+	local g = Duel.SelectTarget(tp, M.desfilter, tp, LOCATION_MZONE, LOCATION_MZONE, 1, 1, nil)
+	Duel.SetOperationInfo(0, CATEGORY_DESTROY, g, g:GetCount(), 0, 0)
 end
 
 function M.desop(e,tp,eg,ep,ev,re,r,rp)
-	local tc=Duel.GetFirstTarget()
+	local tc = Duel.GetFirstTarget()
 	if tc and tc:IsRelateToEffect(e) then
 		Duel.Destroy(tc,REASON_EFFECT)
 	end

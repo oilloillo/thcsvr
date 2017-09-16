@@ -26,9 +26,9 @@ end
 M.material={25020,25021,25022}
 M.material_count=3
 M.hana_mat={Fus.CodeFilter(25020),Fus.CodeFilter(25021),Fus.CodeFilter(25022)}
-function M.fcheck(g,chkf,exg,ct,fc)
+function M.fcheck(g,chkf,exg,ct,tp)
 	if g:FilterCount(M.chkfilter,nil,exg)>ct then return false end
-	if chkf~=PLAYER_NONE and Duel.GetLocationCountFromEx(chkf,fc:GetControler(),g,fc)<=0 then return false end
+	if chkf~=PLAYER_NONE and not g:IsExists(Card.IsControler,1,nil,chkf) then return false end
 	return g:IsExists(M.fusfilter,1,nil,g,25020)
 end
 function M.fusfilter(c,g,code)
@@ -37,7 +37,7 @@ function M.fusfilter(c,g,code)
 	g:RemoveCard(c)
 	local res=g:IsExists(M.fusfilter,1,nil,g,code+1)
 	g:AddCard(c)
-	return res
+	return res and Duel.GetLocationCountFromEx(tp, tp, g) > 0
 end
 function M.chkfilter(c,exg)
 	return exg:IsContains(c)
@@ -70,7 +70,7 @@ function M.fuscon(e,g,gc,chkf)
 		if not M.mfilter(gc,c) then return false end
 		cg:AddCard(gc)
 	end
-	return Nef.CheckGroup(mg,M.fcheck,cg,3,3,chkf,exg,ct,c)
+	return Nef.CheckGroup(mg,M.fcheck,cg,3,3,chkf,exg,ct,tp)
 end
 function M.fusop(e,tp,eg,ep,ev,re,r,rp,gc,chkf)
 	local c=e:GetHandler()
@@ -84,7 +84,7 @@ function M.fusop(e,tp,eg,ep,ev,re,r,rp,gc,chkf)
 	if gc then
 		cg:AddCard(gc)
 	end
-	local sg=Nef.SelectGroup(tp,HINTMSG_FMATERIAL,mg,M.fcheck,cg,3,3,chkf,exg,ct,c)
+	local sg=Nef.SelectGroup(tp,HINTMSG_FMATERIAL,mg,M.fcheck,cg,3,3,chkf,exg,ct,tp)
 	local rg1=sg:Filter(M.chkfilter,nil,exg)
 	local rg2=sg:Filter(M.chkfilter,nil,exg2)
 	for rc in aux.Next(rg1) do
