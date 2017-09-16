@@ -32,7 +32,7 @@ function c20194.filter2(c,e,tp,m,f,chkf)
 end
 function c20194.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then
-		local chkf=Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and PLAYER_NONE or tp
+		local chkf=tp
 		local mg1=Duel.GetMatchingGroup(Card.IsCanBeFusionMaterial,tp,0x7,0,nil)
 		local res=Duel.IsExistingMatchingCard(c20194.filter2,tp,LOCATION_EXTRA,0,1,nil,e,tp,mg1,nil,chkf)
 		if not res then
@@ -49,7 +49,7 @@ function c20194.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_EXTRA)
 end
 function c20194.activate(e,tp,eg,ep,ev,re,r,rp)
-	local chkf=Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and PLAYER_NONE or tp
+	local chkf=tp
 	local mg1=Duel.GetMatchingGroup(c20194.filter1,tp,0x7,0,nil,e)
 	local sg1=Duel.GetMatchingGroup(c20194.filter2,tp,LOCATION_EXTRA,0,nil,e,tp,mg1,nil,chkf)
 	local mg2=nil

@@ -45,7 +45,7 @@ function c23201.filter3(c,e,tp)
 	return c:IsAttribute(ATTRIBUTE_EARTH) and bit.band(c:GetType(),0x81)==0x81 and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_RITUAL,tp,true,false)
 end
 function c23201.op(e,tp,eg,ep,ev,re,r,rp)
-	local chkf=Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and PLAYER_NONE or tp
+	local chkf=tp
 	local mg1=Fus.GetFusionMaterial(tp,nil,nil,Card.IsSetCard,nil,e,0x497)
 	local mg2=Duel.GetMatchingGroup(c23201.mfilter2,tp,LOCATION_MZONE,LOCATION_MZONE,nil,e)
 	mg1:Merge(mg2)

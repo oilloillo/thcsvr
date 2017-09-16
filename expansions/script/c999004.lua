@@ -31,7 +31,7 @@ end
 function M.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	local rc=re:GetHandler()
 	local c=e:GetHandler()
-	local chkf=Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and PLAYER_NONE or tp
+	local chkf=tp
 	if chk==0 then return rc and c and ep == tp and rc:IsAbleToDeck() and c:IsAbleToDeck() 
 		and Duel.IsExistingMatchingCard(M.filter, tp, LOCATION_EXTRA, 0, 1, nil, e, tp, Group.FromCards(rc, c), chkf) end
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_EXTRA)
@@ -40,7 +40,7 @@ end
 function M.operation(e,tp,eg,ep,ev,re,r,rp)
 	local rc=re:GetHandler()
 	local c=e:GetHandler()
-	local chkf=Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and PLAYER_NONE or tp
+	local chkf=tp
 	if not rc or not c then return end
 	local mg = Group.FromCards(rc, c)
 	if ep == tp and rc:IsAbleToDeck() and c:IsAbleToDeck() and Duel.IsExistingMatchingCard(M.filter, tp, LOCATION_EXTRA, 0, 1, nil, e, tp, mg, chkf) then

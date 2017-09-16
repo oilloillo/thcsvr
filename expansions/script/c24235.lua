@@ -30,7 +30,7 @@ function c24235.cfilter(c)
 end
 function c24235.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then
-		local chkf=Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and PLAYER_NONE or tp
+		local chkf=tp
 		local loc=LOCATION_HAND+LOCATION_MZONE
 		if Duel.IsExistingMatchingCard(c24235.cfilter,tp,0,LOCATION_MZONE,2,nil)
 			and Duel.GetFieldGroupCount(tp,LOCATION_MZONE,0)==0 then
@@ -52,7 +52,7 @@ function c24235.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_EXTRA)
 end
 function c24235.activate(e,tp,eg,ep,ev,re,r,rp)
-	local chkf=Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and PLAYER_NONE or tp
+	local chkf=tp
 	local loc=LOCATION_HAND+LOCATION_MZONE
 	if Duel.IsExistingMatchingCard(c24235.cfilter,tp,0,LOCATION_MZONE,2,nil) 
 		and Duel.GetFieldGroupCount(tp,LOCATION_MZONE,0)==0 then
@@ -99,7 +99,7 @@ function c24235.tdcost(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function c24235.tdtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then
-		local chkf=Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and PLAYER_NONE or tp
+		local chkf=tp
 		local mg1=Fus.GetFusionMaterial(tp,LOCATION_ONFIELD)
 		local res=Duel.IsExistingMatchingCard(c24235.filter3,tp,LOCATION_EXTRA,0,1,nil,e,tp,mg1,nil,chkf)
 		if not res then
@@ -116,7 +116,7 @@ function c24235.tdtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_EXTRA)
 end
 function c24235.tdop(e,tp,eg,ep,ev,re,r,rp)
-	local chkf=Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and PLAYER_NONE or tp
+	local chkf=tp
 	local mg1=Fus.GetFusionMaterial(tp,LOCATION_ONFIELD,nil,nil,nil,e)
 	local sg1=Duel.GetMatchingGroup(c24235.filter3,tp,LOCATION_EXTRA,0,nil,e,tp,mg1,nil,chkf)
 	local mg2=nil

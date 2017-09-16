@@ -38,7 +38,7 @@ function c23203.chkfilter2(c,fc,mc,chkf)
 	return fc:CheckFusionMaterial(mg,nil,chkf)
 end
 function c23203.damtg(e,tp,eg,ep,ev,re,r,rp,chk)
-	local chkf=Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and PLAYER_NONE or tp
+	local chkf=tp
 	local mg1=Fus.GetFusionMaterial(tp,LOCATION_HAND+LOCATION_MZONE+LOCATION_GRAVE,nil,Card.IsSetCard,nil,nil,0x497)
 	local mg2=Duel.GetMatchingGroup(c23203.mfilter2,tp,LOCATION_MZONE,LOCATION_MZONE,nil,e)
 	-- local ce=Duel.GetChainMaterial(tp)
@@ -54,7 +54,7 @@ function c23203.damtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SetOperationInfo(0,CATEGORY_TODECK,nil,2,0,0x16)
 end
 function c23203.damop(e,tp,eg,ep,ev,re,r,rp)
-	local chkf=Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and PLAYER_NONE or tp
+	local chkf=tp
 	local mg1=Fus.GetFusionMaterial(tp,LOCATION_HAND+LOCATION_MZONE+LOCATION_GRAVE,nil,Card.IsSetCard,nil,e,0x497)
 	local mg2=Duel.GetMatchingGroup(c23203.mfilter2,tp,LOCATION_MZONE,LOCATION_MZONE,nil,e)
 	local g=Duel.GetMatchingGroup(c23203.filter2,tp,LOCATION_EXTRA,0,nil,e,tp,mg1,mg2,chkf)
