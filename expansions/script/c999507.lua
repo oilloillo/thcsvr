@@ -21,7 +21,7 @@ function c999507.initial_effect(c)
 	e7:SetCode(EVENT_TO_GRAVE)
 	e7:SetCategory(CATEGORY_DESTROY)
 	e7:SetProperty(EFFECT_FLAG_DAMAGE_STEP+EFFECT_FLAG_CARD_TARGET+EFFECT_FLAG_DELAY)
-	e7:SetCost(c999507.descost)
+	-- e7:SetCost(c999507.descost)
 	e7:SetCondition(c999507.descon)
 	e7:SetTarget(c999507.destg)
 	e7:SetOperation(c999507.desop)
@@ -35,7 +35,7 @@ function c999507.initial_effect(c)
 end
 
 function c999507.profilter(c,tp)
-	return c:GetControler()==tp and c:IsLocation(LOCATION_ONFIELD) and c:IsReason(REASON_EFFECT)
+	return c:GetControler()==tp and c:IsLocation(LOCATION_ONFIELD)
 end
 
 function c999507.protg(e,tp,eg,ep,ev,re,r,rp,chk)
@@ -81,14 +81,20 @@ end
 function c999507.desop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
 	if tc:IsRelateToEffect(e) then
-		Duel.Destroy(tc,REASON_EFFECT)
-	end
+		if Duel.Destroy(tc,REASON_EFFECT) > 0 then
+			if Duel.IsExistingMatchingCard(c999507.tgfilter,tp,LOCATION_DECK+LOCATION_EXTRA,0,1,nil) 
+				and Duel.IsExistingMatchingCard(Card.IsDiscardable,tp,LOCATION_HAND,0,1,e:GetHandler())
+				and Duel.SelectYesNo(tp, aux.Stringid(999507,2)) then
+				
+				Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DISCARD)
+				Duel.DiscardHand(tp,Card.IsDiscardable,1,1,REASON_COST+REASON_DISCARD)
 
-	if Duel.IsExistingMatchingCard(c999507.tgfilter,tp,LOCATION_DECK+LOCATION_EXTRA,0,1,nil) and Duel.SelectYesNo(tp, aux.Stringid(999507,2)) then
-		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE)
-		local g=Duel.SelectMatchingCard(tp,c999507.tgfilter,tp,LOCATION_DECK+LOCATION_EXTRA,0,1,1,nil)
-		if g:GetCount()>0 then
-			Duel.SendtoGrave(g,REASON_EFFECT)
+				Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE)
+				local g=Duel.SelectMatchingCard(tp,c999507.tgfilter,tp,LOCATION_DECK+LOCATION_EXTRA,0,1,1,nil)
+				if g:GetCount()>0 then
+					Duel.SendtoGrave(g,REASON_EFFECT)
+				end
+			end
 		end
 	end
 end

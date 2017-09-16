@@ -3,7 +3,7 @@
 function c999201.initial_effect(c)
 	--pendulum summon
 	local argTable = {1}
-	Nef.EnablePendulumAttributeSP(c,1,aux.TRUE,argTable,false)
+	Nef.EnablePendulumAttributeSP(c,2,aux.TRUE,argTable,false)
 	--Dual
 	Nef.EnableDualAttribute(c, TYPE_PENDULUM)
 	--Activate

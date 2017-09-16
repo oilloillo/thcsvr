@@ -1,44 +1,55 @@
 --宝塔『一番の宝物』
-function c999606.initial_effect(c)
+local M = c999606
+local Mid = 999606
+function M.initial_effect(c)
 	--activate
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e1:SetCode(EVENT_FREE_CHAIN)
-	e1:SetCondition(c999606.con)
-	e1:SetTarget(c999606.tg)
-	e1:SetOperation(c999606.op)
+	e1:SetCondition(M.con)
+	e1:SetTarget(M.tg)
+	e1:SetOperation(M.op)
 	c:RegisterEffect(e1)
 end
 
-function c999606.confilter(c)
+function M.confilter(c)
 	return c:IsSetCard(0x251e) and c:IsFaceup()
 end
 
-function c999606.con(e,tp,eg,ep,ev,re,r,rp)
-	return Duel.GetFieldGroupCount(tp, LOCATION_MZONE, 0)==1 
-		and Duel.IsExistingMatchingCard(c999606.confilter,tp,LOCATION_MZONE,0,1,nil)
+function M.con(e,tp,eg,ep,ev,re,r,rp)
+	return Duel.GetFieldGroupCount(tp, LOCATION_MZONE, 0) == 1 
+		and Duel.IsExistingMatchingCard(M.confilter, tp, LOCATION_MZONE, 0, 1, nil)
 end
 
-function c999606.filter(c,e,tp)
+function M.filter(c,e,tp)
 	return c:IsType(TYPE_PENDULUM) and c:IsFaceup() and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
 
-function c999606.tg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 
-		and Duel.IsExistingMatchingCard(c999606.filter,tp,LOCATION_GRAVE+LOCATION_EXTRA,0,1,nil,e,tp) end
-	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_GRAVE+LOCATION_EXTRA)
+function M.tg(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk == 0 then 
+		local loc = 0
+		if Duel.GetLocationCount(tp, LOCATION_MZONE) > 0 then loc = loc + LOCATION_GRAVE end
+		if Duel.GetLocationCountFromEx(tp) > 0 then loc = loc + LOCATION_EXTRA end
+		if loc == 0 then return false end
+		return Duel.IsExistingMatchingCard(M.filter, tp, loc, 0, 1, nil, e, tp) end
+	Duel.SetOperationInfo(0, CATEGORY_SPECIAL_SUMMON, nil, 1, tp, loc)
 end
 
-function c999606.op(e,tp,eg,ep,ev,re,r,rp)
-	local ft=Duel.GetLocationCount(tp,LOCATION_MZONE)
-	if ft<=0 then return end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
-	local g=Duel.SelectMatchingCard(tp,c999606.filter,tp,LOCATION_GRAVE+LOCATION_EXTRA,0,ft,ft,nil,e,tp)
-	local c=e:GetHandler()
-	local tc=g:GetFirst()
-	while tc do
-		if Duel.SpecialSummonStep(tc,0,tp,tp,false,false,POS_FACEUP) then
+function M.op(e,tp,eg,ep,ev,re,r,rp)	
+	local c = e:GetHandler()
+	while true do
+		local loc = 0
+		if Duel.GetLocationCount(tp, LOCATION_MZONE) > 0 then loc = loc + LOCATION_GRAVE end
+		if Duel.GetLocationCountFromEx(tp) > 0 then loc = loc + LOCATION_EXTRA end
+		if loc == 0 then return end
+
+		Duel.Hint(HINT_SELECTMSG, tp, HINTMSG_SPSUMMON)
+		local g = Duel.SelectMatchingCard(tp, M.filter, tp, loc, 0, 1, 1, nil, e, tp)
+		local tc = g:GetFirst()
+		if not tc then return end
+
+		if Duel.SpecialSummonStep(tc, 0, tp, tp, false, false, POS_FACEUP) then
 			local e1=Effect.CreateEffect(c)
 			e1:SetType(EFFECT_TYPE_SINGLE)
 			e1:SetCode(EFFECT_UNRELEASABLE_SUM)
@@ -63,16 +74,15 @@ function c999606.op(e,tp,eg,ep,ev,re,r,rp)
 			tc:RegisterEffect(e5)
 			local e6=Effect.CreateEffect(e:GetHandler())
 			e6:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_CONTINUOUS)
-			e6:SetDescription(aux.Stringid(999606,1))
+			e6:SetDescription(aux.Stringid(Mid,1))
 			e6:SetProperty(EFFECT_FLAG_IGNORE_IMMUNE+EFFECT_FLAG_CLIENT_HINT)
 			e6:SetCode(EVENT_PRE_BATTLE_DAMAGE)
-			e6:SetOperation(c999606.rdop)
+			e6:SetOperation(M.rdop)
 			e6:SetReset(RESET_EVENT+0x1fe0000)
 			tc:RegisterEffect(e6,true)
 			--
-			tc:RegisterFlagEffect(999606,RESET_EVENT+0x1fe0000,0,1)
+			tc:RegisterFlagEffect(Mid,RESET_EVENT+0x1fe0000,0,1)
 		end
-		tc=g:GetNext()
 	end
 	Duel.SpecialSummonComplete()
 
@@ -81,21 +91,21 @@ function c999606.op(e,tp,eg,ep,ev,re,r,rp)
 	e7:SetCode(EVENT_PHASE+PHASE_END)
 	e7:SetProperty(EFFECT_FLAG_IGNORE_IMMUNE)
 	e7:SetCountLimit(1)
-	e7:SetOperation(c999606.tdop)
+	e7:SetOperation(M.tdop)
 	Duel.RegisterEffect(e7,tp)
 end
 
-function c999606.rdop(e,tp,eg,ep,ev,re,r,rp)
+function M.rdop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.ChangeBattleDamage(ep,ev/2)
 end
 
 
-function c999606.tdfilter(c)
-	return c:GetFlagEffect(999606)>0 and c:IsAbleToDeck()
+function M.tdfilter(c)
+	return c:GetFlagEffect(Mid)>0 and c:IsAbleToDeck()
 end
 
-function c999606.tdop(e,tp,eg,ep,ev,re,r,rp)
-	local g=Duel.GetMatchingGroup(c999606.tdfilter, tp, LOCATION_MZONE, 0, nil)
+function M.tdop(e,tp,eg,ep,ev,re,r,rp)
+	local g=Duel.GetMatchingGroup(M.tdfilter, tp, LOCATION_MZONE, 0, nil)
 	if g:GetCount()>0 then
 		local sg=g:RandomSelect(tp, 1)
 		Duel.SendtoDeck(sg,nil,2,REASON_EFFECT)

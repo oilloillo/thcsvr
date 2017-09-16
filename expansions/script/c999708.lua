@@ -32,7 +32,6 @@ function M.initial_effect(c)
 	local e4=Effect.CreateEffect(c)
 	e4:SetType(EFFECT_TYPE_FIELD)
 	e4:SetCode(EFFECT_SPSUMMON_PROC_G)
-	--修复了不受怪兽效果影响的素材不会送去墓地的bug（滑稽
 	e4:SetProperty(EFFECT_FLAG_UNCOPYABLE+EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_IGNORE_IMMUNE)
 	e4:SetRange(LOCATION_MZONE)
 	e4:SetCondition(M.synCon)
@@ -41,33 +40,37 @@ function M.initial_effect(c)
 	c:RegisterEffect(e4)
 end
 
-function M.lvfilter(c, tp, xyzc, lv)
+function M.lvfilter(c, tp, xyzc, lv, flag)
 	if c:IsType(TYPE_TOKEN) or not c:IsCanBeXyzMaterial(xyzc) then return false end
+
 	if not lv then
-		return Duel.IsExistingMatchingCard(M.lvfilter, tp, LOCATION_MZONE, 0, 1, c, tp, xyzc, c:GetLevel())
+		local temp = Duel.GetLocationCountFromEx(tp, tp, c) < 1
+		return Duel.IsExistingMatchingCard(M.lvfilter, tp, LOCATION_MZONE, 0, 1, c, tp, xyzc, c:GetLevel(), temp)
 	else
-		return lv>0 and c:GetLevel() == lv 
+		if flag and Duel.GetLocationCountFromEx(tp, tp, c) < 1 then return false end
+		return lv > 0 and c:GetLevel() == lv 
 	end
 end
 
-function M.xyzcon(e,c)
-	if c==nil then return true end
-	local tp=c:GetControler()
-	if Duel.GetLocationCount(tp,LOCATION_MZONE)<-1 then return false end
+function M.xyzcon(e, c)
+	if c == nil then return true end
+	local tp = c:GetControler()
 	return Duel.IsExistingMatchingCard(M.lvfilter, tp, LOCATION_MZONE, 0, 1, nil, tp, c)
 end
 
 function M.xyzop(e,tp,eg,ep,ev,re,r,rp,c)
-	local tp=c:GetControler()
+	local tp = c:GetControler()
 	local mg = Duel.SelectMatchingCard(tp, M.lvfilter, tp, LOCATION_MZONE, 0, 1, 1, nil, tp, c)
-	if mg:GetCount()<1 then return end
+	if mg:GetCount() < 1 then return end
 
-	local lv = mg:GetFirst():GetLevel()
-	local mg2 = Duel.SelectMatchingCard(tp, M.lvfilter, tp, LOCATION_MZONE, 0, 1, 1, mg:GetFirst(), tp, c, lv)
-	if mg2:GetCount()<1 then return end
+	local c1 = mg:GetFirst()
+	local lv = c1:GetLevel()
+	local flag = Duel.GetLocationCountFromEx(tp, tp, c1) < 1
+	local mg2 = Duel.SelectMatchingCard(tp, M.lvfilter, tp, LOCATION_MZONE, 0, 1, 1, mg:GetFirst(), tp, c, lv, flag)
+	if mg2:GetCount() < 1 then return end
 
 	mg:Merge(mg2)
-	if mg:GetCount()>1 then
+	if mg:GetCount() > 1 then
 		c:SetMaterial(mg)
 		Duel.Overlay(c, mg)
 		local e1=Effect.CreateEffect(e:GetHandler())
@@ -108,6 +111,7 @@ function M.rankop(e,c)
 end
 
 function M.synLvfilter(c, syncard)
+	if c:IsType(TYPE_LINK) then return 99 end
 	if c:IsType(TYPE_XYZ) then
 		return c:GetRank()
 	else 
@@ -116,10 +120,25 @@ function M.synLvfilter(c, syncard)
 end
 
 function M.filter(c, tp, mg, turner, e)
-	local lv = c:GetLevel()-turner:GetRank()
+	local lv = c:GetLevel() - turner:GetRank()
 	if lv < 1 then return false end
-	return c:IsRace(RACE_ZOMBIE) and c:IsType(TYPE_SYNCHRO) and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_SYNCHRO,tp,true,false) and 
-		mg:CheckWithSumEqual(M.synLvfilter, lv, 1, 99, c)
+	local flag = Duel.GetLocationCountFromEx(tp, tp, turner) < 1
+	return c:IsRace(RACE_ZOMBIE) and c:IsType(TYPE_SYNCHRO) and c:IsCanBeSpecialSummoned(e, SUMMON_TYPE_SYNCHRO, tp, true, false) 
+		and mg:IsExists(M.matfilter, 1, turner, mg, tp, lv, c, flag)
+end
+
+function M.matfilter(c, mg, tp, lv, sync, flag)
+	if flag and Duel.GetLocationCountFromEx(tp, tp, c) < 1 then return end
+	local val = M.synLvfilter(c, sync)
+	if val == 99 then return false end
+	lv = lv - val
+	if lv == 0 then return true end
+	if lv > 1 then
+		local g = mg:Clone()
+		g:RemoveCard(c)
+		return g:CheckWithSumEqual(M.synLvfilter, lv, 1, 99, sync)
+	end
+	return false
 end
 
 function M.synCon(e, c, og)
@@ -137,10 +156,25 @@ function M.synOp(e,tp,eg,ep,ev,re,r,rp,c,sg,og)
 	sg:Merge(syncG)
 	sync = syncG:GetFirst()
 
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE)
+	Duel.Hint(HINT_SELECTMSG, tp, HINTMSG_SMATERIAL)
+	local mg = Group.FromCards(c)
+	mg:Select(tp, 1, 1, nil)
+	g:RemoveCard(c)
+
 	local lv = sync:GetLevel()-c:GetRank()
-	local mg = g:SelectWithSumEqual(tp, M.synLvfilter, lv, 1, 99, sync)
-	mg:AddCard(c)
+	local flag = Duel.GetLocationCountFromEx(tp, tp, c) < 1
+	local fmat = g:FilterSelect(tp, M.matfilter, 1, 1, c, g, tp, lv, c, flag):GetFirst()
+
+	local val = M.synLvfilter(fmat, sync)
+	mg:AddCard(fmat)
+	g:RemoveCard(fmat)
+	lv = lv - val
+
+	if lv > 1 then
+		local temp = g:SelectWithSumEqual(tp, M.synLvfilter, lv, 1, 99, sync)
+		mg:Merge(temp)
+	end
+
 	sync:SetMaterial(mg)
 	Duel.SendtoGrave(mg, REASON_MATERIAL+REASON_SYNCHRO)
 	sync:CompleteProcedure()

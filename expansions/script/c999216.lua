@@ -23,19 +23,29 @@ function M.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 
-function M.ffilter(c, code)
+function M.spfilter1(c, code, tp)
+	local flag = Duel.GetLocationCountFromEx(tp, tp, c) < 1
+	return c:IsFusionCode(code) and c:IsAbleToGraveAsCost()
+		and Duel.IsExistingMatchingCard(M.spfilter2, tp, LOCATION_MZONE, 0, 1, c, 999214, tp, flag)
+end
+
+function M.spfilter2(c, code, tp, flag)
+	if flag and Duel.GetLocationCountFromEx(tp, tp, c) < 1 then return false end
 	return c:IsFusionCode(code) and c:IsAbleToGraveAsCost()
 end
 
 function M.sprcon(e, c)
-	return Duel.IsExistingMatchingCard(M.ffilter, tp, LOCATION_MZONE, 0, 1, nil, 999211) 
-		and Duel.IsExistingMatchingCard(M.ffilter, tp, LOCATION_MZONE, 0, 1, nil, 999214)
+	if c == nil then return true end 
+	local tp = c:GetControler()
+	return Duel.IsExistingMatchingCard(M.spfilter1, tp, LOCATION_MZONE, 0, 1, nil, 999211, tp)
 end
 
 function M.sprop(e,tp,eg,ep,ev,re,r,rp,c)
 	Duel.Hint(HINT_SELECTMSG, tp, HINTMSG_TOGRAVE)
-	local g1 = Duel.SelectMatchingCard(tp, M.ffilter, tp, LOCATION_MZONE, 0, 1, 1, nil, 999211)
-	local g2 = Duel.SelectMatchingCard(tp, M.ffilter, tp, LOCATION_MZONE, 0, 1, 1, nil, 999214)
+	local g1 = Duel.SelectMatchingCard(tp, M.spfilter1, tp, LOCATION_MZONE, 0, 1, 1, nil, 999211, tp)
+	local flag = Duel.GetLocationCountFromEx(tp, tp, g1:GetFirst()) < 1
+
+	local g2 = Duel.SelectMatchingCard(tp, M.spfilter2, tp, LOCATION_MZONE, 0, 1, 1, nil, 999214, tp, flag)
 	g1:Merge(g2)
 	Duel.SendtoGrave(g1, REASON_COST)
 end

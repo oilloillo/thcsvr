@@ -7,8 +7,7 @@ function M.initial_effect(c)
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_FIELD)
 	e1:SetCode(EFFECT_SPSUMMON_PROC_G)
-        --修复了不受怪兽效果影响的素材不会送去墓地的bug（滑稽
-        e1:SetProperty(EFFECT_FLAG_UNCOPYABLE+EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_IGNORE_IMMUNE)
+	e1:SetProperty(EFFECT_FLAG_UNCOPYABLE+EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_IGNORE_IMMUNE)
 	e1:SetRange(LOCATION_MZONE)
 	e1:SetCondition(M.crossCon)
 	e1:SetOperation(M.crossOp)
@@ -47,10 +46,12 @@ end
 
 function M.filter(c, turner, mg)
 	if turner then
-		return c:IsSynchroSummonable(turner, mg) and mg:GetFirst():IsCanBeSynchroMaterial(c, turner) and mg:GetNext():IsCanBeSynchroMaterial(c, turner)
+		return c:IsSynchroSummonable(turner, mg) and mg:GetFirst():IsCanBeSynchroMaterial(c, turner) 
+			and mg:GetNext():IsCanBeSynchroMaterial(c, turner) and c:IsAbleToGraveAsCost()
 	else
-		return c:IsXyzSummonable(mg) and Duel.CheckXyzMaterial(c, nil, mg:GetFirst():GetLevel(), 2, 2, mg) and mg:GetFirst():IsCanBeXyzMaterial(c) and mg:GetNext():IsCanBeXyzMaterial(c)
-		-- return c:IsType(TYPE_XYZ) and Duel.CheckXyzMaterial(c, aux.TRUE, mg:GetFirst():GetLevel(), 2, 2, mg) and mg:GetFirst():IsCanBeXyzMaterial(c) and mg:GetNext():IsCanBeXyzMaterial(c) 
+		return c:IsXyzSummonable(mg) and Duel.CheckXyzMaterial(c, nil, mg:GetFirst():GetLevel(), 2, 2, mg) 
+			and mg:GetFirst():IsCanBeXyzMaterial(c) and mg:GetNext():IsCanBeXyzMaterial(c)
+			and c:IsAbleToGraveAsCost()
 	end
 end
 
@@ -97,6 +98,7 @@ function M.crossOp(e,tp,eg,ep,ev,re,r,rp,c,sg,og)
 	
 	Duel.HintSelection(mg)
 	Duel.SendtoGrave(mg, REASON_MATERIAL+REASON_SYNCHRO+REASON_XYZ)
+	Duel.SendtoGrave(sg, REASON_EFFECT)
 	sync:GetFirst():CompleteProcedure()
 	xyzc:GetFirst():CompleteProcedure()
 end

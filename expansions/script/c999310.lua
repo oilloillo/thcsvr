@@ -73,7 +73,7 @@ function c999310.operation(e,tp,eg,ep,ev,re,r,rp)
 			end
 			--
 			local sg=Duel.GetMatchingGroup(c999310.extrafilter,tp,LOCATION_EXTRA,0,nil,g1,e,tp)
-			if not sg or sg:GetCount()==0 then 
+			if not sg or sg:GetCount() == 0 or Duel.GetLocationCountFromEx(tp,tp,g1) == 0 then 
 				Duel.BreakEffect()
 				Duel.SendtoGrave(g1,REASON_EFFECT)
 				return 

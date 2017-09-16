@@ -94,41 +94,41 @@ function M.rdop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.ChangeBattleDamage(ep,ev/2)
 end
 
-function M.filter1(c,e,tp)
-	local rk=c:GetRank()
+function M.filter1(c, e, tp)
+	local rk = c:GetRank()
 	return c:IsFaceup() and c:IsType(TYPE_XYZ) and c:IsSetCard(0xaa5)
-		and Duel.IsExistingMatchingCard(M.filter2,tp,LOCATION_EXTRA,0,1,nil,e,tp,c,rk*2)
+		and Duel.IsExistingMatchingCard(M.filter2, tp, LOCATION_EXTRA, 0, 1, nil, e, tp, c, rk*2)
+		and Duel.GetLocationCountFromEx(tp, tp, c) > 0
 end
 
 function M.filter2(c,e,tp,mc,rk,code)
-	return c:GetRank()==rk and mc:IsCanBeXyzMaterial(c) and c:IsSetCard(0xaa5)
-		and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_XYZ,tp,false,false)
+	return c:GetRank() == rk and mc:IsCanBeXyzMaterial(c) and c:IsSetCard(0xaa5)
+		and c:IsCanBeSpecialSummoned(e, SUMMON_TYPE_XYZ, tp, false, false)
 end
 
 function M.target2(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
-	if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_MZONE) and M.filter1(chkc,e,tp) end
-	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>-1
-		and Duel.IsExistingTarget(M.filter1,tp,LOCATION_MZONE,0,1,nil,e,tp) end
+	if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_MZONE) and M.filter1(chkc, e, tp) end
+	if chk==0 then return Duel.IsExistingTarget(M.filter1, tp, LOCATION_MZONE, 0, 1, nil, e, tp) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TARGET)
-	Duel.SelectTarget(tp,M.filter1,tp,LOCATION_MZONE,0,1,1,nil,e,tp)
-	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_EXTRA)
+	Duel.SelectTarget(tp, M.filter1, tp, LOCATION_MZONE, 0, 1, 1, nil, e, tp)
+	Duel.SetOperationInfo(0, CATEGORY_SPECIAL_SUMMON, nil, 1, tp, LOCATION_EXTRA)
 end
 
 function M.operation2(e,tp,eg,ep,ev,re,r,rp)
-	if Duel.GetLocationCount(tp,LOCATION_MZONE)<0 then return end
-	local tc=Duel.GetFirstTarget()
+	local tc = Duel.GetFirstTarget()
+	if Duel.GetLocationCountFromEx(tp, tp, tc) < 0 then return end
 	if tc:IsFacedown() or not tc:IsRelateToEffect(e) or tc:IsControler(1-tp) or tc:IsImmuneToEffect(e) then return end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
-	local g=Duel.SelectMatchingCard(tp,M.filter2,tp,LOCATION_EXTRA,0,1,1,nil,e,tp,tc,tc:GetRank()*2)
-	local sc=g:GetFirst()
+	Duel.Hint(HINT_SELECTMSG, tp, HINTMSG_SPSUMMON)
+	local g = Duel.SelectMatchingCard(tp, M.filter2, tp, LOCATION_EXTRA, 0, 1, 1, nil, e, tp, tc, tc:GetRank()*2)
+	local sc = g:GetFirst()
 	if sc then
-		local mg=tc:GetOverlayGroup()
-		if mg:GetCount()~=0 then
-			Duel.Overlay(sc,mg)
+		local mg = tc:GetOverlayGroup()
+		if mg:GetCount() ~= 0 then
+			Duel.Overlay(sc, mg)
 		end
 		sc:SetMaterial(Group.FromCards(tc))
-		Duel.Overlay(sc,Group.FromCards(tc))
-		Duel.SpecialSummon(sc,SUMMON_TYPE_XYZ,tp,tp,false,false,POS_FACEUP)
+		Duel.Overlay(sc, Group.FromCards(tc))
+		Duel.SpecialSummon(sc, SUMMON_TYPE_XYZ, tp, tp, false, false, POS_FACEUP)
 		sc:CompleteProcedure()
 	end
 end
@@ -136,10 +136,11 @@ end
 function M.costfilter(c, e, tp)
 	local lv = c:GetLevel()
 	return c:IsSetCard(0xaa5) and lv > 0 and lv < 5 and Duel.IsExistingMatchingCard(M.spfilter, tp, LOCATION_EXTRA, 0, 1, nil, lv*2, e, tp)
+		and Duel.GetLocationCountFromEx(tp, tp, c) > 0
 end
 
 function M.spfilter(c, lv, e, tp)
-	return c:GetLevel()==lv and c:IsSetCard(0xaa5) and c:IsCanBeSpecialSummoned(e, SUMMON_TYPE_SYNCHRO, tp, false, false)
+	return c:GetLevel() == lv and c:IsSetCard(0xaa5) and c:IsCanBeSpecialSummoned(e, SUMMON_TYPE_SYNCHRO, tp, false, false)
 end
 
 function M.cost3(e,tp,eg,ep,ev,re,r,rp,chk)
@@ -149,21 +150,21 @@ end
 
 function M.target3(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then
-		if e:GetLabel()~=100 then return false end
+		if e:GetLabel() ~= 100 then return false end
 		e:SetLabel(0)
-		return Duel.GetLocationCount(tp,LOCATION_MZONE)>-1 and Duel.CheckReleaseGroup(tp, M.costfilter, 1, nil, e, tp)
+		return Duel.CheckReleaseGroup(tp, M.costfilter, 1, nil, e, tp)
 	end
-	local rg=Duel.SelectReleaseGroup(tp, M.costfilter, 1, 1, nil, e, tp)
+	local rg = Duel.SelectReleaseGroup(tp, M.costfilter, 1, 1, nil, e, tp)
 	e:SetLabel(rg:GetFirst():GetLevel())
 	Duel.Release(rg, REASON_COST)
 	Duel.SetOperationInfo(0, CATEGORY_SPECIAL_SUMMON, nil, 1, tp, LOCATION_EXTRA)
 end
 
 function M.operation3(e,tp,eg,ep,ev,re,r,rp)
-	if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end
-	local lv=e:GetLabel()
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
-	local g=Duel.SelectMatchingCard(tp, M.spfilter, tp, LOCATION_EXTRA, 0, 1, 1, nil, lv*2, e, tp)
+	if Duel.GetLocationCountFromEx(tp, tp, c) < 1 then return end
+	local lv = e:GetLabel()
+	Duel.Hint(HINT_SELECTMSG, tp, HINTMSG_SPSUMMON)
+	local g = Duel.SelectMatchingCard(tp, M.spfilter, tp, LOCATION_EXTRA, 0, 1, 1, nil, lv*2, e, tp)
 	if g:GetCount()>0 then
 		Duel.SpecialSummon(g, SUMMON_TYPE_SYNCHRO, tp, tp, false, false, POS_FACEUP)
 		local sc=g:GetFirst()

@@ -26,21 +26,16 @@ function M.operation(e,tp,eg,ep,ev,re,r,rp)
 end
 
 function M.filter(c)
-	return c:GetSequence() < 5
+	return c:GetSequence() < 6
 end
 
 function M.efilter(e, re, rp)
 	local tc = re:GetHandler()
 	local c = e:GetHandler()
 	if not tc then return false end
-	if c:GetSequence() > 4 then return false end
 	if rp == e:GetHandlerPlayer() then return false end
 
-	if tc:IsLocation(LOCATION_ONFIELD) and tc:GetSequence() < 5 then
-		return tc:GetSequence() ~= 4 - c:GetSequence()
-	else
-		return true
-	end
+	return not c:GetColumnGroup():IsContains(tc)
 end
 
 function M.gaineff(e,tp,eg,ep,ev,re,r,rp)

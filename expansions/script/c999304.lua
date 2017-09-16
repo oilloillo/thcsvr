@@ -45,29 +45,37 @@ end
 
 c999304.xyz_count = 2
 
-function c999304.selffilter(c,tc)
-	return c==tc
+function c999304.selffilter(c, tc)
+	return c == tc
 end
 
 function c999304.tokenfilter(c)
 	return c:IsType(TYPE_TOKEN)
 end
 
-function c999304.xyzcon(e,c)
-	if c==nil then return true end
-	local tp=c:GetControler()
-	if Duel.GetLocationCount(tp,LOCATION_MZONE)<-1 then return false end
-	local mg=Duel.GetMatchingGroup(aux.TRUE,tp,LOCATION_MZONE,0,nil)
-	return mg:CheckWithSumEqual(c999304.buildval(c,tp),4,2,5)
+function c999304.xyzcon(e, c)
+	if c == nil then return true end
+	local tp = c:GetControler()
+	local mg = Duel.GetMatchingGroup(aux.TRUE, tp, LOCATION_MZONE, 0, nil)
+	return mg:IsExists(c999304.filter, 1, nil, mg, c999304.buildval(c, tp), tp)
 end
 
-function c999304.buildval(xyz,tp)
+function c999304.filter(c, mg, func, tp)
+	if Duel.GetLocationCountFromEx(tp, tp, c) < 1 then return end
+	local val = func(c)
+	if val == 99 then return false end
+	local g = mg:Clone()
+	g:RemoveCard(c)
+	return g:CheckWithSumEqual(func, 4-val, 1, 5)
+end
+
+function c999304.buildval(xyz, tp)
 	return 
 		function(c)
 			if c:IsFaceup() and c:IsRace(RACE_PLANT) then
-				if c:IsCanBeXyzMaterial(xyz) and c:GetLevel()==2 then 
+				if c:IsCanBeXyzMaterial(xyz) and c:GetLevel() == 2 then 
 					return 2
-				elseif c:IsType(TYPE_TOKEN) and Duel.CheckReleaseGroup(tp,c999304.selffilter,1,nil,c) and c:GetLevel()<3 then
+				elseif c:IsType(TYPE_TOKEN) and Duel.CheckReleaseGroup(tp, c999304.selffilter, 1, nil, c) and c:GetLevel() < 3 then
 					return c:GetLevel()
 				end
 			end
@@ -76,20 +84,28 @@ function c999304.buildval(xyz,tp)
 end
 
 function c999304.xyzop(e,tp,eg,ep,ev,re,r,rp,c)
-	local mg=Duel.GetMatchingGroup(aux.TRUE,c:GetControler(),LOCATION_MZONE,0,nil)
-	local mat=mg:SelectWithSumEqual(c:GetControler(),c999304.buildval(c,tp),4,2,5)
+	local mg = Duel.GetMatchingGroup(aux.TRUE, c:GetControler(), LOCATION_MZONE, 0, nil)
+	
+	local func = c999304.buildval(c, tp)
+	local fmat = mg:FilterSelect(tp, c999304.filter, 1, 1, nil, mg, func, tp):GetFirst()
+	if not fmat then return end
 
-	local tokeng = mat:Filter(c999304.tokenfilter,nil)
-	if tokeng:GetCount()>0 then
-		mat:Remove(c999304.tokenfilter,nil)
-		Duel.Release(tokeng,REASON_EFFECT)
+	local val = func(fmat)
+	if val == 99 then return end
+	mg:RemoveCard(fmat)
+
+	local mat = mg:SelectWithSumEqual(c:GetControler(), func, 4-val, 1, 5)
+	mat:AddCard(fmat)
+
+	local tokeng = mat:Filter(c999304.tokenfilter, nil)
+	if tokeng:GetCount() > 0 then
+		mat:Remove(c999304.tokenfilter, nil)
+		Duel.Release(tokeng, REASON_EFFECT)
 	end
 
-	if mat:GetCount()>0 then
+	if mat:GetCount() > 0 then
 		c:SetMaterial(mat)
-		Duel.Overlay(c,mat)
-	-- else
-	-- 	Duel.SpecialSummon(c, SUMMON_TYPE_XYZ, tp, tp, true, true, POS_FACEUP)
+		Duel.Overlay(c, mat)
 	end
 end
 

@@ -61,16 +61,12 @@ aux.FilterBoolFunction(Card.IsFusionSetCard,0x190),
 function M.ind1(e,re,rp,c)
 	local c = re:GetHandler()
 	if not c or not c:IsLocation(LOCATION_ONFIELD) then return false end
-	local pos = c:GetSequence()
-	if c:GetControler() ~= e:GetHandler():GetControler() then pos = 4 - pos end
-	return pos == e:GetHandler():GetSequence()
+	return e:GetHandler():GetColumnGroup():IsContains(c)
 end
 
 function M.ind2(e, c)
 	if not c:IsLocation(LOCATION_ONFIELD) then return false end
-	local pos = c:GetSequence()
-	if c:GetControler() ~= e:GetHandler():GetControler() then pos = 4 - pos end
-	return pos ~= e:GetHandler():GetSequence()
+	return not e:GetHandler():GetColumnGroup():IsContains(c)
 end
 
 function M.tdcon(e,tp,eg,ep,ev,re,r,rp)
@@ -96,6 +92,7 @@ end
 
 function M.posfilter(c)
 	local seq = c:GetSequence()
+	if seq > 4 then return false end
 	return (seq > 0 and Duel.CheckLocation(tp, LOCATION_MZONE, seq-1))
 		or (seq < 4 and Duel.CheckLocation(tp, LOCATION_MZONE, seq+1))
 end
