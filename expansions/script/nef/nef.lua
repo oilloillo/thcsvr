@@ -402,11 +402,10 @@ function Nef.order_table_new(v)
 end
 
 function Nef.CheckGroupRecursive(c,sg,g,f,min,max,ext_params)
-	if sg:IsContains(c) then return false end
 	sg:AddCard(c)
 	local ct=sg:GetCount()
 	local res=(ct>=min and f(sg,table.unpack(ext_params)))
-		or (ct<max and g:IsExists(Nef.CheckGroupRecursive,1,nil,sg,g,f,min,max,ext_params))
+		or (ct<max and g:IsExists(Nef.CheckGroupRecursive,1,sg,sg,g,f,min,max,ext_params))
 	sg:RemoveCard(c)
 	return res
 end
@@ -419,20 +418,31 @@ function Nef.CheckGroup(g,f,cg,min,max,...)
 	if cg then sg:Merge(cg) end
 	local ct=sg:GetCount()
 	if ct>=min and ct<max and f(sg,...) then return true end
-	return g:IsExists(Nef.CheckGroupRecursive,1,nil,sg,g,f,min,max,ext_params)
+	return g:IsExists(Nef.CheckGroupRecursive,1,sg,sg,g,f,min,max,ext_params)
 end
 function Nef.SelectGroup(tp,desc,g,f,cg,min,max,...)
 	local min=min or 1
 	local max=max or g:GetCount()
 	local ext_params={...}
 	local sg=Group.CreateGroup()
-	if cg then sg:Merge(cg) end
+	if cg then
+		sg:Merge(cg)
+	end
 	local ct=sg:GetCount()
-	while ct<max and not (ct>=min and f(sg,...) and not (g:IsExists(Nef.CheckGroupRecursive,1,nil,sg,g,f,min,max,ext_params) and Duel.SelectYesNo(tp,210))) do
+	local ag=g:Filter(Nef.CheckGroupRecursive,sg,sg,g,f,min,max,ext_params)	
+	while ct<max and ag:GetCount()>0 do
+		local minc=1
+		local finish=(ct>=min and f(sg,...))
+		if finish then
+			minc=0
+			if not Duel.SelectYesNo(tp,210) then break end
+		end
 		Duel.Hint(HINT_SELECTMSG,tp,desc)
-		local tg=g:FilterSelect(tp,Nef.CheckGroupRecursive,1,1,nil,sg,g,f,min,max,ext_params)
+		local tg=ag:Select(tp,minc,1,nil)
+		if tg:GetCount()==0 then break end
 		sg:Merge(tg)
 		ct=sg:GetCount()
+		ag=g:Filter(Nef.CheckGroupRecursive,sg,sg,g,f,min,max,ext_params)
 	end
 	return sg
 end
