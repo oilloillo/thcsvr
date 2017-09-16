@@ -6,13 +6,9 @@ Uds.dataList = {}
 Uds.cardList = {}
 
 --rewrite
-function Auxiliary.Stringid(code,id)
-	if Udsflag==true then
-		Udsflag = false
-		Uds.regCardData()
-		Uds.regSelectCard()
-	end
-	return code*16+id
+function Auxiliary.PreloadUds()
+	Uds.regCardData()
+	Uds.regSelectCard()
 end
 
 function Uds.regCardData()
