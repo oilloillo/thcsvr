@@ -1,2 +1,2 @@
-## YGOPro-222DIY
-The server of YGOPRO 222DIY group
+## thcsvr
+The server of YGOPRO THC
