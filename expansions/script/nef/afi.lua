@@ -13,7 +13,7 @@ EVENT_ADJ_DISABLE = 2007
 local ms = {}
 ms[0] = {}
 ms[1] = {}
-for i=0,5 do
+for i=0,6 do
     ms[0][i] = {}
     ms[1][i] = {}
 end

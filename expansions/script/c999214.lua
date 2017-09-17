@@ -26,8 +26,8 @@ end
 
 function M.val(e, c)
 	local atk = 0
-	for i = 6, 7 do
-		local tc = Duel.GetFieldCard(tp, LOCATION_SZONE, i)
+	for i = 0, 1 do
+		local tc = Duel.GetFieldCard(tp, LOCATION_PZONE, i)
 		if tc and tc:IsSetCard(0xaa1) then
 			atk = atk + math.floor(tc:GetBaseAttack()/2)
 		end

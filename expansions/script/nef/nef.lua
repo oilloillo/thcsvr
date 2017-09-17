@@ -1,7 +1,7 @@
 --
 Nef = Nef or {}
 local os = require("os")
-require "expansions/script/nef/cardList"
+-- require "nef/cardList"
 function Nef.unpack(t, i)
     i = i or 1
     if t[i] then
@@ -161,7 +161,7 @@ function Nef.PConditionFilterSP(c,e,tp,lscale,rscale,filter,argTable,filter2,arg
 		lv=c:GetLevel()
 	end
 	local normalCondition = (c:IsLocation(LOCATION_HAND) or (c:IsFaceup() and c:IsType(TYPE_PENDULUM)))
-		and lv>lscale and lv<rscale 
+		and lv>lscale and lv<rscale and not c:IsForbidden()
 		and Nef.PendSummonCheck(c,e,tp,lscale,rscale,filter,argTable,filter2,argTable2,lpz,rpz) 
 	local spCondition = filter(c,Nef.unpack(argTable)) and filter2(c,Nef.unpack(argTable2))
 	return spCondition and normalCondition
@@ -174,7 +174,7 @@ function Nef.PConditionFilterSP2(c,e,tp,lscale,rscale,filter,argTable,filter2,ar
 	else
 		lv=c:GetLevel()
 	end
-	local normalCondition = lv>lscale and lv<rscale 
+	local normalCondition = lv>lscale and lv<rscale and not c:IsForbidden()
 		and Nef.PendSummonCheck(c,e,tp,lscale,rscale,filter,argTable,filter2,argTable2,lpz,rpz)
 	local spCondition = filter(c,Nef.unpack(argTable)) and filter2(c,Nef.unpack(argTable2))
 	return spCondition and normalCondition
@@ -185,14 +185,12 @@ function Nef.PendConditionSP()
 				if c==nil then return true end
 				local tp=c:GetControler()
 
-				local lpz=Duel.GetFieldCard(tp,LOCATION_SZONE,6)
-				local rpz=Duel.GetFieldCard(tp,LOCATION_SZONE,7)
+				local lpz=Duel.GetFieldCard(tp, LOCATION_PZONE, 0)
+				local rpz=Duel.GetFieldCard(tp, LOCATION_PZONE, 1)
 				if not (lpz and rpz) then return false end
 
 				local n1, filter1, argTable1, tag1, pexfunc1 = Nef.GetPendSPInfo(lpz)
 				local n2, filter2, argTable2, tag2, pexfunc2 = Nef.GetPendSPInfo(rpz)
-
-				if math.min(n1, n2) < 1 then return end
 
 				local lscale=lpz:GetLeftScale()
 				local rscale=rpz:GetRightScale()
@@ -208,49 +206,103 @@ function Nef.PendConditionSP()
 					return true
 				end
 
+				local loc = 0
+				if Duel.GetLocationCount(tp, LOCATION_MZONE) > 0 then loc = loc + LOCATION_HAND end
+				if Duel.GetLocationCountFromEx(tp) > 0 then loc = loc + LOCATION_EXTRA end
+				if loc == 0 then return false end
+				local g = nil
+
 				if og then
-					return og:IsExists(Nef.PConditionFilterSP,1,nil,e,tp,lscale,rscale,filter1,argTable1,filter2,argTable2,lpz,rpz)
+					g = og:Filter(Card.IsLocation, nil, loc)
+					return g:IsExists(Nef.PConditionFilterSP,1,nil,e,tp,lscale,rscale,filter1,argTable1,filter2,argTable2,lpz,rpz)
 				else
-					return Duel.IsExistingMatchingCard(Nef.PConditionFilterSP,tp,LOCATION_HAND+LOCATION_EXTRA,0,1,nil,e,tp,lscale,rscale,filter1,argTable1,filter2,argTable2,lpz,rpz)
+					return Duel.IsExistingMatchingCard(Nef.PConditionFilterSP,tp,loc,0,1,nil,e,tp,lscale,rscale,filter1,argTable1,filter2,argTable2,lpz,rpz)
 				end
 			end
 end
 
 function Nef.PendOperationSP()
 	return	function(e,tp,eg,ep,ev,re,r,rp,c,sg,og)
-				local lpz=Duel.GetFieldCard(tp,LOCATION_SZONE,6)
-				local rpz=Duel.GetFieldCard(tp,LOCATION_SZONE,7)
+				local lpz = Duel.GetFieldCard(tp, LOCATION_PZONE, 0)
+				local rpz = Duel.GetFieldCard(tp, LOCATION_PZONE, 1)
 
 				local n1, filter1, argTable1, tag1, pexfunc1 = Nef.GetPendSPInfo(lpz)
 				local n2, filter2, argTable2, tag2, pexfunc2 = Nef.GetPendSPInfo(rpz)
 				
-				local lscale=lpz:GetLeftScale()
-				local rscale=rpz:GetRightScale()
-				if lscale>rscale then lscale,rscale=rscale,lscale end
+				local lscale = lpz:GetLeftScale()
+				local rscale = rpz:GetRightScale()
+				if lscale > rscale then lscale, rscale = rscale, lscale end
 
-				local ft=Duel.GetLocationCount(tp,LOCATION_MZONE)
-				local pn = (ft>n1 and n1 or ft)
-				pn = (pn>n2 and n2 or pn)
+				local ft1 = Duel.GetLocationCount(tp, LOCATION_MZONE)
+				local ft2 = Duel.GetLocationCountFromEx(tp)
+				local ft = Duel.GetUsableMZoneCount(tp)
+				if Duel.IsPlayerAffectedByEffect(tp, 59822133) then
+					if ft1 > 0 then ft1 = 1 end
+					if ft2 > 0 then ft2 = 1 end
+					ft = 1
+				end
+				ft = math.min(ft, n1, n2)
+
+				local loc = 0
+				if ft1 > 0 then loc = loc + LOCATION_HAND end
+				if ft2 > 0 then loc = loc + LOCATION_EXTRA end
 
 				local exg = Group.CreateGroup()
 				if pexfunc1 then exg:Merge(pexfunc1(lpz)) end
 				if pexfunc2 then exg:Merge(pexfunc2(rpz)) end
 
+				local tg = nil
 				if og then
-					Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
-					local g1=exg:Filter(Nef.PConditionFilterSP2,nil,e,tp,lscale,rscale,filter1,argTable1,filter2,argTable2,lpz,rpz)
-					local g2=og:Filter(Nef.PConditionFilterSP,nil,e,tp,lscale,rscale,filter1,argTable1,filter2,argTable2,lpz,rpz)
-					g1:Merge(g2)
-					local g=Group.Select(g1, tp, 1, pn, nil)
-					sg:Merge(g)
+					tg=exg:Filter(Nef.PConditionFilterSP2,nil,e,tp,lscale,rscale,filter1,argTable1,filter2,argTable2,lpz,rpz)
+					local g2=og:Filter(Card.IsLocation,nil,loc):Filter(Nef.PConditionFilterSP,nil,e,tp,lscale,rscale,filter1,argTable1,filter2,argTable2,lpz,rpz)
+					tg:Merge(g2)
 				else
-					Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
-					local g1=exg:Filter(Nef.PConditionFilterSP2,nil,e,tp,lscale,rscale,filter1,argTable1,filter2,argTable2,lpz,rpz)
-					local g2=Duel.GetFieldGroup(tp,LOCATION_HAND+LOCATION_EXTRA,0):Filter(Nef.PConditionFilterSP,nil,e,tp,lscale,rscale,filter1,argTable1,filter2,argTable2,lpz,rpz)
-					g1:Merge(g2)
-					local g=Group.Select(g1, tp, 1, pn, nil)
-					sg:Merge(g)
+					tg=exg:Filter(Nef.PConditionFilterSP2,nil,e,tp,lscale,rscale,filter1,argTable1,filter2,argTable2,lpz,rpz)
+					local g2=Duel.GetFieldGroup(tp,loc,0):Filter(Nef.PConditionFilterSP,nil,e,tp,lscale,rscale,filter1,argTable1,filter2,argTable2,lpz,rpz)
+					tg:Merge(g2)
 				end
+
+				ft1 = math.min(ft1, tg:FilterCount(Card.IsLocation, nil, 0x3ff-LOCATION_EXTRA))
+				ft2 = math.min(ft2, tg:FilterCount(Card.IsLocation, nil, LOCATION_EXTRA))
+
+				local ect = c29724053 and Duel.IsPlayerAffectedByEffect(tp, 29724053) and c29724053[tp]
+				if ect and ect < ft2 then ft2 = ect end
+
+				while true do
+					local ct1 = tg:FilterCount(Card.IsLocation, nil, 0x3ff-LOCATION_EXTRA)
+					local ct2 = tg:FilterCount(Card.IsLocation, nil, LOCATION_EXTRA)
+					local ct = ft
+					if ct1 > ft1 then ct = math.min(ct, ft1) end
+					if ct2 > ft2 then ct = math.min(ct, ft2) end
+					if ct <= 0 then break end
+					if sg:GetCount() > 0 and not Duel.SelectYesNo(tp, 210) then ft = 0 break end
+					Duel.Hint(HINT_SELECTMSG, tp, HINTMSG_SPSUMMON)
+					local g = tg:Select(tp, 1, ct, nil)
+					tg:Sub(g)
+					sg:Merge(g)
+					if g:GetCount() < ct then ft = 0 break end
+					ft = ft - g:GetCount()
+					ft1 = ft1 - g:FilterCount(Card.IsLocation, nil, 0x3ff-LOCATION_EXTRA)
+					ft2 = ft2 - g:FilterCount(Card.IsLocation, nil, LOCATION_EXTRA)
+				end
+
+				if ft > 0 then
+					local tg1 = tg:Filter(Card.IsLocation, nil, 0x3ff-LOCATION_EXTRA)
+					local tg2 = tg:Filter(Card.IsLocation, nil, LOCATION_EXTRA)
+					if ft1 > 0 and ft2 == 0 and tg1:GetCount() > 0 and (sg:GetCount() == 0 or Duel.SelectYesNo(tp, 210)) then
+						local ct = math.min(ft1, ft)
+						Duel.Hint(HINT_SELECTMSG, tp, HINTMSG_SPSUMMON)
+						local g = tg1:Select(tp, 1, ct, nil)
+						sg:Merge(g)
+					end
+					if ft1 == 0 and ft2 > 0 and tg2:GetCount() > 0 and (sg:GetCount() == 0 or Duel.SelectYesNo(tp, 210)) then
+						local ct = math.min(ft2, ft)
+						Duel.Hint(HINT_SELECTMSG, tp, HINTMSG_SPSUMMON)
+						local g = tg2:Select(tp, 1, ct, nil)
+						sg:Merge(g)
+					end
+				end
+
 				Duel.HintSelection(Group.FromCards(lpz))
 				Duel.HintSelection(Group.FromCards(rpz))
 			end
@@ -281,14 +333,9 @@ function Nef.GetPendSPInfo(c)
 	local mt=_G["c" .. code]
 	if mt.pend_effect1==nil then Auxiliary.EnablePendulumAttribute(c) end
 
-	local pend_num = 0
-	if type(mt.pend_num) == "function" then 
-		pend_num = mt.pend_num(c)
-	else
-		pend_num = mt.pend_num and mt.pend_num or 99
-	end
+	local pend_num = mt.pend_num and mt.pend_num or 99
 	local max_pend_num = Nef.GetPendMaxNum(c)
-	if max_pend_num > 0 then pend_num = max_pend_num end
+	if max_pend_num>0 then pend_num = max_pend_num end
 	local pend_filter = mt.pend_filter and mt.pend_filter or Auxiliary.TRUE
 	local pend_arg = mt.pend_arg and mt.pend_arg or {1}
 	local pend_tag = mt.pend_tag
@@ -298,7 +345,7 @@ function Nef.GetPendSPInfo(c)
 end
 
 function Nef.GetFieldLeftScale(tp)
-	local lpz=Duel.GetFieldCard(tp,LOCATION_SZONE,6)
+	local lpz=Duel.GetFieldCard(tp, LOCATION_PZONE, 0)
 	if lpz then 
 		return lpz:GetLeftScale()
 	else
@@ -307,7 +354,7 @@ function Nef.GetFieldLeftScale(tp)
 end
 
 function Nef.GetFieldRightScale(tp)
-	local rpz=Duel.GetFieldCard(tp,LOCATION_SZONE,7)
+	local rpz=Duel.GetFieldCard(tp, LOCATION_PZONE, 1)
 	if rpz then 
 		return rpz:GetRightScale()
 	else
@@ -360,26 +407,27 @@ function Nef.GetDate()
 end
 
 function Nef.Log(message)
-	if AI and AI.Chat ~= nil then AI.Chat(message) end
+	-- if AI and AI.Chat ~= nil then AI.Chat(message) end
 end
 
 function Nef.LogFormat(fmt, ...)
-	Nef.Log(string.format(fmt, ...))
+	Debug.Message(string.format(fmt, ...))
 end
 
 function Nef.GetRandomCardCode(num, command)
-	local result = {}
-	local commandList = {
-		[0] = "Main",
-		[1] = "Extra"
-	}
-	local cardType = commandList[command]
-	for i=1,num do
-		local r = math.random(1,#CardList[cardType])
-		result[i] = CardList[cardType][r]
-	end
-	return result
+	-- local result = {}
+	-- local commandList = {
+	-- 	[0] = "Main",
+	-- 	[1] = "Extra"
+	-- }
+	-- local cardType = commandList[command]
+	-- for i=1,num do
+	-- 	local r = math.random(1,#CardList[cardType])
+	-- 	result[i] = CardList[cardType][r]
+	-- end
+	-- return result
 end
+
 function Nef.kangbazi(e,te)
 	if te:IsActiveType(TYPE_MONSTER) and te:IsActivated() then
 		local ec=te:GetOwner()
