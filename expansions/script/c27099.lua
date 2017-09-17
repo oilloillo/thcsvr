@@ -18,8 +18,9 @@ function c27099.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	local g=Duel.SelectMatchingCard(tp,c27099.cfilter,tp,LOCATION_MZONE+LOCATION_HAND,0,1,1,nil)
 	Duel.ConfirmCards(1-tp,g)
 	local dif=Duel.GetLP(1-tp)-Duel.GetLP(tp)
+	local cd=Duel.GetFlagEffect(tp,27501)==0 and 500 or 200
 	if dif>0 then 
-		local a,b=math.modf(dif/500)
+		local a,b=math.modf(dif/cd)
 		if a>16 then a=16 end
 		Duel.SetOperationInfo(0,CATEGORY_DAMAGE,nil,0,1-tp,(a+1)*300)
 	else Duel.SetOperationInfo(0,CATEGORY_DAMAGE,nil,0,1-tp,300) end
@@ -30,7 +31,8 @@ end
 function c27099.activate(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Damage(1-tp,300,REASON_EFFECT)
 	local dif=Duel.GetLP(1-tp)-Duel.GetLP(tp)
-	local a,b=math.modf(dif/500)
+	local cd=Duel.GetFlagEffect(tp,27501)==0 and 500 or 200
+	local a,b=math.modf(dif/cd)
 	if a>16 then a=16 end
 	while a>0 do
 		Duel.Damage(1-tp,300,REASON_EFFECT)

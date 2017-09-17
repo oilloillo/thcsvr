@@ -35,4 +35,7 @@ function c27088.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function c27088.spop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Draw(tp,1,REASON_EFFECT)
+	if Duel.GetFlagEffect(tp,27501)>0 then
+		Duel.Draw(tp,1,REASON_EFFECT)
+	end
 end

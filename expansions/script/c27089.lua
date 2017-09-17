@@ -39,4 +39,7 @@ function c27089.spop(e,tp,eg,ep,ev,re,r,rp)
 		Duel.MoveSequence(tc,0)
 		Duel.ConfirmDecktop(tp,1)
 	end
+	if Duel.GetFlagEffect(tp,27501)>0 then
+		Duel.Draw(tp,1,REASON_EFFECT)
+	end
 end

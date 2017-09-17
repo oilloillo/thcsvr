@@ -26,7 +26,8 @@ function c26125.initial_effect(c)
 end
 function c26125.filter2(c,e,tp,m)
 	if not c.hana_mat then return false end
-	return c:IsType(TYPE_FUSION) and c:IsSetCard(0x208) and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_FUSION,tp,false,false) and #c.hana_mat==2 and m:IsExists(Fus.CheckMaterialSingle,1,e:GetHandler(),c,e:GetHandler()) and e:GetHandler():IsCanBeFusionMaterial(c)
+	return c:IsType(TYPE_FUSION) and c:IsSetCard(0x208) and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_FUSION,tp,false,false) and
+		#c.hana_mat==2 and m:IsExists(Fus.CheckMaterialSingle,1,e:GetHandler(),c,e:GetHandler()) and e:GetHandler():IsCanBeFusionMaterial(c)
 end
 function c26125.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
