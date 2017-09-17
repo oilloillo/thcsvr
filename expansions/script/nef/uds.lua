@@ -1,5 +1,5 @@
 --
-require "expansions/script/nef/nef"
+-- require "nef/nef"
 Uds={}
 local Udsflag = true
 Uds.dataList = {}
