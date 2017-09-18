@@ -55,8 +55,8 @@ function M.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	e1:SetCode(EFFECT_CANNOT_TO_HAND)
 	e1:SetTargetRange(LOCATION_DECK, 0)
 	e1:SetReset(RESET_PHASE+PHASE_END)
-	e1:SetTarget(function(e, c)
-		return c == sc
+	e1:SetTarget(function(e1, c)
+		return e ~= c:GetReasonEffect()
 	end)
 	Duel.RegisterEffect(e1, tp)
 
@@ -70,7 +70,7 @@ function M.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 
 function M.target(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then 
+	if chk == 0 then 
 		if Duel.GetFieldGroupCount(tp, LOCATION_DECK, 0) < 3 then return false end
 		local g = Duel.GetDecktopGroup(tp, 3)
 		local result = g:FilterCount(Card.IsAbleToHand, nil) > 0
