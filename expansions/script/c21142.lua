@@ -1,5 +1,4 @@
 --真夜的合唱指挥 米斯蒂娅✿萝蕾拉
-require "expansions/script/nef/nef"
 function c21142.initial_effect(c)
 	Nef.AddXyzProcedureWithDesc(c,aux.FilterBoolFunction(Card.IsSetCard,0x208),2,2,aux.Stringid(21142,0))
 	c:EnableReviveLimit()
@@ -37,7 +36,7 @@ function c21142.initial_effect(c)
 end
 function c21142.spfilter(c)
 	return c:IsFaceup() and c:IsSetCard(0x208) and c:GetOriginalLevel()==2 and bit.band(c:GetOriginalType(),TYPE_TOKEN)~=TYPE_TOKEN
-		and (c:IsLocation(LOCATION_MZONE) or (c:IsLocation(LOCATION_SZONE) and (c:GetSequence()==6 or c:GetSequence()==7)))
+		and (c:IsLocation(LOCATION_MZONE) or c:IsLocation(LOCATION_PZONE))
 end
 function c21142.spcon(e,c)
 	if c==nil then return true end
@@ -61,7 +60,7 @@ function c21142.sumop(e,tp,eg,ep,ev,re,r,rp)
 	else Duel.SendtoGrave(e:GetHandler(),REASON_RULE) end
 end
 function c21142.posfilter(c)
-	return c:IsFaceup() and c:IsCanTurnSet() and not (c:IsLocation(LOCATION_SZONE) and (c:GetSequence()==5 or c:GetSequence()==6 or c:GetSequence()==7))
+	return c:IsFaceup() and c:IsCanTurnSet() and not c:IsLocation(LOCATION_PZONE)
 end
 function c21142.postg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	local mct=Duel.GetMatchingGroup(c21142.posfilter,tp,0,LOCATION_ONFIELD,nil):Filter(Card.IsCanBeEffectTarget,nil,e):GetCount()

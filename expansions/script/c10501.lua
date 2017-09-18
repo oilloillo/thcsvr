@@ -86,9 +86,9 @@ end
 function c10501.drop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local mg=e:GetHandler():GetMaterial()
-	local sg=mg:FilterSelect(c10501.filter,1,1,nil,tp)
+	local sg=mg:FilterSelect(tp,c10501.filter,1,1,nil,tp)
 	if sg:GetCount()>0 then
 		Duel.SendtoHand(sg,nil,REASON_EFFECT)
-		Duel.ConfirmCards(sg,1-tp)
+		Duel.ConfirmCards(1-tp,sg)
 	end
 end

@@ -1,5 +1,4 @@
- 
---古旧之琴的付丧神✿九十九弁々
+ --古旧之琴的付丧神✿九十九弁々
 function c29012.initial_effect(c)
 	--pendulum summon
 	aux.EnablePendulumAttribute(c)
@@ -33,7 +32,6 @@ function c29012.initial_effect(c)
 	e6:SetCode(EFFECT_CANNOT_SPECIAL_SUMMON)
 	e6:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
 	e6:SetTargetRange(1,0)
-	e6:SetCondition(c29012.condition)
 	e6:SetTarget(c29012.sumlimit)
 	c:RegisterEffect(e6)
 end
@@ -56,15 +54,8 @@ function c29012.recop(e,tp,eg,ep,ev,re,r,rp)
 	local p,d=Duel.GetChainInfo(0,CHAININFO_TARGET_PLAYER,CHAININFO_TARGET_PARAM)
 	Duel.Recover(p,d,REASON_EFFECT)
 end
-function c29012.sccon(e)
-	local seq=e:GetHandler():GetSequence()
-	if seq~=6 and seq~=7 then return false end
-	local tc=Duel.GetFieldCard(e:GetHandlerPlayer(),LOCATION_SZONE,13-seq)
-	return tc and tc:IsCode(29014)
-end
-function c29012.condition(e)
-	local seq=e:GetHandler():GetSequence()
-	return seq==6 or seq==7
+function c29012.sccon(e,tp,eg,ep,ev,re,r,rp)
+	return Duel.IsExistingMatchingCard(Card.IsCode,tp,LOCATION_PZONE,0,1,e:GetHandler(),29014)
 end
 function c29012.sumlimit(e,c,sump,sumtype,sumpos,targetp)
 	return sumtype==SUMMON_TYPE_PENDULUM and not c:IsSetCard(0x826)

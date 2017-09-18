@@ -1,7 +1,7 @@
 --恋与意识的连结✿古明地恋
 function c24501.initial_effect(c)
 	--link summon
-	aux.AddLinkProcedure(c,nil,2)
+	aux.AddLinkProcedure(c,c24501.matfilter,2)
 	c:EnableReviveLimit()
 	--link immune
 	local e1=Effect.CreateEffect(c)
@@ -40,6 +40,9 @@ function c24501.initial_effect(c)
 	e4:SetTarget(c24501.target)
 	e4:SetOperation(c24501.operation)
 	c:RegisterEffect(e4)
+end
+function c24501.matfilter(c)
+	return not c:IsLinkType(TYPE_TOKEN) and c:GetBaseAttack()<=1600
 end
 function c24501.rosefilter(c)
 	return c:IsCode(24111) and c:IsFaceup()

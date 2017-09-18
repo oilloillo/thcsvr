@@ -26,7 +26,7 @@ function c27501.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 function c27501.matfilter(c)
-	return not c:IsLinkType(TYPE_TOKEN) and c:IsLevelAbove(4) and c:IsSetCard(0x208)
+	return not c:IsLinkType(TYPE_TOKEN) and c:IsSetCard(0x208)
 end
 function c27501.condition(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():IsSummonType(SUMMON_TYPE_LINK)

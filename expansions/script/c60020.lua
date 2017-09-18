@@ -1,5 +1,4 @@
 --白发教团的冰枪 夏尔·谢库丽特
---require "expansions/script/nef/nef"
 function c60020.initial_effect(c)
 	--pendulum summon
 	local argTable = {1}
@@ -29,10 +28,8 @@ function c60020.initial_effect(c)
 	e3:SetOperation(c60020.operation)
 	c:RegisterEffect(e3)
 end
-function c60020.sccon(e)
-	local seq=e:GetHandler():GetSequence()
-	local tc=Duel.GetFieldCard(e:GetHandlerPlayer(),LOCATION_SZONE,13-seq)
-	return not tc or not tc:IsCode(60010)
+function c60020.spcon(e,tp,eg,ep,ev,re,r,rp)
+	return not Duel.IsExistingMatchingCard(Card.IsCode,tp,LOCATION_PZONE,0,1,e:GetHandler(),60010)
 end
 function c60020.splimit(e,c,tp,sumtp,sumpos)
 	return bit.band(sumtp,SUMMON_TYPE_PENDULUM)==SUMMON_TYPE_PENDULUM

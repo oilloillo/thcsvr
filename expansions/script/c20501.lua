@@ -42,7 +42,7 @@ function c20501.initial_effect(c)
 	c:RegisterEffect(e3)
 end
 function c20501.matfilter(c)
-	return not c:IsLinkType(TYPE_TOKEN) and c:IsLevelBelow(4)
+	return c:IsRace(RACE_SPELLCASTER) or c:IsRace(RACE_MACHINE)
 end
 function c20501.spcon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():IsSummonType(SUMMON_TYPE_LINK) and e:GetHandler():GetLinkedGroupCount()==0

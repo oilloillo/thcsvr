@@ -1,5 +1,4 @@
 --勇往直前的僧侣✿圣白莲
---require "expansions/script/nef/nef"
 function c26116.initial_effect(c)
 	--pendulum summon
 	local argTable = {1}
@@ -68,10 +67,11 @@ function c26116.initial_effect(c)
 	e7:SetOperation(c26116.atkop)
 	c:RegisterEffect(e7)
 end
-function c26116.sccon(e)
-	local seq=e:GetHandler():GetSequence()
-	local tc=Duel.GetFieldCard(e:GetHandlerPlayer(),LOCATION_SZONE,13-seq)
-	return not tc or tc:GetOriginalAttribute()==e:GetHandler():GetOriginalAttribute()
+function c26116.scfilter(c)
+	return c:GetOriginalAttribute()==ATTRIBUTE_FIRE 
+end
+function c26116.sccon(e,tp,eg,ep,ev,re,r,rp)
+	return Duel.IsExistingMatchingCard(c26116.scfilter,tp,LOCATION_PZONE,0,1,e:GetHandler())
 end
 function c26116.splimit(e,c,tp,sumtp,sumpos)
 	return bit.band(sumtp,SUMMON_TYPE_PENDULUM)==SUMMON_TYPE_PENDULUM

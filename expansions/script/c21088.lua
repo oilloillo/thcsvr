@@ -40,6 +40,7 @@ function c21088.initial_effect(c)
 end
 function c21088.sprfilter(c)
 	return c:IsSetCard(0x208) and c:IsType(TYPE_TUNER) and c:GetAttack()>=1000 and c:IsAttribute(ATTRIBUTE_FIRE) and c:IsReleasable()
+		and Duel.GetLocationCountFromEx(tp, tp, c)>0
 end
 function c21088.sprcon(e,c)
 	if c==nil then return true end

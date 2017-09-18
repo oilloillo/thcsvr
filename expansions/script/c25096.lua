@@ -43,7 +43,7 @@ function c25096.initial_effect(c)
 	e6:SetCode(EFFECT_LEAVE_FIELD_REDIRECT)
 	e6:SetCondition(c25096.recon)
 	e6:SetValue(LOCATION_REMOVED)
-	c:RegisterEffect(e6)
+	--c:RegisterEffect(e6)
 end
 function c25096.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_MZONE) and chkc:IsFaceup() end
