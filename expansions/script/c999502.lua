@@ -10,7 +10,7 @@ function c999502.filter(c)
 	return c:IsSetCard(0x999) and (c:IsAttribute(ATTRIBUTE_WATER) or c:IsAttribute(ATTRIBUTE_LIGHT)) and c:IsFaceup()
 end
 
-function c999502.pendfilter(c)
+function c999502.pendfilter(e,c)
 	local tp = c:GetControler()
 	return Duel.GetMatchingGroup(c999502.filter, tp, LOCATION_REMOVED, 0, nil)
 end
