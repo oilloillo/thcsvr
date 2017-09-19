@@ -80,15 +80,15 @@ after_build:
   - npm install ws
   - npm install redis
   - cd ..
-  - 7z a ygopro-server.7z ygopro-server start.bat -mx=9 -xr!.git*
+  - 7z a ygopro-server-thc.7z ygopro-server start.bat -mx=9 -xr!.git*
 
 test: off
 
 artifacts:
   - path: ygopro.exe
     name: ygopro
-  - path: ygopro-server.7z
-    name: ygopro-server
+  - path: ygopro-server-thc.7z
+    name: ygopro-server-thc
 
 cache:
   - premake-5.0.0-alpha10-windows.zip
