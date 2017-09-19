@@ -62,19 +62,17 @@ function c26119.initial_effect(c)
 	e6:SetOperation(c26119.disop)
 	c:RegisterEffect(e6)
 end
-function c26119.sccon(e)
-	local seq=e:GetHandler():GetSequence()
-	local tc=Duel.GetFieldCard(e:GetHandlerPlayer(),LOCATION_SZONE,13-seq)
-	return not tc or tc:GetOriginalAttribute()==e:GetHandler():GetOriginalAttribute()
+function c26119.scfilter(c)
+	return c:GetOriginalAttribute()==ATTRIBUTE_DARK 
+end
+function c26119.sccon(e,tp,eg,ep,ev,re,r,rp)
+	return Duel.IsExistingMatchingCard(c26119.scfilter,tp,LOCATION_PZONE,0,1,e:GetHandler())
 end
 function c26119.splimit(e,c,tp,sumtp,sumpos)
 	return bit.band(sumtp,SUMMON_TYPE_PENDULUM)==SUMMON_TYPE_PENDULUM
 end
 function c26119.target1(e,tp,eg,ep,ev,re,r,rp,chk)
-	local c=e:GetHandler()
-	local seq=c:GetSequence()
-	local tc=Duel.GetFieldCard(tp,LOCATION_SZONE,13-seq)
-	if chk==0 then return not tc and c:IsAbleToHand() end
+	if chk==0 then return not Duel.IsExistingMatchingCard(aux.TRUE,tp,LOCATION_PZONE,0,1,e:GetHandler()) end
 	Duel.SetOperationInfo(0,CATEGORY_TOHAND,e:GetHandler(),1,0,0)
 end
 function c26119.operation1(e,tp,eg,ep,ev,re,r,rp)
@@ -84,10 +82,7 @@ function c26119.operation1(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c26119.econdition(e,tp,eg,ep,ev,re,r,rp)
-	local c=e:GetHandler()
-	local seq=c:GetSequence()
-	local tc=Duel.GetFieldCard(c:GetControler(),LOCATION_SZONE,13-seq)
-	return tc and tc:GetCode()==c:GetCode()
+	return Duel.IsExistingMatchingCard(Card.IsCode,tp,LOCATION_PZONE,0,1,e:GetHandler(),26119)
 end
 function c26119.etarget(e,c)
 	return c:IsFaceup()

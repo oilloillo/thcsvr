@@ -64,10 +64,11 @@ function c26106.initial_effect(c)
 	e6:SetOperation(c26106.operation)
 	c:RegisterEffect(e6)
 end
-function c26106.sccon(e)
-	local seq=e:GetHandler():GetSequence()
-	local tc=Duel.GetFieldCard(e:GetHandlerPlayer(),LOCATION_SZONE,13-seq)
-	return not tc or tc:GetOriginalAttribute()==e:GetHandler():GetOriginalAttribute()
+function c26106.scfilter(c)
+	return c:GetOriginalAttribute()==ATTRIBUTE_LIGHT 
+end
+function c26106.sccon(e,tp,eg,ep,ev,re,r,rp)
+	return Duel.IsExistingMatchingCard(c26106.scfilter,tp,LOCATION_PZONE,0,1,e:GetHandler())
 end
 function c26106.splimit(e,c,tp,sumtp,sumpos)
 	return bit.band(sumtp,SUMMON_TYPE_PENDULUM)==SUMMON_TYPE_PENDULUM
@@ -76,7 +77,7 @@ function c26106.spfilter(c)
 	return c:IsSetCard(0x251b) and c:IsFaceup()
 end
 function c26106.sptg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
-	if chkc then return chkc:IsLocation(LOCATION_GRAVE) and chkc:IsControler(tp) and c26106.filter(chkc) end
+	if chkc then return chkc:IsLocation(LOCATION_MZONE) and chkc:IsControler(tp) and c26106.filter(chkc) end
 	if chk==0 then return e:GetHandler():IsCanBeSpecialSummoned(e,0,tp,false,false) and Duel.GetLocationCount(tp,LOCATION_MZONE)>0
 		and Duel.IsExistingMatchingCard(c26106.spfilter,tp,LOCATION_MZONE,0,1,nil) end
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,e:GetHandler(),1,0,0)

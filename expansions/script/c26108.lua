@@ -82,10 +82,11 @@ end
 function c26108.eqlimit(e,c)
 	return c:IsSetCard(0x251a)
 end
-function c26108.sccon(e)
-	local seq=e:GetHandler():GetSequence()
-	local tc=Duel.GetFieldCard(e:GetHandlerPlayer(),LOCATION_SZONE,13-seq)
-	return not tc or tc:GetOriginalAttribute()==e:GetHandler():GetOriginalAttribute()
+function c26108.scfilter(c)
+	return c:GetOriginalAttribute()==ATTRIBUTE_WATER 
+end
+function c26108.sccon(e,tp,eg,ep,ev,re,r,rp)
+	return Duel.IsExistingMatchingCard(c26108.scfilter,tp,LOCATION_PZONE,0,1,e:GetHandler())
 end
 function c26108.splimit(e,c,tp,sumtp,sumpos)
 	return bit.band(sumtp,SUMMON_TYPE_PENDULUM)==SUMMON_TYPE_PENDULUM

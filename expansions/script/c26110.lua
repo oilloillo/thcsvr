@@ -69,43 +69,41 @@ function c26110.initial_effect(c)
 	e6:SetOperation(c26110.lvop)
 	c:RegisterEffect(e6)
 end
-function c26110.sccon(e)
-	local seq=e:GetHandler():GetSequence()
-	local tc=Duel.GetFieldCard(e:GetHandlerPlayer(),LOCATION_SZONE,13-seq)
-	return not tc or tc:GetOriginalAttribute()==e:GetHandler():GetOriginalAttribute()
+function c26110.scfilter(c)
+	return c:GetOriginalAttribute()==ATTRIBUTE_WATER 
+end
+function c26110.sccon(e,tp,eg,ep,ev,re,r,rp)
+	return Duel.IsExistingMatchingCard(c26110.scfilter,tp,LOCATION_PZONE,0,1,e:GetHandler())
 end
 function c26110.splimit(e,c,tp,sumtp,sumpos)
 	return bit.band(sumtp,SUMMON_TYPE_PENDULUM)==SUMMON_TYPE_PENDULUM
 end
 -- function c26110.target1(e,tp,eg,ep,ev,re,r,rp,chk)
--- 	local c=e:GetHandler()
--- 	local seq=c:GetSequence()
--- 	local tc=Duel.GetFieldCard(tp,LOCATION_SZONE,13-seq)
--- 	if chk==0 then return not tc end
+--  local c=e:GetHandler()
+--  local seq=c:GetSequence()
+--  local tc=Duel.GetFieldCard(tp,LOCATION_PZONE,1-seq)
+--  if chk==0 then return not tc end
 -- end
 -- function c26110.operation1(e,tp,eg,ep,ev,re,r,rp)
--- 	local c=e:GetHandler()
--- 	local seq=c:GetSequence()
--- 	if c:IsFaceup() and c:IsRelateToEffect(e) then
--- 		local lsc=c:GetLeftScale()
--- 		local rsc=c:GetRightScale()
--- 		local e1=Effect.CreateEffect(c)
--- 		e1:SetType(EFFECT_TYPE_SINGLE)
--- 		e1:SetCode(EFFECT_CHANGE_LSCALE)
--- 		e1:SetValue(rsc)
--- 		e1:SetReset(RESET_EVENT+0x1ff0000+RESET_PHASE+PHASE_END)
--- 		c:RegisterEffect(e1)
--- 		local e2=e1:Clone()
--- 		e2:SetCode(EFFECT_CHANGE_RSCALE)
--- 		e2:SetValue(lsc)
--- 		c:RegisterEffect(e2)
--- 	end
+--  local c=e:GetHandler()
+--  local seq=c:GetSequence()
+--  if c:IsFaceup() and c:IsRelateToEffect(e) then
+--  local lsc=c:GetLeftScale()
+--  local rsc=c:GetRightScale()
+--  local e1=Effect.CreateEffect(c)
+--  e1:SetType(EFFECT_TYPE_SINGLE)
+--  e1:SetCode(EFFECT_CHANGE_LSCALE)
+--  e1:SetValue(rsc)
+--  e1:SetReset(RESET_EVENT+0x1ff0000+RESET_PHASE+PHASE_END)
+--  c:RegisterEffect(e1)
+--  local e2=e1:Clone()
+--  e2:SetCode(EFFECT_CHANGE_RSCALE)
+--  e2:SetValue(lsc)
+--  c:RegisterEffect(e2)
+--  end
 -- end
 function c26110.target1(e,tp,eg,ep,ev,re,r,rp,chk)
-	local c=e:GetHandler()
-	local seq=c:GetSequence()
-	local tc=Duel.GetFieldCard(tp,LOCATION_SZONE,13-seq)
-	if chk==0 then return tc and tc:IsSetCard(0x251) and c:IsAbleToExtra() end
+	if chk==0 then return Duel.IsExistingMatchingCard(Card.IsSetCard,tp,LOCATION_PZONE,0,1,e:GetHandler(),0x251) end
 end
 function c26110.operation1(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()

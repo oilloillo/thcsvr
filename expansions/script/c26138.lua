@@ -61,14 +61,14 @@ end
 
 function c26138.spfilter2(c,e,tp)
 	local flag1 = c:IsLocation(LOCATION_HAND)
-	local flag2 = c:IsLocation(LOCATION_SZONE) and (c:GetSequence()==6 or c:GetSequence()==7) and c:IsFaceup()
+	local flag2 = c:IsLocation(LOCATION_PZONE) and c:IsFaceup()
 	local flag3 = c:IsLocation(LOCATION_EXTRA) and c:IsFaceup()
 	return c:IsSetCard(0x251d) and c:IsCanBeSpecialSummoned(e,0,tp,false,false) and (flag1 or flag2 or flag3)
 end
 function c26138.tg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local g=Duel.GetMatchingGroup(Card.IsFaceup,tp,LOCATION_MZONE,0,nil)
-	local lpz=Duel.GetFieldCard(tp,LOCATION_SZONE,6)
-	local rpz=Duel.GetFieldCard(tp,LOCATION_SZONE,7)
+	local lpz=Duel.GetFieldCard(tp,LOCATION_PZONE,0)
+	local rpz=Duel.GetFieldCard(tp,LOCATION_PZONE,1)
 
 	if chk==0 then return e:GetHandler():GetFlagEffect(26138)==0 and Duel.GetLocationCount(tp,LOCATION_MZONE)>0
 		and Duel.IsExistingMatchingCard(c26138.spfilter2,tp,0x4a,0,1,nil,e,tp) end

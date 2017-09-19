@@ -34,10 +34,7 @@ function c14062.cfilter(c)
 	return bit.band(c:GetSummonType(),SUMMON_TYPE_PENDULUM)==SUMMON_TYPE_PENDULUM and c:IsSetCard(0x138)
 end
 function c14062.spcon(e,tp,eg,ep,ev,re,r,rp)
-	local seq=e:GetHandler():GetSequence()
-	local tc=Duel.GetFieldCard(tp,LOCATION_SZONE,13-seq)
-	if not tc or not tc:IsCode(14061) then return end
-	return ep==tp and eg:FilterCount(c14062.cfilter,nil)>0
+	return Duel.IsExistingMatchingCard(Card.IsCode,tp,LOCATION_PZONE,0,1,e:GetHandler(),14061) and ep==tp and eg:FilterCount(c14062.cfilter,nil)>0
 end
 function c14062.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()

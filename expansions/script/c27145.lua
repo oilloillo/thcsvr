@@ -11,7 +11,7 @@ function c27145.initial_effect(c)
 end
 function c27145.spfilter(c,e,tp)
 	return c:GetOriginalLevel()==2 and c:IsSetCard(0x208) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
-		and (c:IsLocation(LOCATION_SZONE) and (c:GetSequence()==6 or c:GetSequence()==7) or not c:IsLocation(LOCATION_SZONE))
+		and (c:IsLocation(LOCATION_PZONE) or not c:IsLocation(LOCATION_SZONE))
 end
 function c27145.cfilter(c)
 	return c:IsFaceup() and c:IsSetCard(0x527)

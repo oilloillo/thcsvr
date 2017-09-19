@@ -29,13 +29,13 @@ function c21154.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.Release(g,REASON_COST)
 end
 function c21154.spfilter(c,e,tp)
-	return c:IsSetCard(0x522) and c:IsCanBeSpecialSummoned(e,0,tp,false,false) and (c:IsLocation(LOCATION_GRAVE) or c:GetSequence()==6 or c:GetSequence()==7)
+	return c:IsSetCard(0x522) and c:IsCanBeSpecialSummoned(e,0,tp,false,false) and (c:IsLocation(LOCATION_GRAVE) or c:IsLocation(LOCATION_PZONE))
 end
 function c21154.spop(e,tp,eg,ep,ev,re,r,rp)
 	if not e:GetHandler():IsRelateToEffect(e) then return end
-	if Duel.IsExistingMatchingCard(c21154.spfilter,tp,LOCATION_GRAVE+LOCATION_SZONE,0,1,nil,e,tp) and Duel.SelectYesNo(tp,aux.Stringid(21154,0)) then
+	if Duel.IsExistingMatchingCard(c21154.spfilter,tp,LOCATION_GRAVE+LOCATION_PZONE,0,1,nil,e,tp) and Duel.SelectYesNo(tp,aux.Stringid(21154,0)) then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
-		local g=Duel.SelectMatchingCard(tp,c21154.spfilter,tp,LOCATION_GRAVE+LOCATION_SZONE,0,1,1,nil,e,tp)
+		local g=Duel.SelectMatchingCard(tp,c21154.spfilter,tp,LOCATION_GRAVE+LOCATION_PZONE,0,1,1,nil,e,tp)
 		local tc=g:GetFirst()
 		Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)
 	end

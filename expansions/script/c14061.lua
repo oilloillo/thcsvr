@@ -31,11 +31,8 @@ function c14061.initial_effect(c)
 	c:RegisterEffect(e3)
 end
 function c14061.spcon(e,tp,eg,ep,ev,re,r,rp)
-	local seq=e:GetHandler():GetSequence()
-	local tc=Duel.GetFieldCard(tp,LOCATION_SZONE,13-seq)
-	if not tc or not tc:IsCode(14062) then return end
 	local ec=eg:GetFirst()
-	return ep==tp and bit.band(ec:GetSummonType(),SUMMON_TYPE_ADVANCE)==SUMMON_TYPE_ADVANCE and ec:IsSetCard(0x138)
+	return Duel.IsExistingMatchingCard(Card.IsCode,tp,LOCATION_PZONE,0,1,e:GetHandler(),14062) and ep==tp and bit.band(ec:GetSummonType(),SUMMON_TYPE_ADVANCE)==SUMMON_TYPE_ADVANCE and ec:IsSetCard(0x138)
 end
 function c14061.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()

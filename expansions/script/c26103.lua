@@ -64,10 +64,11 @@ function c26103.initial_effect(c)
 	e6:SetOperation(c26103.sop)
 	c:RegisterEffect(e6)
 end
-function c26103.sccon(e)
-	local seq=e:GetHandler():GetSequence()
-	local tc=Duel.GetFieldCard(e:GetHandlerPlayer(),LOCATION_SZONE,13-seq)
-	return not tc or tc:GetOriginalAttribute()==e:GetHandler():GetOriginalAttribute()
+function c26103.scfilter(c)
+	return c:GetOriginalAttribute()==ATTRIBUTE_EARTH 
+end
+function c26103.sccon(e,tp,eg,ep,ev,re,r,rp)
+	return Duel.IsExistingMatchingCard(c26103.scfilter,tp,LOCATION_PZONE,0,1,e:GetHandler())
 end
 function c26103.splimit(e,c,tp,sumtp,sumpos)
 	return bit.band(sumtp,SUMMON_TYPE_PENDULUM)==SUMMON_TYPE_PENDULUM
@@ -86,13 +87,10 @@ function c26103.teop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
 	if tc:IsRelateToEffect(e) then
 		Duel.SendtoExtraP(tc,nil,REASON_EFFECT)
-    end
+	end
 end
 function c26103.sucon(e,tp,eg,ep,ev,re,r,rp)
-	local c=e:GetHandler()
-	local seq=c:GetSequence()
-	local tc=Duel.GetFieldCard(tp,LOCATION_SZONE,13-seq)
-	return not tc
+	return not Duel.IsExistingMatchingCard(aux.TRUE,tp,LOCATION_PZONE,0,1,e:GetHandler())
 end
 function c26103.suop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()

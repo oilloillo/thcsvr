@@ -67,16 +67,16 @@ function c20245.thcon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():IsPreviousLocation(LOCATION_ONFIELD)
 end
 function c20245.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
-	local lpz=Duel.GetFieldCard(tp,LOCATION_SZONE,6)
-	local rpz=Duel.GetFieldCard(tp,LOCATION_SZONE,7)
+	local lpz=Duel.GetFieldCard(tp,LOCATION_PZONE,0)
+	local rpz=Duel.GetFieldCard(tp,LOCATION_PZONE,1)
 	if chk==0 then return lpz==nil and rpz==nil end
 end
 function c20245.thop(e,tp,eg,ep,ev,re,r,rp)
-	local lpz=Duel.GetFieldCard(tp,LOCATION_SZONE,6)
-	local rpz=Duel.GetFieldCard(tp,LOCATION_SZONE,7)
+	local lpz=Duel.GetFieldCard(tp,LOCATION_PZONE,0)
+	local rpz=Duel.GetFieldCard(tp,LOCATION_PZONE,1)
 	if lpz or rpz then return end
 	local lp=Duel.CreateToken(tp,20252)
 	local rp=Duel.CreateToken(tp,20253)
-	Duel.MoveToField(lp, tp, tp, LOCATION_SZONE, POS_FACEUP, true)
-	Duel.MoveToField(rp, tp, tp, LOCATION_SZONE, POS_FACEUP, true)
+	Duel.MoveToField(lp, tp, tp, LOCATION_PZONE, POS_FACEUP, true)
+	Duel.MoveToField(rp, tp, tp, LOCATION_PZONE, POS_FACEUP, true)
 end

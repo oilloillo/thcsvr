@@ -2,7 +2,7 @@
 function c27142.initial_effect(c)
 	--fusion material
 	c:EnableReviveLimit()
-	aux.AddFusionProcFun2(c,aux.FilterBoolFunction(Card.IsFusionSetCard,0x522),aux.FilterBoolFunction(Card.IsFusionSetCard,0x527),true)
+	aux.AddFusionProcFun2(c,aux.FilterBoolFunction(Card.IsFusionSetCard,0x522),aux.FilterBoolFunction(Card.IsFusionSetCard,0x527),false)
 	--spsummon condition
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_SINGLE)
@@ -48,7 +48,7 @@ function c27142.splimit(e,se,sp,st)
 end
 function c27142.mfilter(c,set)
 	return c:IsSetCard(set) and
-		(c:IsLocation(LOCATION_MZONE) or (c:IsLocation(LOCATION_SZONE) and (c:GetSequence()==6 or c:GetSequence()==7)))
+		(c:IsLocation(LOCATION_MZONE) or c:IsLocation(LOCATION_PZONE))
 end
 function c27142.spcon(e,c)
 	if c==nil then return true end

@@ -63,10 +63,11 @@ function c26113.initial_effect(c)
 	e6:SetOperation(c26113.threeop)
 	c:RegisterEffect(e6)
 end
-function c26113.sccon(e)
-	local seq=e:GetHandler():GetSequence()
-	local tc=Duel.GetFieldCard(e:GetHandlerPlayer(),LOCATION_SZONE,13-seq)
-	return not tc or tc:GetOriginalAttribute()==e:GetHandler():GetOriginalAttribute()
+function c26113.scfilter(c)
+	return c:GetOriginalAttribute()==ATTRIBUTE_LIGHT 
+end
+function c26113.sccon(e,tp,eg,ep,ev,re,r,rp)
+	return Duel.IsExistingMatchingCard(c26113.scfilter,tp,LOCATION_PZONE,0,1,e:GetHandler())
 end
 function c26113.splimit(e,c,tp,sumtp,sumpos)
 	return bit.band(sumtp,SUMMON_TYPE_PENDULUM)==SUMMON_TYPE_PENDULUM
@@ -101,16 +102,13 @@ function c26113.operation(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c26113.sucon(e,tp,eg,ep,ev,re,r,rp)
-	local c=e:GetHandler()
-	local seq=c:GetSequence()
-	local tc=Duel.GetFieldCard(tp,LOCATION_SZONE,13-seq)
-	return tc and tc:IsSetCard(0x251)
+	return Duel.IsExistingMatchingCard(Card.IsSetCard,tp,LOCATION_PZONE,0,1,e:GetHandler(),0x251)
 end
 function c26113.suop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	if not c:IsRelateToEffect(e) then return end
 	local seq=c:GetSequence()
-	local tc=Duel.GetFieldCard(tp,LOCATION_SZONE,13-seq)
+	local tc=Duel.GetFieldCard(tp,LOCATION_PZONE,1-seq)
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_SINGLE)
 	e1:SetCode(EFFECT_UPDATE_LSCALE)
