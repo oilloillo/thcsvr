@@ -1,4 +1,6 @@
 --禁弹『折反射』
+local M = c999402
+local Mid = 999402
 function M.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
