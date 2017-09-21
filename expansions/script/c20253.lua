@@ -10,7 +10,7 @@ end
 function c20253.tpii(c)
 	return Duel.GetMatchingGroupCount(c20253.cfilter,c:GetControler(),LOCATION_MZONE,0,nil)
 end
-function c20253.pendfilter(c)
+function c20253.pendfilter(e,c)
 	local tp = c:GetControler()
 	return Duel.GetMatchingGroup(aux.TRUE, tp, 0x30, 0, nil)
 end

@@ -10,7 +10,7 @@ function c999504.filter(c)
 	return c:IsSetCard(0x999) and (c:IsAttribute(ATTRIBUTE_FIRE) or c:IsAttribute(ATTRIBUTE_LIGHT))
 end
 
-function c999504.pendfilter(c)
+function c999504.pendfilter(e,c)
 	local tp = c:GetControler()
 	return Duel.GetMatchingGroup(c999504.filter, tp, LOCATION_DECK, 0, nil)
 end

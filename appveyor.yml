@@ -37,15 +37,66 @@ build:
 
 after_build:
   - ps: move bin\release\ygopro.exe .
+  
+  - git clone https://github.com/moecube/ygopro-server
+  - bash -c "curl --retry 5 --connect-timeout 30 --location --remote-header-name --remote-name https://npm.taobao.org/mirrors/node/v8.4.0/node-v8.4.0-win-x64.zip ; exit 0"
+  - bash -c "curl --retry 5 --connect-timeout 30 --location --remote-header-name --remote-name https://github.com/MicrosoftArchive/redis/releases/download/win-3.2.100/Redis-x64-3.2.100.zip ; exit 0"
+
+  - cd ygopro-server
+  - mkdir ygopro
+  - cd ygopro
+
+  - mkdir script
+  - cd script
+  - bash -c "curl --retry 5 --connect-timeout 30 --location --remote-header-name --remote-name https://github.com/Fluorohydride/ygopro-scripts/raw/master/utility.lua ; exit 0"
+  - bash -c "curl --retry 5 --connect-timeout 30 --location --remote-header-name --remote-name https://github.com/Fluorohydride/ygopro-scripts/raw/master/constant.lua ; exit 0"
+  - cd ..
+  - mkdir replay
+  - cp -rf ../../expansions .
+  - cp -rf ../../gframe .
+  - cp -rf ../../ocgcore .
+  - cp -rf ../../premake .
+  - cp -rf ../../cards.cdb .
+  - cp -rf ../../textures .
+  - cp -rf ../../*.lua .
+  - cp -rf ../../*.conf .
+  - cp -rf ../../ygopro.exe .
+  - cd ..
+  
+  - mkdir redis
+  - cd redis
+  - cp -rf ../../Redis-x64-3.2.100.zip .
+  - 7z x Redis-x64-3.2.100.zip
+  - rm -rf Redis-x64-3.2.100.zip
+  - cd ..
+  
+  - cp -rf ../node-v8.4.0-win-x64.zip .
+  - 7z x node-v8.4.0-win-x64.zip
+  - rm -rf node-v8.4.0-win-x64.zip
+  - cp -rf node-v8.4.0-win-x64/* .
+  - rm -rf node-v8.4.0-win-x64
+  - npm install
+  - npm install pm2@latest -g
+  - npm install ws
+  - npm install redis
+  - cd ..
+  - 7z a ygopro-server-thc.7z ygopro-server start.bat -mx=9 -xr!.git*
 
 test: off
 
 artifacts:
   - path: ygopro.exe
-    name: ygopro(server)
+    name: ygopro
+  - path: ygopro-server-thc.7z
+    name: ygopro-server-thc
 
 cache:
   - premake-5.0.0-alpha10-windows.zip
   - libevent-2.0.22-stable.tar.gz
   - lua-5.2.4.tar.gz
   - sqlite-amalgamation-3150200.zip
+  - node-v8.4.0-win-x64.zip
+  - Redis-x64-3.2.100.zip
+branches:
+  only:
+  - master

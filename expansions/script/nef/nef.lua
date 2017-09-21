@@ -96,12 +96,18 @@ end
 function Nef.EnablePendulumAttributeSP(c,num,filter,argTable,reg,tag)
 	local code=c:GetOriginalCode()
 	local mt=_G["c" .. code]
-	if c.pend_effect1==nil then
-		mt.pend_filter=filter
-		mt.pend_arg=argTable
-		mt.pend_num=num
-		mt.pend_tag=tag
-	end
+	local mlist={}
+	mlist.pend_filter=filter
+	mlist.pend_arg=argTable
+	mlist.pend_num=num
+	mlist.pend_tag=tag
+	local e2=Effect.CreateEffect(c)
+	e2:SetType(EFFECT_TYPE_SINGLE)
+	e2:SetCode(10000001)
+	e2:SetProperty(EFFECT_FLAG_SINGLE_RANGE)
+	e2:SetRange(LOCATION_PZONE)
+	e2:SetValue(Nef.order_table_new(mlist))
+	c:RegisterEffect(e2)
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_FIELD)
 	e1:SetCode(EFFECT_SPSUMMON_PROC_G)
@@ -134,22 +140,26 @@ function Nef.EnablePendulumAttributeSP(c,num,filter,argTable,reg,tag)
 	end
 
 	mt.pend_effect1 = e1
-	mt.pend_effect2 = e2
+	--mt.pend_effect2 = e2
 end
 
 function Nef.PendSummonCheck(c,e,tp,lscale,rscale,filter,argTable,filter2,argTable2,lpc,rpc)
-	local code1=lpc:GetOriginalCode()
-	local mt1=_G["c" .. code1]
-
-	local code2=rpc:GetOriginalCode()
-	local mt2=_G["c" .. code2]
-
-	if mt1.pend_tag or mt2.pend_tag then
-		if (mt1.pend_tag == "GodSprite" or mt2.pend_tag == "GodSprite") and c:IsType(TYPE_RITUAL) then
-			return c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_PENDULUM,tp,true,false)
+	local eset1={lpc:FilterEffect(10000001)}
+	local eset2={rpc:FilterEffect(10000001)}
+	if c:IsType(TYPE_RITUAL) then
+		for _,te in ipairs(eset1) do
+			local mt=Nef.order_table[te:GetValue()]
+			if mt.pend_tag and mt.pend_tag:find("GodSprite") then
+				return c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_PENDULUM,tp,true,false)
+			end
+		end
+		for _,te in ipairs(eset2) do
+			local mt=Nef.order_table[te:GetValue()]
+			if mt.pend_tag and mt.pend_tag:find("GodSprite") then
+				return c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_PENDULUM,tp,true,false)
+			end
 		end
 	end
-
 	return c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_PENDULUM,tp,false,false)
 end
 
@@ -309,38 +319,76 @@ function Nef.PendOperationSP()
 end
 
 function Nef.SetPendMaxNum(c, num, reset_flag, property, reset_count)
-	local code=c:GetOriginalCode()
-	local mt=_G["c" .. code]
-	if mt.pend_effect1==nil then Auxiliary.EnablePendulumAttribute(c) end
-	for i = 1,num do 
-		c:RegisterFlagEffect(10000000 + c:GetOriginalCode(), reset_flag, property, reset_count)
+	local e1=Effect.CreateEffect(c)
+	e1:SetType(EFFECT_TYPE_SINGLE)
+	e1:SetCode(10000002)
+	local property=property or 0
+	e1:SetProperty(bit.bor(property,EFFECT_FLAG_CANNOT_DISABLE))
+	e1:SetValue(num)
+	if reset_flag then
+		e1:SetReset(reset_flag,reset_count)
 	end
+	c:RegisterEffect(e1,true)
 end
 
 function Nef.SetPendExTarget(c, filter_func)
-	local code=c:GetOriginalCode()
-	local mt=_G["c" .. code]
-	if mt.pend_effect1==nil then Auxiliary.EnablePendulumAttribute(c) end
-	mt.pend_extra_func=filter_func
+	local e2=Effect.CreateEffect(c)
+	e2:SetType(EFFECT_TYPE_SINGLE)
+	e2:SetCode(10000003)
+	e2:SetProperty(EFFECT_FLAG_SINGLE_RANGE)
+	e2:SetRange(LOCATION_PZONE)
+	e2:SetValue(filter_func)
+	c:RegisterEffect(e2)
 end
 
 function Nef.GetPendMaxNum(c)
-	return c:GetFlagEffect(10000000 + c:GetOriginalCode())
+	local ret=0
+	local eset={c:FilterEffect(10000002)}
+	for _,te in ipairs(eset) do
+		local v=te:GetValue()
+		if v and type(v)=="number" then ret=math.max(ret,v) end
+	end
+	return ret
 end
 
 function Nef.GetPendSPInfo(c)
-	local code=c:GetOriginalCode()
-	local mt=_G["c" .. code]
-	if mt.pend_effect1==nil then Auxiliary.EnablePendulumAttribute(c) end
-
-	local pend_num = mt.pend_num and mt.pend_num or 99
+	local eset={c:FilterEffect(10000001)}
+	local eset_ex={c:FilterEffect(10000003)}
+	local pend_num = 99
+	local pend_filter = Auxiliary.TRUE
+	local pend_arg = {1}
+	local pend_tag = nil
+	local pend_extra_func = Group.CreateGroup
+	for _,te in ipairs(eset) do
+		local mt=Nef.order_table[te:GetValue()]]
+		if mt then
+			if mt.pend_num then
+				pend_num=math.min(pend_num,mt.pend_num)
+			end
+			if mt.pend_filter then				
+				local f1=pend_filter
+				local arg=mt.pend_arg or {1}
+				local f2_ori=mt.pend_filter
+				local f2=function(c)
+					return not f2_ori or f2_ori(c,table.unpack(arg))
+				end
+				pend_filter=function(c) return f1(c) and f2(c) end
+			end
+			pend_arg=mt.pend_arg or pend_arg
+			pend_tag=mt.pend_tag and pand_tag..mt.pend_tag or pend_tag
+		end
+	end
+	for _,te in ipairs(eset_ex) do
+		local f=te:GetValue()
+		local oldf=pend_extra_func
+		pend_extra_func=function(...)
+			local g=oldf(...)
+			g:Merge(f(...))
+			return g
+		end
+	end
 	local max_pend_num = Nef.GetPendMaxNum(c)
-	if max_pend_num>0 then pend_num = max_pend_num end
-	local pend_filter = mt.pend_filter and mt.pend_filter or Auxiliary.TRUE
-	local pend_arg = mt.pend_arg and mt.pend_arg or {1}
-	local pend_tag = mt.pend_tag
-	local pend_extra_func = mt.pend_extra_func
-
+	if max_pend_num>0 then pend_num = math.min(pend_num,max_pend_num) end
 	return pend_num, pend_filter, pend_arg, pend_tag, pend_extra_func
 end
 
