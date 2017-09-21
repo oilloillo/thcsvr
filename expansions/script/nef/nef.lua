@@ -119,7 +119,7 @@ function Nef.EnablePendulumAttributeSP(c,num,filter,argTable,reg,tag)
 	e1:SetValue(SUMMON_TYPE_PENDULUM)
 	c:RegisterEffect(e1)
 
-	-- 由于utility处加载nef，不需要再无效效果
+	-- 鐢变簬utility澶勫姞杞絥ef锛屼笉闇�瑕佸啀鏃犳晥鏁堟灉
 	-- --disable HINTMSG_SPSUMMON 
 	-- local e2=Effect.CreateEffect(c)
 	-- e2:SetType(EFFECT_TYPE_FIELD)
@@ -360,7 +360,7 @@ function Nef.GetPendSPInfo(c)
 	local pend_tag = nil
 	local pend_extra_func = Group.CreateGroup
 	for _,te in ipairs(eset) do
-		local mt=Nef.order_table[te:GetValue()]]
+		local mt=Nef.order_table[te:GetValue()]
 		if mt then
 			if mt.pend_num then
 				pend_num=math.min(pend_num,mt.pend_num)
