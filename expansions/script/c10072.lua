@@ -14,7 +14,7 @@ function c10072.cfilter(c)
 	return c:IsFaceup() and c:IsSetCard(0x110) 
 end
 function c10072.filter(c)
-	return c:IsFaceup() and c:IsCanTurnSet()
+	return c:IsFaceup() and c:IsCanTurnSet() and not c:IsType(TYPE_LINK)
 end
 function c10072.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_MZONE) and c10072.filter(chkc) end

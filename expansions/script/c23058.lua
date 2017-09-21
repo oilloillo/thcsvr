@@ -11,13 +11,19 @@ function c23058.initial_effect(c)
 	c:RegisterEffect(e1)
 end
 function c23058.cfilter(c)
-	return c:IsType(TYPE_MONSTER) and c:IsAbleToDeckAsCost() and c:IsFaceup()
+	return c:IsType(TYPE_MONSTER) and c:IsAbleToDeckAsCost() and c:IsFaceup() and Duel.GetLocationCountFromEx(tp,tp,c)>0
 end
 function c23058.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(c23058.cfilter,tp,LOCATION_MZONE,0,1,nil) end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
-	local g=Duel.SelectMatchingCard(tp,c23058.cfilter,tp,LOCATION_MZONE,0,1,1,nil)
-	Duel.SendtoDeck(g,nil,1,REASON_COST)
+	if Duel.GetLocationCountFromEx(tp)>0 then
+		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
+		local g=Duel.SelectMatchingCard(tp,c23058.cfilter,tp,LOCATION_MZONE,0,1,1,nil)
+		Duel.SendtoDeck(g,nil,1,REASON_COST)
+	else
+		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
+		local g=Duel.SelectMatchingCard(tp,c20155.cfilter,tp,LOCATION_MZONE,0,1,1,nil)
+		Duel.SendtoDeck(g,nil,1,REASON_COST)
+	end
 end
 function c23058.filter(c,e,tp)
 	return c:IsCode(23031) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
@@ -32,19 +38,21 @@ function c23058.activate(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
 	local g=Duel.SelectMatchingCard(tp,c23058.filter,tp,LOCATION_EXTRA,0,1,1,nil,e,tp)
 	if g:GetCount()>0 then
-		Duel.SpecialSummon(g,0,tp,tp,false,false,POS_FACEUP)
+		local tc=g:GetFirst()
+		Duel.SpecialSummonStep(tc,0,tp,tp,false,false,POS_FACEUP)
+		tc:CompleteProcedure()
+		Duel.SpecialSummonComplete()
+		--local e2=Effect.CreateEffect(e:GetHandler())
+		--e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
+		--e2:SetCode(EVENT_PHASE+PHASE_END)
+		--e2:SetProperty(EFFECT_FLAG_IGNORE_IMMUNE)
+		--e2:SetRange(LOCATION_MZONE)
+		--e2:SetCountLimit(1)
+		--e2:SetReset(RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END)
+		--e2:SetOperation(c23058.desop)
+		--tc:RegisterEffect(e2)
 	end
-	local tc=g:GetFirst()
-	local e2=Effect.CreateEffect(e:GetHandler())
-	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
-	e2:SetCode(EVENT_PHASE+PHASE_END)
-	e2:SetProperty(EFFECT_FLAG_IGNORE_IMMUNE)
-	e2:SetRange(LOCATION_MZONE)
-	e2:SetCountLimit(1)
-	e2:SetReset(RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END)
-	e2:SetOperation(c23058.desop)
-	--tc:RegisterEffect(e2)
 end
-function c23058.desop(e,tp,eg,ep,ev,re,r,rp)
-	Duel.Destroy(e:GetHandler(),nil,REASON_EFFECT)
-end
+--function c23058.desop(e,tp,eg,ep,ev,re,r,rp)
+--	Duel.Destroy(e:GetHandler(),nil,REASON_EFFECT)
+--end

@@ -34,10 +34,24 @@ function c23204.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function c23204.spop(e,tp,eg,ep,ev,re,r,rp)
 	if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
-	local g=Duel.SelectMatchingCard(tp,c23204.filter,tp,LOCATION_EXTRA+LOCATION_HAND,0,1,1,nil,e,tp)
-	if g:GetCount()>0 then
-		Duel.SpecialSummon(g,0,tp,tp,false,false,POS_FACEUP)
+	if Duel.GetLocationCountFromEx(tp)>0 then
+		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
+		local g=Duel.SelectMatchingCard(tp,c23204.filter,tp,LOCATION_EXTRA+LOCATION_HAND,0,1,1,nil,e,tp)
+		if g:GetCount()>0 then
+			local tc=g:GetFirst()
+			Duel.SpecialSummonStep(tc,0,tp,tp,false,false,POS_FACEUP)
+			tc:CompleteProcedure()
+			Duel.SpecialSummonComplete()
+		end
+	else
+		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
+		local g=Duel.SelectMatchingCard(tp,c23204.filter,tp,LOCATION_HAND,0,1,1,nil,e,tp)
+		if g:GetCount()>0 then
+			local tc=g:GetFirst()
+			Duel.SpecialSummonStep(tc,0,tp,tp,false,false,POS_FACEUP)
+			tc:CompleteProcedure()
+			Duel.SpecialSummonComplete()
+		end
 	end
 end
 function c23204.cfilter(c)

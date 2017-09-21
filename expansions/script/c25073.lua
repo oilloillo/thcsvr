@@ -48,13 +48,25 @@ function c25073.activate(e,tp,eg,ep,ev,re,r,rp)
 		Duel.ConfirmCards(p,tg)
 	end
 	Duel.BreakEffect()
-	if Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and Duel.IsExistingMatchingCard(c25073.filter,tp,LOCATION_DECK+LOCATION_EXTRA,0,1,nil,e,tp)
+	if Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and Duel.IsExistingMatchingCard(c25073.filter,tp,LOCATION_DECK+LOCATION_EXTRA,0,1,nil,e,tp) 
 		and Duel.SelectYesNo(tp,aux.Stringid(25073,0)) then
-		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
-		local g=Duel.SelectMatchingCard(tp,c25073.filter,tp,LOCATION_EXTRA+LOCATION_DECK,0,1,1,nil,e,tp)
-		if g:GetCount()>0 then
-			Duel.SpecialSummon(g,0,tp,tp,false,false,POS_FACEUP)
+		if Duel.GetLocationCountFromEx(tp)>0 then
+			Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
+			local g=Duel.SelectMatchingCard(tp,c25073.filter,tp,LOCATION_EXTRA+LOCATION_DECK,0,1,1,nil,e,tp)
+			if g:GetCount()>0 then
+				local tc=g:GetFirst()
+				Duel.SpecialSummonStep(tc,0,tp,tp,false,false,POS_FACEUP)
+				tc:CompleteProcedure()
+				Duel.SpecialSummonComplete()
+			end
+			Duel.ShuffleHand(1-p)
+		else 
+			Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
+			local g=Duel.SelectMatchingCard(tp,c25073.filter,tp,LOCATION_DECK,0,1,1,nil,e,tp)
+			if g:GetCount()>0 then
+				Duel.SpecialSummon(g,0,tp,tp,false,false,POS_FACEUP)
+			end
+			Duel.ShuffleHand(1-p)
 		end
-		Duel.ShuffleHand(1-p)
 	end
 end

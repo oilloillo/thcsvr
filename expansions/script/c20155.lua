@@ -11,10 +11,22 @@ function c20155.initial_effect(c)
 	e1:SetOperation(c20155.activate)
 	c:RegisterEffect(e1)
 end
+function c20155.tfilter(c)
+	return c:IsCode(20073)
+end
+function c20155.cfilter(c)
+	return Duel.GetLocationCountFromEx(tp,tp,c)>0 and c:IsCode(20073)
+end
 function c20155.cost(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.CheckReleaseGroup(tp,Card.IsCode,1,nil,20073) end
-	local g=Duel.SelectReleaseGroup(tp,Card.IsCode,1,1,nil,20073)
-	Duel.Release(g,REASON_COST)
+	local g=Duel.GetMatchingGroup(c20155.tfilter,tp,LOCATION_MZONE,0,nil)
+	if chk==0 then return Duel.CheckReleaseGroup(tp,Card.IsCode,1,nil,20073) and Duel.GetLocationCountFromEx(tp,tp,g)>0 end
+	if Duel.GetLocationCountFromEx(tp)>0 then
+		local g=Duel.SelectReleaseGroup(tp,Card.IsCode,1,1,nil,20073)
+		Duel.Release(g,REASON_COST)
+	else
+		local g=Duel.SelectReleaseGroup(tp,c20155.cfilter,1,1,nil)
+		Duel.Release(g,REASON_COST)
+	end
 end
 function c20155.filter(c,e,tp)
 	return c:IsCode(20138) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
@@ -25,10 +37,13 @@ function c20155.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,0,LOCATION_EXTRA)
 end
 function c20155.activate(e,tp,eg,ep,ev,re,r,rp)
-	if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end
+	if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 and Duel.GetLocationCountFromEx(tp)<1 then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
 	local g=Duel.SelectMatchingCard(tp,c20155.filter,tp,LOCATION_EXTRA,0,1,1,nil,e,tp)
 	if g:GetCount()>0 then
-		Duel.SpecialSummon(g,0,tp,tp,false,false,POS_FACEUP)
+		local tc=g:GetFirst()
+		Duel.SpecialSummonStep(tc,0,tp,tp,false,false,POS_FACEUP)
+		tc:CompleteProcedure()
+		Duel.SpecialSummonComplete()
 	end
 end

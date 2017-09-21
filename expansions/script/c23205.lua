@@ -32,15 +32,28 @@ function c23205.target(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function c23205.activate(e,tp,eg,ep,ev,re,r,rp)
 	if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
-	local tc=Duel.SelectMatchingCard(tp,c23205.filter,tp,LOCATION_EXTRA+LOCATION_DECK,0,1,1,nil,e,tp):GetFirst()
-	if tc then
-		if bit.band(tc:GetType(),0x81)==0x81 then
-			Duel.SpecialSummon(tc,SUMMON_TYPE_RITUAL,tp,tp,true,false,POS_FACEUP)
-			tc:CompleteProcedure()
-		else
-			Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)
+	if Duel.GetLocationCountFromEx(tp)>0 then
+		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
+		local tc=Duel.SelectMatchingCard(tp,c23205.filter,tp,LOCATION_EXTRA+LOCATION_DECK,0,1,1,nil,e,tp):GetFirst()
+		if tc then
+			if bit.band(tc:GetType(),0x81)==0x81 then
+				Duel.SpecialSummon(tc,SUMMON_TYPE_RITUAL,tp,tp,true,false,POS_FACEUP)
+				tc:CompleteProcedure()
+			else
+				Duel.SpecialSummonStep(tc,0,tp,tp,false,false,POS_FACEUP)
+				tc:CompleteProcedure()
+				Duel.SpecialSummonComplete()
+			end
+			tc:AddCounter(0x128a,e:GetLabel())
+	else 
+		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
+		local tc=Duel.SelectMatchingCard(tp,c23205.filter,tp,LOCATION_DECK,0,1,1,nil,e,tp):GetFirst()
+		if tc then
+			if bit.band(tc:GetType(),0x81)==0x81 then
+				Duel.SpecialSummon(tc,SUMMON_TYPE_RITUAL,tp,tp,true,false,POS_FACEUP)
+				tc:CompleteProcedure()
+			end
+			tc:AddCounter(0x128a,e:GetLabel())
 		end
-		tc:AddCounter(0x128a,e:GetLabel())
 	end
 end

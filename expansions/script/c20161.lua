@@ -12,7 +12,6 @@ function c20161.initial_effect(c)
 	e3:SetRange(LOCATION_ONFIELD)
 	e3:SetCode(EFFECT_INDESTRUCTABLE_COUNT)
 	e3:SetCountLimit(1)
-	e3:SetValue(c20161.valcon)
 	c:RegisterEffect(e3)
 	--special summon
 	local e4=Effect.CreateEffect(c)
@@ -27,9 +26,6 @@ function c20161.initial_effect(c)
 	e4:SetOperation(c20161.operation)
 	c:RegisterEffect(e4)
 end
-function c20161.valcon(e,re,r,rp)
-	return bit.band(r,REASON_EFFECT)~=0
-end
 function c20161.spfilter(c,e,tp)
 	return (c:IsCode(20013) or c:IsCode(20016) or c:IsSetCard(0x123)) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
@@ -41,18 +37,40 @@ end
 function c20161.operation(e,tp,eg,ep,ev,re,r,rp)
 	if not e:GetHandler():IsRelateToEffect(e) then return end
 	if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
-	local g=Duel.SelectMatchingCard(tp,c20161.spfilter,tp,LOCATION_DECK+LOCATION_EXTRA,0,1,1,nil,e,tp)
-	if g:GetCount()>0 then
-		Duel.SpecialSummon(g,0,tp,tp,false,false,POS_FACEUP)
-		local e1=Effect.CreateEffect(g:GetFirst())
-		e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_CONTINUOUS)
-		e1:SetCode(EVENT_BE_MATERIAL)
-		e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
-		e1:SetReset(RESET_EVENT+0x1620000)
-		e1:SetCondition(c20161.ccon)
-		e1:SetOperation(c20161.cop)
-		g:GetFirst():RegisterEffect(e1)
+	if Duel.GetLocationCountFromEx(tp)>0 then
+		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
+		local g=Duel.SelectMatchingCard(tp,c20161.spfilter,tp,LOCATION_DECK+LOCATION_EXTRA,0,1,1,nil,e,tp)
+		if g:GetCount()>0 then
+			local tc=g:GetFirst()
+			Duel.SpecialSummonStep(tc,0,tp,tp,false,false,POS_FACEUP)
+			tc:CompleteProcedure()
+			Duel.SpecialSummonComplete()
+			local e1=Effect.CreateEffect(g:GetFirst())
+			e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_CONTINUOUS)
+			e1:SetCode(EVENT_BE_MATERIAL)
+			e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
+			e1:SetReset(RESET_EVENT+0x1620000)
+			e1:SetCondition(c20161.ccon)
+			e1:SetOperation(c20161.cop)
+			tc:GetFirst():RegisterEffect(e1)
+		end
+	else
+		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
+		local g=Duel.SelectMatchingCard(tp,c20161.spfilter,tp,LOCATION_DECK,0,1,1,nil,e,tp)
+		if g:GetCount()>0 then
+			local tc=g:GetFirst()
+			Duel.SpecialSummonStep(tc,0,tp,tp,false,false,POS_FACEUP)
+			tc:CompleteProcedure()
+			Duel.SpecialSummonComplete()
+			local e1=Effect.CreateEffect(g:GetFirst())
+			e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_CONTINUOUS)
+			e1:SetCode(EVENT_BE_MATERIAL)
+			e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
+			e1:SetReset(RESET_EVENT+0x1620000)
+			e1:SetCondition(c20161.ccon)
+			e1:SetOperation(c20161.cop)
+			tc:GetFirst():RegisterEffect(e1)
+		end
 	end
 end
 function c20161.ccon(e,tp,eg,ep,ev,re,r,rp)

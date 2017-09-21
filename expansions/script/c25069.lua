@@ -28,13 +28,17 @@ function c25069.target(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function c25069.activate(e,tp,eg,ep,ev,re,r,rp)
 	if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end
+	if Duel.GetLocationCountFromEx(tp)<=0 then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE)
 	local sg=Duel.SelectMatchingCard(tp,c25069.tgfilter,tp,LOCATION_DECK,0,1,1,nil)
 	if sg:GetCount()>0 and Duel.SendtoGrave(sg,REASON_EFFECT)>0 then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
 		local g=Duel.SelectMatchingCard(tp,c25069.filter,tp,LOCATION_EXTRA,0,1,1,nil,e,tp)
+		if g:GetCount()>0 then
 		local tc=g:GetFirst()
-		if g:GetCount()>0 and Duel.SpecialSummon(g,0,tp,tp,false,false,POS_FACEUP_DEFENSE)>0 then
+		if Duel.SpecialSummonStep(tc,0,tp,tp,false,false,POS_FACEUP_DEFENSE)>0 then
+			tc:CompleteProcedure()
+			Duel.SpecialSummonComplete()
 			local lp=Duel.GetLP(tp)
 			Duel.SetLP(tp,lp-tc:GetDefense())
 		end

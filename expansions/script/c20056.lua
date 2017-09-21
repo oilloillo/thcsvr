@@ -1,5 +1,4 @@
- 
---春之到来
+ --春之到来
 function c20056.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
@@ -59,35 +58,41 @@ function c20056.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	--Duel.RegisterEffect(e3,tp)
 end
 function c20056.sumlimit(e,c,sump,sumtype,sumpos,targetp,se)
-	return sumtype~=SUMMON_TYPE_XYZ and e:GetLabelObject()~=se
+	return sumtype~=SUMMON_TYPE_XYZ+SUMMON_TYPE_LINK and e:GetLabelObject()~=se
 end
 function c20056.filter(c,e,tp)
-	return c:IsCode(20013) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
+	return c:IsSetCard(0x123) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
 function c20056.target(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>2
-		and Duel.IsExistingMatchingCard(c20056.filter,tp,LOCATION_EXTRA,0,3,nil,e,tp) end
-	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,3,tp,LOCATION_EXTRA)
+	if chk==0 then return Duel.GetLocationCountFromEx(tp)>2-Duel.GetMatchingGroupCount(c20056.filter,tp,LOCATION_GRAVE,0,nil,e,tp)
+		and Duel.IsExistingMatchingCard(c20056.filter,tp,LOCATION_EXTRA+LOCATION_GRAVE,0,3,nil,e,tp) end
+	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,3,tp,LOCATION_EXTRA+LOCATION_GRAVE)
 end
 function c20056.activate(e,tp,eg,ep,ev,re,r,rp)
-	if Duel.GetLocationCount(tp,LOCATION_MZONE)<=2 then return end
+	if Duel.GetLocationCountFromEx(tp)<3-Duel.GetMatchingGroupCount(c20056.filter,tp,LOCATION_GRAVE,0,nil,e,tp) then return end
+	local mc=Duel.GetLocationCountFromEx(tp)
+	local gc=3-mc
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
-	local g=Duel.SelectMatchingCard(tp,c20056.filter,tp,LOCATION_EXTRA,0,3,3,nil,e,tp)
+	local g=Duel.SelectMatchingCard(tp,c20056.filter,tp,LOCATION_EXTRA,0,mc,mc,nil,e,tp)
+	local dg=Duel.SelectMatchingCard(tp,c20056.filter,tp,LOCATION_GRAVE,0,gc,gc,nil,e,tp)
+	g:Merge(dg)
 	if g:GetCount()>2 then
-		Duel.SpecialSummon(g,0,tp,tp,false,false,POS_FACEUP)
-	end
-	local tc=g:GetFirst()
-	while tc do
-		local e2=Effect.CreateEffect(e:GetHandler())
-		e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
-		e2:SetCode(EVENT_PHASE+PHASE_END)
-		e2:SetProperty(EFFECT_FLAG_IGNORE_IMMUNE)
-		e2:SetRange(LOCATION_MZONE)
-		e2:SetCountLimit(1)
-		e2:SetReset(RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END)
-		e2:SetOperation(c20056.desop)
-		tc:RegisterEffect(e2)
-	tc=g:GetNext()
+		local tc=g:GetFirst()
+		while tc do
+			Duel.SpecialSummonStep(tc,0,tp,tp,false,false,POS_FACEUP)
+			tc:CompleteProcedure()
+			Duel.SpecialSummonComplete()
+			local e2=Effect.CreateEffect(e:GetHandler())
+			e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
+			e2:SetCode(EVENT_PHASE+PHASE_END)
+			e2:SetProperty(EFFECT_FLAG_IGNORE_IMMUNE)
+			e2:SetRange(LOCATION_MZONE)
+			e2:SetCountLimit(1)
+			e2:SetReset(RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END)
+			e2:SetOperation(c20056.desop)
+			tc:RegisterEffect(e2)
+			tc=g:GetNext()
+		end
 	end
 end
 function c20056.desop(e,tp,eg,ep,ev,re,r,rp)
