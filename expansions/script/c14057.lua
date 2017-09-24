@@ -47,13 +47,13 @@ function c14057.cfilter(c)
 end
 function c14057.ovfilter(c,tp,xyzc)
 	local cy=Duel.GetMatchingGroup(c14057.cfilter,tp,LOCATION_GRAVE,0,nil):GetClassCount(Card.GetCode)
-	return c:IsFaceup() and c:IsType(TYPE_XYZ) and c:IsSetCard(0x138) and c:IsCanBeXyzMaterial(xyzc)
+	return c:IsFaceup() and c:IsType(TYPE_XYZ) and c:IsSetCard(0x138) and c:IsCanBeXyzMaterial(xyzc) and Duel.GetLocationCountFromEx(tp,tp,c,xyzc)>0
 		and c:CheckRemoveOverlayCard(tp,1,REASON_COST) and cy>3
 end
 function c14057.xyzcon(e,c,og,min,max)
 	if c==nil then return true end
 	local tp=c:GetControler()
-	local ft=Duel.GetLocationCount(tp,LOCATION_MZONE)
+	local ft=Duel.GetLocationCountFromEx(tp)
 	local ct=-ft
 	if 2<=ct then return false end
 	if min and (min>2 or max<2) then return false end
@@ -72,7 +72,7 @@ function c14057.xyztg(e,tp,eg,ep,ev,re,r,rp,chk,c,og,min,max)
 	if og and not min then
 		return true
 	end
-	local ft=Duel.GetLocationCount(tp,LOCATION_MZONE)
+	local ft=Duel.GetLocationCountFromEx(tp)
 	local ct=-ft
 	local mg=nil
 	if og then

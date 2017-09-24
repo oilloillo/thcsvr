@@ -2,7 +2,7 @@
 function c26078.initial_effect(c)
 	--fusion material
 	c:EnableReviveLimit()
-	Fus.AddFusionProcFun2(c,c26078.ffilter,aux.FilterBoolFunction(Card.IsFusionType,TYPE_FLIP),true)
+	Fus.AddFusionProcFun2(c,c26078.ffilter,aux.FilterBoolFunction(Card.IsFusionType,TYPE_FLIP),false)
 	--special summon rule
 	local e0=Effect.CreateEffect(c)
 	e0:SetType(EFFECT_TYPE_FIELD)
@@ -37,15 +37,15 @@ function c26078.ffilter(c)
 	return c:IsFusionSetCard(0x229)
 end
 function c26078.spfilter1(c,tp)
-	return c:IsSetCard(0x229) and c:IsCanBeFusionMaterial() and Duel.CheckReleaseGroup(tp,c26078.spfilter2,1,c)
+	return c:IsSetCard(0x229) and c:IsCanBeFusionMaterial() and Duel.CheckReleaseGroup(tp,c26078.spfilter2,1,c) and Duel.GetLocationCountFromEx(tp,tp,c)>0
 end
 function c26078.spfilter2(c)
-	return c:IsType(TYPE_FLIP) and c:IsCanBeFusionMaterial()
+	return c:IsType(TYPE_FLIP) and c:IsCanBeFusionMaterial() and Duel.GetLocationCountFromEx(tp,tp,c)>0
 end
 function c26078.spcon(e,c)
 	if c==nil then return true end
 	local tp=c:GetControler()
-	return Duel.GetLocationCount(tp,LOCATION_MZONE)>-2
+	return Duel.GetLocationCountFromEx(tp)>-2
 		and Duel.CheckReleaseGroup(tp,c26078.spfilter1,1,nil,tp)
 end
 function c26078.spop(e,tp,eg,ep,ev,re,r,rp,c)

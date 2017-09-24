@@ -1,5 +1,4 @@
 --恶灵神✿键山雏
-require "expansions/script/nef/nef"
 function c23064.initial_effect(c)
 	--synchro summon
 	Nef.AddSynchroProcedureWithDesc(c,nil,aux.NonTuner(Card.IsSetCard,0x208),1,aux.Stringid(23064,0))
@@ -36,11 +35,13 @@ function c23064.initial_effect(c)
 	e3:SetOperation(c23064.operation)
 	c:RegisterEffect(e3)
 end
-function c23064.matfilter1(c,syncard)
+function c23064.matfilter1(c,syncard,tp)
 	return c:IsType(TYPE_TUNER) and c:IsCanBeSynchroMaterial(syncard) and (c:IsFaceup() or c:IsLocation(LOCATION_HAND))
+		and Duel.GetLocationCountFromEx(tp,tp,c,syncard)>0
 end
-function c23064.matfilter2(c,syncard)	
+function c23064.matfilter2(c,syncard,tp)	
 	return c:IsCanBeSynchroMaterial(syncard) and not c:IsType(TYPE_TUNER) and c:IsSetCard(0x113) and (c:IsFaceup() or c:IsLocation(LOCATION_HAND))
+		 and Duel.GetLocationCountFromEx(tp,tp,c,syncard)>0
 end
 function c23064.synfilter1(c,lv,g1,g2)
 	local tlv=c:GetLevel()	
@@ -52,20 +53,20 @@ end
 function c23064.syncon(e,c,tuner)
 	if c==nil then return true end
 	local tp=c:GetControler()
-	if Duel.GetLocationCount(tp,LOCATION_MZONE)<-1 then return false end
-	local g1=Duel.GetMatchingGroup(c23064.matfilter1,tp,0x6,0,nil,c)
-	local g2=Duel.GetMatchingGroup(c23064.matfilter2,tp,0x6,0,nil,c)
+	if Duel.GetLocationCountFromEx(tp)<-1 then return false end
+	local g1=Duel.GetMatchingGroup(c23064.matfilter1,tp,0x6,0,nil,c,tp)
+	local g2=Duel.GetMatchingGroup(c23064.matfilter2,tp,0x6,0,nil,c,tp)
 	local lv=c:GetLevel()
 	local m=g1:FilterCount(Card.IsLocation,nil,LOCATION_HAND)+g2:FilterCount(Card.IsLocation,nil,LOCATION_HAND)
 	if m > 2 then m = 2 end
-	return Duel.GetLocationCount(tp,LOCATION_MZONE)>m-2 and g1:IsExists(c23064.synfilter1,1,nil,lv,g1,g2)
+	return Duel.GetLocationCountFromEx(tp)>m-2 and g1:IsExists(c23064.synfilter1,1,nil,lv,g1,g2)
 end
 function c23064.synop(e,tp,eg,ep,ev,re,r,rp,c,tuner)
 	local g=Group.CreateGroup()
-	local g1=Duel.GetMatchingGroup(c23064.matfilter1,tp,0x6,0,nil,c)
-	local g2=Duel.GetMatchingGroup(c23064.matfilter2,tp,0x6,0,nil,c)
+	local g1=Duel.GetMatchingGroup(c23064.matfilter1,tp,0x6,0,nil,c,tp)
+	local g2=Duel.GetMatchingGroup(c23064.matfilter2,tp,0x6,0,nil,c,tp)
 	local lv=c:GetLevel()
-	if Duel.GetLocationCount(tp,LOCATION_MZONE)<1 then
+	if Duel.GetLocationCountFromEx(tp)<1 then
 		local g3=g1:Filter(Card.IsLocation,nil,LOCATION_MZONE)
 		local g4=g2:Filter(Card.IsLocation,nil,LOCATION_MZONE)
 		if g4:GetCount()>0 then
@@ -107,7 +108,7 @@ function c23064.con(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():GetSummonType()==SUMMON_TYPE_SYNCHRO
 end
 function c23064.filter(c)
-	return c:IsAbleToGrave() and c:GetLevel()<10 and c:GetRank()<10
+	return c:IsAbleToGrave() and c:GetLevel()<10 and c:GetRank()<10 and not c:IsType(TYPE_LINK)
 end
 function c23064.tg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(c23064.filter,tp,LOCATION_EXTRA,LOCATION_EXTRA,1,nil) end

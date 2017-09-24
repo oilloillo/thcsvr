@@ -60,12 +60,12 @@ function c15059.addcount(e,tp,eg,ep,ev,re,r,rp)
 end
 function c15059.hofilter(c, tp, xyzc, lv)
 	if c:IsType(TYPE_TOKEN) or not c:IsCanBeXyzMaterial(xyzc) then return false end
-	return c:IsSetCard(0x300) and c:IsFaceup() and c:IsLevelBelow(4)
+	return c:IsSetCard(0x300) and c:IsFaceup() and c:IsLevelBelow(4) and Duel.GetLocationCountFromEx(tp,tp,c,xyzc)>0
 end
 function c15059.xyzcon(e,c)
 	if c==nil then return true end
 	local tp=c:GetControler()
-	if Duel.GetLocationCount(tp,LOCATION_MZONE)<0 then return false end
+	if Duel.GetLocationCountFromEx(tp)<1 then return false end
 	return Duel.IsExistingMatchingCard(c15059.hofilter, tp, LOCATION_MZONE, 0, 1, nil, tp, c)
 end
 function c15059.xyzop(e,tp,eg,ep,ev,re,r,rp,c)

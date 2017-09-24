@@ -1,5 +1,4 @@
- 
---雾雨魔里沙
+ --雾雨魔里沙
 function c10002.initial_effect(c)
 	--handes
 	local e1=Effect.CreateEffect(c)
@@ -33,7 +32,7 @@ function c10002.destg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
 	local tc=Duel.GetAttacker()
 	if tc==c then tc=Duel.GetAttackTarget() end
-	if chk==0 then return tc and tc:IsFaceup() and tc:IsRace(RACE_SPELLCASTER) and tc:IsLevelBelow(7) end
+	if chk==0 then return tc and tc:IsFaceup() and tc:IsRace(RACE_SPELLCASTER) and tc:IsLevelBelow(7) and not tc:IsType(TYPE_LINK) end
 	Duel.SetOperationInfo(0,CATEGORY_DESTROY,tc,1,0,0)
 end
 function c10002.desop(e,tp,eg,ep,ev,re,r,rp)

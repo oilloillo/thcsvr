@@ -69,7 +69,7 @@ end
 function c20245.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local lpz=Duel.GetFieldCard(tp,LOCATION_PZONE,0)
 	local rpz=Duel.GetFieldCard(tp,LOCATION_PZONE,1)
-	if chk==0 then return lpz==nil and rpz==nil end
+	if chk==0 then return true end
 end
 function c20245.thop(e,tp,eg,ep,ev,re,r,rp)
 	local lpz=Duel.GetFieldCard(tp,LOCATION_PZONE,0)

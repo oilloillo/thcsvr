@@ -1,5 +1,4 @@
- 
---朱鹭子
+ --朱鹭子
 function c10010.initial_effect(c)
 	--unsynchroable
 	local e1=Effect.CreateEffect(c)

@@ -29,7 +29,7 @@ function c23070.con(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():GetSummonType()==SUMMON_TYPE_SYNCHRO
 end
 function c23070.filter(c)
-	return c:IsAbleToGrave() and c:GetLevel()<8 and c:GetRank()<8
+	return c:IsAbleToGrave() and c:GetLevel()<8 and c:GetRank()<8 and not c:IsType(TYPE_LINK)
 end
 function c23070.tg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(c23070.filter,tp,LOCATION_EXTRA,LOCATION_EXTRA,3,nil) end

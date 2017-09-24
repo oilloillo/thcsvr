@@ -46,15 +46,15 @@ aux.FilterBoolFunction(Card.IsFusionSetCard,0x527),
 function c27142.splimit(e,se,sp,st)
 	return bit.band(st,SUMMON_TYPE_FUSION)==SUMMON_TYPE_FUSION
 end
-function c27142.mfilter(c,set)
+function c27142.mfilter(c,set,tp)
 	return c:IsSetCard(set) and
-		(c:IsLocation(LOCATION_MZONE) or c:IsLocation(LOCATION_PZONE))
+		(c:IsLocation(LOCATION_MZONE) or c:IsLocation(LOCATION_PZONE)) and Duel.GetLocationCountFromEx(tp,tp,c)>0
 end
 function c27142.spcon(e,c)
 	if c==nil then return true end
 	local tp=c:GetControler()
-	local mg1=Duel.GetMatchingGroup(c27142.mfilter,tp,LOCATION_ONFIELD,0,nil,0x522)
-	local mg2=Duel.GetMatchingGroup(c27142.mfilter,tp,LOCATION_ONFIELD,0,nil,0x527)
+	local mg1=Duel.GetMatchingGroup(c27142.mfilter,tp,LOCATION_ONFIELD,0,nil,0x522,tp)
+	local mg2=Duel.GetMatchingGroup(c27142.mfilter,tp,LOCATION_ONFIELD,0,nil,0x527,tp)
 	local xmg=Duel.GetMatchingGroup(aux.TRUE,tp,LOCATION_MZONE,0,nil)
 	local xsg=Group.CreateGroup()
 	local xtc=xmg:GetFirst()
@@ -67,16 +67,16 @@ function c27142.spcon(e,c)
 	local xsg2=xsg:Filter(Card.IsSetCard,nil,0x527)
 	mg1:Merge(xsg1)
 	mg2:Merge(xsg2)
-	local mct1=Duel.GetMatchingGroupCount(c27142.mfilter,tp,LOCATION_MZONE,0,nil,0x522)
-	local mct2=Duel.GetMatchingGroupCount(c27142.mfilter,tp,LOCATION_MZONE,0,nil,0x527)
+	local mct1=Duel.GetMatchingGroupCount(c27142.mfilter,tp,LOCATION_MZONE,0,nil,0x522,tp)
+	local mct2=Duel.GetMatchingGroupCount(c27142.mfilter,tp,LOCATION_MZONE,0,nil,0x527,tp)
 	local mct=0
 	if mct1>0 and mct2>0 then mct=-2 end
-	return mg1:GetCount()>0 and mg2:GetCount()>0 and Duel.GetLocationCount(tp,LOCATION_MZONE)>mct 
+	return mg1:GetCount()>0 and mg2:GetCount()>0 and Duel.GetLocationCountFromEx(tp)>mct 
 		and mg1:GetFirst()~=mg2:GetFirst()
 end
 function c27142.spop(e,tp,eg,ep,ev,re,r,rp,c)
-	local mg1=Duel.GetMatchingGroup(c27142.mfilter,tp,LOCATION_ONFIELD,0,nil,0x522)
-	local mg2=Duel.GetMatchingGroup(c27142.mfilter,tp,LOCATION_ONFIELD,0,nil,0x527)
+	local mg1=Duel.GetMatchingGroup(c27142.mfilter,tp,LOCATION_ONFIELD,0,nil,0x522,tp)
+	local mg2=Duel.GetMatchingGroup(c27142.mfilter,tp,LOCATION_ONFIELD,0,nil,0x527,tp)
 	local xmg=Duel.GetMatchingGroup(aux.TRUE,tp,LOCATION_MZONE,0,nil)
 	local xsg=Group.CreateGroup()
 	local xtc=xmg:GetFirst()
@@ -91,10 +91,10 @@ function c27142.spop(e,tp,eg,ep,ev,re,r,rp,c)
 	mg2:Merge(xsg2)
 	local ct1=mg1:GetCount()
 	local ct2=mg2:GetCount()
-	local mct1=Duel.GetMatchingGroupCount(c27142.mfilter,tp,LOCATION_MZONE,0,nil,0x522)
-	local mct2=Duel.GetMatchingGroupCount(c27142.mfilter,tp,LOCATION_MZONE,0,nil,0x527)
+	local mct1=Duel.GetMatchingGroupCount(c27142.mfilter,tp,LOCATION_MZONE,0,nil,0x522,tp)
+	local mct2=Duel.GetMatchingGroupCount(c27142.mfilter,tp,LOCATION_MZONE,0,nil,0x527,tp)
 	local sg=Group.CreateGroup()
-	if Duel.GetLocationCount(tp,LOCATION_MZONE)>0 then
+	if Duel.GetLocationCountFromEx(tp)>0 then
 			Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE)
 		if ct2>1 then
 			sg=mg1:FilterSelect(tp,aux.TRUE,1,1,nil)

@@ -33,7 +33,7 @@ function c15070.initial_effect(c)
 	c:RegisterEffect(e4)
 end
 function c15070.mfilter(c,xyzc)
-	return c:IsXyzLevel(xyzc,12) or (c:IsSetCard(0x150) and c:GetOriginalLevel()>=4)
+	return (c:IsXyzLevel(xyzc,12) or (c:IsSetCard(0x150) and c:GetOriginalLevel()>=4)) and Duel.GetLocationCountFromEx(tp,tp,c,xyzc)
 end
 function c15070.xyzcheck(g,xyzc)
 	return not g:IsExists(c15070.counter[g:GetCount()],1,nil,xyzc)

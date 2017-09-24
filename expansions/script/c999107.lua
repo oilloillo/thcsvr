@@ -12,7 +12,7 @@ function M.initial_effect(c)
 	e0:SetCode(EVENT_PHASE+PHASE_STANDBY)
 	e0:SetCountLimit(1, Mid+EFFECT_COUNT_CODE_DUEL)
 	e0:SetCost(M.cost)
-	e0:SetTarget(M.target)
+	e0:SetTarget(M.decktarget)
 	e0:SetOperation(M.activate)
 	c:RegisterEffect(e0)
 
@@ -21,7 +21,6 @@ function M.initial_effect(c)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetHintTiming(0, TIMING_STANDBY_PHASE)
 	e1:SetCode(EVENT_FREE_CHAIN)
-	e1:SetCountLimit(1, Mid+EFFECT_COUNT_CODE_DUEL)
 	e1:SetTarget(M.target)
 	e1:SetOperation(M.activate)
 	c:RegisterEffect(e1)
@@ -38,12 +37,51 @@ function M.initial_effect(c)
 end
 
 function M.cost(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return e:GetHandler():IsAbleToGrave() end
+	if chk==0 then return e:GetHandler():IsAbleToGrave() and Duel.IsExistingMatchingCard(Card.IsAbleToDeckAsCost, tp, LOCATION_HAND, 0, 1, nil) end
 	Duel.SendtoGrave(e:GetHandler(), REASON_COST)
+
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
+	local g = Duel.SelectMatchingCard(tp, Card.IsAbleToDeckAsCost, tp, LOCATION_HAND, 0, 1, 1, nil)
+	Duel.ConfirmCards(1-tp, g)
+	Duel.SendtoDeck(g, nil, 2, REASON_COST)
 end
 
 function M.filter(c,tp)
 	return c:IsCode(999104) and c:GetActivateEffect():IsActivatable(tp)
+end
+
+function M.codefilter(c, rbool)
+	local flag = 0
+	if c:IsSetCard(0x123) then
+		flag = 1
+	elseif c:IsCode(25164) or c:IsSetCard(0x3208) then
+		flag = 2
+	elseif c:IsCode(999301) or c:IsCode(23001) or c:IsCode(999302) or c:IsCode(23004) then
+		flag = 3
+	elseif c:IsSetCard(0xaa4) then
+		flag = 4
+	elseif c:IsCode(20200) then
+		flag = 5
+	elseif c:IsCode(22400) then
+		flag = 6
+	elseif c:IsCode(23300) then
+		flag = 7
+	elseif c:IsCode(10100) then
+		flag = 8
+	end 
+	if rbool then
+		return flag > 0
+	else
+		return flag
+	end
+end
+
+function M.decktarget(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then 
+		local g = Duel.GetMatchingGroup(M.codefilter, tp, LOCATION_DECK, 0, nil, true)
+		return Duel.IsExistingMatchingCard(M.filter, tp, LOCATION_DECK, 0, 1, nil, tp) 
+			and g:GetClassCount(M.codefilter, false) >= 8
+	end
 end
 
 function M.target(e,tp,eg,ep,ev,re,r,rp,chk)
@@ -51,12 +89,6 @@ function M.target(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 
 function M.activate(e,tp,eg,ep,ev,re,r,rp)
-	if not Duel.IsExistingMatchingCard(Card.IsAbleToDeckAsCost, tp, LOCATION_HAND, 0, 1, nil) then return end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
-	local g=Duel.SelectMatchingCard(tp, Card.IsAbleToDeckAsCost, tp, LOCATION_HAND, 0, 1, 1, nil)
-	Duel.ConfirmCards(1-tp, g)
-	Duel.SendtoDeck(g, nil, 2, REASON_COST)
-
 	Duel.Hint(HINT_SELECTMSG, tp, aux.Stringid(Mid, 0))
 	local tc = Duel.SelectMatchingCard(tp, M.filter, tp, LOCATION_DECK, 0, 1, 1, nil, tp):GetFirst()
 	if tc then
@@ -79,6 +111,7 @@ function M.activate(e,tp,eg,ep,ev,re,r,rp)
 		e0:SetTargetRange(LOCATION_SZONE, 0)
 		e0:SetTarget(M.etarget)
 		e0:SetValue(M.efilter)
+		e0:SetReset(RESET_PHASE+PHASE_END, 2)
 		Duel.RegisterEffect(e0, tp)
 	end
 end

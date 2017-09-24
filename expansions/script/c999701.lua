@@ -47,11 +47,10 @@ end
 function M.filter(c, turner, mg)
 	if turner then
 		return c:IsSynchroSummonable(turner, mg) and mg:GetFirst():IsCanBeSynchroMaterial(c, turner) 
-			and mg:GetNext():IsCanBeSynchroMaterial(c, turner) and c:IsAbleToGraveAsCost()
+			and mg:GetNext():IsCanBeSynchroMaterial(c, turner)
 	else
 		return c:IsXyzSummonable(mg) and Duel.CheckXyzMaterial(c, nil, mg:GetFirst():GetLevel(), 2, 2, mg) 
 			and mg:GetFirst():IsCanBeXyzMaterial(c) and mg:GetNext():IsCanBeXyzMaterial(c)
-			and c:IsAbleToGraveAsCost()
 	end
 end
 
@@ -63,7 +62,8 @@ function M.crossCon(e,c,og)
 	while tc do 
 		local mg = Group.FromCards(c, tc)
 		if Duel.IsExistingMatchingCard(M.filter, tp, LOCATION_EXTRA, 0, 1, nil, c, mg) and 
-			Duel.IsExistingMatchingCard(M.filter, tp, LOCATION_EXTRA, 0, 1, nil, nil, mg) then
+			Duel.IsExistingMatchingCard(M.filter, tp, LOCATION_EXTRA, 0, 1, nil, nil, mg) and
+			Duel.GetLocationCountFromEx(tp, tp, mg) > 1 then
 			return true
 		end 
 		tc = g:GetNext()
@@ -98,7 +98,7 @@ function M.crossOp(e,tp,eg,ep,ev,re,r,rp,c,sg,og)
 	
 	Duel.HintSelection(mg)
 	Duel.SendtoGrave(mg, REASON_MATERIAL+REASON_SYNCHRO+REASON_XYZ)
-	Duel.SendtoGrave(sg, REASON_EFFECT)
+
 	sync:GetFirst():CompleteProcedure()
 	xyzc:GetFirst():CompleteProcedure()
 end

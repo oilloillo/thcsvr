@@ -37,7 +37,7 @@ function c12030.initial_effect(c)
 end
 function c12030.hofilter(c, tp, xyzc, lv)
 	if c:IsType(TYPE_TOKEN) or not c:IsCanBeXyzMaterial(xyzc) then return false end
-	return c:IsSetCard(0x208) and c:IsFaceup() and c:IsLevelBelow(3)
+	return c:IsSetCard(0x208) and c:IsFaceup() and c:IsLevelBelow(3) and Duel.GetLocationCountFromEx(tp,tp,c,xyzc)>0
 end
 function c12030.rfilter3(c)
 	return c:IsAttribute(ATTRIBUTE_LIGHT) and c:IsAbleToRemoveAsCost()
@@ -45,7 +45,7 @@ end
 function c12030.xyzcon(e,c)
 	if c==nil then return true end
 	local tp=c:GetControler()
-	if Duel.GetLocationCount(tp,LOCATION_MZONE)<0 then return false end
+	if Duel.GetLocationCountFromEx(tp)<0 then return false end
 	return Duel.IsExistingMatchingCard(c12030.hofilter, tp, LOCATION_MZONE, 0, 1, nil, tp, c)
 		and Duel.IsExistingMatchingCard(c12030.rfilter3, tp, LOCATION_GRAVE, 0, 2, nil)
 end
@@ -79,12 +79,7 @@ function c12030.destg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
 	local g=Duel.SelectTarget(tp,c12030.dsfilter,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,1,nil)
 	Duel.SetOperationInfo(0,CATEGORY_DESTROY,g,1,0,0)
-	Duel.SetChainLimit(c12030.limit(g:GetFirst()))
-end
-function c12030.limit(c)
-	return  function (e,lp,tp)
-				return e:GetHandler() ~= c
-			end
+	Duel.SetChainLimit(aux.FALSE)
 end
 function c12030.desop(e,tp,eg,ep,ev,re,r,rp,chk)
 	local tc=Duel.GetFirstTarget()

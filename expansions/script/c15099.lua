@@ -35,9 +35,8 @@ function c15099.initial_effect(c)
 end
 function c15099.checkop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=eg:GetFirst()
-	while tc do
+	if tc then
 		Duel.RegisterFlagEffect(tc:GetSummonPlayer(),15099,RESET_PHASE+PHASE_END,0,1)
-		tc=eg:GetNext()
 	end
 end
 function c15099.atklimit(e,tp,eg,ep,ev,re,r,rp)
