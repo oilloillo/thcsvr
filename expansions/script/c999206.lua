@@ -101,7 +101,7 @@ function M.dspcon(e,tp,eg,ep,ev,re,r,rp)
 	return sumtype == SUMMON_TYPE_PENDULUM
 end
 function M.dspfilter(c,e,tp)
-	return c:IsSetCard(0xaa1) and c:GetSequence()>5 and c:GetSequence()<8 and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
+	return c:IsSetCard(0xaa1) and c:IsLocation(LOCATION_PZONE) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
 function M.dsptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
