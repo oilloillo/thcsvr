@@ -53,7 +53,7 @@ end
 function c999203.mamocon(e)
 	local c = e:GetHandler()
 	local tp = c:GetControler()
-	return c:GetSequence()==6 or c:GetSequence()==7 
+	return c:IsLocation(LOCATION_PZONE) 
 		or Duel.IsExistingMatchingCard(c999203.filter,tp,LOCATION_MZONE,0,1,nil)
 end
 function c999203.mamotarget(e,c)

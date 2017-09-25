@@ -21,6 +21,7 @@ end
 function M.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chk==0 then 
 		local g = Duel.GetMatchingGroup(M.desfilter, tp, LOCATION_MZONE, LOCATION_MZONE, nil)
+		if g:GetCount() < 1 then return false end
 		local ming = g:GetMinGroup(M.lvfilter)
 		local tc = ming:GetFirst()
 		return tc and tc:IsDestructable()

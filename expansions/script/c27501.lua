@@ -80,7 +80,7 @@ end
 function c27501.discon(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	if c:IsStatus(STATUS_BATTLE_DESTROYED) then return false end
-	return Duel.IsChainNegatable(ev) and c:GetLinkedGroup():IsContains(re:GetHandler())
+	return ep~=tp and Duel.IsChainNegatable(ev) and c:GetLinkedGroup():IsContains(re:GetHandler())
 end
 function c27501.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end

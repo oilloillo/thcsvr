@@ -1,5 +1,4 @@
- 
---华胥的亡灵
+ --华胥的亡灵
 function c20032.initial_effect(c)
 	c:EnableReviveLimit()
 	--special summon
@@ -40,7 +39,7 @@ function c20032.initial_effect(c)
 	e5:SetDescription(aux.Stringid(20032,2))
 	e5:SetProperty(EFFECT_FLAG_SINGLE_RANGE)
 	e5:SetType(EFFECT_TYPE_IGNITION)
-	e5:SetCountLimit(1)
+	e5:SetCountLimit(1,20032)
 	e5:SetRange(LOCATION_MZONE)
 	e5:SetTarget(c20032.tg)
 	e5:SetOperation(c20032.op)
