@@ -39,7 +39,7 @@ end
 function c999201.atkcon(e)
 	local c = e:GetHandler()
 	local tp = c:GetControler()
-	return c:GetSequence()==6 or c:GetSequence()==7 
+	return c:IsLocation(LOCATION_PZONE)
 		or( c:IsLocation(LOCATION_MZONE) and Duel.IsExistingMatchingCard(c999201.filter,tp,LOCATION_MZONE,0,1,nil))
 end
 function c999201.atktg(e,c)
