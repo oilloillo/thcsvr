@@ -26,6 +26,7 @@ end
 
 function M.val(e, c)
 	local atk = 0
+	local tp = e:GetHandler():GetControler()
 	for i = 0, 1 do
 		local tc = Duel.GetFieldCard(tp, LOCATION_PZONE, i)
 		if tc and tc:IsSetCard(0xaa1) then
