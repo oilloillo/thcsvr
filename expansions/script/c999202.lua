@@ -42,7 +42,7 @@ end
 function c999202.dualcon(e)
 	local c = e:GetHandler()
 	local tp = c:GetControler()
-	return c:GetSequence()==6 or c:GetSequence()==7 
+	return c:IsLocation(LOCATION_PZONE) 
 		or Duel.IsExistingMatchingCard(c999202.filter,tp,LOCATION_MZONE,0,1,nil)
 end
 function c999202.dualtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
