@@ -40,7 +40,7 @@ function M.lvfilter(c)
 end
 
 function M.desfilter(c,lv)
-	return c:IsDestructable() and c:IsFaceup() and c:IsSetCard(0x208) and M.lvfilter(c)<=lv
+	return c:IsDestructable() and c:IsFaceup() and c:IsSetCard(0x208) and M.lvfilter(c)<=lv and not c:IsType(TYPE_LINK)
 end
 
 function M.cost(e,tp,eg,ep,ev,re,r,rp,chk)
