@@ -1,5 +1,6 @@
 --神与道的连结✿丰聪耳神子
 function c27501.initial_effect(c)
+	c:SetUniqueOnField(1,0,27501)
 	--link summon
 	aux.AddLinkProcedure(c,c27501.matfilter,2)
 	c:EnableReviveLimit()

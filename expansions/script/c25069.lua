@@ -36,7 +36,7 @@ function c25069.activate(e,tp,eg,ep,ev,re,r,rp)
 		local g=Duel.SelectMatchingCard(tp,c25069.filter,tp,LOCATION_EXTRA,0,1,1,nil,e,tp)
 		if g:GetCount()>0 then
 		local tc=g:GetFirst()
-			if Duel.SpecialSummonStep(tc,0,tp,tp,false,false,POS_FACEUP_DEFENSE)>0 then
+			if Duel.SpecialSummonStep(tc,0,tp,tp,false,false,POS_FACEUP_DEFENSE) then
 				tc:CompleteProcedure()
 				Duel.SpecialSummonComplete()
 				local lp=Duel.GetLP(tp)

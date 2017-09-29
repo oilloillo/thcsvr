@@ -41,7 +41,7 @@ function c23067.matfilter1(c,syncard,tp)
 	return c:IsType(TYPE_TUNER) and c:IsCanBeSynchroMaterial(syncard) and c:IsFaceup() and Duel.GetLocationCountFromEx(tp,tp,c,syncard)>0
 end
 function c23067.matfilter2(c,syncard,tp)	
-	return c:IsCanBeSynchroMaterial(syncard) and not c:IsType(TYPE_TUNER) and c:IsSetCard(0x113) and Duel.GetLocationCountFromEx(tp,tp,c,syncard)>0
+	return c:IsCanBeSynchroMaterial(syncard) and not c:IsType(TYPE_TUNER) and c:IsSetCard(0x113)
 end
 function c23067.synfilter1(c,lv,g1,g2)
 	local tlv=c:GetLevel()	

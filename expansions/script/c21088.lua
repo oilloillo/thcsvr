@@ -38,7 +38,7 @@ function c21088.initial_effect(c)
 	e2:SetOperation(c21088.spop2)
 	c:RegisterEffect(e2)
 end
-function c21088.sprfilter(c)
+function c21088.sprfilter(c,tp)
 	return c:IsSetCard(0x208) and c:IsType(TYPE_TUNER) and c:GetAttack()>=1000 and c:IsAttribute(ATTRIBUTE_FIRE) and c:IsReleasable()
 		and Duel.GetLocationCountFromEx(tp, tp, c)>0
 end
@@ -50,7 +50,7 @@ function c21088.sprcon(e,c)
 end
 function c21088.sprop(e,tp,eg,ep,ev,re,r,rp,c)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RELEASE)
-	local g=Duel.SelectMatchingCard(tp,c21088.sprfilter,tp,LOCATION_MZONE,0,1,1,nil)
+	local g=Duel.SelectMatchingCard(tp,c21088.sprfilter,tp,LOCATION_MZONE,0,1,1,nil,tp)
 	Duel.Release(g,REASON_COST)
 end
 function c21088.destg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)

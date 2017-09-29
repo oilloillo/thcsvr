@@ -36,12 +36,12 @@ function c23064.initial_effect(c)
 	c:RegisterEffect(e3)
 end
 function c23064.matfilter1(c,syncard,tp)
-	return c:IsType(TYPE_TUNER) and c:IsCanBeSynchroMaterial(syncard) and (c:IsFaceup() or c:IsLocation(LOCATION_HAND))
-		and Duel.GetLocationCountFromEx(tp,tp,c,syncard)>0
+	return c:IsType(TYPE_TUNER) and c:IsCanBeSynchroMaterial(syncard)
+		and (  (c:IsFaceup() and Duel.GetLocationCountFromEx(tp,tp,c,syncard)>0) or c:IsLocation(LOCATION_HAND)  )
 end
 function c23064.matfilter2(c,syncard,tp)	
-	return c:IsCanBeSynchroMaterial(syncard) and not c:IsType(TYPE_TUNER) and c:IsSetCard(0x113) and (c:IsFaceup() or c:IsLocation(LOCATION_HAND))
-		 and Duel.GetLocationCountFromEx(tp,tp,c,syncard)>0
+	return c:IsCanBeSynchroMaterial(syncard) and not c:IsType(TYPE_TUNER) and c:IsSetCard(0x113)
+		and (  (c:IsFaceup() and Duel.GetLocationCountFromEx(tp,tp,c,syncard)>0) or c:IsLocation(LOCATION_HAND)  )
 end
 function c23064.synfilter1(c,lv,g1,g2)
 	local tlv=c:GetLevel()	
@@ -57,7 +57,11 @@ function c23064.syncon(e,c,tuner)
 	local g1=Duel.GetMatchingGroup(c23064.matfilter1,tp,0x6,0,nil,c,tp)
 	local g2=Duel.GetMatchingGroup(c23064.matfilter2,tp,0x6,0,nil,c,tp)
 	local lv=c:GetLevel()
-	local m=g1:FilterCount(Card.IsLocation,nil,LOCATION_HAND)+g2:FilterCount(Card.IsLocation,nil,LOCATION_HAND)
+	local m=0
+	if g1:FilterCount(Card.IsLocation,nil,LOCATION_HAND)>0 then
+		m=m+1 end
+	if g2:FilterCount(Card.IsLocation,nil,LOCATION_HAND)>0 then
+		m=m+1 end
 	if m > 2 then m = 2 end
 	return Duel.GetLocationCountFromEx(tp)>m-2 and g1:IsExists(c23064.synfilter1,1,nil,lv,g1,g2)
 end
@@ -93,7 +97,7 @@ function c23064.synop(e,tp,eg,ep,ev,re,r,rp,c,tuner)
 			local t1=g2:FilterSelect(tp,c23064.synfilter3,1,1,nil,lv-lv1)
 			g:Merge(t1)	c:SetMaterial(g)
 		end
-	end
+	else
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SMATERIAL)
 		local m3=g1:FilterSelect(tp,c23064.synfilter1,1,1,nil,lv,g1,g2)
 		local mt1=m3:GetFirst()
@@ -102,6 +106,7 @@ function c23064.synop(e,tp,eg,ep,ev,re,r,rp,c,tuner)
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SMATERIAL)
 		local t1=g2:FilterSelect(tp,c23064.synfilter3,1,1,nil,lv-lv1)
 		g:Merge(t1)	c:SetMaterial(g)
+	end
 	Duel.SendtoGrave(g,REASON_MATERIAL+REASON_SYNCHRO)
 end
 function c23064.con(e,tp,eg,ep,ev,re,r,rp)

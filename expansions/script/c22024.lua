@@ -56,30 +56,33 @@ function c22024.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.Remove(g,POS_FACEUP,REASON_COST)
 end
 function c22024.condition(e,tp,eg,ep,ev,re,r,rp)
-	local seq=e:GetHandler():GetSequence()
-	return e:GetHandler():IsFaceup()
-		and Duel.GetFieldCard(1-tp,LOCATION_MZONE,4-seq)
+	local g=e:GetHandler():GetColumnGroup()
+	g:Remove(c22024.remfilter,nil,tp)
+	return g:GetCount()>0
 end
-function c22024.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
+function c22024.remfilter(c,tp)
+	return c:IsLocation(LOCATION_SZONE) or (c:IsControler(tp) and c:GetSequence()<5)
+end
+function c22024.seqfilter(c,tp)
+	return c:IsLocation(LOCATION_SZONE) and c:IsControler(1-tp)
+end
+function c22024.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
-	local seq=e:GetHandler():GetSequence()
-	e:SetLabel(seq)
-	local g=Group.CreateGroup()
-	g:AddCard(Duel.GetFieldCard(1-tp,LOCATION_MZONE,4-seq))
+	local g=e:GetHandler():GetColumnGroup()
+	g:Remove(c22024.remfilter,nil,tp)
 	Duel.SetOperationInfo(0,CATEGORY_DESTROY,g,g:GetCount(),0,0)
 end
 function c22024.operation(e,tp,eg,ep,ev,re,r,rp)
-	local seq=e:GetLabel()
-	local g=Group.CreateGroup()
-	local tc=Duel.GetFieldCard(1-tp,LOCATION_MZONE,4-seq)
-	if tc then g:AddCard(tc) end
-	Duel.Destroy(g,REASON_EFFECT)
-	Duel.BreakEffect()
-	local tcc=Duel.GetFieldCard(1-tp,LOCATION_SZONE,4-seq)
-	if tcc then
-	Duel.Destroy(tcc,REASON_EFFECT)
+	local g=e:GetHandler():GetColumnGroup()
+	local seqing=g:Filter(c22024.seqfilter,nil,tp)
+	seqing:Remove(c22024.remfilter,nil,tp)
+	if g:GetCount()>0 then
+		Duel.Destroy(g,REASON_EFFECT)
+	end
+	if seqing:GetCount()>0 then
+		Duel.Destroy(seqing,REASON_EFFECT)
 	else 
-	Duel.Damage(1-tp,1200,REASON_EFFECT)
+		Duel.Damage(1-tp,1200,REASON_EFFECT)
 	end
 end
 function c22024.tdcon(e,tp,eg,ep,ev,re,r,rp)
