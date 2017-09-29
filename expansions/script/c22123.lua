@@ -23,7 +23,33 @@ function c22123.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	local Duel.SetTargetCard(tc)
 	local seq=tc:GetSequence()
 	local g=Group.CreateGroup()
-	if seq<5 then
+	if seq==1 then
+		if Duel.GetFieldCard(tp,LOCATION_MZONE,seq-1) then
+			g:AddCard(Duel.GetFieldCard(tp,LOCATION_MZONE,seq-1))
+		end
+		if Duel.GetFieldCard(tp,LOCATION_MZONE,seq+1) then
+			g:AddCard(Duel.GetFieldCard(tp,LOCATION_MZONE,seq+1))
+		end
+		if Duel.GetFieldCard(tp,LOCATION_SZONE,seq) then
+			g:AddCard(Duel.GetFieldCard(tp,LOCATION_SZONE,seq))
+		end
+		if Duel.GetFieldCard(tp,LOCATION_MZONE,5) then
+			g:AddCard(Duel.GetFieldCard(tp,LOCATION_MZONE,5))
+		end
+	elseif seq==3 then
+		if Duel.GetFieldCard(tp,LOCATION_MZONE,seq-1) then
+			g:AddCard(Duel.GetFieldCard(tp,LOCATION_MZONE,seq-1))
+		end
+		if Duel.GetFieldCard(tp,LOCATION_MZONE,seq+1) then
+			g:AddCard(Duel.GetFieldCard(tp,LOCATION_MZONE,seq+1))
+		end
+		if Duel.GetFieldCard(tp,LOCATION_SZONE,seq) then
+			g:AddCard(Duel.GetFieldCard(tp,LOCATION_SZONE,seq))
+		end
+		if Duel.GetFieldCard(tp,LOCATION_MZONE,6) then
+			g:AddCard(Duel.GetFieldCard(tp,LOCATION_MZONE,6))
+		end
+	elseif seq<4 then
 		if Duel.GetFieldCard(tp,LOCATION_MZONE,seq-1) then
 			g:AddCard(Duel.GetFieldCard(tp,LOCATION_MZONE,seq-1))
 		end
@@ -36,8 +62,15 @@ function c22123.target(e,tp,eg,ep,ev,re,r,rp,chk)
 		if Duel.GetFieldCard(1-tp,LOCATION_MZONE,4-seq) then
 			g:AddCard(Duel.GetFieldCard(1-tp,LOCATION_MZONE,4-seq))
 		end
-		if Duel.GetFieldCard(1-tp,LOCATION_SZONE,4-seq) then
-			g:AddCard(Duel.GetFieldCard(1-tp,LOCATION_SZONE,4-seq))
+	elseif seq==4 then
+		if Duel.GetFieldCard(tp,LOCATION_MZONE,seq-1) then
+			g:AddCard(Duel.GetFieldCard(tp,LOCATION_MZONE,seq-1))
+		end
+		if Duel.GetFieldCard(tp,LOCATION_SZONE,seq) then
+			g:AddCard(Duel.GetFieldCard(tp,LOCATION_SZONE,seq))
+		end
+		if Duel.GetFieldCard(1-tp,LOCATION_MZONE,4-seq) then
+			g:AddCard(Duel.GetFieldCard(1-tp,LOCATION_MZONE,4-seq))
 		end
 	elseif seq==5 then
 		if Duel.GetFieldCard(tp,LOCATION_MZONE,6) then
@@ -71,7 +104,33 @@ function c22123.operation(e,tp,eg,ep,ev,re,r,rp)
 	if not tc:IsRelateToEffect(e) then return end
 	local seq=tc:GetSequence()
 	local g=Group.CreateGroup()
-	if seq<5 then
+	if seq==1 then
+		if Duel.GetFieldCard(tp,LOCATION_MZONE,seq-1) then
+			g:AddCard(Duel.GetFieldCard(tp,LOCATION_MZONE,seq-1))
+		end
+		if Duel.GetFieldCard(tp,LOCATION_MZONE,seq+1) then
+			g:AddCard(Duel.GetFieldCard(tp,LOCATION_MZONE,seq+1))
+		end
+		if Duel.GetFieldCard(tp,LOCATION_SZONE,seq) then
+			g:AddCard(Duel.GetFieldCard(tp,LOCATION_SZONE,seq))
+		end
+		if Duel.GetFieldCard(tp,LOCATION_MZONE,5) then
+			g:AddCard(Duel.GetFieldCard(tp,LOCATION_MZONE,5))
+		end
+	elseif seq==3 then
+		if Duel.GetFieldCard(tp,LOCATION_MZONE,seq-1) then
+			g:AddCard(Duel.GetFieldCard(tp,LOCATION_MZONE,seq-1))
+		end
+		if Duel.GetFieldCard(tp,LOCATION_MZONE,seq+1) then
+			g:AddCard(Duel.GetFieldCard(tp,LOCATION_MZONE,seq+1))
+		end
+		if Duel.GetFieldCard(tp,LOCATION_SZONE,seq) then
+			g:AddCard(Duel.GetFieldCard(tp,LOCATION_SZONE,seq))
+		end
+		if Duel.GetFieldCard(tp,LOCATION_MZONE,6) then
+			g:AddCard(Duel.GetFieldCard(tp,LOCATION_MZONE,6))
+		end
+	elseif seq<4 then
 		if Duel.GetFieldCard(tp,LOCATION_MZONE,seq-1) then
 			g:AddCard(Duel.GetFieldCard(tp,LOCATION_MZONE,seq-1))
 		end
@@ -84,8 +143,15 @@ function c22123.operation(e,tp,eg,ep,ev,re,r,rp)
 		if Duel.GetFieldCard(1-tp,LOCATION_MZONE,4-seq) then
 			g:AddCard(Duel.GetFieldCard(1-tp,LOCATION_MZONE,4-seq))
 		end
-		if Duel.GetFieldCard(1-tp,LOCATION_SZONE,4-seq) then
-			g:AddCard(Duel.GetFieldCard(1-tp,LOCATION_SZONE,4-seq))
+	elseif seq==4 then
+		if Duel.GetFieldCard(tp,LOCATION_MZONE,seq-1) then
+			g:AddCard(Duel.GetFieldCard(tp,LOCATION_MZONE,seq-1))
+		end
+		if Duel.GetFieldCard(tp,LOCATION_SZONE,seq) then
+			g:AddCard(Duel.GetFieldCard(tp,LOCATION_SZONE,seq))
+		end
+		if Duel.GetFieldCard(1-tp,LOCATION_MZONE,4-seq) then
+			g:AddCard(Duel.GetFieldCard(1-tp,LOCATION_MZONE,4-seq))
 		end
 	elseif seq==5 then
 		if Duel.GetFieldCard(tp,LOCATION_MZONE,6) then
